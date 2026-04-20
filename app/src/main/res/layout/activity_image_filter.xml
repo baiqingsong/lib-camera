@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ImageFilterActivity">
+
+    <!-- 顶部操作栏 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="8dp">
+
+        <Button
+            android:id="@+id/btn_pick_image"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="选择图片"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_filter_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="原图"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="保存"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <!-- 图片预览区 -->
+    <jp.co.cyberagent.android.gpuimage.GPUImageView
+        android:id="@+id/gpu_image_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <!-- 滤镜强度调节 -->
+    <SeekBar
+        android:id="@+id/seekbar_intensity"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:paddingHorizontal="16dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="12dp"
+        android:text="美颜模块"
+        android:textSize="12sp"
+        android:textColor="#888888" />
+
+    <LinearLayout
+        android:id="@+id/layout_beauty_controls"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="12dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="56dp"
+                android:layout_height="wrap_content"
+                android:text="磨皮"
+                android:textSize="12sp" />
+
+            <SeekBar
+                android:id="@+id/seekbar_smoothness"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="56dp"
+                android:layout_height="wrap_content"
+                android:text="美白"
+                android:textSize="12sp" />
+
+            <SeekBar
+                android:id="@+id/seekbar_whiten"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="56dp"
+                android:layout_height="wrap_content"
+                android:text="红润"
+                android:textSize="12sp" />
+
+            <SeekBar
+                android:id="@+id/seekbar_rosy"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="56dp"
+                android:layout_height="wrap_content"
+                android:text="亮度"
+                android:textSize="12sp" />
+
+            <SeekBar
+                android:id="@+id/seekbar_beauty_brightness"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="56dp"
+                android:layout_height="wrap_content"
+                android:text="对比度"
+                android:textSize="12sp" />
+
+            <SeekBar
+                android:id="@+id/seekbar_beauty_contrast"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="56dp"
+                android:layout_height="wrap_content"
+                android:text="伽马"
+                android:textSize="12sp" />
+
+            <SeekBar
+                android:id="@+id/seekbar_beauty_gamma"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="56dp"
+                android:layout_height="wrap_content"
+                android:text="饱和度"
+                android:textSize="12sp" />
+
+            <SeekBar
+                android:id="@+id/seekbar_beauty_saturation"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="12dp"
+        android:text="滤镜模块"
+        android:textSize="12sp"
+        android:textColor="#888888" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_filters"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginBottom="8dp"
+        android:clipToPadding="false"
+        android:paddingHorizontal="8dp" />
+
+</LinearLayout>
