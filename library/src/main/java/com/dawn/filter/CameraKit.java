@@ -3,6 +3,7 @@ package com.dawn.filter;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
+import java.io.File;
 
 /**
  * LibCamera 库的统一对外入口（门面类）。
@@ -311,6 +312,45 @@ public final class CameraKit {
             return this;
         }
 
+        /**
+         * 开始录制视频（带音频）。
+         * <p>
+         * 注意：Camera1 限制，录制视频不含 GPU 滤镜/美颜效果；预览仍显示滤镜。
+         * 需要 {@code CAMERA} + {@code RECORD_AUDIO} 权限。
+         *
+         * @param outputFile 输出 .mp4 文件，传 {@code null} 自动生成到应用外部 Movies 目录
+         * @param listener   录制结果回调（主线程），不可为 null
+         * @return this（支持链式调用）
+         */
+        public CameraSession startRecording(File outputFile,
+                                            CameraFilterHelper.OnVideoRecordListener listener) {
+            helper.startRecording(outputFile, listener);
+            return this;
+        }
+
+        /**
+         * 停止录制视频，结果通过 {@link CameraFilterHelper.OnVideoRecordListener#onVideoSaved} 回调。
+         */
+        public void stopRecording() {
+            helper.stopRecording();
+        }
+
+        /**
+         * 是否正在录制视频。
+         */
+        public boolean isRecording() {
+            return helper.isRecording();
+        }
+
+        /**
+         * 检查录制所需权限（CAMERA + RECORD_AUDIO）。
+         *
+         * @return true 所有权限已授予
+         */
+        public boolean checkRecordPermissions() {
+            return helper.checkRecordPermissions();
+        }
+
         // ── 生命周期 ──────────────────────────────────────────────
 
         /**
@@ -373,8 +413,9 @@ public final class CameraKit {
         }
 
         /**
-         * 处理相机权限请求结果（在 Activity.onRequestPermissionsResult 中调用）。
-         * 若权限被授予，将自动启动相机。
+         * 处理权限请求结果（在 Activity.onRequestPermissionsResult 中调用）。
+         * 若相机权限被授予，自动启动相机。
+         * 录制权限授予后，需重新调用 {@link #startRecording} 开始录制。
          */
         public void onRequestPermissionsResult(int requestCode, int[] grantResults) {
             if (requestCode == CameraFilterHelper.REQUEST_CAMERA_PERMISSION
@@ -382,6 +423,7 @@ public final class CameraKit {
                     && grantResults[0] == android.content.pm.PackageManager.PERMISSION_GRANTED) {
                 start();
             }
+            // REQUEST_AUDIO_PERMISSION: 用户授权后需重新调用 startRecording()
         }
 
         // ── 高级访问 ──────────────────────────────────────────────

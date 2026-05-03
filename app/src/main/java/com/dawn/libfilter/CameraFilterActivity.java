@@ -1,14 +1,19 @@
 package com.dawn.libfilter;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.File;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -38,6 +43,10 @@ public class CameraFilterActivity extends AppCompatActivity {
     private SeekBar seekBarBeautySaturation;
     private TextView tvFilterName;
     private RecyclerView rvFilters;
+
+    private Button btnRecord;
+    private TextView tvRecordCountdown;
+    private CountDownTimer countDownTimer;
 
     private FilterStyle currentFilterStyle = FilterStyle.ORIGINAL;
     private float currentFilterIntensity = 0.8f;
@@ -90,6 +99,17 @@ public class CameraFilterActivity extends AppCompatActivity {
                     }
                 }));
 
+        // 录制
+        btnRecord = findViewById(R.id.btn_record);
+        tvRecordCountdown = findViewById(R.id.tv_record_countdown);
+        btnRecord.setOnClickListener(v -> {
+            if (cameraHelper.isRecording()) {
+                stopRecordingUi();
+            } else {
+                startRecordingUi();
+            }
+        });
+
         // 相机在 onResume 中启动，避免 onCreate+onResume 双重权限请求
     }
 
@@ -105,6 +125,10 @@ public class CameraFilterActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
+        // 离开界面时停止录制
+        if (cameraHelper.isRecording()) {
+            stopRecordingUi();
+        }
         cameraHelper.stopCamera();
         cameraHelper.onHostPause();
     }
@@ -120,7 +144,82 @@ public class CameraFilterActivity extends AppCompatActivity {
                 Toast.makeText(this, "需要相机权限", Toast.LENGTH_SHORT).show();
                 finish();
             }
+        } else if (requestCode == CameraFilterHelper.REQUEST_AUDIO_PERMISSION) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // 权限已授予，用户需再次点击录制
+                Toast.makeText(this, "录音权限已授予，请再次点击录制", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "需要录音权限才能录制视频", Toast.LENGTH_SHORT).show();
+            }
         }
+    }
+
+    // ==================== 录制逻辑 ====================
+
+    private void startRecordingUi() {
+        cameraHelper.startRecording(null, new CameraFilterHelper.OnVideoRecordListener() {
+            @Override
+            public void onVideoSaved(File videoFile) {
+                runOnUiThread(() -> {
+                    resetRecordingUi();
+                    String msg = "录制完成: " + videoFile.getName();
+                    Toast.makeText(CameraFilterActivity.this, msg, Toast.LENGTH_LONG).show();
+                    // 立即打开播放器
+                    openVideoPlayer(videoFile);
+                });
+            }
+
+            @Override
+            public void onError(String message) {
+                runOnUiThread(() -> {
+                    resetRecordingUi();
+                    Toast.makeText(CameraFilterActivity.this, "录制失败: " + message, Toast.LENGTH_SHORT).show();
+                });
+            }
+        });
+
+        // 更新按钮 + 开始倒计时
+        btnRecord.setText("停止录制");
+        tvRecordCountdown.setVisibility(View.VISIBLE);
+
+        long maxMs = CameraFilterHelper.MAX_RECORD_DURATION_MS;
+        countDownTimer = new CountDownTimer(maxMs, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                tvRecordCountdown.setText("录制中… 剩余 " + (millisUntilFinished / 1000) + " 秒");
+            }
+
+            @Override
+            public void onFinish() {
+                // 30s 自动停止由 CameraFilterHelper 触发，UI 在 onVideoSaved 回调中重置
+                tvRecordCountdown.setText("录制中… 0 秒");
+            }
+        }.start();
+    }
+
+    private void stopRecordingUi() {
+        cameraHelper.stopRecording();
+        resetRecordingUi();
+    }
+
+    private void resetRecordingUi() {
+        if (countDownTimer != null) {
+            countDownTimer.cancel();
+            countDownTimer = null;
+        }
+        if (btnRecord != null) {
+            btnRecord.setText("开始录制");
+        }
+        if (tvRecordCountdown != null) {
+            tvRecordCountdown.setVisibility(View.GONE);
+            tvRecordCountdown.setText("");
+        }
+    }
+
+    private void openVideoPlayer(File videoFile) {
+        Intent intent = new Intent(this, VideoPlayerActivity.class);
+        intent.putExtra(VideoPlayerActivity.EXTRA_VIDEO_PATH, videoFile.getAbsolutePath());
+        startActivity(intent);
     }
 
     private void setupFilterList() {
