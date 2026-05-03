@@ -102,7 +102,13 @@ public class GlFilterRecorder {
 
     // Pre-allocated FloatBuffers for quad geometry (每帧复用，避免 GC 压力)
     private final FloatBuffer cubeBuf     = makeDirectFloat(CUBE);
-    private final FloatBuffer texCoordBuf = makeDirectFloat(TEX_COORDS);
+    private final FloatBuffer texCoordBuf = makeDirectFloat(TEX_COORDS);  // 标准坐标，用于美颜/风格 pass
+    private FloatBuffer yuvTexCoordBuf;   // 含旋转+镜像的坐标，用于 YUV→RGBA pass
+
+    // 渲染变换（旋转 + 镜像），在 prepare() 前通过 setTransform() 设置
+    private int     transformRotDeg = 0;
+    private boolean transformFlipH  = false;
+    private boolean transformFlipV  = false;
 
     // Frame queue
     private static final int QUEUE_CAP = 4;
@@ -201,6 +207,20 @@ public class GlFilterRecorder {
     /** 设置 MP4 方向 hint（在 prepare() 之前调用）。 */
     public void setOrientationHint(int degrees) {
         this.orientationHint = degrees;
+    }
+
+    /**
+     * 设置 YUV→RGBA 渲染通道的旋转和镜像变换，将效果烘焙进视频帧，
+     * 使录制内容与预览画面方向完全一致。在 prepare() 之前调用。
+     *
+     * @param rotDeg 旋转角度（0/90/180/270），与 CameraX rotationDegrees 一致
+     * @param flipH  是否水平镜像（前置摄像头自动镜像 XOR 用户手动镜像）
+     * @param flipV  是否垂直翻转
+     */
+    public void setTransform(int rotDeg, boolean flipH, boolean flipV) {
+        this.transformRotDeg = rotDeg;
+        this.transformFlipH  = flipH;
+        this.transformFlipV  = flipV;
     }
 
     /** 更新滤镜参数，录制中也可调用，下一帧生效。 */
@@ -373,28 +393,22 @@ public class GlFilterRecorder {
     // ──────────────────────────────────────────────────────────────────────────
 
     private void renderAndEncode(FrameData fd) {
-        int w = fd.w;
-        int h = fd.h;
-
-        // Resize FBOs and re-notify filters if dimensions changed
-        if (w != frameW || h != frameH) {
-            frameW = w;
-            frameH = h;
-            setupFbos(w, h);
-            // 重新分配 direct buffer（尺寸变化时）
-            yDirectBuf  = ByteBuffer.allocateDirect(w * h).order(ByteOrder.nativeOrder());
-            uvDirectBuf = ByteBuffer.allocateDirect(w * h / 2).order(ByteOrder.nativeOrder());
-            if (beautyFilter != null) beautyFilter.onOutputSizeChanged(w, h);
-            if (styleFilter  != null) styleFilter.onOutputSizeChanged(w, h);
+        // FBO 和编码目标使用 encodeWidth/Height（当旋转 90°/270° 时与传感器尺寸不同）
+        if (encodeWidth != frameW || encodeHeight != frameH) {
+            frameW = encodeWidth;
+            frameH = encodeHeight;
+            setupFbos(encodeWidth, encodeHeight);
+            if (beautyFilter != null) beautyFilter.onOutputSizeChanged(encodeWidth, encodeHeight);
+            if (styleFilter  != null) styleFilter.onOutputSizeChanged(encodeWidth, encodeHeight);
         }
 
-        GLES20.glViewport(0, 0, w, h);
+        GLES20.glViewport(0, 0, encodeWidth, encodeHeight);
 
         // ── Pass 1: NV21 → RGBA into fbo[0] ─────────────────────────────────
         GLES20.glBindFramebuffer(GLES20.GL_FRAMEBUFFER, fboId[0]);
         GLES20.glClearColor(0f, 0f, 0f, 1f);
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
-        uploadNv21AndDraw(fd.nv21, w, h);
+        uploadNv21AndDraw(fd.nv21, fd.w, fd.h);  // 以传感器尺寸上传纹理
 
         // ── Pass 2: Beauty filter → fbo[1] ──────────────────────────────────
         GLES20.glBindFramebuffer(GLES20.GL_FRAMEBUFFER, fboId[1]);
@@ -461,8 +475,8 @@ public class GlFilterRecorder {
         GLES20.glVertexAttribPointer(yuvPosAttr, 2, GLES20.GL_FLOAT, false, 0, cubeBuf);
         GLES20.glEnableVertexAttribArray(yuvPosAttr);
 
-        texCoordBuf.rewind();
-        GLES20.glVertexAttribPointer(yuvTexCoordAttr, 2, GLES20.GL_FLOAT, false, 0, texCoordBuf);
+        yuvTexCoordBuf.rewind();
+        GLES20.glVertexAttribPointer(yuvTexCoordAttr, 2, GLES20.GL_FLOAT, false, 0, yuvTexCoordBuf);
         GLES20.glEnableVertexAttribArray(yuvTexCoordAttr);
 
         GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
@@ -581,8 +595,40 @@ public class GlFilterRecorder {
         GLES20.glGenFramebuffers(2, fboId,    0);
         GLES20.glGenTextures(2,    fboTexId,  0);
 
+        // 根据旋转/镜像参数计算 YUV pass 专用纹理坐标
+        yuvTexCoordBuf = computeYuvTexCoords(transformRotDeg, transformFlipH, transformFlipV);
+
         // Build filter pipeline
         rebuildFilters();
+    }
+
+    /**
+     * 计算 YUV→RGBA 通道的纹理坐标，将旋转和镜像烘焙进去。
+     * 顶点顺序（GL_TRIANGLE_STRIP）: BL(-1,-1), BR(1,-1), TL(-1,1), TR(1,1)。
+     * GL 纹理 (0,0) 对应 NV21 第 0 行（图像顶部），(0,1) 对应图像底部。
+     */
+    private static FloatBuffer computeYuvTexCoords(int rotDeg, boolean flipH, boolean flipV) {
+        // 屏幕顶点归一化坐标 (sx=0左/1右, sy=0下/1上)
+        float[] screen = { 0, 0,  1, 0,  0, 1,  1, 1 }; // BL BR TL TR
+        float[] result = new float[8];
+        for (int i = 0; i < 4; i++) {
+            float sx = screen[i * 2];
+            float sy = screen[i * 2 + 1];
+            float tx, ty;
+            // 将屏幕坐标映射到传感器纹理坐标（含旋转修正）
+            switch (rotDeg) {
+                case 90:  tx = 1 - sy; ty = 1 - sx; break;  // 顺时针 90°
+                case 180: tx = 1 - sx; ty = sy;      break;  // 180°
+                case 270: tx = sy;     ty = sx;       break;  // 顺时针 270°
+                default:  tx = sx;     ty = 1 - sy;   break;  // 0°（含 GL Y 轴翻转）
+            }
+            // 镜像（在旋转之后叠加）
+            if (flipH) tx = 1 - tx;
+            if (flipV) ty = 1 - ty;
+            result[i * 2]     = tx;
+            result[i * 2 + 1] = ty;
+        }
+        return makeDirectFloat(result);
     }
 
     /**

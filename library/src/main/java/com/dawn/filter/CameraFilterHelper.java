@@ -64,6 +64,9 @@ public class CameraFilterHelper {
     private boolean               isSwitchingCamera= false;
     private boolean               isCapturing      = false;
     private volatile boolean      isRecording      = false;
+    // 用户手动控制的额外镜像（干准自动方向修正之上）
+    private volatile boolean      extraFlipH       = false;
+    private volatile boolean      extraFlipV       = false;
     // 防止多次调用 startCamera() 产生重复的 ProcessCameraProvider 回调
     private volatile int          startCameraGen   = 0;
     private long                  lastSwitchAtMs   = 0L;
@@ -74,9 +77,15 @@ public class CameraFilterHelper {
     private volatile int  previewHeight   = 720;
     private volatile int  rotationDegrees = 0;
 
-    // 上一帧的 Bitmap（在下一帧到达时 recycle，确保 GL 线程已完成上传）
-    // processFrame 运行在单线程 analysisExecutor 上，无需同步
+    // Bitmap 生命周期管理（processFrame 运行在单线程 analysisExecutor 上，无需同步）:
+    // setImageBitmap(bitmap, false) 将 Runnable 排入 GL 线程队列，存在延迟。
+    // 使用 2 帧延迟策略：
+    //   lastDisplayBitmap  = 上一帧（GL 线程可能仍在执行对应 Runnable）
+    //   pendingRecycleBitmap = 上上帧（≥2 帧前，GL 线程已确保处理完成，可安全 recycle）
+    // 背景：录制启动时 rebuildFilters 会让 GL 线程积压长达 50ms+，
+    //       1 帧延迟（≈33ms）不够安全，2 帧延迟（≈66ms）足以覆盖最坏情况。
     private Bitmap pendingRecycleBitmap = null;
+    private Bitmap lastDisplayBitmap    = null;
     private volatile boolean firstFrameDelivered = false;
     // stopCamera() 后置 false，防止残余帧在 GL 线程已释放后继续 setImageBitmap
     private volatile boolean isCameraActive = false;
@@ -113,6 +122,32 @@ public class CameraFilterHelper {
     public void setOnFirstFrameListener(OnFirstFrameListener listener) {
         this.firstFrameListener = listener;
     }
+
+    // ==========================================================
+    // 镜像 / 翻转 控制（预览 + 录制同步）
+    // ==========================================================
+
+    /** 切换水平镜像状态，预览和录制同时生效。 */
+    public void setExtraFlipH(boolean flip) {
+        this.extraFlipH = flip;
+        if (isRecording && glFilterRecorder != null) {
+            boolean isFront = (lensFacing == CameraSelector.LENS_FACING_FRONT);
+            glFilterRecorder.setTransform(rotationDegrees, isFront ^ extraFlipH, extraFlipV);
+        }
+    }
+
+    public boolean isExtraFlipH() { return extraFlipH; }
+
+    /** 切换垂直翻转状态，预览和录制同时生效。 */
+    public void setExtraFlipV(boolean flip) {
+        this.extraFlipV = flip;
+        if (isRecording && glFilterRecorder != null) {
+            boolean isFront = (lensFacing == CameraSelector.LENS_FACING_FRONT);
+            glFilterRecorder.setTransform(rotationDegrees, isFront ^ extraFlipH, extraFlipV);
+        }
+    }
+
+    public boolean isExtraFlipV() { return extraFlipV; }
 
     // ==========================================================
     // 权限
@@ -236,16 +271,18 @@ public class CameraFilterHelper {
         // "if (runOnDraw.isEmpty())" 检查在特定时机会丢弃所有帧。
         Bitmap srcBitmap = image.toBitmap();
 
-        // 旋转 + 前置摄像头水平镜像（在 CPU 侧用 Matrix 处理，不依赖 GPUImage setRotation）
+        // 旋转 + 前置摄像头水平镜像 + 用户额外镜像（在 CPU 侧用 Matrix 处理，不依赖 GPUImage setRotation）
         boolean isFront = (lensFacing == CameraSelector.LENS_FACING_FRONT);
+        boolean needFlipH = isFront ^ extraFlipH;   // 前置镜像 XOR 用户手动镜像
+        boolean needFlipV = extraFlipV;
         Bitmap displayBitmap;
-        if (rDeg == 0 && !isFront) {
+        if (rDeg == 0 && !needFlipH && !needFlipV) {
             displayBitmap = srcBitmap;
         } else {
             Matrix matrix = new Matrix();
             matrix.setRotate(rDeg);
-            if (isFront) {
-                matrix.postScale(-1f, 1f);
+            if (needFlipH || needFlipV) {
+                matrix.postScale(needFlipH ? -1f : 1f, needFlipV ? -1f : 1f);
             }
             displayBitmap = Bitmap.createBitmap(srcBitmap, 0, 0, w, h, matrix, true);
             srcBitmap.recycle();
@@ -253,17 +290,15 @@ public class CameraFilterHelper {
 
         // 上传到 GPUImage 渲染管线（美颜 + 风格滤镜）
         // ─────────────────────────────────────────────────────────────────────
-        // 不使用 recycle=true：GPUImage 2.1.0 内部把 bitmap 引用存入成员变量，
-        // 在后续 onDrawFrame 里仍会调用 bitmap.getWidth()/getHeight()（用于
-        // adjustImageScaling），若此时 bitmap 已被 recycle 则每帧输出
-        // "Called getWidth() on a recycle()'d bitmap" 警告。
-        // 改为：由我们在下一帧开始时手动 recycle 上一帧的 bitmap。
-        // processFrame 跑在单线程 analysisExecutor 上，帧间隔 ≥ 50ms，
-        // GL 线程（60fps，≤16ms/帧）必然已完成纹理上传，recycle 是安全的。
+        // 2帧延迟 recycle 策略：
+        //   pendingRecycleBitmap（上上帧）距入队时间 ≥ 66ms（30fps），
+        //   即便 GL 线程因 rebuildFilters 积压 50ms+，也已确保处理完毕，可安全 recycle。
+        //   lastDisplayBitmap（上一帧）距入队时间仅 ≈ 33ms，不安全，只记录引用。
         if (pendingRecycleBitmap != null && !pendingRecycleBitmap.isRecycled()) {
             pendingRecycleBitmap.recycle();
         }
-        pendingRecycleBitmap = displayBitmap;
+        pendingRecycleBitmap = lastDisplayBitmap;  // 上一帧晋升为「待 recycle」
+        lastDisplayBitmap    = displayBitmap;       // 当前帧记为「上一帧」
 
         GPUImageView gpuView = filterView.getGPUImageView();
         gpuView.getGPUImage().getRenderer().setImageBitmap(displayBitmap, false);
@@ -351,12 +386,13 @@ public class CameraFilterHelper {
             cameraProvider.unbindAll();
         }
         isPreviewing = false;
-        // 注意：此处【不能】立即调用 pendingRecycleBitmap.recycle()！
-        // stopCamera() 在主线程执行，而 GL 线程队列中可能仍有 setImageBitmap() 入队的
+        // 注意：此处【不能】立即 recycle bitmap！
+        // stopCamera() 在主线程执行，GL 线程队列中可能仍有 setImageBitmap() 排队的
         // Runnable 尚未执行（texSubImage2D 还未完成）。立即 recycle 会导致
-        // "bitmap is recycled" IllegalArgumentException 崩溃（FATAL GLThread）。
-        // 正确做法：直接清除引用，由 GC 在安全时机回收。
+        // "bitmap is recycled" IllegalArgumentException（FATAL GLThread）。
+        // 置 null 让 GC 自然回收（stopCamera 低频操作，2 个 bitmap 的内存压力可接受）。
         pendingRecycleBitmap = null;
+        lastDisplayBitmap    = null;
         firstFrameDelivered  = false;
         // 显示 loading 遮罩，遮住 GL 上下文重建期间的黑屏/花屏
         mainHandler.post(() -> filterView.setLoadingVisible(true));
@@ -449,19 +485,41 @@ public class CameraFilterHelper {
         GPUImageView gpuImageView = filterView.getGPUImageView();
         if (!isPreviewing || isCapturing || isSwitchingCamera) return;
         isCapturing = true;
+
+        // 在调用时立即复制当前帧（主线程），防止 analysisExecutor 在回调触发前将其 recycle。
+        // getBitmapWithFilterApplied() 无参版本依赖 GPUImage 内部 bitmap 引用，
+        // 但我们通过 getRenderer().setImageBitmap() 绕过了正常的 setImage() 路径，
+        // 导致该内部引用始终为 null → NPE。正确做法：传入当前帧作为源 bitmap。
+        final Bitmap frameCopy = safelyMakeFrameCopy();
+
         try {
             gpuImageView.saveToPictures("LibFilter", System.currentTimeMillis() + ".jpg",
                     uri -> {
-                        Bitmap bitmap = null;
-                        try {
-                            bitmap = gpuImageView.getGPUImage().getBitmapWithFilterApplied();
-                        } catch (Throwable t) {
-                            Log.e(TAG, "getBitmapWithFilterApplied failed", t);
+                        // saveToPictures 已将含美颜+滤镜的画面写入相册（由 GL 线程渲染）。
+                        // 此处通过 getBitmapWithFilterApplied(bitmap) 再次应用滤镜，
+                        // 将结果 Bitmap 返回给调用方（用于缩略图预览等场景）。
+                        Bitmap result = null;
+                        if (frameCopy != null) {
+                            try {
+                                result = gpuImageView.getGPUImage()
+                                        .getBitmapWithFilterApplied(frameCopy);
+                            } catch (Throwable t) {
+                                Log.e(TAG, "getBitmapWithFilterApplied failed, "
+                                        + "returning unfiltered frame", t);
+                                // 退而求其次：返回旋转正确但无 GPU 滤镜的帧
+                                result = frameCopy;
+                            } finally {
+                                // 只有 getBitmapWithFilterApplied 成功生成了新 Bitmap，
+                                // 临时副本才能释放；否则 result == frameCopy，不能 recycle。
+                                if (result != frameCopy) {
+                                    frameCopy.recycle();
+                                }
+                            }
                         }
-                        Bitmap finalBitmap = bitmap;
+                        Bitmap finalResult = result;
                         Runnable notify = () -> {
                             try {
-                                listener.onPictureTaken(finalBitmap);
+                                listener.onPictureTaken(finalResult);
                             } finally {
                                 isCapturing = false;
                             }
@@ -474,8 +532,26 @@ public class CameraFilterHelper {
                     });
         } catch (Throwable t) {
             Log.e(TAG, "saveToPictures failed", t);
+            if (frameCopy != null) frameCopy.recycle();
             isCapturing = false;
         }
+    }
+
+    /**
+     * 安全地复制当前显示帧。必须在主线程调用。
+     * 用 try/catch 防止 analysisExecutor 在极窄的时间窗内并发 recycle 导致异常。
+     */
+    private Bitmap safelyMakeFrameCopy() {
+        try {
+            Bitmap pending = pendingRecycleBitmap;
+            if (pending != null && !pending.isRecycled()) {
+                Bitmap.Config cfg = pending.getConfig();
+                return pending.copy(cfg != null ? cfg : Bitmap.Config.ARGB_8888, false);
+            }
+        } catch (Throwable ignored) {
+            // bitmap 在 isRecycled 检查和 copy 之间被 analysisExecutor recycle，安全忽略
+        }
+        return null;
     }
 
     // ==========================================================
@@ -540,7 +616,13 @@ public class CameraFilterHelper {
 
         Log.i(TAG, "startRecording: filterStyle=" + fs + " intensity=" + fi + " beautyParams=" + bp);
 
-        glFilterRecorder = new GlFilterRecorder(dest, previewWidth, previewHeight,
+        // 当旋转 90°/270° 时交换宽高，使编码尺寸与显示朝向一致
+        int encW = previewWidth, encH = previewHeight;
+        if (rotationDegrees == 90 || rotationDegrees == 270) {
+            encW = previewHeight;
+            encH = previewWidth;
+        }
+        glFilterRecorder = new GlFilterRecorder(dest, encW, encH,
                 bp, fs, fi,
                 new GlFilterRecorder.RecorderCallback() {
                     @Override
@@ -566,8 +648,9 @@ public class CameraFilterHelper {
                     }
                 });
 
-        // 设置 MP4 方向 hint（让播放器正确旋转）
-        glFilterRecorder.setOrientationHint(rotationDegrees);
+        // 将旋转和镜像烘焙进视频帧，不再依赖播放器解析 orientation hint
+        boolean recFlipH = (lensFacing == CameraSelector.LENS_FACING_FRONT) ^ extraFlipH;
+        glFilterRecorder.setTransform(rotationDegrees, recFlipH, extraFlipV);
 
         try {
             glFilterRecorder.prepare();

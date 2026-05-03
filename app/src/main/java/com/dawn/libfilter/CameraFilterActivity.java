@@ -48,6 +48,9 @@ public class CameraFilterActivity extends AppCompatActivity {
     private TextView tvRecordCountdown;
     private CountDownTimer countDownTimer;
 
+    private Button btnFlipH;
+    private Button btnFlipV;
+
     private FilterStyle currentFilterStyle = FilterStyle.ORIGINAL;
     private float currentFilterIntensity = 0.8f;
     private BeautyParams currentBeautyParams = BeautyParams.defaultCamera();
@@ -112,6 +115,28 @@ public class CameraFilterActivity extends AppCompatActivity {
                 startRecordingUi();
             }
         });
+
+        // 水平镜像
+        btnFlipH = findViewById(R.id.btn_flip_h);
+        btnFlipH.setOnClickListener(v -> {
+            boolean next = !cameraHelper.isExtraFlipH();
+            cameraHelper.setExtraFlipH(next);
+            btnFlipH.setAlpha(next ? 1f : 0.5f);
+        });
+        btnFlipH.setAlpha(0.5f);
+
+        // 垂直翻转
+        btnFlipV = findViewById(R.id.btn_flip_v);
+        btnFlipV.setOnClickListener(v -> {
+            boolean next = !cameraHelper.isExtraFlipV();
+            cameraHelper.setExtraFlipV(next);
+            btnFlipV.setAlpha(next ? 1f : 0.5f);
+        });
+        btnFlipV.setAlpha(0.5f);
+
+        // 视频列表
+        findViewById(R.id.btn_video_list).setOnClickListener(v ->
+                startActivity(new Intent(this, VideoListActivity.class)));
 
         // 相机在 onResume 中启动，避免 onCreate+onResume 双重权限请求
     }
