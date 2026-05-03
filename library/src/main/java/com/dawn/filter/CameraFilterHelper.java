@@ -30,13 +30,13 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.LifecycleOwner;
 
+import androidx.camera.core.CameraInfo;
+
 import com.google.common.util.concurrent.ListenableFuture;
 
-import android.opengl.GLSurfaceView;
-import android.view.View;
+import android.graphics.Matrix;
 
 import jp.co.cyberagent.android.gpuimage.GPUImageView;
-import jp.co.cyberagent.android.gpuimage.util.Rotation;
 
 /**
  * 相机滤镜辅助类（CameraX 版本）。
@@ -59,10 +59,13 @@ public class CameraFilterHelper {
     private ProcessCameraProvider cameraProvider;
     private Camera                camera;
     private int                   lensFacing       = CameraSelector.LENS_FACING_FRONT;
+    private int                   cameraIndex      = 0;  // 外接摄像头按索引切换时使用
     private boolean               isPreviewing     = false;
     private boolean               isSwitchingCamera= false;
     private boolean               isCapturing      = false;
     private boolean               isRecording      = false;
+    // 防止多次调用 startCamera() 产生重复的 ProcessCameraProvider 回调
+    private volatile int          startCameraGen   = 0;
     private long                  lastSwitchAtMs   = 0L;
     private static final long     SWITCH_DEBOUNCE_MS = 500L;
 
@@ -70,7 +73,6 @@ public class CameraFilterHelper {
     private volatile int  previewWidth    = 1280;
     private volatile int  previewHeight   = 720;
     private volatile int  rotationDegrees = 0;
-    private volatile boolean rotationInitialized = false;
 
     // 录制
     private GlFilterRecorder   glFilterRecorder;
@@ -137,9 +139,16 @@ public class CameraFilterHelper {
     public void startCamera() {
         if (!checkPermission()) return;
         if (isPreviewing) return;
+        // 每次调用分配一个新的 generation token，使上一轮尚未触发的回调失效，
+        // 避免双重 bindCamera() → 第二次 unbindAll() 销毁刚绑定的相机。
+        final int gen = ++startCameraGen;
         ListenableFuture<ProcessCameraProvider> future =
                 ProcessCameraProvider.getInstance(context);
         future.addListener(() -> {
+            if (gen != startCameraGen) {
+                Log.w(TAG, "startCamera: stale callback discarded (gen=" + gen + ")");
+                return;
+            }
             try {
                 cameraProvider = future.get();
                 bindCamera();
@@ -162,9 +171,11 @@ public class CameraFilterHelper {
         GPUImageView gpuView = filterView.getGPUImageView();
         gpuView.setRenderMode(GPUImageView.RENDERMODE_CONTINUOUSLY);
 
-        CameraSelector selector = new CameraSelector.Builder()
-                .requireLensFacing(lensFacing)
-                .build();
+        CameraSelector selector = buildCameraSelector();
+        if (selector == null) {
+            Log.e(TAG, "No available camera on this device");
+            return;
+        }
 
         ImageAnalysis analysis = new ImageAnalysis.Builder()
                 .setTargetResolution(new Size(1280, 720))
@@ -184,8 +195,7 @@ public class CameraFilterHelper {
             camera = cameraProvider.bindToLifecycle(
                     (LifecycleOwner) context, selector, analysis);
             isPreviewing = true;
-            rotationInitialized = false;  // 切换摄像头后重新设置旋转
-            Log.i(TAG, "CameraX bound, lensFacing=" + lensFacing);
+            Log.i(TAG, "CameraX bound, lensFacing=" + lensFacing + " index=" + cameraIndex);
         } catch (Exception e) {
             Log.e(TAG, "bindToLifecycle failed", e);
             isPreviewing = false;
@@ -201,41 +211,37 @@ public class CameraFilterHelper {
         previewHeight   = h;
         rotationDegrees = rDeg;
 
-        byte[] nv21 = yuv420ToNv21(image);
+        // ── 预览路径 ──────────────────────────────────────────────────────────
+        // 用 CameraX 内置的 YUV→ARGB_8888 转换，完全绕过 GPUImageNativeLibrary.YUVtoRBGA。
+        // 该 native 方法若加载失败会直接杀死 GL 线程；同时 onPreviewFrame 里的
+        // "if (runOnDraw.isEmpty())" 检查在特定时机会丢弃所有帧。
+        Bitmap srcBitmap = image.toBitmap();
 
-        // 1. 首帧时，通过 GLSurfaceView.queueEvent 在 GL 线程上安全设置旋转
-        //    （直接从主线程调用 renderer.setRotation → adjustImageScaling 会因
-        //     imageWidth=0 产生 NaN 纹理坐标，导致黑屏）
-        if (!rotationInitialized) {
-            rotationInitialized = true;
-            final Rotation rotation  = Rotation.fromInt(rDeg);
-            final boolean  flipFront = (lensFacing == CameraSelector.LENS_FACING_FRONT);
-            final GPUImageView v = filterView.getGPUImageView();
-            // 先切到主线程取 GLSurfaceView（UI 操作需在主线程）
-            mainHandler.post(() -> {
-                View surfaceChild = v.getChildAt(0);
-                if (surfaceChild instanceof GLSurfaceView) {
-                    // 再通过 queueEvent 切到 GL 线程，保证 adjustImageScaling 在 GL 线程安全执行
-                    ((GLSurfaceView) surfaceChild).queueEvent(() ->
-                            v.getGPUImage().setRotation(rotation, flipFront, false));
-                } else {
-                    // 降级：直接在主线程设置（若 imageWidth 已有效则安全）
-                    v.getGPUImage().setRotation(rotation, flipFront, false);
-                }
-            });
+        // 旋转 + 前置摄像头水平镜像（在 CPU 侧用 Matrix 处理，不依赖 GPUImage setRotation）
+        boolean isFront = (lensFacing == CameraSelector.LENS_FACING_FRONT);
+        Bitmap displayBitmap;
+        if (rDeg == 0 && !isFront) {
+            displayBitmap = srcBitmap;
+        } else {
+            Matrix matrix = new Matrix();
+            matrix.setRotate(rDeg);
+            if (isFront) {
+                matrix.postScale(-1f, 1f);
+            }
+            displayBitmap = Bitmap.createBitmap(srcBitmap, 0, 0, w, h, matrix, true);
+            srcBitmap.recycle();
         }
 
-        // 2. 更新 GPUImage 预览（含美颜+滤镜效果）
+        // 上传到 GPUImage 渲染管线（美颜 + 风格滤镜）
+        // setImageBitmap(bitmap, recycle=true)：GL 线程上传后自动回收 Bitmap，无内存泄漏
         GPUImageView gpuView = filterView.getGPUImageView();
-        gpuView.updatePreviewFrame(nv21, w, h);
-        // updatePreviewFrame 内部不调用 requestRender()，在 WHEN_DIRTY 模式下需手动触发
+        gpuView.getGPUImage().getRenderer().setImageBitmap(displayBitmap, true);
         gpuView.requestRender();
 
-        // 3. 若正在录制，把帧送给 GlFilterRecorder（带 GL 滤镜编码）
+        // ── 录制路径 ──────────────────────────────────────────────────────────
         if (isRecording && glFilterRecorder != null) {
-            byte[] copy = new byte[nv21.length];
-            System.arraycopy(nv21, 0, copy, 0, nv21.length);
-            glFilterRecorder.enqueueFrame(copy, w, h);
+            byte[] nv21 = yuv420ToNv21(image);  // 录制仍用 NV21 路径
+            glFilterRecorder.enqueueFrame(nv21, w, h);
         }
     }
 
@@ -294,6 +300,7 @@ public class CameraFilterHelper {
     }
 
     public void stopCamera() {
+        startCameraGen++;        // 使所有待触发的 startCamera() 回调失效
         if (isRecording) {
             stopRecordingInternal(false);
         }
@@ -303,18 +310,49 @@ public class CameraFilterHelper {
         isPreviewing = false;
     }
 
-    // ==========================================================
-    // 切换摄像头
-    // ==========================================================
+    /**
+     * 构建摄像头选择器。
+     * <ul>
+     *   <li>先尝试 {@code lensFacing}（FRONT / BACK）——适配普通正而且前/后置摄像头。
+     *   <li>找不到时，按 {@code cameraIndex} 取当前可用列表内对应条目——
+     *       适配外接 USB 摄像头、只有 EXTERNAL 类型摄像头的设备（如 rk3568_r）。
+     * </ul>
+     */
+    private CameraSelector buildCameraSelector() {
+        if (cameraProvider == null) return null;
+        List<CameraInfo> available = cameraProvider.getAvailableCameraInfos();
+        if (available.isEmpty()) return null;
+
+        // 1. 尝试按 lensFacing 匹配
+        CameraSelector byFacing = new CameraSelector.Builder()
+                .requireLensFacing(lensFacing)
+                .build();
+        try {
+            if (cameraProvider.hasCamera(byFacing)) {
+                return byFacing;
+            }
+        } catch (Exception ignored) {}
+
+        // 2. 外接/无 lensFacing 设备：按索引取当前可用摄像头
+        Log.w(TAG, "No FRONT/BACK camera, using available camera index=" + cameraIndex
+                + " (total=" + available.size() + ")");
+        cameraIndex = Math.min(cameraIndex, available.size() - 1);
+        return available.get(cameraIndex).getCameraSelector();
+    }
+
+    // ==========================================================================================
 
     public boolean canSwitchCamera() {
         if (cameraProvider == null) return false;
+        // 优先检查标准前/后置
         try {
-            return cameraProvider.hasCamera(CameraSelector.DEFAULT_FRONT_CAMERA)
-                    && cameraProvider.hasCamera(CameraSelector.DEFAULT_BACK_CAMERA);
-        } catch (Exception e) {
-            return false;
-        }
+            if (cameraProvider.hasCamera(CameraSelector.DEFAULT_FRONT_CAMERA)
+                    && cameraProvider.hasCamera(CameraSelector.DEFAULT_BACK_CAMERA)) {
+                return true;
+            }
+        } catch (Exception ignored) {}
+        // 外接摄像头：有多个可用摄像头时支持切换
+        return cameraProvider.getAvailableCameraInfos().size() > 1;
     }
 
     public boolean switchCamera() {
@@ -326,12 +364,25 @@ public class CameraFilterHelper {
 
         if (isRecording) stopRecordingInternal(true);
 
-        lensFacing = (lensFacing == CameraSelector.LENS_FACING_FRONT)
-                ? CameraSelector.LENS_FACING_BACK
-                : CameraSelector.LENS_FACING_FRONT;
+        // 尝试切换 FRONT/BACK；如果是外接摄像头则按索引循环
+        List<CameraInfo> available = cameraProvider != null
+                ? cameraProvider.getAvailableCameraInfos() : null;
+        boolean hasStandardFacing = false;
+        try {
+            hasStandardFacing = cameraProvider != null
+                    && cameraProvider.hasCamera(CameraSelector.DEFAULT_FRONT_CAMERA)
+                    && cameraProvider.hasCamera(CameraSelector.DEFAULT_BACK_CAMERA);
+        } catch (Exception ignored) {}
+
+        if (hasStandardFacing) {
+            lensFacing = (lensFacing == CameraSelector.LENS_FACING_FRONT)
+                    ? CameraSelector.LENS_FACING_BACK
+                    : CameraSelector.LENS_FACING_FRONT;
+        } else if (available != null && available.size() > 1) {
+            cameraIndex = (cameraIndex + 1) % available.size();
+        }
 
         filterView.recreateGPUImageView();
-        // recreate 后新 GPUImageView 仍默认 WHEN_DIRTY，bindCamera 内会重新设置
         bindCamera();
         isSwitchingCamera = false;
         return true;

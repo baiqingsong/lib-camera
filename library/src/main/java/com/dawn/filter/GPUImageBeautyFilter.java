@@ -170,6 +170,12 @@ public class GPUImageBeautyFilter extends GPUImageFilter {
     }
 
     private void pushBeautyParams() {
+        // 若 onInit() 尚未运行（uniform location 全为 0），跳过此次 push，
+        // 避免把 glUniform1f(0, ...) 写入 GL 队列——location 0 在 Mali 上
+        // 通常是 inputImageTexture (sampler2D)，用 glUniform1f 设置会触发
+        // "gles_error 0x0003: only glUniform1i/1iv for sampler types"。
+        // onInitialized() 会在正确的 location 已就绪后再次调用本方法。
+        if (!isInitialized()) return;
         setFloat(smoothnessLocation, beautyParams.getSmoothness());
         setFloat(whitenLocation, beautyParams.getWhiten());
         setFloat(rosyLocation, beautyParams.getRosy());

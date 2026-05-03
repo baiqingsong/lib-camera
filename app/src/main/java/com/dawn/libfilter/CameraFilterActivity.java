@@ -139,7 +139,8 @@ public class CameraFilterActivity extends AppCompatActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == CameraFilterHelper.REQUEST_CAMERA_PERMISSION) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                cameraHelper.startCamera();
+                // 权限授予后 onResume() 会立即被调用，由 onResume() 统一启动相机。
+                // 此处不再重复调用 startCamera()，避免产生双重 ProcessCameraProvider 回调。
             } else {
                 Toast.makeText(this, "需要相机权限", Toast.LENGTH_SHORT).show();
                 finish();
