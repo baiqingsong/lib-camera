@@ -1,9 +1,41 @@
+﻿# ===== Gradle 构建产物 =====
+.gradle/
+**/build/
+gradle-app.setting
+.gradletasknamecache
+
+# ===== Android 构建产物 =====
+*.apk
+*.ap_
+*.aab
+*.dex
+*.class
+
+# ===== 模块描述文件（IDE 自动生成）=====
 *.iml
-.gradle
-/local.properties
-/.idea
+
+# ===== 本地配置（不应提交）=====
+local.properties
+*.jks
+*.keystore
+
+# ===== 日志 =====
+*.log
+
+# ===== IDE =====
+.idea/
+.vscode/
+*.swp
+*~
+
+# ===== OS 文件 =====
 .DS_Store
-/build
+Thumbs.db
+desktop.ini
+
+# ===== NDK / CMake =====
+.externalNativeBuild/
+.cxx/
+
+# ===== 构建捕获 =====
 /captures
-.externalNativeBuild
-.cxx
