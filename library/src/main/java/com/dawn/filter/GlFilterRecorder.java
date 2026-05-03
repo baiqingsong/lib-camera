@@ -596,6 +596,8 @@ public class GlFilterRecorder {
         FilterStyle  fs = pendingFilterStyle;
         float        fi = pendingFilterIntensity;
 
+        Log.i(TAG, "rebuildFilters: filterStyle=" + fs + " intensity=" + fi + " frameW=" + frameW + " frameH=" + frameH);
+
         beautyFilter = new GPUImageBeautyFilter(bp);
         beautyFilter.onInit();
 
@@ -708,20 +710,31 @@ public class GlFilterRecorder {
     // ──────────────────────────────────────────────────────────────────────────
 
     private void finalizeMuxer(boolean notifySuccess) {
-        safeStop(videoEncoder);    safeRelease(videoEncoder);    videoEncoder = null;
-        safeStop(audioEncoder);    safeRelease(audioEncoder);    audioEncoder = null;
+        // 1. 先停止音频录制输入源
         if (audioRecord != null) {
             try { audioRecord.stop();    } catch (Exception ignored) {}
             try { audioRecord.release(); } catch (Exception ignored) {}
             audioRecord = null;
         }
+        // 2. 停止并释放 Muxer（此时 encode/audio 线程已将所有数据写入 Muxer）
+        //    正确顺序：stop() 写入 MOOV 原子 → release() 清理资源
+        //    stop() 后立即置 muxerStarted=false，防止后续误写
         synchronized (muxerLock) {
             if (muxer != null) {
-                try { if (muxerStarted) muxer.stop(); } catch (Exception ignored) {}
-                try { muxer.release(); }                catch (Exception ignored) {}
+                try {
+                    if (muxerStarted) {
+                        muxer.stop();
+                        muxerStarted = false;
+                    }
+                } catch (Exception ignored) {}
+                try { muxer.release(); } catch (Exception ignored) {}
                 muxer = null;
             }
         }
+        // 3. 释放编码器（已被 encode/audio 线程 drain 至 EOS）
+        safeStop(videoEncoder);    safeRelease(videoEncoder);    videoEncoder = null;
+        safeStop(audioEncoder);    safeRelease(audioEncoder);    audioEncoder = null;
+        // 4. 释放编码器输入 Surface
         if (encoderInputSurface != null) {
             encoderInputSurface.release();
             encoderInputSurface = null;

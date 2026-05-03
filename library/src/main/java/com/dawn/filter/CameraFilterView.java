@@ -223,6 +223,16 @@ public class CameraFilterView extends FrameLayout {
         setBeautyAndFilter(currentBeautyParams, filterStyle, intensity);
     }
 
+    /**
+     * 在 GL 上下文重建后（onResume）重新初始化当前滤镜的 shader program。
+     * 调用 setFilter() 会在 GL 线程上执行 onDestroy()+onInit()，确保 program ID 有效。
+     */
+    public void refreshActiveFilter() {
+        if (activeFilter != null) {
+            gpuImageView.setFilter(activeFilter);
+        }
+    }
+
     public void updateFilterIntensity(float intensity) {
         currentFilterIntensity = Math.max(0f, Math.min(1f, intensity));
         if (activePipeline == null) {

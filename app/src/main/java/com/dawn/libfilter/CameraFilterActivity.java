@@ -165,6 +165,7 @@ public class CameraFilterActivity extends AppCompatActivity {
             @Override
             public void onVideoSaved(File videoFile) {
                 runOnUiThread(() -> {
+                    if (isFinishing() || isDestroyed()) return;
                     resetRecordingUi();
                     String msg = "录制完成: " + videoFile.getName();
                     Toast.makeText(CameraFilterActivity.this, msg, Toast.LENGTH_LONG).show();
@@ -234,7 +235,7 @@ public class CameraFilterActivity extends AppCompatActivity {
     }
 
     private void applyModules() {
-        cameraFilterView.setBeautyAndFilter(currentBeautyParams, currentFilterStyle, currentFilterIntensity);
+        cameraHelper.notifyFilterChanged(currentBeautyParams, currentFilterStyle, currentFilterIntensity);
         tvFilterName.setText(currentFilterStyle.getDisplayNameCn());
     }
 
@@ -246,7 +247,7 @@ public class CameraFilterActivity extends AppCompatActivity {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if (fromUser) {
                     currentFilterIntensity = progress / 100f;
-                    cameraFilterView.updateFilterIntensity(currentFilterIntensity);
+                    cameraHelper.notifyFilterChanged(currentBeautyParams, currentFilterStyle, currentFilterIntensity);
                 }
             }
 
@@ -263,31 +264,31 @@ public class CameraFilterActivity extends AppCompatActivity {
     private void setupBeautyControls() {
         setupBeautySeekBar(seekBarSmoothness, currentBeautyParams.getSmoothness(), value -> {
             currentBeautyParams.setSmoothness(value);
-            cameraFilterView.updateBeautyParams(currentBeautyParams);
+            cameraHelper.notifyFilterChanged(currentBeautyParams, currentFilterStyle, currentFilterIntensity);
         });
         setupBeautySeekBar(seekBarWhiten, currentBeautyParams.getWhiten(), value -> {
             currentBeautyParams.setWhiten(value);
-            cameraFilterView.updateBeautyParams(currentBeautyParams);
+            cameraHelper.notifyFilterChanged(currentBeautyParams, currentFilterStyle, currentFilterIntensity);
         });
         setupBeautySeekBar(seekBarRosy, currentBeautyParams.getRosy(), value -> {
             currentBeautyParams.setRosy(value);
-            cameraFilterView.updateBeautyParams(currentBeautyParams);
+            cameraHelper.notifyFilterChanged(currentBeautyParams, currentFilterStyle, currentFilterIntensity);
         });
         setupBeautySeekBar(seekBarBeautyBrightness, currentBeautyParams.getBrightness(), value -> {
             currentBeautyParams.setBrightness(value);
-            cameraFilterView.updateBeautyParams(currentBeautyParams);
+            cameraHelper.notifyFilterChanged(currentBeautyParams, currentFilterStyle, currentFilterIntensity);
         });
         setupBeautySeekBar(seekBarBeautyContrast, currentBeautyParams.getContrast(), value -> {
             currentBeautyParams.setContrast(value);
-            cameraFilterView.updateBeautyParams(currentBeautyParams);
+            cameraHelper.notifyFilterChanged(currentBeautyParams, currentFilterStyle, currentFilterIntensity);
         });
         setupBeautySeekBar(seekBarBeautyGamma, currentBeautyParams.getGamma(), value -> {
             currentBeautyParams.setGamma(value);
-            cameraFilterView.updateBeautyParams(currentBeautyParams);
+            cameraHelper.notifyFilterChanged(currentBeautyParams, currentFilterStyle, currentFilterIntensity);
         });
         setupBeautySeekBar(seekBarBeautySaturation, currentBeautyParams.getSaturation(), value -> {
             currentBeautyParams.setSaturation(value);
-            cameraFilterView.updateBeautyParams(currentBeautyParams);
+            cameraHelper.notifyFilterChanged(currentBeautyParams, currentFilterStyle, currentFilterIntensity);
         });
     }
 
@@ -367,7 +368,7 @@ public class CameraFilterActivity extends AppCompatActivity {
                     currentFilterIntensity = 0.8f;
                 }
                 seekBarIntensity.setProgress(Math.round(currentFilterIntensity * 100f));
-                cameraFilterView.updateFilterStyle(currentFilterStyle, currentFilterIntensity);
+                cameraHelper.notifyFilterChanged(currentBeautyParams, currentFilterStyle, currentFilterIntensity);
                 tvFilterName.setText(style.getDisplayNameCn());
             });
         }

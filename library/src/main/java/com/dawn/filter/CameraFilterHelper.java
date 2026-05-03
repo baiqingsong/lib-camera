@@ -63,7 +63,7 @@ public class CameraFilterHelper {
     private boolean               isPreviewing     = false;
     private boolean               isSwitchingCamera= false;
     private boolean               isCapturing      = false;
-    private boolean               isRecording      = false;
+    private volatile boolean      isRecording      = false;
     // 防止多次调用 startCamera() 产生重复的 ProcessCameraProvider 回调
     private volatile int          startCameraGen   = 0;
     private long                  lastSwitchAtMs   = 0L;
@@ -78,10 +78,12 @@ public class CameraFilterHelper {
     // processFrame 运行在单线程 analysisExecutor 上，无需同步
     private Bitmap pendingRecycleBitmap = null;
     private volatile boolean firstFrameDelivered = false;
+    // stopCamera() 后置 false，防止残余帧在 GL 线程已释放后继续 setImageBitmap
+    private volatile boolean isCameraActive = false;
     private OnFirstFrameListener firstFrameListener;
 
     // 录制
-    private GlFilterRecorder   glFilterRecorder;
+    private volatile GlFilterRecorder glFilterRecorder;
     private File               currentRecordingFile;
     private OnVideoRecordListener videoRecordListener;
     private final Handler      mainHandler      = new Handler(Looper.getMainLooper());
@@ -210,6 +212,7 @@ public class CameraFilterHelper {
             camera = cameraProvider.bindToLifecycle(
                     (LifecycleOwner) context, selector, analysis);
             isPreviewing = true;
+            isCameraActive = true;  // 允许 processFrame() 向 GL 线程投递 bitmap
             Log.i(TAG, "CameraX bound, lensFacing=" + lensFacing + " index=" + cameraIndex);
         } catch (Exception e) {
             Log.e(TAG, "bindToLifecycle failed", e);
@@ -219,6 +222,7 @@ public class CameraFilterHelper {
 
     @ExperimentalGetImage
     private void processFrame(@NonNull ImageProxy image) {
+        if (!isCameraActive) return;  // stopCamera() 已被调用，丢弃残余帧
         int w    = image.getWidth();
         int h    = image.getHeight();
         int rDeg = image.getImageInfo().getRotationDegrees();
@@ -275,9 +279,11 @@ public class CameraFilterHelper {
         }
 
         // ── 录制路径 ──────────────────────────────────────────────────────────
-        if (isRecording && glFilterRecorder != null) {
+        // 用局部变量捕获引用，避免 stopRecordingInternal() 在检查和调用之间将其置 null（TOCTOU）
+        GlFilterRecorder activeRecorder = glFilterRecorder;
+        if (isRecording && activeRecorder != null) {
             byte[] nv21 = yuv420ToNv21(image);  // 录制仍用 NV21 路径
-            glFilterRecorder.enqueueFrame(nv21, w, h);
+            activeRecorder.enqueueFrame(nv21, w, h);
         }
     }
 
@@ -337,6 +343,7 @@ public class CameraFilterHelper {
 
     public void stopCamera() {
         startCameraGen++;        // 使所有待触发的 startCamera() 回调失效
+        isCameraActive = false;  // 立即阻止 processFrame() 向 GL 线程投递新 bitmap
         if (isRecording) {
             stopRecordingInternal(false);
         }
@@ -344,12 +351,15 @@ public class CameraFilterHelper {
             cameraProvider.unbindAll();
         }
         isPreviewing = false;
-        // 回收最后一帧 bitmap（analysisExecutor 已无新帧投递）
-        if (pendingRecycleBitmap != null && !pendingRecycleBitmap.isRecycled()) {
-            pendingRecycleBitmap.recycle();
-        }
+        // 注意：此处【不能】立即调用 pendingRecycleBitmap.recycle()！
+        // stopCamera() 在主线程执行，而 GL 线程队列中可能仍有 setImageBitmap() 入队的
+        // Runnable 尚未执行（texSubImage2D 还未完成）。立即 recycle 会导致
+        // "bitmap is recycled" IllegalArgumentException 崩溃（FATAL GLThread）。
+        // 正确做法：直接清除引用，由 GC 在安全时机回收。
         pendingRecycleBitmap = null;
         firstFrameDelivered  = false;
+        // 显示 loading 遮罩，遮住 GL 上下文重建期间的黑屏/花屏
+        mainHandler.post(() -> filterView.setLoadingVisible(true));
     }
 
     /**
@@ -474,6 +484,8 @@ public class CameraFilterHelper {
 
     public void onHostResume() {
         try { filterView.getGPUImageView().onResume(); } catch (Throwable ignored) {}
+        // GL 上下文重建后强制重新初始化 shader program，防止 "program not valid in new context" 错误
+        filterView.refreshActiveFilter();
     }
 
     public void onHostPause() {
@@ -526,24 +538,31 @@ public class CameraFilterHelper {
         FilterStyle  fs = filterView.getCurrentFilterStyle();
         float        fi = filterView.getCurrentFilterIntensity();
 
+        Log.i(TAG, "startRecording: filterStyle=" + fs + " intensity=" + fi + " beautyParams=" + bp);
+
         glFilterRecorder = new GlFilterRecorder(dest, previewWidth, previewHeight,
                 bp, fs, fi,
                 new GlFilterRecorder.RecorderCallback() {
                     @Override
                     public void onVideoSaved(File file) {
-                        isRecording = false;
-                        cancelAutoStop();
-                        videoRecordListener  = null;
-                        currentRecordingFile = null;
-                        listener.onVideoSaved(file);
+                        // 回调在后台线程（RecorderStop），切回主线程执行 UI/状态清理
+                        mainHandler.post(() -> {
+                            isRecording = false;
+                            cancelAutoStop();
+                            videoRecordListener  = null;
+                            currentRecordingFile = null;
+                            listener.onVideoSaved(file);
+                        });
                     }
                     @Override
                     public void onError(String message) {
-                        isRecording = false;
-                        cancelAutoStop();
-                        videoRecordListener  = null;
-                        currentRecordingFile = null;
-                        listener.onError(message);
+                        mainHandler.post(() -> {
+                            isRecording = false;
+                            cancelAutoStop();
+                            videoRecordListener  = null;
+                            currentRecordingFile = null;
+                            listener.onError(message);
+                        });
                     }
                 });
 
@@ -588,9 +607,14 @@ public class CameraFilterHelper {
                 currentRecordingFile= null;
                 if (l != null) mainHandler.post(() -> l.onError("录制被强制中断"));
             } else {
-                glFilterRecorder.stop();
+                // 将阻塞的 stop()（encodeThread.join + audioThread.join）移到后台线程，
+                // 避免在主线程执行时触发 ANR。
+                // 先设 isRecording=false 再置 glFilterRecorder=null，确保相机分析线程
+                // 不会在 null 检查通过后、调用前出现空指针（TOCTOU）。
+                isRecording = false;
+                final GlFilterRecorder recorder = glFilterRecorder;
                 glFilterRecorder = null;
-                // isRecording 由 RecorderCallback 回调置 false
+                new Thread(recorder::stop, "RecorderStop").start();
             }
         } else {
             isRecording = false;
