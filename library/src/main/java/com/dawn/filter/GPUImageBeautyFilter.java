@@ -78,14 +78,15 @@ public class GPUImageBeautyFilter extends GPUImageFilter {
             "    gl_FragColor = vec4(clamp(finalColor, 0.0, 1.0), source.a);\n" +
             "}\n";
 
-    private int singleStepOffsetLocation;
-    private int smoothnessLocation;
-    private int whitenLocation;
-    private int rosyLocation;
-    private int brightenLocation;
-    private int contrastLocation;
-    private int gammaParamLocation;
-    private int satParamLocation;
+    // -1 表示尚未通过 glGetUniformLocation 初始化；pushBeautyParams() 以此为门控
+    private int singleStepOffsetLocation = -1;
+    private int smoothnessLocation       = -1;
+    private int whitenLocation           = -1;
+    private int rosyLocation             = -1;
+    private int brightenLocation         = -1;
+    private int contrastLocation         = -1;
+    private int gammaParamLocation       = -1;
+    private int satParamLocation         = -1;
 
     private BeautyParams beautyParams = BeautyParams.defaultCamera();
     private float texelStepMultiplier = 2.2f;
@@ -102,21 +103,26 @@ public class GPUImageBeautyFilter extends GPUImageFilter {
     @Override
     public void onInit() {
         super.onInit();
+        // super.onInit() 已编译 program 并调用 onInitialized()，但此时各 location 字段
+        // 尚未由下方 glGetUniformLocation 赋值，onInitialized() 中的 pushBeautyParams()
+        // 会因 satParamLocation < 0 提前返回。在 location 就绪后手动调用一次。
         singleStepOffsetLocation = GLES20.glGetUniformLocation(getProgram(), "singleStepOffset");
-        smoothnessLocation = GLES20.glGetUniformLocation(getProgram(), "smoothness");
-        whitenLocation = GLES20.glGetUniformLocation(getProgram(), "whiten");
-        rosyLocation = GLES20.glGetUniformLocation(getProgram(), "rosy");
-        brightenLocation = GLES20.glGetUniformLocation(getProgram(), "brighten");
-        contrastLocation = GLES20.glGetUniformLocation(getProgram(), "contrast");
-        gammaParamLocation = GLES20.glGetUniformLocation(getProgram(), "gammaParam");
-        satParamLocation = GLES20.glGetUniformLocation(getProgram(), "satParam");
+        smoothnessLocation       = GLES20.glGetUniformLocation(getProgram(), "smoothness");
+        whitenLocation           = GLES20.glGetUniformLocation(getProgram(), "whiten");
+        rosyLocation             = GLES20.glGetUniformLocation(getProgram(), "rosy");
+        brightenLocation         = GLES20.glGetUniformLocation(getProgram(), "brighten");
+        contrastLocation         = GLES20.glGetUniformLocation(getProgram(), "contrast");
+        gammaParamLocation       = GLES20.glGetUniformLocation(getProgram(), "gammaParam");
+        satParamLocation         = GLES20.glGetUniformLocation(getProgram(), "satParam");
+        // location 全部就绪，现在 push 才能入队正确的 glUniform Runnable
+        pushBeautyParams();
     }
 
     @Override
     public void onInitialized() {
         super.onInitialized();
-        updateTexelOffset();
-        pushBeautyParams();
+        updateTexelOffset();   // 此时 outputWidth=0，会提前 return，无副作用
+        pushBeautyParams();    // satParamLocation=-1 → 提前 return，避免写入错误 location
     }
 
     @Override
@@ -170,12 +176,10 @@ public class GPUImageBeautyFilter extends GPUImageFilter {
     }
 
     private void pushBeautyParams() {
-        // 若 onInit() 尚未运行（uniform location 全为 0），跳过此次 push，
-        // 避免把 glUniform1f(0, ...) 写入 GL 队列——location 0 在 Mali 上
-        // 通常是 inputImageTexture (sampler2D)，用 glUniform1f 设置会触发
-        // "gles_error 0x0003: only glUniform1i/1iv for sampler types"。
-        // onInitialized() 会在正确的 location 已就绪后再次调用本方法。
-        if (!isInitialized()) return;
+        // satParamLocation < 0 表示 onInit() 中 glGetUniformLocation 尚未执行（location 全为初始值 -1）。
+        // glUniform1f(-1, ...) 在 GLES 规范中会被静默忽略，此处提前返回只是为了
+        // 避免无意义的 runOnDraw 入队，并明确表达「初始化未完成」的语义。
+        if (satParamLocation < 0) return;
         setFloat(smoothnessLocation, beautyParams.getSmoothness());
         setFloat(whitenLocation, beautyParams.getWhiten());
         setFloat(rosyLocation, beautyParams.getRosy());

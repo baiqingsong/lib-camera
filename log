@@ -1,5 +1,5 @@
----------------------------- PROCESS ENDED (5853) for package com.dawn.libfilter ----------------------------
-2026-05-03 21:58:49.886   482-509   AppOps                  system_process                       E  startOperation (Ask Gemini)
+---------------------------- PROCESS ENDED (6138) for package com.dawn.libfilter ----------------------------
+2026-05-03 22:04:10.455   482-509   AppOps                  system_process                       E  startOperation (Ask Gemini)
                                                                                                     java.lang.SecurityException: Specified package com.dawn.libfilter under uid 1000 but it is really 10121
                                                                                                     	at com.android.server.appop.AppOpsService.verifyAndGetBypass(AppOpsService.java:3945)
                                                                                                     	at com.android.server.appop.AppOpsService.startOperation(AppOpsService.java:3469)
@@ -18,26 +18,26 @@
                                                                                                     	at android.os.Looper.loop(Looper.java:223)
                                                                                                     	at android.os.HandlerThread.run(HandlerThread.java:67)
                                                                                                     	at com.android.server.ServiceThread.run(ServiceThread.java:44)
----------------------------- PROCESS STARTED (6047) for package com.dawn.libfilter ----------------------------
-2026-05-03 21:58:50.720  6047-6047  NetworkSecurityConfig   com.dawn.libfilter                   D  No Network Security Config specified, using platform default
-2026-05-03 21:58:50.722  6047-6047  NetworkSecurityConfig   com.dawn.libfilter                   D  No Network Security Config specified, using platform default
-2026-05-03 21:58:50.925  6047-6047  AppCompatDelegate       com.dawn.libfilter                   D  Checking for metadata for AppLocalesMetadataHolderService : Service not found
-2026-05-03 21:58:51.375  6047-6047  Choreographer           com.dawn.libfilter                   I  Skipped 35 frames!  The application may be doing too much work on its main thread.
-2026-05-03 21:58:51.435  6047-6073  mali_so                 com.dawn.libfilter                   I  [File] : hardware/rockchip/mali_so/driver/product/base/src/mali_base_kbase.c; [Line] : 1311; [Func] : base_context_deal_with_version_affairs_rk_ext;
+---------------------------- PROCESS STARTED (6223) for package com.dawn.libfilter ----------------------------
+2026-05-03 22:04:11.302  6223-6223  NetworkSecurityConfig   com.dawn.libfilter                   D  No Network Security Config specified, using platform default
+2026-05-03 22:04:11.303  6223-6223  NetworkSecurityConfig   com.dawn.libfilter                   D  No Network Security Config specified, using platform default
+2026-05-03 22:04:11.506  6223-6223  AppCompatDelegate       com.dawn.libfilter                   D  Checking for metadata for AppLocalesMetadataHolderService : Service not found
+2026-05-03 22:04:11.953  6223-6223  Choreographer           com.dawn.libfilter                   I  Skipped 36 frames!  The application may be doing too much work on its main thread.
+2026-05-03 22:04:12.014  6223-6247  mali_so                 com.dawn.libfilter                   I  [File] : hardware/rockchip/mali_so/driver/product/base/src/mali_base_kbase.c; [Line] : 1311; [Func] : base_context_deal_with_version_affairs_rk_ext;
                                                                                                     arm_release_ver of this mali_so is 'g2p0-01eac0', rk_so_ver is '8@0 '.
-2026-05-03 21:58:51.435  6047-6073  mali_so                 com.dawn.libfilter                   I  [File] : hardware/rockchip/mali_so/driver/product/base/src/mali_base_kbase.c; [Line] : 1327; [Func] : base_context_deal_with_version_affairs_rk_ext;
+2026-05-03 22:04:12.014  6223-6247  mali_so                 com.dawn.libfilter                   I  [File] : hardware/rockchip/mali_so/driver/product/base/src/mali_base_kbase.c; [Line] : 1327; [Func] : base_context_deal_with_version_affairs_rk_ext;
                                                                                                     arm_release_vers are match. to set the full mali_ver 'g2p0-01eac0-x-8@0' as value of 'sys.gmali.version'.
-2026-05-03 21:58:51.432  6047-6047  RenderThread            com.dawn.libfilter                   I  type=1400 audit(0.0:26152): avc: denied { write } for name="property_service" dev="tmpfs" ino=18524 scontext=u:r:untrusted_app:s0:c121,c256,c512,c768 tcontext=u:object_r:property_socket:s0 tclass=sock_file permissive=1 app=com.dawn.libfilter
-2026-05-03 21:58:51.435  6047-6047  RenderThread            com.dawn.libfilter                   I  type=1400 audit(0.0:26153): avc: denied { connectto } for path="/dev/socket/property_service" scontext=u:r:untrusted_app:s0:c121,c256,c512,c768 tcontext=u:r:init:s0 tclass=unix_stream_socket permissive=1 app=com.dawn.libfilter
-2026-05-03 21:58:51.560  6047-6073  OpenGLRenderer          com.dawn.libfilter                   I  Davey! duration=776ms; Flags=1, IntendedVsync=20474858542093, Vsync=20475441875403, OldestInputEvent=9223372036854775807, NewestInputEvent=0, HandleInputStart=20475450644369, AnimationStart=20475450657494, PerformTraversalsStart=20475451081869, DrawStart=20475562460338, SyncQueued=20475591823008, SyncStart=20475592224633, IssueDrawCommandsStart=20475592330216, SwapBuffers=20475608284676, FrameCompleted=20475635305554, DequeueBufferDuration=313833, QueueBufferDuration=1314834, GpuCompleted=12, 
-2026-05-03 21:58:51.981  6047-6063  System                  com.dawn.libfilter                   W  A resource failed to call close. 
-2026-05-03 21:58:54.034  6047-6091  CameraManagerGlobal     com.dawn.libfilter                   I  Connecting to camera service
-2026-05-03 21:58:54.041  6047-6047  Choreographer           com.dawn.libfilter                   I  Skipped 33 frames!  The application may be doing too much work on its main thread.
-2026-05-03 21:58:54.083  6047-6091  CameraRepository        com.dawn.libfilter                   D  Added camera: 0
-2026-05-03 21:58:54.170  6047-6091  Camera2CameraInfo       com.dawn.libfilter                   I  Device Level: INFO_SUPPORTED_HARDWARE_LEVEL_EXTERNAL
-2026-05-03 21:58:54.191  6047-6091  CameraValidator         com.dawn.libfilter                   D  Verifying camera lens facing on rk3568_r, lensFacingInteger: null
-2026-05-03 21:58:54.196  6047-6091  CameraValidator         com.dawn.libfilter                   E  Camera LensFacing verification failed, existing cameras: [Camera@9b7d45a[id=0]]
-2026-05-03 21:58:54.198  6047-6091  CameraX                 com.dawn.libfilter                   W  Retry init. Start time 20478085 current time 20478271 (Ask Gemini)
+2026-05-03 22:04:12.012  6223-6223  RenderThread            com.dawn.libfilter                   I  type=1400 audit(0.0:26946): avc: denied { write } for name="property_service" dev="tmpfs" ino=18524 scontext=u:r:untrusted_app:s0:c121,c256,c512,c768 tcontext=u:object_r:property_socket:s0 tclass=sock_file permissive=1 app=com.dawn.libfilter
+2026-05-03 22:04:12.147  6223-6247  OpenGLRenderer          com.dawn.libfilter                   I  Davey! duration=796ms; Flags=1, IntendedVsync=20795425241386, Vsync=20796025241362, OldestInputEvent=9223372036854775807, NewestInputEvent=0, HandleInputStart=20796028542080, AnimationStart=20796028556080, PerformTraversalsStart=20796028986871, DrawStart=20796149378425, SyncQueued=20796177971970, SyncStart=20796178435136, IssueDrawCommandsStart=20796178540428, SwapBuffers=20796194673388, FrameCompleted=20796222378516, DequeueBufferDuration=303333, QueueBufferDuration=1247458, GpuCompleted=0, 
+2026-05-03 22:04:12.548  6223-6239  System                  com.dawn.libfilter                   W  A resource failed to call close. 
+2026-05-03 22:04:17.620  6223-6261  ProfileInstaller        com.dawn.libfilter                   D  Installing profile for com.dawn.libfilter
+2026-05-03 22:04:24.148  6223-6266  CameraManagerGlobal     com.dawn.libfilter                   I  Connecting to camera service
+2026-05-03 22:04:24.154  6223-6223  Choreographer           com.dawn.libfilter                   I  Skipped 34 frames!  The application may be doing too much work on its main thread.
+2026-05-03 22:04:24.201  6223-6266  CameraRepository        com.dawn.libfilter                   D  Added camera: 0
+2026-05-03 22:04:24.292  6223-6266  Camera2CameraInfo       com.dawn.libfilter                   I  Device Level: INFO_SUPPORTED_HARDWARE_LEVEL_EXTERNAL
+2026-05-03 22:04:24.308  6223-6266  CameraValidator         com.dawn.libfilter                   D  Verifying camera lens facing on rk3568_r, lensFacingInteger: null
+2026-05-03 22:04:24.313  6223-6266  CameraValidator         com.dawn.libfilter                   E  Camera LensFacing verification failed, existing cameras: [Camera@af45368[id=0]]
+2026-05-03 22:04:24.315  6223-6266  CameraX                 com.dawn.libfilter                   W  Retry init. Start time 20808200 current time 20808389 (Ask Gemini)
                                                                                                     androidx.camera.core.impl.CameraValidator$CameraIdListIncorrectException: Expected camera missing from device.
                                                                                                     	at androidx.camera.core.impl.CameraValidator.validateCameras(CameraValidator.java:97)
                                                                                                     	at androidx.camera.core.CameraX.lambda$initAndRetryRecursively$2$androidx-camera-core-CameraX(CameraX.java:334)
@@ -53,16 +53,16 @@
                                                                                                     	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1167) 
                                                                                                     	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641) 
                                                                                                     	at java.lang.Thread.run(Thread.java:923) 
-2026-05-03 21:58:54.297  6047-6047  GLSurfaceView           com.dawn.libfilter                   D  surface set framrate 30
-2026-05-03 21:58:54.332  6047-6088  .dawn.libfilte          com.dawn.libfilter                   W  Accessing hidden method Ljava/nio/NIOAccess;->getBaseArray(Ljava/nio/Buffer;)Ljava/lang/Object; (greylist,core-platform-api, JNI, allowed)
-2026-05-03 21:58:54.332  6047-6088  .dawn.libfilte          com.dawn.libfilter                   W  Accessing hidden method Ljava/nio/NIOAccess;->getBaseArrayOffset(Ljava/nio/Buffer;)I (greylist,core-platform-api, JNI, allowed)
-2026-05-03 21:58:54.433  6047-6073  OpenGLRenderer          com.dawn.libfilter                   I  Davey! duration=949ms; Flags=1, IntendedVsync=20477558546860, Vsync=20478108546838, OldestInputEvent=9223372036854775807, NewestInputEvent=0, HandleInputStart=20478117049637, AnimationStart=20478117064220, PerformTraversalsStart=20478119390262, DrawStart=20478387421164, SyncQueued=20478468548839, SyncStart=20478468993047, IssueDrawCommandsStart=20478470300297, SwapBuffers=20478506806176, FrameCompleted=20478508198884, DequeueBufferDuration=2098834, QueueBufferDuration=559416, GpuCompleted=4575657221408423936, 
-2026-05-03 21:58:54.440  6047-6073  OpenGLRenderer          com.dawn.libfilter                   I  Davey! duration=956ms; Flags=1, IntendedVsync=20477558546860, Vsync=20478108546838, OldestInputEvent=9223372036854775807, NewestInputEvent=0, HandleInputStart=20478117049637, AnimationStart=20478117064220, PerformTraversalsStart=20478119390262, DrawStart=20478510033468, SyncQueued=20478510186010, SyncStart=20478510615926, IssueDrawCommandsStart=20478510711593, SwapBuffers=20478513069135, FrameCompleted=20478515310302, DequeueBufferDuration=348542, QueueBufferDuration=1621666, GpuCompleted=7611863414579367549, 
-2026-05-03 21:58:54.748  6047-6091  CameraRepository        com.dawn.libfilter                   D  Added camera: 0
-2026-05-03 21:58:54.753  6047-6091  Camera2CameraInfo       com.dawn.libfilter                   I  Device Level: INFO_SUPPORTED_HARDWARE_LEVEL_EXTERNAL
-2026-05-03 21:58:54.755  6047-6091  CameraValidator         com.dawn.libfilter                   D  Verifying camera lens facing on rk3568_r, lensFacingInteger: null
-2026-05-03 21:58:54.758  6047-6091  CameraValidator         com.dawn.libfilter                   E  Camera LensFacing verification failed, existing cameras: [Camera@c413e47[id=0]]
-2026-05-03 21:58:54.761  6047-6091  CameraX                 com.dawn.libfilter                   W  Retry init. Start time 20478085 current time 20478833 (Ask Gemini)
+2026-05-03 22:04:24.404  6223-6223  GLSurfaceView           com.dawn.libfilter                   D  surface set framrate 30
+2026-05-03 22:04:24.442  6223-6263  .dawn.libfilte          com.dawn.libfilter                   W  Accessing hidden method Ljava/nio/NIOAccess;->getBaseArray(Ljava/nio/Buffer;)Ljava/lang/Object; (greylist,core-platform-api, JNI, allowed)
+2026-05-03 22:04:24.442  6223-6263  .dawn.libfilte          com.dawn.libfilter                   W  Accessing hidden method Ljava/nio/NIOAccess;->getBaseArrayOffset(Ljava/nio/Buffer;)I (greylist,core-platform-api, JNI, allowed)
+2026-05-03 22:04:24.542  6223-6247  OpenGLRenderer          com.dawn.libfilter                   I  Davey! duration=958ms; Flags=1, IntendedVsync=20807658575076, Vsync=20808225241720, OldestInputEvent=9223372036854775807, NewestInputEvent=0, HandleInputStart=20808229630597, AnimationStart=20808229646930, PerformTraversalsStart=20808232123472, DrawStart=20808496902874, SyncQueued=20808577738590, SyncStart=20808578134090, IssueDrawCommandsStart=20808579247091, SwapBuffers=20808615032552, FrameCompleted=20808616983511, DequeueBufferDuration=2096500, QueueBufferDuration=1017916, GpuCompleted=4575657221408423936, 
+2026-05-03 22:04:24.547  6223-6247  OpenGLRenderer          com.dawn.libfilter                   I  Davey! duration=963ms; Flags=1, IntendedVsync=20807658575076, Vsync=20808225241720, OldestInputEvent=9223372036854775807, NewestInputEvent=0, HandleInputStart=20808229630597, AnimationStart=20808229646930, PerformTraversalsStart=20808232123472, DrawStart=20808618529636, SyncQueued=20808618647178, SyncStart=20808618972970, IssueDrawCommandsStart=20808619048220, SwapBuffers=20808621196053, FrameCompleted=20808622654387, DequeueBufferDuration=338042, QueueBufferDuration=387334, GpuCompleted=0, 
+2026-05-03 22:04:24.865  6223-6266  CameraRepository        com.dawn.libfilter                   D  Added camera: 0
+2026-05-03 22:04:24.871  6223-6266  Camera2CameraInfo       com.dawn.libfilter                   I  Device Level: INFO_SUPPORTED_HARDWARE_LEVEL_EXTERNAL
+2026-05-03 22:04:24.872  6223-6266  CameraValidator         com.dawn.libfilter                   D  Verifying camera lens facing on rk3568_r, lensFacingInteger: null
+2026-05-03 22:04:24.875  6223-6266  CameraValidator         com.dawn.libfilter                   E  Camera LensFacing verification failed, existing cameras: [Camera@9af6586[id=0]]
+2026-05-03 22:04:24.877  6223-6266  CameraX                 com.dawn.libfilter                   W  Retry init. Start time 20808200 current time 20808950 (Ask Gemini)
                                                                                                     androidx.camera.core.impl.CameraValidator$CameraIdListIncorrectException: Expected camera missing from device.
                                                                                                     	at androidx.camera.core.impl.CameraValidator.validateCameras(CameraValidator.java:97)
                                                                                                     	at androidx.camera.core.CameraX.lambda$initAndRetryRecursively$2$androidx-camera-core-CameraX(CameraX.java:334)
@@ -78,13 +78,13 @@
                                                                                                     	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1167) 
                                                                                                     	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641) 
                                                                                                     	at java.lang.Thread.run(Thread.java:923) 
-2026-05-03 21:58:54.787   188-200   BufferQueueProducer     pid-188                              E  [com.dawn.libfilter/com.dawn.libfilter.MainActivity#0](id:bc000000b5,api:0,p:-1,c:188) disconnect: not connected (req=1)
-2026-05-03 21:58:54.787  6047-6073  libEGL                  com.dawn.libfilter                   W  EGLNativeWindowType 0xb4000078872f2440 disconnect failed
-2026-05-03 21:58:55.309  6047-6091  CameraRepository        com.dawn.libfilter                   D  Added camera: 0
-2026-05-03 21:58:55.312  6047-6091  Camera2CameraInfo       com.dawn.libfilter                   I  Device Level: INFO_SUPPORTED_HARDWARE_LEVEL_EXTERNAL
-2026-05-03 21:58:55.313  6047-6091  CameraValidator         com.dawn.libfilter                   D  Verifying camera lens facing on rk3568_r, lensFacingInteger: null
-2026-05-03 21:58:55.315  6047-6091  CameraValidator         com.dawn.libfilter                   E  Camera LensFacing verification failed, existing cameras: [Camera@6e23c36[id=0]]
-2026-05-03 21:58:55.316  6047-6091  CameraX                 com.dawn.libfilter                   W  Retry init. Start time 20478085 current time 20479390 (Ask Gemini)
+2026-05-03 22:04:24.886   188-1089  BufferQueueProducer     pid-188                              E  [com.dawn.libfilter/com.dawn.libfilter.MainActivity#0](id:bc000000bc,api:0,p:-1,c:188) disconnect: not connected (req=1)
+2026-05-03 22:04:24.887  6223-6247  libEGL                  com.dawn.libfilter                   W  EGLNativeWindowType 0xb4000078873012b0 disconnect failed
+2026-05-03 22:04:25.422  6223-6266  CameraRepository        com.dawn.libfilter                   D  Added camera: 0
+2026-05-03 22:04:25.429  6223-6266  Camera2CameraInfo       com.dawn.libfilter                   I  Device Level: INFO_SUPPORTED_HARDWARE_LEVEL_EXTERNAL
+2026-05-03 22:04:25.431  6223-6266  CameraValidator         com.dawn.libfilter                   D  Verifying camera lens facing on rk3568_r, lensFacingInteger: null
+2026-05-03 22:04:25.433  6223-6266  CameraValidator         com.dawn.libfilter                   E  Camera LensFacing verification failed, existing cameras: [Camera@4704737[id=0]]
+2026-05-03 22:04:25.437  6223-6266  CameraX                 com.dawn.libfilter                   W  Retry init. Start time 20808200 current time 20809510 (Ask Gemini)
                                                                                                     androidx.camera.core.impl.CameraValidator$CameraIdListIncorrectException: Expected camera missing from device.
                                                                                                     	at androidx.camera.core.impl.CameraValidator.validateCameras(CameraValidator.java:97)
                                                                                                     	at androidx.camera.core.CameraX.lambda$initAndRetryRecursively$2$androidx-camera-core-CameraX(CameraX.java:334)
@@ -100,11 +100,11 @@
                                                                                                     	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1167) 
                                                                                                     	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641) 
                                                                                                     	at java.lang.Thread.run(Thread.java:923) 
-2026-05-03 21:58:55.864  6047-6091  CameraRepository        com.dawn.libfilter                   D  Added camera: 0
-2026-05-03 21:58:55.867  6047-6091  Camera2CameraInfo       com.dawn.libfilter                   I  Device Level: INFO_SUPPORTED_HARDWARE_LEVEL_EXTERNAL
-2026-05-03 21:58:55.869  6047-6091  CameraValidator         com.dawn.libfilter                   D  Verifying camera lens facing on rk3568_r, lensFacingInteger: null
-2026-05-03 21:58:55.871  6047-6091  CameraValidator         com.dawn.libfilter                   E  Camera LensFacing verification failed, existing cameras: [Camera@11ae62f[id=0]]
-2026-05-03 21:58:55.875  6047-6091  CameraX                 com.dawn.libfilter                   W  Retry init. Start time 20478085 current time 20479947 (Ask Gemini)
+2026-05-03 22:04:25.980  6223-6266  CameraRepository        com.dawn.libfilter                   D  Added camera: 0
+2026-05-03 22:04:25.983  6223-6266  Camera2CameraInfo       com.dawn.libfilter                   I  Device Level: INFO_SUPPORTED_HARDWARE_LEVEL_EXTERNAL
+2026-05-03 22:04:25.985  6223-6266  CameraValidator         com.dawn.libfilter                   D  Verifying camera lens facing on rk3568_r, lensFacingInteger: null
+2026-05-03 22:04:25.988  6223-6266  CameraValidator         com.dawn.libfilter                   E  Camera LensFacing verification failed, existing cameras: [Camera@1f0843c[id=0]]
+2026-05-03 22:04:25.995  6223-6266  CameraX                 com.dawn.libfilter                   W  Retry init. Start time 20808200 current time 20810064 (Ask Gemini)
                                                                                                     androidx.camera.core.impl.CameraValidator$CameraIdListIncorrectException: Expected camera missing from device.
                                                                                                     	at androidx.camera.core.impl.CameraValidator.validateCameras(CameraValidator.java:97)
                                                                                                     	at androidx.camera.core.CameraX.lambda$initAndRetryRecursively$2$androidx-camera-core-CameraX(CameraX.java:334)
@@ -120,11 +120,11 @@
                                                                                                     	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1167) 
                                                                                                     	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641) 
                                                                                                     	at java.lang.Thread.run(Thread.java:923) 
-2026-05-03 21:58:56.416  6047-6091  CameraRepository        com.dawn.libfilter                   D  Added camera: 0
-2026-05-03 21:58:56.420  6047-6091  Camera2CameraInfo       com.dawn.libfilter                   I  Device Level: INFO_SUPPORTED_HARDWARE_LEVEL_EXTERNAL
-2026-05-03 21:58:56.421  6047-6091  CameraValidator         com.dawn.libfilter                   D  Verifying camera lens facing on rk3568_r, lensFacingInteger: null
-2026-05-03 21:58:56.423  6047-6091  CameraValidator         com.dawn.libfilter                   E  Camera LensFacing verification failed, existing cameras: [Camera@c1b1ed4[id=0]]
-2026-05-03 21:58:56.425  6047-6091  CameraX                 com.dawn.libfilter                   W  Retry init. Start time 20478085 current time 20480499 (Ask Gemini)
+2026-05-03 22:04:26.543  6223-6266  CameraRepository        com.dawn.libfilter                   D  Added camera: 0
+2026-05-03 22:04:26.545  6223-6266  Camera2CameraInfo       com.dawn.libfilter                   I  Device Level: INFO_SUPPORTED_HARDWARE_LEVEL_EXTERNAL
+2026-05-03 22:04:26.547  6223-6266  CameraValidator         com.dawn.libfilter                   D  Verifying camera lens facing on rk3568_r, lensFacingInteger: null
+2026-05-03 22:04:26.548  6223-6266  CameraValidator         com.dawn.libfilter                   E  Camera LensFacing verification failed, existing cameras: [Camera@6e8e87d[id=0]]
+2026-05-03 22:04:26.550  6223-6266  CameraX                 com.dawn.libfilter                   W  Retry init. Start time 20808200 current time 20810624 (Ask Gemini)
                                                                                                     androidx.camera.core.impl.CameraValidator$CameraIdListIncorrectException: Expected camera missing from device.
                                                                                                     	at androidx.camera.core.impl.CameraValidator.validateCameras(CameraValidator.java:97)
                                                                                                     	at androidx.camera.core.CameraX.lambda$initAndRetryRecursively$2$androidx-camera-core-CameraX(CameraX.java:334)
@@ -140,83 +140,82 @@
                                                                                                     	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1167) 
                                                                                                     	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641) 
                                                                                                     	at java.lang.Thread.run(Thread.java:923) 
-2026-05-03 21:58:56.976  6047-6091  CameraRepository        com.dawn.libfilter                   D  Added camera: 0
-2026-05-03 21:58:56.979  6047-6091  Camera2CameraInfo       com.dawn.libfilter                   I  Device Level: INFO_SUPPORTED_HARDWARE_LEVEL_EXTERNAL
-2026-05-03 21:58:56.981  6047-6091  CameraValidator         com.dawn.libfilter                   D  Verifying camera lens facing on rk3568_r, lensFacingInteger: null
-2026-05-03 21:58:56.983  6047-6091  CameraValidator         com.dawn.libfilter                   E  Camera LensFacing verification failed, existing cameras: [Camera@a91aa35[id=0]]
-2026-05-03 21:58:56.983  6047-6091  CameraX                 com.dawn.libfilter                   E  The device might underreport the amount of the cameras. Finish the initialize task since we are already reaching the maximum number of retries.
-2026-05-03 21:58:56.991  6047-6047  CameraFilterHelper      com.dawn.libfilter                   W  No FRONT/BACK camera, using available camera index=0 (total=1)
-2026-05-03 21:58:57.095  6047-6047  CameraOrientationUtil   com.dawn.libfilter                   D  getRelativeImageRotation: destRotationDegrees=0, sourceRotationDegrees=0, isOppositeFacing=true, result=0
-2026-05-03 21:58:57.163  6047-6047  chatty                  com.dawn.libfilter                   I  uid=10121(com.dawn.libfilter) identical 4 lines
-2026-05-03 21:58:57.164  6047-6047  CameraOrientationUtil   com.dawn.libfilter                   D  getRelativeImageRotation: destRotationDegrees=0, sourceRotationDegrees=0, isOppositeFacing=true, result=0
-2026-05-03 21:58:57.179  6047-6047  DeferrableSurface       com.dawn.libfilter                   D  Surface created[total_surfaces=1, used_surfaces=0](androidx.camera.core.impl.ImmediateSurface@5646715}
-2026-05-03 21:58:57.190  6047-6091  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@a91aa35[id=0]} Use case androidx.camera.core.ImageAnalysis-f86d04d0-d4c3-4733-9b5a-68bdd95bcf6a120088925 ACTIVE
-2026-05-03 21:58:57.192  6047-6047  CameraFilterHelper      com.dawn.libfilter                   I  CameraX bound, lensFacing=0 index=0
-2026-05-03 21:58:57.201  6047-6095  ProfileInstaller        com.dawn.libfilter                   D  Installing profile for com.dawn.libfilter
-2026-05-03 21:58:57.202  6047-6091  UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [] for camera: 0
-2026-05-03 21:58:57.214  6047-6091  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@a91aa35[id=0]} Use cases [androidx.camera.core.ImageAnalysis-f86d04d0-d4c3-4733-9b5a-68bdd95bcf6a120088925] now ATTACHED
-2026-05-03 21:58:57.215  6047-6091  UseCaseAttachState      com.dawn.libfilter                   D  All use case: [androidx.camera.core.ImageAnalysis-f86d04d0-d4c3-4733-9b5a-68bdd95bcf6a120088925] for camera: 0
-2026-05-03 21:58:57.220  6047-6091  UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [androidx.camera.core.ImageAnalysis-f86d04d0-d4c3-4733-9b5a-68bdd95bcf6a120088925] for camera: 0
-2026-05-03 21:58:57.233  6047-6091  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@a91aa35[id=0]} Resetting Capture Session
-2026-05-03 21:58:57.236  6047-6091  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@a91aa35[id=0]} Releasing session in state INITIALIZED
-2026-05-03 21:58:57.240  6047-6091  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@a91aa35[id=0]} Attempting to force open the camera.
-2026-05-03 21:58:57.243  6047-6091  CameraStateRegistry     com.dawn.libfilter                   D  tryOpenCamera(Camera@a91aa35[id=0]) [Available Cameras: 1, Already Open: false (Previous state: null)] --> SUCCESS
-2026-05-03 21:58:57.245  6047-6091  CameraStateRegistry     com.dawn.libfilter                   D  Recalculating open cameras:
+2026-05-03 22:04:27.095  6223-6266  CameraRepository        com.dawn.libfilter                   D  Added camera: 0
+2026-05-03 22:04:27.098  6223-6266  Camera2CameraInfo       com.dawn.libfilter                   I  Device Level: INFO_SUPPORTED_HARDWARE_LEVEL_EXTERNAL
+2026-05-03 22:04:27.099  6223-6266  CameraValidator         com.dawn.libfilter                   D  Verifying camera lens facing on rk3568_r, lensFacingInteger: null
+2026-05-03 22:04:27.101  6223-6266  CameraValidator         com.dawn.libfilter                   E  Camera LensFacing verification failed, existing cameras: [Camera@bdfceca[id=0]]
+2026-05-03 22:04:27.101  6223-6266  CameraX                 com.dawn.libfilter                   E  The device might underreport the amount of the cameras. Finish the initialize task since we are already reaching the maximum number of retries.
+2026-05-03 22:04:27.106  6223-6223  CameraFilterHelper      com.dawn.libfilter                   W  No FRONT/BACK camera, using available camera index=0 (total=1)
+2026-05-03 22:04:27.212  6223-6223  CameraOrientationUtil   com.dawn.libfilter                   D  getRelativeImageRotation: destRotationDegrees=0, sourceRotationDegrees=0, isOppositeFacing=true, result=0
+2026-05-03 22:04:27.267  6223-6223  chatty                  com.dawn.libfilter                   I  uid=10121(com.dawn.libfilter) identical 4 lines
+2026-05-03 22:04:27.269  6223-6223  CameraOrientationUtil   com.dawn.libfilter                   D  getRelativeImageRotation: destRotationDegrees=0, sourceRotationDegrees=0, isOppositeFacing=true, result=0
+2026-05-03 22:04:27.282  6223-6223  DeferrableSurface       com.dawn.libfilter                   D  Surface created[total_surfaces=1, used_surfaces=0](androidx.camera.core.impl.ImmediateSurface@2667a2a}
+2026-05-03 22:04:27.292  6223-6266  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@bdfceca[id=0]} Use case androidx.camera.core.ImageAnalysis-1e5e421d-6c4c-40d6-be8c-bbd374f77926121463506 ACTIVE
+2026-05-03 22:04:27.299  6223-6223  CameraFilterHelper      com.dawn.libfilter                   I  CameraX bound, lensFacing=0 index=0
+2026-05-03 22:04:27.303  6223-6266  UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [] for camera: 0
+2026-05-03 22:04:27.309  6223-6266  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@bdfceca[id=0]} Use cases [androidx.camera.core.ImageAnalysis-1e5e421d-6c4c-40d6-be8c-bbd374f77926121463506] now ATTACHED
+2026-05-03 22:04:27.311  6223-6266  UseCaseAttachState      com.dawn.libfilter                   D  All use case: [androidx.camera.core.ImageAnalysis-1e5e421d-6c4c-40d6-be8c-bbd374f77926121463506] for camera: 0
+2026-05-03 22:04:27.314  6223-6266  UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [androidx.camera.core.ImageAnalysis-1e5e421d-6c4c-40d6-be8c-bbd374f77926121463506] for camera: 0
+2026-05-03 22:04:27.328  6223-6266  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@bdfceca[id=0]} Resetting Capture Session
+2026-05-03 22:04:27.330  6223-6266  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@bdfceca[id=0]} Releasing session in state INITIALIZED
+2026-05-03 22:04:27.333  6223-6266  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@bdfceca[id=0]} Attempting to force open the camera.
+2026-05-03 22:04:27.337  6223-6266  CameraStateRegistry     com.dawn.libfilter                   D  tryOpenCamera(Camera@bdfceca[id=0]) [Available Cameras: 1, Already Open: false (Previous state: null)] --> SUCCESS
+2026-05-03 22:04:27.340  6223-6266  CameraStateRegistry     com.dawn.libfilter                   D  Recalculating open cameras:
                                                                                                     Camera                                       State                 
                                                                                                     -------------------------------------------------------------------
-                                                                                                    Camera@a91aa35[id=0]                         OPENING               
+                                                                                                    Camera@bdfceca[id=0]                         OPENING               
                                                                                                     -------------------------------------------------------------------
                                                                                                     Open count: 1 (Max allowed: 1)
-2026-05-03 21:58:57.246  6047-6091  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@a91aa35[id=0]} Opening camera.
-2026-05-03 21:58:57.247  6047-6091  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@a91aa35[id=0]} Transitioning camera internal state: INITIALIZED --> OPENING
-2026-05-03 21:58:57.248  6047-6091  CameraStateMachine      com.dawn.libfilter                   D  New public camera state CameraState{type=OPENING, error=null} from OPENING and null
-2026-05-03 21:58:57.248  6047-6091  CameraStateMachine      com.dawn.libfilter                   D  Publishing new public camera state CameraState{type=OPENING, error=null}
-2026-05-03 21:58:57.250  6047-6091  UseCaseAttachState      com.dawn.libfilter                   D  All use case: [androidx.camera.core.ImageAnalysis-f86d04d0-d4c3-4733-9b5a-68bdd95bcf6a120088925] for camera: 0
-2026-05-03 21:58:57.348  6047-6091  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@a91aa35[id=0]} Use case androidx.camera.core.ImageAnalysis-f86d04d0-d4c3-4733-9b5a-68bdd95bcf6a120088925 ACTIVE
-2026-05-03 21:58:57.353  6047-6091  UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [androidx.camera.core.ImageAnalysis-f86d04d0-d4c3-4733-9b5a-68bdd95bcf6a120088925] for camera: 0
-2026-05-03 21:58:57.377  6047-6091  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@a91aa35[id=0]} CameraDevice.onOpened()
-2026-05-03 21:58:57.378  6047-6091  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@a91aa35[id=0]} Transitioning camera internal state: OPENING --> OPENED
-2026-05-03 21:58:57.380  6047-6091  CameraStateRegistry     com.dawn.libfilter                   D  Recalculating open cameras:
+2026-05-03 22:04:27.342  6223-6266  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@bdfceca[id=0]} Opening camera.
+2026-05-03 22:04:27.343  6223-6266  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@bdfceca[id=0]} Transitioning camera internal state: INITIALIZED --> OPENING
+2026-05-03 22:04:27.345  6223-6266  CameraStateMachine      com.dawn.libfilter                   D  New public camera state CameraState{type=OPENING, error=null} from OPENING and null
+2026-05-03 22:04:27.345  6223-6266  CameraStateMachine      com.dawn.libfilter                   D  Publishing new public camera state CameraState{type=OPENING, error=null}
+2026-05-03 22:04:27.346  6223-6266  UseCaseAttachState      com.dawn.libfilter                   D  All use case: [androidx.camera.core.ImageAnalysis-1e5e421d-6c4c-40d6-be8c-bbd374f77926121463506] for camera: 0
+2026-05-03 22:04:27.411  6223-6266  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@bdfceca[id=0]} Use case androidx.camera.core.ImageAnalysis-1e5e421d-6c4c-40d6-be8c-bbd374f77926121463506 ACTIVE
+2026-05-03 22:04:27.414  6223-6266  UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [androidx.camera.core.ImageAnalysis-1e5e421d-6c4c-40d6-be8c-bbd374f77926121463506] for camera: 0
+2026-05-03 22:04:27.433  6223-6266  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@bdfceca[id=0]} CameraDevice.onOpened()
+2026-05-03 22:04:27.434  6223-6266  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@bdfceca[id=0]} Transitioning camera internal state: OPENING --> OPENED
+2026-05-03 22:04:27.437  6223-6266  CameraStateRegistry     com.dawn.libfilter                   D  Recalculating open cameras:
                                                                                                     Camera                                       State                 
                                                                                                     -------------------------------------------------------------------
-                                                                                                    Camera@a91aa35[id=0]                         OPEN                  
+                                                                                                    Camera@bdfceca[id=0]                         OPEN                  
                                                                                                     -------------------------------------------------------------------
                                                                                                     Open count: 1 (Max allowed: 1)
-2026-05-03 21:58:57.381  6047-6091  CameraStateMachine      com.dawn.libfilter                   D  New public camera state CameraState{type=OPEN, error=null} from OPEN and null
-2026-05-03 21:58:57.381  6047-6091  CameraStateMachine      com.dawn.libfilter                   D  Publishing new public camera state CameraState{type=OPEN, error=null}
-2026-05-03 21:58:57.383  6047-6091  UseCaseAttachState      com.dawn.libfilter                   D  All use case: [androidx.camera.core.ImageAnalysis-f86d04d0-d4c3-4733-9b5a-68bdd95bcf6a120088925] for camera: 0
-2026-05-03 21:58:57.399  6047-6091  UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [androidx.camera.core.ImageAnalysis-f86d04d0-d4c3-4733-9b5a-68bdd95bcf6a120088925] for camera: 0
-2026-05-03 21:58:57.410  6047-6091  SyncCaptureSessionBase  com.dawn.libfilter                   D  [androidx.camera.camera2.internal.SynchronizedCaptureSessionBaseImpl@f8dbce8] getSurface...done
-2026-05-03 21:58:57.411  6047-6091  CaptureSession          com.dawn.libfilter                   D  Opening capture session.
-2026-05-03 21:58:57.428  6047-6091  DeferrableSurface       com.dawn.libfilter                   D  New surface in use[total_surfaces=1, used_surfaces=1](androidx.camera.core.impl.ImmediateSurface@5646715}
-2026-05-03 21:58:57.428  6047-6091  DeferrableSurface       com.dawn.libfilter                   D  use count+1, useCount=1 androidx.camera.core.impl.ImmediateSurface@5646715
-2026-05-03 21:58:57.500  6047-6091  CaptureSession          com.dawn.libfilter                   D  Attempting to send capture request onConfigured
-2026-05-03 21:58:57.500  6047-6091  CaptureSession          com.dawn.libfilter                   D  Issuing request for session.
-2026-05-03 21:58:57.509  6047-6091  Camera2Cap...estBuilder com.dawn.libfilter                   D  createCaptureRequest
-2026-05-03 21:58:57.518  6047-6091  CaptureSession          com.dawn.libfilter                   D  CameraCaptureSession.onConfigured() mState=OPENED
-2026-05-03 21:58:57.519  6047-6091  CaptureSession          com.dawn.libfilter                   D  CameraCaptureSession.onReady() OPENED
-2026-05-03 21:58:58.283  6047-6102  ion                     com.dawn.libfilter                   E  ioctl c0044901 failed with code -1: Inappropriate ioctl for device
-2026-05-03 21:59:00.901  6047-6047  CameraFilterHelper      com.dawn.libfilter                   I  startRecording: filterStyle=ORIGINAL intensity=0.8 beautyParams=com.dawn.filter.BeautyParams@e191c4e
-2026-05-03 21:59:00.929  6047-6106  OMXClient               com.dawn.libfilter                   I  IOmx service obtained
-2026-05-03 21:59:00.945  6047-6106  OMXUtils                com.dawn.libfilter                   W  do not know color format 0x7f000789 = 2130708361
-2026-05-03 21:59:00.949  6047-6106  ACodec                  com.dawn.libfilter                   I  setupAVCEncoderParameters with [profile: Baseline] [level: Level31]
-2026-05-03 21:59:00.951  6047-6106  ACodec                  com.dawn.libfilter                   I  [OMX.rk.video_encoder.avc] cannot encode HDR static metadata. Ignoring.
-2026-05-03 21:59:00.951  6047-6106  ACodec                  com.dawn.libfilter                   I  setupVideoEncoder succeeded
-2026-05-03 21:59:00.953  6047-6106  OMXUtils                com.dawn.libfilter                   W  do not know color format 0x7f000789 = 2130708361
-2026-05-03 21:59:00.956  6047-6106  ColorUtils              com.dawn.libfilter                   W  expected specified color aspects (0:0:0:0)
-2026-05-03 21:59:01.014  6047-6112  CCodec                  com.dawn.libfilter                   D  allocate(c2.android.aac.encoder)
-2026-05-03 21:59:01.016  6047-6112  Codec2Client            com.dawn.libfilter                   I  Available Codec2 services: "software"
-2026-05-03 21:59:01.030  6047-6112  CCodec                  com.dawn.libfilter                   I  Created component [c2.android.aac.encoder]
-2026-05-03 21:59:01.030  6047-6112  CCodecConfig            com.dawn.libfilter                   D  read media type: audio/mp4a-latm
-2026-05-03 21:59:01.034  6047-6112  ReflectedParamUpdater   com.dawn.libfilter                   D  extent() != 1 for single value type: algo.buffers.max-count.values
-2026-05-03 21:59:01.034  6047-6112  ReflectedParamUpdater   com.dawn.libfilter                   D  extent() != 1 for single value type: output.subscribed-indices.values
-2026-05-03 21:59:01.035  6047-6112  ReflectedParamUpdater   com.dawn.libfilter                   D  extent() != 1 for single value type: input.buffers.allocator-ids.values
-2026-05-03 21:59:01.035  6047-6112  ReflectedParamUpdater   com.dawn.libfilter                   D  extent() != 1 for single value type: output.buffers.allocator-ids.values
-2026-05-03 21:59:01.035  6047-6112  ReflectedParamUpdater   com.dawn.libfilter                   D  extent() != 1 for single value type: algo.buffers.allocator-ids.values
-2026-05-03 21:59:01.035  6047-6112  ReflectedParamUpdater   com.dawn.libfilter                   D  extent() != 1 for single value type: output.buffers.pool-ids.values
-2026-05-03 21:59:01.035  6047-6112  ReflectedParamUpdater   com.dawn.libfilter                   D  extent() != 1 for single value type: algo.buffers.pool-ids.values
-2026-05-03 21:59:01.043  6047-6112  CCodecConfig            com.dawn.libfilter                   I  query failed after returning 9 values (BAD_INDEX)
-2026-05-03 21:59:01.044  6047-6112  CCodecConfig            com.dawn.libfilter                   D  c2 config diff is Dict {
+2026-05-03 22:04:27.437  6223-6266  CameraStateMachine      com.dawn.libfilter                   D  New public camera state CameraState{type=OPEN, error=null} from OPEN and null
+2026-05-03 22:04:27.437  6223-6266  CameraStateMachine      com.dawn.libfilter                   D  Publishing new public camera state CameraState{type=OPEN, error=null}
+2026-05-03 22:04:27.439  6223-6266  UseCaseAttachState      com.dawn.libfilter                   D  All use case: [androidx.camera.core.ImageAnalysis-1e5e421d-6c4c-40d6-be8c-bbd374f77926121463506] for camera: 0
+2026-05-03 22:04:27.459  6223-6266  UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [androidx.camera.core.ImageAnalysis-1e5e421d-6c4c-40d6-be8c-bbd374f77926121463506] for camera: 0
+2026-05-03 22:04:27.470  6223-6266  SyncCaptureSessionBase  com.dawn.libfilter                   D  [androidx.camera.camera2.internal.SynchronizedCaptureSessionBaseImpl@f8dbce8] getSurface...done
+2026-05-03 22:04:27.471  6223-6266  CaptureSession          com.dawn.libfilter                   D  Opening capture session.
+2026-05-03 22:04:27.488  6223-6266  DeferrableSurface       com.dawn.libfilter                   D  New surface in use[total_surfaces=1, used_surfaces=1](androidx.camera.core.impl.ImmediateSurface@2667a2a}
+2026-05-03 22:04:27.489  6223-6266  DeferrableSurface       com.dawn.libfilter                   D  use count+1, useCount=1 androidx.camera.core.impl.ImmediateSurface@2667a2a
+2026-05-03 22:04:27.566  6223-6266  CaptureSession          com.dawn.libfilter                   D  Attempting to send capture request onConfigured
+2026-05-03 22:04:27.566  6223-6266  CaptureSession          com.dawn.libfilter                   D  Issuing request for session.
+2026-05-03 22:04:27.568  6223-6266  Camera2Cap...estBuilder com.dawn.libfilter                   D  createCaptureRequest
+2026-05-03 22:04:27.578  6223-6266  CaptureSession          com.dawn.libfilter                   D  CameraCaptureSession.onConfigured() mState=OPENED
+2026-05-03 22:04:27.580  6223-6266  CaptureSession          com.dawn.libfilter                   D  CameraCaptureSession.onReady() OPENED
+2026-05-03 22:04:28.345  6223-6276  ion                     com.dawn.libfilter                   E  ioctl c0044901 failed with code -1: Inappropriate ioctl for device
+2026-05-03 22:04:29.991  6223-6223  CameraFilterHelper      com.dawn.libfilter                   I  startRecording: filterStyle=ORIGINAL intensity=0.8 beautyParams=com.dawn.filter.BeautyParams@6f53316
+2026-05-03 22:04:30.033  6223-6280  OMXClient               com.dawn.libfilter                   I  IOmx service obtained
+2026-05-03 22:04:30.058  6223-6280  OMXUtils                com.dawn.libfilter                   W  do not know color format 0x7f000789 = 2130708361
+2026-05-03 22:04:30.063  6223-6280  ACodec                  com.dawn.libfilter                   I  setupAVCEncoderParameters with [profile: Baseline] [level: Level31]
+2026-05-03 22:04:30.064  6223-6280  ACodec                  com.dawn.libfilter                   I  [OMX.rk.video_encoder.avc] cannot encode HDR static metadata. Ignoring.
+2026-05-03 22:04:30.064  6223-6280  ACodec                  com.dawn.libfilter                   I  setupVideoEncoder succeeded
+2026-05-03 22:04:30.065  6223-6280  OMXUtils                com.dawn.libfilter                   W  do not know color format 0x7f000789 = 2130708361
+2026-05-03 22:04:30.069  6223-6280  ColorUtils              com.dawn.libfilter                   W  expected specified color aspects (0:0:0:0)
+2026-05-03 22:04:30.116  6223-6286  CCodec                  com.dawn.libfilter                   D  allocate(c2.android.aac.encoder)
+2026-05-03 22:04:30.127  6223-6286  Codec2Client            com.dawn.libfilter                   I  Available Codec2 services: "software"
+2026-05-03 22:04:30.145  6223-6286  CCodec                  com.dawn.libfilter                   I  Created component [c2.android.aac.encoder]
+2026-05-03 22:04:30.145  6223-6286  CCodecConfig            com.dawn.libfilter                   D  read media type: audio/mp4a-latm
+2026-05-03 22:04:30.153  6223-6286  ReflectedParamUpdater   com.dawn.libfilter                   D  extent() != 1 for single value type: algo.buffers.max-count.values
+2026-05-03 22:04:30.153  6223-6286  ReflectedParamUpdater   com.dawn.libfilter                   D  extent() != 1 for single value type: output.subscribed-indices.values
+2026-05-03 22:04:30.154  6223-6286  ReflectedParamUpdater   com.dawn.libfilter                   D  extent() != 1 for single value type: input.buffers.allocator-ids.values
+2026-05-03 22:04:30.154  6223-6286  ReflectedParamUpdater   com.dawn.libfilter                   D  extent() != 1 for single value type: output.buffers.allocator-ids.values
+2026-05-03 22:04:30.154  6223-6286  ReflectedParamUpdater   com.dawn.libfilter                   D  extent() != 1 for single value type: algo.buffers.allocator-ids.values
+2026-05-03 22:04:30.154  6223-6286  ReflectedParamUpdater   com.dawn.libfilter                   D  extent() != 1 for single value type: output.buffers.pool-ids.values
+2026-05-03 22:04:30.154  6223-6286  ReflectedParamUpdater   com.dawn.libfilter                   D  extent() != 1 for single value type: algo.buffers.pool-ids.values
+2026-05-03 22:04:30.162  6223-6286  CCodecConfig            com.dawn.libfilter                   I  query failed after returning 9 values (BAD_INDEX)
+2026-05-03 22:04:30.162  6223-6286  CCodecConfig            com.dawn.libfilter                   D  c2 config diff is Dict {
                                                                                                       c2::u32 coded.bitrate.value = 64000
                                                                                                       c2::u32 coded.pl.level = 0
                                                                                                       c2::u32 coded.pl.profile = 8192
@@ -228,13 +227,13 @@
                                                                                                       c2::u32 raw.channel-count.value = 1
                                                                                                       c2::u32 raw.sample-rate.value = 44100
                                                                                                     }
-2026-05-03 21:59:01.046  6047-6112  CCodec                  com.dawn.libfilter                   D  [c2.android.aac.encoder] buffers are bound to CCodec for this session
-2026-05-03 21:59:01.046  6047-6112  CCodecConfig            com.dawn.libfilter                   D  no c2 equivalents for aac-profile
-2026-05-03 21:59:01.046  6047-6112  CCodecConfig            com.dawn.libfilter                   D  no c2 equivalents for flags
-2026-05-03 21:59:01.046  6047-6112  CCodecConfig            com.dawn.libfilter                   D  no c2 equivalents for encoder
-2026-05-03 21:59:01.048  6047-6112  CCodecConfig            com.dawn.libfilter                   D  c2 config diff is   c2::u32 coded.bitrate.value = 128000
-2026-05-03 21:59:01.049  6047-6112  Codec2Client            com.dawn.libfilter                   W  query -- param skipped: index = 1107298332.
-2026-05-03 21:59:01.050  6047-6112  CCodec                  com.dawn.libfilter                   D  setup formats input: AMessage(what = 0x00000000) = {
+2026-05-03 22:04:30.164  6223-6286  CCodec                  com.dawn.libfilter                   D  [c2.android.aac.encoder] buffers are bound to CCodec for this session
+2026-05-03 22:04:30.164  6223-6286  CCodecConfig            com.dawn.libfilter                   D  no c2 equivalents for aac-profile
+2026-05-03 22:04:30.164  6223-6286  CCodecConfig            com.dawn.libfilter                   D  no c2 equivalents for flags
+2026-05-03 22:04:30.164  6223-6286  CCodecConfig            com.dawn.libfilter                   D  no c2 equivalents for encoder
+2026-05-03 22:04:30.171  6223-6286  CCodecConfig            com.dawn.libfilter                   D  c2 config diff is   c2::u32 coded.bitrate.value = 128000
+2026-05-03 22:04:30.176  6223-6286  Codec2Client            com.dawn.libfilter                   W  query -- param skipped: index = 1107298332.
+2026-05-03 22:04:30.177  6223-6286  CCodec                  com.dawn.libfilter                   D  setup formats input: AMessage(what = 0x00000000) = {
                                                                                                       int32_t aac-sbr-mode = 3
                                                                                                       int32_t channel-count = 1
                                                                                                       int32_t max-input-size = 2048
@@ -250,22 +249,22 @@
                                                                                                       int32_t profile = 2
                                                                                                       int32_t sample-rate = 44100
                                                                                                     }
-2026-05-03 21:59:01.053  6047-6112  Codec2Client            com.dawn.libfilter                   W  query -- param skipped: index = 1342179345.
-2026-05-03 21:59:01.053  6047-6112  Codec2Client            com.dawn.libfilter                   W  query -- param skipped: index = 2415921170.
-2026-05-03 21:59:01.061  6047-6112  FMQ                     com.dawn.libfilter                   E  grantorIdx must be less than 3
-2026-05-03 21:59:01.062  6047-6112  FMQ                     com.dawn.libfilter                   E  grantorIdx must be less than 3
-2026-05-03 21:59:01.062  6047-6112  CCodecBufferChannel     com.dawn.libfilter                   D  [c2.android.aac.encoder#528] Created input block pool with allocatorID 16 => poolID 17 - OK (0)
-2026-05-03 21:59:01.065  6047-6112  CCodecBufferChannel     com.dawn.libfilter                   I  [c2.android.aac.encoder#528] Created output block pool with allocatorID 16 => poolID 38 - OK
-2026-05-03 21:59:01.065  6047-6112  CCodecBufferChannel     com.dawn.libfilter                   D  [c2.android.aac.encoder#528] Configured output block pool ids 38 => OK
-2026-05-03 21:59:01.073  6047-6112  ion                     com.dawn.libfilter                   E  ioctl c0044901 failed with code -1: Inappropriate ioctl for device
-2026-05-03 21:59:01.118  6047-6047  MPEG4Writer             com.dawn.libfilter                   D  PreAllocation enabled
-2026-05-03 21:59:01.136  6047-6047  CameraFilterHelper      com.dawn.libfilter                   I  录制开始（含滤镜）: /storage/emulated/0/Android/data/com.dawn.libfilter/files/Movies/VID_1777816740900.mp4
-2026-05-03 21:59:01.170   188-1089  BufferQueueProducer     pid-188                              E  [SurfaceView - com.dawn.libfilter/com.dawn.libfilter.CameraFilterActivity#0](id:bc000000b7,api:0,p:-1,c:188) disconnect: not connected (req=1)
-2026-05-03 21:59:01.170  6047-6088  libEGL                  com.dawn.libfilter                   W  EGLNativeWindowType 0xb400007887407060 disconnect failed
-2026-05-03 21:59:01.195  6047-6122  GlFilterRecorder        com.dawn.libfilter                   I  rebuildFilters: filterStyle=ORIGINAL intensity=0.8 frameW=0 frameH=0
-2026-05-03 21:59:01.229  6047-6112  FMQ                     com.dawn.libfilter                   E  grantorIdx must be less than 3
-2026-05-03 21:59:01.246  6047-6107  FMQ                     com.dawn.libfilter                   E  grantorIdx must be less than 3
-2026-05-03 21:59:01.249  6047-6112  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#528:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
+2026-05-03 22:04:30.180  6223-6286  Codec2Client            com.dawn.libfilter                   W  query -- param skipped: index = 1342179345.
+2026-05-03 22:04:30.180  6223-6286  Codec2Client            com.dawn.libfilter                   W  query -- param skipped: index = 2415921170.
+2026-05-03 22:04:30.182  6223-6286  FMQ                     com.dawn.libfilter                   E  grantorIdx must be less than 3
+2026-05-03 22:04:30.182  6223-6286  FMQ                     com.dawn.libfilter                   E  grantorIdx must be less than 3
+2026-05-03 22:04:30.182  6223-6286  CCodecBufferChannel     com.dawn.libfilter                   D  [c2.android.aac.encoder#52] Created input block pool with allocatorID 16 => poolID 17 - OK (0)
+2026-05-03 22:04:30.189  6223-6286  CCodecBufferChannel     com.dawn.libfilter                   I  [c2.android.aac.encoder#52] Created output block pool with allocatorID 16 => poolID 39 - OK
+2026-05-03 22:04:30.190  6223-6286  CCodecBufferChannel     com.dawn.libfilter                   D  [c2.android.aac.encoder#52] Configured output block pool ids 39 => OK
+2026-05-03 22:04:30.194  6223-6286  ion                     com.dawn.libfilter                   E  ioctl c0044901 failed with code -1: Inappropriate ioctl for device
+2026-05-03 22:04:30.255  6223-6223  MPEG4Writer             com.dawn.libfilter                   D  PreAllocation enabled
+2026-05-03 22:04:30.277  6223-6223  CameraFilterHelper      com.dawn.libfilter                   I  录制开始（含滤镜）: /storage/emulated/0/Android/data/com.dawn.libfilter/files/Movies/VID_1777817069990.mp4
+2026-05-03 22:04:30.297  6223-6296  GlFilterRecorder        com.dawn.libfilter                   I  rebuildFilters: filterStyle=ORIGINAL intensity=0.8 frameW=0 frameH=0
+2026-05-03 22:04:30.331   188-513   BufferQueueProducer     pid-188                              E  [SurfaceView - com.dawn.libfilter/com.dawn.libfilter.CameraFilterActivity#0](id:bc000000be,api:0,p:-1,c:188) disconnect: not connected (req=1)
+2026-05-03 22:04:30.331  6223-6263  libEGL                  com.dawn.libfilter                   W  EGLNativeWindowType 0xb400007887404e50 disconnect failed
+2026-05-03 22:04:30.361  6223-6286  FMQ                     com.dawn.libfilter                   E  grantorIdx must be less than 3
+2026-05-03 22:04:30.379  6223-6281  FMQ                     com.dawn.libfilter                   E  grantorIdx must be less than 3
+2026-05-03 22:04:30.382  6223-6286  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#52:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
                                                                                                       int32_t aac-sbr-mode = 3
                                                                                                       int32_t bitrate = 128000
                                                                                                       int32_t channel-count = 1
@@ -278,7 +277,7 @@
                                                                                                         00000000:  12 08                                             ..
                                                                                                       }
                                                                                                     }
-2026-05-03 21:59:01.416  6047-6112  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#528:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
+2026-05-03 22:04:30.549  6223-6286  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#52:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
                                                                                                       int32_t aac-sbr-mode = 3
                                                                                                       int32_t bitrate = 128000
                                                                                                       int32_t channel-count = 1
@@ -291,15 +290,17 @@
                                                                                                         00000000:  12 08                                             ..
                                                                                                       }
                                                                                                     }
-2026-05-03 21:59:01.434  6047-6122  GlFilterRecorder        com.dawn.libfilter                   I  rebuildFilters: filterStyle=ORIGINAL intensity=0.8 frameW=0 frameH=0
-2026-05-03 21:59:01.473  6047-6122  MPEG4Writer             com.dawn.libfilter                   D  fpathconf _PC_FILESIZEBITS:64
-2026-05-03 21:59:01.473  6047-6122  MPEG4Writer             com.dawn.libfilter                   D  File size limit set to 4503599627370495 bytes implicitly
-2026-05-03 21:59:01.477  6047-6122  MPEG4Writer             com.dawn.libfilter                   D  MP4WtrCtrlHlpLooper Started
-2026-05-03 21:59:01.478  6047-6122  MPEG4Writer             com.dawn.libfilter                   I  limits: 4503599627370495/0 bytes/us, bit rate: -1 bps and the estimated moov size 3192 bytes
-2026-05-03 21:59:01.483  6047-6125  MPEG4Writer             com.dawn.libfilter                   D  kWhatNoIOErrorSoFar
-2026-05-03 21:59:01.502  6047-6126  MPEG4Writer             com.dawn.libfilter                   I  setStartTimestampUs: 239519
-2026-05-03 21:59:01.502  6047-6126  MPEG4Writer             com.dawn.libfilter                   I  Earliest track starting time: 239519
-2026-05-03 21:59:01.551  6047-6112  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#528:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
+2026-05-03 22:04:30.587  6223-6296  GlFilterRecorder        com.dawn.libfilter                   I  rebuildFilters: filterStyle=ORIGINAL intensity=0.8 frameW=0 frameH=0
+2026-05-03 22:04:30.625  6223-6296  MPEG4Writer             com.dawn.libfilter                   D  fpathconf _PC_FILESIZEBITS:64
+2026-05-03 22:04:30.625  6223-6296  MPEG4Writer             com.dawn.libfilter                   D  File size limit set to 4503599627370495 bytes implicitly
+2026-05-03 22:04:30.625  6223-6296  MPEG4Writer             com.dawn.libfilter                   D  MP4WtrCtrlHlpLooper Started
+2026-05-03 22:04:30.626  6223-6296  MPEG4Writer             com.dawn.libfilter                   I  limits: 4503599627370495/0 bytes/us, bit rate: -1 bps and the estimated moov size 3192 bytes
+2026-05-03 22:04:30.633  6223-6301  MPEG4Writer             com.dawn.libfilter                   D  kWhatNoIOErrorSoFar
+2026-05-03 22:04:30.657  6223-6303  MPEG4Writer             com.dawn.libfilter                   I  setStartTimestampUs: 20814661161
+2026-05-03 22:04:30.658  6223-6303  MPEG4Writer             com.dawn.libfilter                   I  Earliest track starting time: 20814661161
+2026-05-03 22:04:30.681  6223-6302  MPEG4Writer             com.dawn.libfilter                   I  setStartTimestampUs: 301997
+2026-05-03 22:04:30.681  6223-6302  MPEG4Writer             com.dawn.libfilter                   I  Earliest track starting time: 301997
+2026-05-03 22:04:30.686  6223-6286  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#52:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
                                                                                                       int32_t aac-sbr-mode = 3
                                                                                                       int32_t bitrate = 128000
                                                                                                       int32_t channel-count = 1
@@ -312,8 +313,7 @@
                                                                                                         00000000:  12 08                                             ..
                                                                                                       }
                                                                                                     }
-2026-05-03 21:59:01.595  6047-6127  MPEG4Writer             com.dawn.libfilter                   I  setStartTimestampUs: 20485508857
-2026-05-03 21:59:01.738  6047-6112  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#528:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
+2026-05-03 22:04:30.862  6223-6286  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#52:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
                                                                                                       int32_t aac-sbr-mode = 3
                                                                                                       int32_t bitrate = 128000
                                                                                                       int32_t channel-count = 1
@@ -326,7 +326,7 @@
                                                                                                         00000000:  12 08                                             ..
                                                                                                       }
                                                                                                     }
-2026-05-03 21:59:01.880  6047-6112  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#528:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
+2026-05-03 22:04:31.039  6223-6286  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#52:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
                                                                                                       int32_t aac-sbr-mode = 3
                                                                                                       int32_t bitrate = 128000
                                                                                                       int32_t channel-count = 1
@@ -339,7 +339,7 @@
                                                                                                         00000000:  12 08                                             ..
                                                                                                       }
                                                                                                     }
-2026-05-03 21:59:02.071  6047-6112  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#528:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
+2026-05-03 22:04:31.213  6223-6286  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#52:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
                                                                                                       int32_t aac-sbr-mode = 3
                                                                                                       int32_t bitrate = 128000
                                                                                                       int32_t channel-count = 1
@@ -352,8 +352,7 @@
                                                                                                         00000000:  12 08                                             ..
                                                                                                       }
                                                                                                     }
-2026-05-03 21:59:02.218  6047-6112  chatty                  com.dawn.libfilter                   I  uid=10121(com.dawn.libfilter) MediaCodec_loop identical 1 line
-2026-05-03 21:59:02.382  6047-6112  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#528:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
+2026-05-03 22:04:31.341  6223-6286  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#52:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
                                                                                                       int32_t aac-sbr-mode = 3
                                                                                                       int32_t bitrate = 128000
                                                                                                       int32_t channel-count = 1
@@ -366,7 +365,8 @@
                                                                                                         00000000:  12 08                                             ..
                                                                                                       }
                                                                                                     }
-2026-05-03 21:59:02.533  6047-6112  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#528:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
+2026-05-03 22:04:31.522  6223-6286  chatty                  com.dawn.libfilter                   I  uid=10121(com.dawn.libfilter) MediaCodec_loop identical 1 line
+2026-05-03 22:04:31.658  6223-6286  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#52:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
                                                                                                       int32_t aac-sbr-mode = 3
                                                                                                       int32_t bitrate = 128000
                                                                                                       int32_t channel-count = 1
@@ -379,7 +379,7 @@
                                                                                                         00000000:  12 08                                             ..
                                                                                                       }
                                                                                                     }
-2026-05-03 21:59:02.726  6047-6112  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#528:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
+2026-05-03 22:04:31.852  6223-6286  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#52:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
                                                                                                       int32_t aac-sbr-mode = 3
                                                                                                       int32_t bitrate = 128000
                                                                                                       int32_t channel-count = 1
@@ -392,8 +392,7 @@
                                                                                                         00000000:  12 08                                             ..
                                                                                                       }
                                                                                                     }
-2026-05-03 21:59:02.836  6047-6061  .dawn.libfilte          com.dawn.libfilter                   I  NativeAlloc concurrent copying GC freed 47130(2500KB) AllocSpace objects, 12(15MB) LOS objects, 49% free, 8168KB/15MB, paused 114us total 144.776ms
-2026-05-03 21:59:02.854  6047-6112  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#528:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
+2026-05-03 22:04:32.002  6223-6286  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#52:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
                                                                                                       int32_t aac-sbr-mode = 3
                                                                                                       int32_t bitrate = 128000
                                                                                                       int32_t channel-count = 1
@@ -406,7 +405,8 @@
                                                                                                         00000000:  12 08                                             ..
                                                                                                       }
                                                                                                     }
-2026-05-03 21:59:03.046  6047-6112  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#528:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
+2026-05-03 22:04:32.075  6223-6237  .dawn.libfilte          com.dawn.libfilter                   I  NativeAlloc concurrent copying GC freed 43696(2418KB) AllocSpace objects, 13(17MB) LOS objects, 49% free, 8146KB/15MB, paused 180us total 193.326ms
+2026-05-03 22:04:32.167  6223-6286  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#52:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
                                                                                                       int32_t aac-sbr-mode = 3
                                                                                                       int32_t bitrate = 128000
                                                                                                       int32_t channel-count = 1
@@ -419,7 +419,7 @@
                                                                                                         00000000:  12 08                                             ..
                                                                                                       }
                                                                                                     }
-2026-05-03 21:59:03.176  6047-6112  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#528:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
+2026-05-03 22:04:32.311  6223-6286  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#52:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
                                                                                                       int32_t aac-sbr-mode = 3
                                                                                                       int32_t bitrate = 128000
                                                                                                       int32_t channel-count = 1
@@ -432,7 +432,8 @@
                                                                                                         00000000:  12 08                                             ..
                                                                                                       }
                                                                                                     }
-2026-05-03 21:59:03.374  6047-6112  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#528:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
+2026-05-03 22:04:32.505  6223-6286  chatty                  com.dawn.libfilter                   I  uid=10121(com.dawn.libfilter) MediaCodec_loop identical 1 line
+2026-05-03 22:04:32.639  6223-6286  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#52:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
                                                                                                       int32_t aac-sbr-mode = 3
                                                                                                       int32_t bitrate = 128000
                                                                                                       int32_t channel-count = 1
@@ -445,7 +446,7 @@
                                                                                                         00000000:  12 08                                             ..
                                                                                                       }
                                                                                                     }
-2026-05-03 21:59:03.516  6047-6112  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#528:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
+2026-05-03 22:04:32.819  6223-6286  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#52:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
                                                                                                       int32_t aac-sbr-mode = 3
                                                                                                       int32_t bitrate = 128000
                                                                                                       int32_t channel-count = 1
@@ -458,7 +459,7 @@
                                                                                                         00000000:  12 08                                             ..
                                                                                                       }
                                                                                                     }
-2026-05-03 21:59:03.682  6047-6112  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#528:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
+2026-05-03 22:04:32.963  6223-6286  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#52:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
                                                                                                       int32_t aac-sbr-mode = 3
                                                                                                       int32_t bitrate = 128000
                                                                                                       int32_t channel-count = 1
@@ -471,7 +472,7 @@
                                                                                                         00000000:  12 08                                             ..
                                                                                                       }
                                                                                                     }
-2026-05-03 21:59:03.827  6047-6112  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#528:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
+2026-05-03 22:04:33.153  6223-6286  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#52:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
                                                                                                       int32_t aac-sbr-mode = 3
                                                                                                       int32_t bitrate = 128000
                                                                                                       int32_t channel-count = 1
@@ -484,7 +485,7 @@
                                                                                                         00000000:  12 08                                             ..
                                                                                                       }
                                                                                                     }
-2026-05-03 21:59:04.021  6047-6112  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#528:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
+2026-05-03 22:04:33.297  6223-6286  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#52:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
                                                                                                       int32_t aac-sbr-mode = 3
                                                                                                       int32_t bitrate = 128000
                                                                                                       int32_t channel-count = 1
@@ -497,8 +498,7 @@
                                                                                                         00000000:  12 08                                             ..
                                                                                                       }
                                                                                                     }
-2026-05-03 21:59:04.056  6047-6061  .dawn.libfilte          com.dawn.libfilter                   I  Background concurrent copying GC freed 3986(249KB) AllocSpace objects, 7(9464KB) LOS objects, 49% free, 8105KB/15MB, paused 96us total 137.898ms
-2026-05-03 21:59:04.156  6047-6112  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#528:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
+2026-05-03 22:04:33.473  6223-6286  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#52:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
                                                                                                       int32_t aac-sbr-mode = 3
                                                                                                       int32_t bitrate = 128000
                                                                                                       int32_t channel-count = 1
@@ -511,7 +511,7 @@
                                                                                                         00000000:  12 08                                             ..
                                                                                                       }
                                                                                                     }
-2026-05-03 21:59:04.334  6047-6112  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#528:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
+2026-05-03 22:04:33.620  6223-6286  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#52:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
                                                                                                       int32_t aac-sbr-mode = 3
                                                                                                       int32_t bitrate = 128000
                                                                                                       int32_t channel-count = 1
@@ -524,7 +524,7 @@
                                                                                                         00000000:  12 08                                             ..
                                                                                                       }
                                                                                                     }
-2026-05-03 21:59:04.513  6047-6112  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#528:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
+2026-05-03 22:04:33.793  6223-6286  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#52:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
                                                                                                       int32_t aac-sbr-mode = 3
                                                                                                       int32_t bitrate = 128000
                                                                                                       int32_t channel-count = 1
@@ -537,7 +537,7 @@
                                                                                                         00000000:  12 08                                             ..
                                                                                                       }
                                                                                                     }
-2026-05-03 21:59:04.665  6047-6112  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#528:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
+2026-05-03 22:04:33.935  6223-6286  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#52:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
                                                                                                       int32_t aac-sbr-mode = 3
                                                                                                       int32_t bitrate = 128000
                                                                                                       int32_t channel-count = 1
@@ -550,7 +550,7 @@
                                                                                                         00000000:  12 08                                             ..
                                                                                                       }
                                                                                                     }
-2026-05-03 21:59:04.805  6047-6112  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#528:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
+2026-05-03 22:04:34.134  6223-6286  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#52:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
                                                                                                       int32_t aac-sbr-mode = 3
                                                                                                       int32_t bitrate = 128000
                                                                                                       int32_t channel-count = 1
@@ -563,7 +563,7 @@
                                                                                                         00000000:  12 08                                             ..
                                                                                                       }
                                                                                                     }
-2026-05-03 21:59:04.983  6047-6112  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#528:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
+2026-05-03 22:04:34.275  6223-6286  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#52:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
                                                                                                       int32_t aac-sbr-mode = 3
                                                                                                       int32_t bitrate = 128000
                                                                                                       int32_t channel-count = 1
@@ -576,8 +576,8 @@
                                                                                                         00000000:  12 08                                             ..
                                                                                                       }
                                                                                                     }
-2026-05-03 21:59:05.130  6047-6112  chatty                  com.dawn.libfilter                   I  uid=10121(com.dawn.libfilter) MediaCodec_loop identical 1 line
-2026-05-03 21:59:05.320  6047-6112  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#528:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
+2026-05-03 22:04:34.356  6223-6237  .dawn.libfilte          com.dawn.libfilter                   I  Background concurrent copying GC freed 2144(203KB) AllocSpace objects, 5(6760KB) LOS objects, 49% free, 8106KB/15MB, paused 118us total 195.070ms
+2026-05-03 22:04:34.456  6223-6286  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#52:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
                                                                                                       int32_t aac-sbr-mode = 3
                                                                                                       int32_t bitrate = 128000
                                                                                                       int32_t channel-count = 1
@@ -590,7 +590,7 @@
                                                                                                         00000000:  12 08                                             ..
                                                                                                       }
                                                                                                     }
-2026-05-03 21:59:05.457  6047-6112  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#528:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
+2026-05-03 22:04:34.603  6223-6286  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#52:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
                                                                                                       int32_t aac-sbr-mode = 3
                                                                                                       int32_t bitrate = 128000
                                                                                                       int32_t channel-count = 1
@@ -603,7 +603,7 @@
                                                                                                         00000000:  12 08                                             ..
                                                                                                       }
                                                                                                     }
-2026-05-03 21:59:05.635  6047-6112  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#528:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
+2026-05-03 22:04:34.764  6223-6286  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#52:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
                                                                                                       int32_t aac-sbr-mode = 3
                                                                                                       int32_t bitrate = 128000
                                                                                                       int32_t channel-count = 1
@@ -616,7 +616,7 @@
                                                                                                         00000000:  12 08                                             ..
                                                                                                       }
                                                                                                     }
-2026-05-03 21:59:05.777  6047-6112  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#528:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
+2026-05-03 22:04:34.933  6223-6286  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#52:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
                                                                                                       int32_t aac-sbr-mode = 3
                                                                                                       int32_t bitrate = 128000
                                                                                                       int32_t channel-count = 1
@@ -629,7 +629,7 @@
                                                                                                         00000000:  12 08                                             ..
                                                                                                       }
                                                                                                     }
-2026-05-03 21:59:05.970  6047-6112  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#528:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
+2026-05-03 22:04:35.100  6223-6286  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#52:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
                                                                                                       int32_t aac-sbr-mode = 3
                                                                                                       int32_t bitrate = 128000
                                                                                                       int32_t channel-count = 1
@@ -642,9 +642,9 @@
                                                                                                         00000000:  12 08                                             ..
                                                                                                       }
                                                                                                     }
-2026-05-03 21:59:06.065  6047-6115  BufferPoolAccessor2.0   com.dawn.libfilter                   D  bufferpool2 0xb4000077e7324368 : 5(10240 size) total buffers - 4(8192 size) used buffers - 0/5 (recycle/alloc) - 4/480 (fetch/transfer)
-2026-05-03 21:59:06.065  6047-6115  BufferPoolAccessor2.0   com.dawn.libfilter                   D  evictor expired: 1, evicted: 1
-2026-05-03 21:59:06.106  6047-6112  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#528:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
+2026-05-03 22:04:35.182  6223-6290  BufferPoolAccessor2.0   com.dawn.libfilter                   D  bufferpool2 0xb4000077e7327f88 : 5(10240 size) total buffers - 4(8192 size) used buffers - 0/5 (recycle/alloc) - 4/476 (fetch/transfer)
+2026-05-03 22:04:35.182  6223-6290  BufferPoolAccessor2.0   com.dawn.libfilter                   D  evictor expired: 1, evicted: 1
+2026-05-03 22:04:35.246  6223-6286  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#52:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
                                                                                                       int32_t aac-sbr-mode = 3
                                                                                                       int32_t bitrate = 128000
                                                                                                       int32_t channel-count = 1
@@ -657,7 +657,8 @@
                                                                                                         00000000:  12 08                                             ..
                                                                                                       }
                                                                                                     }
-2026-05-03 21:59:06.288  6047-6112  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#528:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
+2026-05-03 22:04:35.397  6223-6243  .dawn.libfilte          com.dawn.libfilter                   I  IncrementDisableThreadFlip blocked for 7.366ms
+2026-05-03 22:04:35.419  6223-6286  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#52:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
                                                                                                       int32_t aac-sbr-mode = 3
                                                                                                       int32_t bitrate = 128000
                                                                                                       int32_t channel-count = 1
@@ -670,7 +671,8 @@
                                                                                                         00000000:  12 08                                             ..
                                                                                                       }
                                                                                                     }
-2026-05-03 21:59:06.465  6047-6112  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#528:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
+2026-05-03 22:04:35.476  6223-6237  .dawn.libfilte          com.dawn.libfilter                   I  Background concurrent copying GC freed 2684(204KB) AllocSpace objects, 7(9464KB) LOS objects, 49% free, 8092KB/15MB, paused 8.189ms total 129.260ms
+2026-05-03 22:04:35.589  6223-6286  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#52:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
                                                                                                       int32_t aac-sbr-mode = 3
                                                                                                       int32_t bitrate = 128000
                                                                                                       int32_t channel-count = 1
@@ -683,8 +685,7 @@
                                                                                                         00000000:  12 08                                             ..
                                                                                                       }
                                                                                                     }
-2026-05-03 21:59:06.485  6047-6061  .dawn.libfilte          com.dawn.libfilter                   I  Background concurrent copying GC freed 2602(204KB) AllocSpace objects, 7(9464KB) LOS objects, 49% free, 8120KB/15MB, paused 725us total 108.683ms
-2026-05-03 21:59:06.619  6047-6112  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#528:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
+2026-05-03 22:04:35.748  6223-6286  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#52:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
                                                                                                       int32_t aac-sbr-mode = 3
                                                                                                       int32_t bitrate = 128000
                                                                                                       int32_t channel-count = 1
@@ -697,7 +698,7 @@
                                                                                                         00000000:  12 08                                             ..
                                                                                                       }
                                                                                                     }
-2026-05-03 21:59:06.762  6047-6112  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#528:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
+2026-05-03 22:04:35.894  6223-6286  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#52:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
                                                                                                       int32_t aac-sbr-mode = 3
                                                                                                       int32_t bitrate = 128000
                                                                                                       int32_t channel-count = 1
@@ -710,7 +711,7 @@
                                                                                                         00000000:  12 08                                             ..
                                                                                                       }
                                                                                                     }
-2026-05-03 21:59:06.934  6047-6112  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#528:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
+2026-05-03 22:04:36.069  6223-6286  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#52:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
                                                                                                       int32_t aac-sbr-mode = 3
                                                                                                       int32_t bitrate = 128000
                                                                                                       int32_t channel-count = 1
@@ -723,8 +724,7 @@
                                                                                                         00000000:  12 08                                             ..
                                                                                                       }
                                                                                                     }
-2026-05-03 21:59:07.082  6047-6112  chatty                  com.dawn.libfilter                   I  uid=10121(com.dawn.libfilter) MediaCodec_loop identical 1 line
-2026-05-03 21:59:07.269  6047-6112  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#528:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
+2026-05-03 22:04:36.221  6223-6286  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#52:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
                                                                                                       int32_t aac-sbr-mode = 3
                                                                                                       int32_t bitrate = 128000
                                                                                                       int32_t channel-count = 1
@@ -737,7 +737,8 @@
                                                                                                         00000000:  12 08                                             ..
                                                                                                       }
                                                                                                     }
-2026-05-03 21:59:07.409  6047-6112  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#528:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
+2026-05-03 22:04:36.411  6223-6286  chatty                  com.dawn.libfilter                   I  uid=10121(com.dawn.libfilter) MediaCodec_loop identical 1 line
+2026-05-03 22:04:36.550  6223-6286  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#52:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
                                                                                                       int32_t aac-sbr-mode = 3
                                                                                                       int32_t bitrate = 128000
                                                                                                       int32_t channel-count = 1
@@ -750,7 +751,8 @@
                                                                                                         00000000:  12 08                                             ..
                                                                                                       }
                                                                                                     }
-2026-05-03 21:59:07.586  6047-6112  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#528:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
+2026-05-03 22:04:36.711  6223-6237  .dawn.libfilte          com.dawn.libfilter                   I  Background concurrent copying GC freed 3168(204KB) AllocSpace objects, 7(9464KB) LOS objects, 49% free, 6663KB/13MB, paused 670us total 107.160ms
+2026-05-03 22:04:36.716  6223-6286  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#52:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
                                                                                                       int32_t aac-sbr-mode = 3
                                                                                                       int32_t bitrate = 128000
                                                                                                       int32_t channel-count = 1
@@ -763,7 +765,7 @@
                                                                                                         00000000:  12 08                                             ..
                                                                                                       }
                                                                                                     }
-2026-05-03 21:59:07.728  6047-6112  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#528:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
+2026-05-03 22:04:36.864  6223-6286  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#52:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
                                                                                                       int32_t aac-sbr-mode = 3
                                                                                                       int32_t bitrate = 128000
                                                                                                       int32_t channel-count = 1
@@ -776,7 +778,7 @@
                                                                                                         00000000:  12 08                                             ..
                                                                                                       }
                                                                                                     }
-2026-05-03 21:59:07.920  6047-6112  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#528:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
+2026-05-03 22:04:37.052  6223-6286  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#52:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
                                                                                                       int32_t aac-sbr-mode = 3
                                                                                                       int32_t bitrate = 128000
                                                                                                       int32_t channel-count = 1
@@ -789,8 +791,7 @@
                                                                                                         00000000:  12 08                                             ..
                                                                                                       }
                                                                                                     }
-2026-05-03 21:59:08.058  6047-6112  chatty                  com.dawn.libfilter                   I  uid=10121(com.dawn.libfilter) MediaCodec_loop identical 1 line
-2026-05-03 21:59:08.240  6047-6112  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#528:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
+2026-05-03 22:04:37.207  6223-6286  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#52:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
                                                                                                       int32_t aac-sbr-mode = 3
                                                                                                       int32_t bitrate = 128000
                                                                                                       int32_t channel-count = 1
@@ -803,78 +804,183 @@
                                                                                                         00000000:  12 08                                             ..
                                                                                                       }
                                                                                                     }
-2026-05-03 21:59:08.373  6047-6112  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#528:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
-                                                                                                      int32_t aac-sbr-mode = 3
-                                                                                                      int32_t bitrate = 128000
-                                                                                                      int32_t channel-count = 1
-                                                                                                      int32_t level = 0
-                                                                                                      int32_t max-bitrate = 128000
-                                                                                                      string mime = "audio/mp4a-latm"
-                                                                                                      int32_t profile = 2
-                                                                                                      int32_t sample-rate = 44100
-                                                                                                      Buffer csd-0 = {
-                                                                                                        00000000:  12 08                                             ..
-                                                                                                      }
-                                                                                                    }
-2026-05-03 21:59:08.579  6047-6112  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#528:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
-                                                                                                      int32_t aac-sbr-mode = 3
-                                                                                                      int32_t bitrate = 128000
-                                                                                                      int32_t channel-count = 1
-                                                                                                      int32_t level = 0
-                                                                                                      int32_t max-bitrate = 128000
-                                                                                                      string mime = "audio/mp4a-latm"
-                                                                                                      int32_t profile = 2
-                                                                                                      int32_t sample-rate = 44100
-                                                                                                      Buffer csd-0 = {
-                                                                                                        00000000:  12 08                                             ..
-                                                                                                      }
-                                                                                                    }
-2026-05-03 21:59:08.613  6047-6122  libEGL                  com.dawn.libfilter                   W  EGLNativeWindowType 0xb4000078874d1450 disconnect failed
-2026-05-03 21:59:08.645   188-1090  BufferQueueProducer     pid-188                              E  [SurfaceView - com.dawn.libfilter/com.dawn.libfilter.CameraFilterActivity#0](id:bc000000b7,api:0,p:-1,c:188) disconnect: not connected (req=1)
-2026-05-03 21:59:08.645  6047-6088  libEGL                  com.dawn.libfilter                   W  EGLNativeWindowType 0xb400007887407060 disconnect failed
-2026-05-03 21:59:08.664  6047-6103  AndroidRuntime          com.dawn.libfilter                   E  FATAL EXCEPTION: pool-2-thread-1 (Ask Gemini)
-                                                                                                    Process: com.dawn.libfilter, PID: 6047
-                                                                                                    java.lang.NullPointerException: Attempt to invoke virtual method 'void com.dawn.filter.GlFilterRecorder.enqueueFrame(byte[], int, int)' on a null object reference
-                                                                                                    	at com.dawn.filter.CameraFilterHelper.processFrame(CameraFilterHelper.java:284)
-                                                                                                    	at com.dawn.filter.CameraFilterHelper.lambda$bindCamera$1$com-dawn-filter-CameraFilterHelper(CameraFilterHelper.java:205)
-                                                                                                    	at com.dawn.filter.CameraFilterHelper$$ExternalSyntheticLambda2.analyze(Unknown Source:2)
-                                                                                                    	at androidx.camera.core.ImageAnalysis.lambda$setAnalyzer$2(ImageAnalysis.java:528)
-                                                                                                    	at androidx.camera.core.ImageAnalysis$$ExternalSyntheticLambda2.analyze(Unknown Source:2)
-                                                                                                    	at androidx.camera.core.ImageAnalysisAbstractAnalyzer.lambda$analyzeImage$0$androidx-camera-core-ImageAnalysisAbstractAnalyzer(ImageAnalysisAbstractAnalyzer.java:286)
-                                                                                                    	at androidx.camera.core.ImageAnalysisAbstractAnalyzer$$ExternalSyntheticLambda1.run(Unknown Source:14)
-                                                                                                    	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1167)
-                                                                                                    	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)
-                                                                                                    	at java.lang.Thread.run(Thread.java:923)
-2026-05-03 21:59:08.782  6047-6103  Process                 com.dawn.libfilter                   I  Sending signal. PID: 6047 SIG: 9
----------------------------- PROCESS ENDED (6047) for package com.dawn.libfilter ----------------------------
-2026-05-03 21:59:08.940   482-509   AppOps                  system_process                       E  startOperation (Ask Gemini)
-                                                                                                    java.lang.SecurityException: Specified package com.dawn.libfilter under uid 1000 but it is really 10121
-                                                                                                    	at com.android.server.appop.AppOpsService.verifyAndGetBypass(AppOpsService.java:3945)
-                                                                                                    	at com.android.server.appop.AppOpsService.startOperation(AppOpsService.java:3469)
-                                                                                                    	at android.app.AppOpsManager.startOpNoThrow(AppOpsManager.java:8088)
-                                                                                                    	at com.android.server.wm.WindowState.initAppOpsState(WindowState.java:3090)
-                                                                                                    	at com.android.server.wm.WindowManagerService.addWindow(WindowManagerService.java:1650)
-                                                                                                    	at com.android.server.wm.Session.addToDisplayAsUser(Session.java:176)
-                                                                                                    	at android.view.ViewRootImpl.setView(ViewRootImpl.java:1031)
-                                                                                                    	at android.view.WindowManagerGlobal.addView(WindowManagerGlobal.java:409)
-                                                                                                    	at android.view.WindowManagerImpl.addView(WindowManagerImpl.java:109)
-                                                                                                    	at com.android.server.policy.PhoneWindowManager.addSplashScreen(PhoneWindowManager.java:2558)
-                                                                                                    	at com.android.server.wm.SplashScreenStartingData.createStartingSurface(SplashScreenStartingData.java:56)
-                                                                                                    	at com.android.server.wm.ActivityRecord$AddStartingWindow.run(ActivityRecord.java:1885)
-                                                                                                    	at android.os.Handler.handleCallback(Handler.java:938)
-                                                                                                    	at android.os.Handler.dispatchMessage(Handler.java:99)
-                                                                                                    	at android.os.Looper.loop(Looper.java:223)
-                                                                                                    	at android.os.HandlerThread.run(HandlerThread.java:67)
-                                                                                                    	at com.android.server.ServiceThread.run(ServiceThread.java:44)
----------------------------- PROCESS STARTED (6138) for package com.dawn.libfilter ----------------------------
-2026-05-03 21:59:09.849  6138-6138  NetworkSecurityConfig   com.dawn.libfilter                   D  No Network Security Config specified, using platform default
-2026-05-03 21:59:09.850  6138-6138  NetworkSecurityConfig   com.dawn.libfilter                   D  No Network Security Config specified, using platform default
-2026-05-03 21:59:10.055  6138-6138  AppCompatDelegate       com.dawn.libfilter                   D  Checking for metadata for AppLocalesMetadataHolderService : Service not found
-2026-05-03 21:59:10.520  6138-6138  Choreographer           com.dawn.libfilter                   I  Skipped 37 frames!  The application may be doing too much work on its main thread.
-2026-05-03 21:59:10.576  6138-6163  mali_so                 com.dawn.libfilter                   I  [File] : hardware/rockchip/mali_so/driver/product/base/src/mali_base_kbase.c; [Line] : 1311; [Func] : base_context_deal_with_version_affairs_rk_ext;
-                                                                                                    arm_release_ver of this mali_so is 'g2p0-01eac0', rk_so_ver is '8@0 '.
-2026-05-03 21:59:10.576  6138-6163  mali_so                 com.dawn.libfilter                   I  [File] : hardware/rockchip/mali_so/driver/product/base/src/mali_base_kbase.c; [Line] : 1327; [Func] : base_context_deal_with_version_affairs_rk_ext;
-                                                                                                    arm_release_vers are match. to set the full mali_ver 'g2p0-01eac0-x-8@0' as value of 'sys.gmali.version'.
-2026-05-03 21:59:10.575  6138-6138  RenderThread            com.dawn.libfilter                   I  type=1400 audit(0.0:26504): avc: denied { write } for name="property_service" dev="tmpfs" ino=18524 scontext=u:r:untrusted_app:s0:c121,c256,c512,c768 tcontext=u:object_r:property_socket:s0 tclass=sock_file permissive=1 app=com.dawn.libfilter
-2026-05-03 21:59:10.700  6138-6163  OpenGLRenderer          com.dawn.libfilter                   I  Davey! duration=799ms; Flags=1, IntendedVsync=20493975194165, Vsync=20494591860807, OldestInputEvent=9223372036854775807, NewestInputEvent=0, HandleInputStart=20494596133376, AnimationStart=20494596146501, PerformTraversalsStart=20494596766001, DrawStart=20494702931803, SyncQueued=20494731482473, SyncStart=20494731996390, IssueDrawCommandsStart=20494732105765, SwapBuffers=20494748640641, FrameCompleted=20494775632644, DequeueBufferDuration=495250, QueueBufferDuration=566125, GpuCompleted=12, 
-2026-05-03 21:59:11.048  6138-6154  System                  com.dawn.libfilter                   W  A resource failed to call close. 
+2026-05-03 22:04:37.333  6223-6296  libEGL                  com.dawn.libfilter                   W  EGLNativeWindowType 0xb4000078874a26f0 disconnect failed
+2026-05-03 22:04:37.360   188-513   BufferQueueProducer     pid-188                              E  [SurfaceView - com.dawn.libfilter/com.dawn.libfilter.CameraFilterActivity#0](id:bc000000be,api:0,p:-1,c:188) disconnect: not connected (req=1)
+2026-05-03 22:04:37.361  6223-6263  libEGL                  com.dawn.libfilter                   W  EGLNativeWindowType 0xb400007887404e50 disconnect failed
+2026-05-03 22:04:37.561  6223-6304  MPEG4Writer             com.dawn.libfilter                   D  reset()
+2026-05-03 22:04:37.561  6223-6304  MPEG4Writer             com.dawn.libfilter                   D  Audio track stopping. Stop source
+2026-05-03 22:04:37.561  6223-6304  MPEG4Writer             com.dawn.libfilter                   D  Audio track source stopping
+2026-05-03 22:04:37.561  6223-6304  MPEG4Writer             com.dawn.libfilter                   D  Audio track source stopped
+2026-05-03 22:04:37.561  6223-6303  MediaWriter             com.dawn.libfilter                   V  Track event err/info msg:101, trackId:2, type:1000,val:-1011
+2026-05-03 22:04:37.562  6223-6302  MediaWriter             com.dawn.libfilter                   V  Track event err/info msg:101, trackId:1, type:1000,val:-1011
+2026-05-03 22:04:37.562  6223-6303  MPEG4Writer             com.dawn.libfilter                   I  Received total/0-length (68/0) buffers and encoded 68 frames. - Video
+2026-05-03 22:04:37.562  6223-6302  MPEG4Writer             com.dawn.libfilter                   I  Received total/0-length (288/0) buffers and encoded 288 frames. - Audio
+2026-05-03 22:04:37.563  6223-6302  MPEG4Writer             com.dawn.libfilter                   I  Audio track drift time: 0 us
+2026-05-03 22:04:37.563  6223-6304  MPEG4Writer             com.dawn.libfilter                   D  Audio track stopped. Status:0. Stop source
+2026-05-03 22:04:37.563  6223-6304  MPEG4Writer             com.dawn.libfilter                   D  Video track stopping. Stop source
+2026-05-03 22:04:37.563  6223-6304  MPEG4Writer             com.dawn.libfilter                   D  Video track source stopping
+2026-05-03 22:04:37.563  6223-6304  MPEG4Writer             com.dawn.libfilter                   D  Video track source stopped
+2026-05-03 22:04:37.563  6223-6304  MPEG4Writer             com.dawn.libfilter                   D  Video track stopped. Status:0. Stop source
+2026-05-03 22:04:37.563  6223-6304  MPEG4Writer             com.dawn.libfilter                   D  Duration from tracks range is [6691706, 20821062628] us
+2026-05-03 22:04:37.563  6223-6300  MPEG4Writer             com.dawn.libfilter                   D  0 chunks are written in the last batch
+2026-05-03 22:04:37.563  6223-6304  MPEG4Writer             com.dawn.libfilter                   D  WriterThread stopped. Status:0
+2026-05-03 22:04:37.563  6223-6304  MPEG4Writer             com.dawn.libfilter                   I  Adjust the moov start time from 301997 us -> 301997 us
+2026-05-03 22:04:37.564  6223-6304  MPEG4Writer             com.dawn.libfilter                   I  The mp4 file will not be streamable.
+2026-05-03 22:04:37.564  6223-6304  MPEG4Writer             com.dawn.libfilter                   I  MOOV atom was written to the file
+2026-05-03 22:04:37.564  6223-6304  MPEG4Writer             com.dawn.libfilter                   D  release()
+2026-05-03 22:04:37.564  6223-6304  MPEG4Writer             com.dawn.libfilter                   D  ftruncate mPreAllocateFileEndOffset:1279822 mOffset:1278872 mMdatEndOffset:1275418 diff:950
+2026-05-03 22:04:37.582  6223-6304  MPEG4Writer             com.dawn.libfilter                   D  MP4WtrCtrlHlpLooper stopped
+2026-05-03 22:04:37.583  6223-6304  MPEG4Writer             com.dawn.libfilter                   D  Top 5 write durations(microseconds): #1:386 #2:452 #3:492 #4:525 #5:998
+2026-05-03 22:04:37.583  6223-6304  MPEG4Writer             com.dawn.libfilter                   D  reset()
+2026-05-03 22:04:37.586  6223-6304  MPEG4Writer             com.dawn.libfilter                   D  Audio track stopping. Stop source
+2026-05-03 22:04:37.586  6223-6304  MPEG4Writer             com.dawn.libfilter                   E  Stop() called but track is not started or stopped
+2026-05-03 22:04:37.586  6223-6304  MPEG4Writer             com.dawn.libfilter                   D  Video track stopping. Stop source
+2026-05-03 22:04:37.586  6223-6304  MPEG4Writer             com.dawn.libfilter                   E  Stop() called but track is not started or stopped
+2026-05-03 22:04:37.629  6223-6286  CCodecBufferChannel     com.dawn.libfilter                   D  [c2.android.aac.encoder#52] MediaCodec discarded an unknown buffer
+2026-05-03 22:04:37.633  6223-6286  chatty                  com.dawn.libfilter                   I  uid=10121(com.dawn.libfilter) identical 1 line
+2026-05-03 22:04:37.633  6223-6286  CCodecBufferChannel     com.dawn.libfilter                   D  [c2.android.aac.encoder#52] MediaCodec discarded an unknown buffer
+2026-05-03 22:04:37.641  6223-6286  hw-BpHwBinder           com.dawn.libfilter                   I  onLastStrongRef automatically unlinking death recipients
+2026-05-03 22:04:37.649  6223-6223  Compatibil...geReporter com.dawn.libfilter                   D  Compat change id reported: 147798919; UID 10121; state: ENABLED
+2026-05-03 22:04:37.721  6223-6223  DeferrableSurface       com.dawn.libfilter                   D  surface closed,  useCount=1 closed=true androidx.camera.core.impl.ImmediateSurface@2667a2a
+2026-05-03 22:04:37.730  6223-6266  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@bdfceca[id=0]} Use cases [androidx.camera.core.ImageAnalysis-1e5e421d-6c4c-40d6-be8c-bbd374f77926121463506] now DETACHED for camera
+2026-05-03 22:04:37.731  6223-6266  UseCaseAttachState      com.dawn.libfilter                   D  All use case: [] for camera: 0
+2026-05-03 22:04:37.737  6223-6266  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@bdfceca[id=0]} Resetting Capture Session
+2026-05-03 22:04:37.748   188-513   BufferQueueProducer     pid-188                              E  [SurfaceView - com.dawn.libfilter/com.dawn.libfilter.CameraFilterActivity#0](id:bc000000be,api:0,p:-1,c:188) disconnect: not connected (req=1)
+2026-05-03 22:04:37.748  6223-6263  libEGL                  com.dawn.libfilter                   W  EGLNativeWindowType 0xb400007887404e50 disconnect failed
+2026-05-03 22:04:37.749  6223-6266  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@bdfceca[id=0]} Releasing session in state OPENED
+2026-05-03 22:04:37.750  6223-6266  UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [] for camera: 0
+2026-05-03 22:04:37.756  6223-6266  UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [] for camera: 0
+2026-05-03 22:04:37.763  6223-6266  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@bdfceca[id=0]} Closing camera.
+2026-05-03 22:04:37.764  6223-6266  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@bdfceca[id=0]} Transitioning camera internal state: OPENED --> CLOSING
+2026-05-03 22:04:37.766  6223-6266  CameraStateRegistry     com.dawn.libfilter                   D  Recalculating open cameras:
+                                                                                                    Camera                                       State                 
+                                                                                                    -------------------------------------------------------------------
+                                                                                                    Camera@bdfceca[id=0]                         CLOSING               
+                                                                                                    -------------------------------------------------------------------
+                                                                                                    Open count: 1 (Max allowed: 1)
+2026-05-03 22:04:37.767  6223-6266  CameraStateMachine      com.dawn.libfilter                   D  New public camera state CameraState{type=CLOSING, error=null} from CLOSING and null
+2026-05-03 22:04:37.767  6223-6266  CameraStateMachine      com.dawn.libfilter                   D  Publishing new public camera state CameraState{type=CLOSING, error=null}
+2026-05-03 22:04:37.770  6223-6266  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@bdfceca[id=0]} Resetting Capture Session
+2026-05-03 22:04:37.774  6223-6266  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@bdfceca[id=0]} Releasing session in state CLOSING
+2026-05-03 22:04:37.774  6223-6266  CaptureSession          com.dawn.libfilter                   D  onSessionFinished()
+2026-05-03 22:04:38.115  6223-6266  UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [] for camera: 0
+2026-05-03 22:04:38.132  6223-6266  DeferrableSurface       com.dawn.libfilter                   D  use count-1,  useCount=0 closed=true androidx.camera.core.impl.ImmediateSurface@2667a2a
+2026-05-03 22:04:38.132  6223-6266  DeferrableSurface       com.dawn.libfilter                   D  Surface no longer in use[total_surfaces=1, used_surfaces=0](androidx.camera.core.impl.ImmediateSurface@2667a2a}
+2026-05-03 22:04:38.136  6223-6266  DeferrableSurface       com.dawn.libfilter                   D  Surface terminated[total_surfaces=0, used_surfaces=0](androidx.camera.core.impl.ImmediateSurface@2667a2a}
+2026-05-03 22:04:38.143  6223-6266  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@bdfceca[id=0]} CameraDevice.onClosed()
+2026-05-03 22:04:38.145  6223-6266  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@bdfceca[id=0]} Transitioning camera internal state: CLOSING --> INITIALIZED
+2026-05-03 22:04:38.147  6223-6266  CameraStateRegistry     com.dawn.libfilter                   D  Recalculating open cameras:
+                                                                                                    Camera                                       State                 
+                                                                                                    -------------------------------------------------------------------
+                                                                                                    Camera@bdfceca[id=0]                         CLOSED                
+                                                                                                    -------------------------------------------------------------------
+                                                                                                    Open count: 0 (Max allowed: 1)
+2026-05-03 22:04:38.147  6223-6266  CameraStateMachine      com.dawn.libfilter                   D  New public camera state CameraState{type=CLOSED, error=null} from CLOSED and null
+2026-05-03 22:04:38.147  6223-6266  CameraStateMachine      com.dawn.libfilter                   D  Publishing new public camera state CameraState{type=CLOSED, error=null}
+2026-05-03 22:04:38.549  6223-6223  MediaPlayer             com.dawn.libfilter                   E  Unknown message type 301
+2026-05-03 22:04:38.557  6223-6223  MediaPlayerNative       com.dawn.libfilter                   D  getMetadata
+2026-05-03 22:04:38.720  6223-6242  MediaPlayerNative       com.dawn.libfilter                   W  info/warning (3, 0)
+2026-05-03 22:04:38.743   188-1090  BufferQueueProducer     pid-188                              E  [com.dawn.libfilter/com.dawn.libfilter.CameraFilterActivity#0](id:bc000000bd,api:0,p:-1,c:188) disconnect: not connected (req=1)
+2026-05-03 22:04:38.743  6223-6247  libEGL                  com.dawn.libfilter                   W  EGLNativeWindowType 0xb40000788740d690 disconnect failed
+2026-05-03 22:04:42.646  6223-6290  BufferPoolAccessor2.0   com.dawn.libfilter                   D  bufferpool2 0xb4000077e7327f88 : 0(0 size) total buffers - 0(0 size) used buffers - 0/5 (recycle/alloc) - 4/686 (fetch/transfer)
+2026-05-03 22:04:42.646  6223-6290  BufferPoolAccessor2.0   com.dawn.libfilter                   D  evictor expired: 1, evicted: 1
+2026-05-03 22:04:45.356  6223-6223  MediaPlayer             com.dawn.libfilter                   E  Unknown message type 301
+2026-05-03 22:04:45.416  6223-6223  MediaPlayer             com.dawn.libfilter                   V  resetDrmState:  mDrmInfo=null mDrmProvisioningThread=null mPrepareDrmInProgress=false mActiveDrmScheme=false
+2026-05-03 22:04:45.416  6223-6223  MediaPlayer             com.dawn.libfilter                   V  cleanDrmObj: mDrmObj=null mDrmSessionId=null
+2026-05-03 22:04:46.304  6223-6223  GLSurfaceView           com.dawn.libfilter                   D  surface set framrate 30
+2026-05-03 22:04:46.323  6223-6263  mali_so                 com.dawn.libfilter                   E  encounter the first gles_error : 0x0002; gles_state_error_info : <program> is not a value generated by OpenGL (gles2_programp_slave_get_or_create at hardware/rockchip/mali_so/driver/product/gles/src/program/mali_gles2_program_slave.c:291)
+2026-05-03 22:04:46.358   188-1090  BufferQueueProducer     pid-188                              E  [SurfaceView - com.dawn.libfilter/com.dawn.libfilter.CameraFilterActivity#0](id:bc000000c3,api:0,p:-1,c:188) disconnect: not connected (req=1)
+2026-05-03 22:04:46.358  6223-6263  libEGL                  com.dawn.libfilter                   W  EGLNativeWindowType 0xb4000078874c25e0 disconnect failed
+2026-05-03 22:04:46.452  6223-6223  CameraFilterHelper      com.dawn.libfilter                   W  No FRONT/BACK camera, using available camera index=0 (total=1)
+2026-05-03 22:04:46.463  6223-6223  CameraOrientationUtil   com.dawn.libfilter                   D  getRelativeImageRotation: destRotationDegrees=0, sourceRotationDegrees=0, isOppositeFacing=true, result=0
+2026-05-03 22:04:46.487  6223-6223  chatty                  com.dawn.libfilter                   I  uid=10121(com.dawn.libfilter) identical 4 lines
+2026-05-03 22:04:46.489  6223-6223  CameraOrientationUtil   com.dawn.libfilter                   D  getRelativeImageRotation: destRotationDegrees=0, sourceRotationDegrees=0, isOppositeFacing=true, result=0
+2026-05-03 22:04:46.492  6223-6223  DeferrableSurface       com.dawn.libfilter                   D  Surface created[total_surfaces=1, used_surfaces=0](androidx.camera.core.impl.ImmediateSurface@d748c98}
+2026-05-03 22:04:46.497  6223-6223  CameraFilterHelper      com.dawn.libfilter                   I  CameraX bound, lensFacing=0 index=0
+2026-05-03 22:04:46.498  6223-6266  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@bdfceca[id=0]} Use case androidx.camera.core.ImageAnalysis-876fb117-5381-4ee9-901b-39a870bb8e67166805002 ACTIVE
+2026-05-03 22:04:46.499  6223-6266  UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [] for camera: 0
+2026-05-03 22:04:46.509  6223-6266  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@bdfceca[id=0]} Use cases [androidx.camera.core.ImageAnalysis-876fb117-5381-4ee9-901b-39a870bb8e67166805002] now ATTACHED
+2026-05-03 22:04:46.513  6223-6266  UseCaseAttachState      com.dawn.libfilter                   D  All use case: [androidx.camera.core.ImageAnalysis-876fb117-5381-4ee9-901b-39a870bb8e67166805002] for camera: 0
+2026-05-03 22:04:46.515  6223-6266  UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [androidx.camera.core.ImageAnalysis-876fb117-5381-4ee9-901b-39a870bb8e67166805002] for camera: 0
+2026-05-03 22:04:46.530  6223-6266  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@bdfceca[id=0]} Resetting Capture Session
+2026-05-03 22:04:46.538  6223-6266  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@bdfceca[id=0]} Releasing session in state INITIALIZED
+2026-05-03 22:04:46.540  6223-6266  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@bdfceca[id=0]} Attempting to force open the camera.
+2026-05-03 22:04:46.544  6223-6266  CameraStateRegistry     com.dawn.libfilter                   D  tryOpenCamera(Camera@bdfceca[id=0]) [Available Cameras: 1, Already Open: false (Previous state: CLOSED)] --> SUCCESS
+2026-05-03 22:04:46.546  6223-6266  CameraStateRegistry     com.dawn.libfilter                   D  Recalculating open cameras:
+                                                                                                    Camera                                       State                 
+                                                                                                    -------------------------------------------------------------------
+                                                                                                    Camera@bdfceca[id=0]                         OPENING               
+                                                                                                    -------------------------------------------------------------------
+                                                                                                    Open count: 1 (Max allowed: 1)
+2026-05-03 22:04:46.547  6223-6266  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@bdfceca[id=0]} Opening camera.
+2026-05-03 22:04:46.548  6223-6266  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@bdfceca[id=0]} Transitioning camera internal state: INITIALIZED --> OPENING
+2026-05-03 22:04:46.548  6223-6266  CameraStateMachine      com.dawn.libfilter                   D  New public camera state CameraState{type=OPENING, error=null} from OPENING and null
+2026-05-03 22:04:46.549  6223-6266  CameraStateMachine      com.dawn.libfilter                   D  Publishing new public camera state CameraState{type=OPENING, error=null}
+2026-05-03 22:04:46.552  6223-6266  UseCaseAttachState      com.dawn.libfilter                   D  All use case: [androidx.camera.core.ImageAnalysis-876fb117-5381-4ee9-901b-39a870bb8e67166805002] for camera: 0
+2026-05-03 22:04:46.643  6223-6266  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@bdfceca[id=0]} Use case androidx.camera.core.ImageAnalysis-876fb117-5381-4ee9-901b-39a870bb8e67166805002 ACTIVE
+2026-05-03 22:04:46.644  6223-6266  UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [androidx.camera.core.ImageAnalysis-876fb117-5381-4ee9-901b-39a870bb8e67166805002] for camera: 0
+2026-05-03 22:04:46.661  6223-6266  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@bdfceca[id=0]} CameraDevice.onOpened()
+2026-05-03 22:04:46.665  6223-6266  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@bdfceca[id=0]} Transitioning camera internal state: OPENING --> OPENED
+2026-05-03 22:04:46.667  6223-6266  CameraStateRegistry     com.dawn.libfilter                   D  Recalculating open cameras:
+                                                                                                    Camera                                       State                 
+                                                                                                    -------------------------------------------------------------------
+                                                                                                    Camera@bdfceca[id=0]                         OPEN                  
+                                                                                                    -------------------------------------------------------------------
+                                                                                                    Open count: 1 (Max allowed: 1)
+2026-05-03 22:04:46.667  6223-6266  CameraStateMachine      com.dawn.libfilter                   D  New public camera state CameraState{type=OPEN, error=null} from OPEN and null
+2026-05-03 22:04:46.667  6223-6266  CameraStateMachine      com.dawn.libfilter                   D  Publishing new public camera state CameraState{type=OPEN, error=null}
+2026-05-03 22:04:46.669  6223-6266  UseCaseAttachState      com.dawn.libfilter                   D  All use case: [androidx.camera.core.ImageAnalysis-876fb117-5381-4ee9-901b-39a870bb8e67166805002] for camera: 0
+2026-05-03 22:04:46.675  6223-6266  UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [androidx.camera.core.ImageAnalysis-876fb117-5381-4ee9-901b-39a870bb8e67166805002] for camera: 0
+2026-05-03 22:04:46.686  6223-6266  SyncCaptureSessionBase  com.dawn.libfilter                   D  [androidx.camera.camera2.internal.SynchronizedCaptureSessionBaseImpl@1176461] getSurface...done
+2026-05-03 22:04:46.687  6223-6266  CaptureSession          com.dawn.libfilter                   D  Opening capture session.
+2026-05-03 22:04:46.691  6223-6266  DeferrableSurface       com.dawn.libfilter                   D  New surface in use[total_surfaces=1, used_surfaces=1](androidx.camera.core.impl.ImmediateSurface@d748c98}
+2026-05-03 22:04:46.691  6223-6266  DeferrableSurface       com.dawn.libfilter                   D  use count+1, useCount=1 androidx.camera.core.impl.ImmediateSurface@d748c98
+2026-05-03 22:04:46.739  6223-6266  CaptureSession          com.dawn.libfilter                   D  Attempting to send capture request onConfigured
+2026-05-03 22:04:46.739  6223-6266  CaptureSession          com.dawn.libfilter                   D  Issuing request for session.
+2026-05-03 22:04:46.741  6223-6266  Camera2Cap...estBuilder com.dawn.libfilter                   D  createCaptureRequest
+2026-05-03 22:04:46.753  6223-6266  CaptureSession          com.dawn.libfilter                   D  CameraCaptureSession.onConfigured() mState=OPENED
+2026-05-03 22:04:46.754  6223-6266  CaptureSession          com.dawn.libfilter                   D  CameraCaptureSession.onReady() OPENED
+2026-05-03 22:04:46.755  6223-6223  MediaPlayer             com.dawn.libfilter                   V  resetDrmState:  mDrmInfo=null mDrmProvisioningThread=null mPrepareDrmInProgress=false mActiveDrmScheme=false
+2026-05-03 22:04:46.755  6223-6223  MediaPlayer             com.dawn.libfilter                   V  cleanDrmObj: mDrmObj=null mDrmSessionId=null
+2026-05-03 22:04:46.756  6223-6223  MediaPlayer             com.dawn.libfilter                   V  resetDrmState:  mDrmInfo=null mDrmProvisioningThread=null mPrepareDrmInProgress=false mActiveDrmScheme=false
+2026-05-03 22:04:46.756  6223-6223  MediaPlayer             com.dawn.libfilter                   V  cleanDrmObj: mDrmObj=null mDrmSessionId=null
+2026-05-03 22:04:46.777   188-513   BufferQueueProducer     pid-188                              E  [com.dawn.libfilter/com.dawn.libfilter.VideoPlayerActivity#0](id:bc000000c0,api:0,p:-1,c:188) disconnect: not connected (req=1)
+2026-05-03 22:04:46.777  6223-6247  libEGL                  com.dawn.libfilter                   W  EGLNativeWindowType 0xb40000788757b950 disconnect failed
+2026-05-03 22:04:50.947  6223-6223  DeferrableSurface       com.dawn.libfilter                   D  surface closed,  useCount=1 closed=true androidx.camera.core.impl.ImmediateSurface@d748c98
+2026-05-03 22:04:50.956  6223-6266  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@bdfceca[id=0]} Use cases [androidx.camera.core.ImageAnalysis-876fb117-5381-4ee9-901b-39a870bb8e67166805002] now DETACHED for camera
+2026-05-03 22:04:50.957  6223-6266  UseCaseAttachState      com.dawn.libfilter                   D  All use case: [] for camera: 0
+2026-05-03 22:04:50.960   188-200   BufferQueueProducer     pid-188                              E  [SurfaceView - com.dawn.libfilter/com.dawn.libfilter.CameraFilterActivity#0](id:bc000000c3,api:0,p:-1,c:188) disconnect: not connected (req=1)
+2026-05-03 22:04:50.960  6223-6263  libEGL                  com.dawn.libfilter                   W  EGLNativeWindowType 0xb4000078874c25e0 disconnect failed
+2026-05-03 22:04:50.960  6223-6266  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@bdfceca[id=0]} Resetting Capture Session
+2026-05-03 22:04:50.963  6223-6266  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@bdfceca[id=0]} Releasing session in state OPENED
+2026-05-03 22:04:50.964  6223-6266  UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [] for camera: 0
+2026-05-03 22:04:50.969  6223-6266  UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [] for camera: 0
+2026-05-03 22:04:50.986  6223-6266  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@bdfceca[id=0]} Closing camera.
+2026-05-03 22:04:50.995  6223-6266  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@bdfceca[id=0]} Transitioning camera internal state: OPENED --> CLOSING
+2026-05-03 22:04:50.998  6223-6266  CameraStateRegistry     com.dawn.libfilter                   D  Recalculating open cameras:
+                                                                                                    Camera                                       State                 
+                                                                                                    -------------------------------------------------------------------
+                                                                                                    Camera@bdfceca[id=0]                         CLOSING               
+                                                                                                    -------------------------------------------------------------------
+                                                                                                    Open count: 1 (Max allowed: 1)
+2026-05-03 22:04:50.998  6223-6266  CameraStateMachine      com.dawn.libfilter                   D  New public camera state CameraState{type=CLOSING, error=null} from CLOSING and null
+2026-05-03 22:04:50.999  6223-6266  CameraStateMachine      com.dawn.libfilter                   D  Publishing new public camera state CameraState{type=CLOSING, error=null}
+2026-05-03 22:04:51.026  6223-6266  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@bdfceca[id=0]} Resetting Capture Session
+2026-05-03 22:04:51.030  6223-6266  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@bdfceca[id=0]} Releasing session in state CLOSING
+2026-05-03 22:04:51.031  6223-6266  CaptureSession          com.dawn.libfilter                   D  onSessionFinished()
+2026-05-03 22:04:51.335  6223-6266  UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [] for camera: 0
+2026-05-03 22:04:51.340  6223-6266  DeferrableSurface       com.dawn.libfilter                   D  use count-1,  useCount=0 closed=true androidx.camera.core.impl.ImmediateSurface@d748c98
+2026-05-03 22:04:51.340  6223-6266  DeferrableSurface       com.dawn.libfilter                   D  Surface no longer in use[total_surfaces=1, used_surfaces=0](androidx.camera.core.impl.ImmediateSurface@d748c98}
+2026-05-03 22:04:51.340  6223-6266  DeferrableSurface       com.dawn.libfilter                   D  Surface terminated[total_surfaces=0, used_surfaces=0](androidx.camera.core.impl.ImmediateSurface@d748c98}
+2026-05-03 22:04:51.343  6223-6266  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@bdfceca[id=0]} CameraDevice.onClosed()
+2026-05-03 22:04:51.345  6223-6266  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@bdfceca[id=0]} Transitioning camera internal state: CLOSING --> INITIALIZED
+2026-05-03 22:04:51.347  6223-6266  CameraStateRegistry     com.dawn.libfilter                   D  Recalculating open cameras:
+                                                                                                    Camera                                       State                 
+                                                                                                    -------------------------------------------------------------------
+                                                                                                    Camera@bdfceca[id=0]                         CLOSED                
+                                                                                                    -------------------------------------------------------------------
+                                                                                                    Open count: 0 (Max allowed: 1)
+2026-05-03 22:04:51.348  6223-6266  CameraStateMachine      com.dawn.libfilter                   D  New public camera state CameraState{type=CLOSED, error=null} from CLOSED and null
+2026-05-03 22:04:51.348  6223-6266  CameraStateMachine      com.dawn.libfilter                   D  Publishing new public camera state CameraState{type=CLOSED, error=null}
+2026-05-03 22:04:51.412   188-1090  BufferQueueProducer     pid-188                              E  [com.dawn.libfilter/com.dawn.libfilter.CameraFilterActivity#0](id:bc000000c2,api:0,p:-1,c:188) disconnect: not connected (req=1)
+2026-05-03 22:04:51.412  6223-6247  libEGL                  com.dawn.libfilter                   W  EGLNativeWindowType 0xb4000078874bbfb0 disconnect failed
