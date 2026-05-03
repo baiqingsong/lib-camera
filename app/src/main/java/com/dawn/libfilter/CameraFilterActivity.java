@@ -72,6 +72,9 @@ public class CameraFilterActivity extends AppCompatActivity {
 
         cameraHelper = new CameraFilterHelper(this, cameraFilterView);
 
+        // 首帧到达时隐藏 loading 遮罩
+        cameraHelper.setOnFirstFrameListener(() -> cameraFilterView.setLoadingVisible(false));
+
         setupFilterList();
         setupFilterIntensitySeekBar();
         setupBeautyControls();

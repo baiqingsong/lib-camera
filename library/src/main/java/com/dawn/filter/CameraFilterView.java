@@ -3,7 +3,10 @@ package com.dawn.filter;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import jp.co.cyberagent.android.gpuimage.GPUImage;
 import jp.co.cyberagent.android.gpuimage.GPUImageView;
@@ -26,6 +29,7 @@ public class CameraFilterView extends FrameLayout {
     private static final float DEFAULT_PREVIEW_RATIO = 3f / 4f;
 
     private GPUImageView gpuImageView;
+    private View         loadingOverlay;  // 启动时的 loading 遮罩
     private GPUImageFilter activeFilter;
     private BeautyFilterPipeline activePipeline;
     private FilterType currentFilterType = FilterType.NONE;
@@ -60,6 +64,42 @@ public class CameraFilterView extends FrameLayout {
         activeFilter = new GPUImageFilter();
         gpuImageView.setFilter(activeFilter);
         addView(gpuImageView);
+
+        // Loading 遮罩：覆盖在 GPUImageView 上方，首帧到达后隐藏
+        loadingOverlay = buildLoadingOverlay(context);
+        addView(loadingOverlay);
+    }
+
+    private View buildLoadingOverlay(Context context) {
+        FrameLayout overlay = new FrameLayout(context);
+        overlay.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+        overlay.setBackgroundColor(0xFF000000);  // 纯黑背景，遮住 GLSurfaceView 初始化花屏
+
+        ProgressBar spinner = new ProgressBar(context);
+        LayoutParams spinnerLp = new LayoutParams(80, 80);
+        spinnerLp.gravity = Gravity.CENTER;
+        spinnerLp.bottomMargin = 48;
+        spinner.setLayoutParams(spinnerLp);
+        overlay.addView(spinner);
+
+        TextView hint = new TextView(context);
+        hint.setText("正在启动摄像头…");
+        hint.setTextColor(0xCCFFFFFF);
+        hint.setTextSize(14);
+        LayoutParams hintLp = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        hintLp.gravity = Gravity.CENTER;
+        hintLp.topMargin = 96;
+        hint.setLayoutParams(hintLp);
+        overlay.addView(hint);
+
+        return overlay;
+    }
+
+    /** 显示 / 隐藏 Loading 遮罩（主线程调用）。 */
+    public void setLoadingVisible(boolean visible) {
+        if (loadingOverlay != null) {
+            loadingOverlay.setVisibility(visible ? View.VISIBLE : View.GONE);
+        }
     }
 
     /**
@@ -105,6 +145,11 @@ public class CameraFilterView extends FrameLayout {
         }
 
         addView(gpuImageView);
+        // 把 loading 遮罩移到最顶层（addView 后 gpuImageView 在下，遮罩在上）
+        if (loadingOverlay != null) {
+            bringChildToFront(loadingOverlay);
+            loadingOverlay.setVisibility(View.VISIBLE);
+        }
     }
 
     public void setPreviewAspectRatio(float ratio) {

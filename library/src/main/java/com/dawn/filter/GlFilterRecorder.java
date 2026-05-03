@@ -96,6 +96,14 @@ public class GlFilterRecorder {
     private int frameW = 0;
     private int frameH = 0;
 
+    // Pre-allocated direct ByteBuffers for glTexImage2D (避免 heap buffer 导致 Android 11+ 指针标记截断 SIGABRT)
+    private ByteBuffer yDirectBuf  = null;  // capacity = frameW * frameH
+    private ByteBuffer uvDirectBuf = null;  // capacity = frameW * frameH / 2
+
+    // Pre-allocated FloatBuffers for quad geometry (每帧复用，避免 GC 压力)
+    private final FloatBuffer cubeBuf     = makeDirectFloat(CUBE);
+    private final FloatBuffer texCoordBuf = makeDirectFloat(TEX_COORDS);
+
     // Frame queue
     private static final int QUEUE_CAP = 4;
     private final LinkedBlockingQueue<FrameData> queue = new LinkedBlockingQueue<>(QUEUE_CAP);
@@ -373,6 +381,9 @@ public class GlFilterRecorder {
             frameW = w;
             frameH = h;
             setupFbos(w, h);
+            // 重新分配 direct buffer（尺寸变化时）
+            yDirectBuf  = ByteBuffer.allocateDirect(w * h).order(ByteOrder.nativeOrder());
+            uvDirectBuf = ByteBuffer.allocateDirect(w * h / 2).order(ByteOrder.nativeOrder());
             if (beautyFilter != null) beautyFilter.onOutputSizeChanged(w, h);
             if (styleFilter  != null) styleFilter.onOutputSizeChanged(w, h);
         }
@@ -390,7 +401,8 @@ public class GlFilterRecorder {
         GLES20.glClearColor(0f, 0f, 0f, 1f);
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
         if (beautyFilter != null) {
-            beautyFilter.onDraw(fboTexId[0], floatBuf(CUBE), floatBuf(TEX_COORDS));
+            cubeBuf.rewind(); texCoordBuf.rewind();
+            beautyFilter.onDraw(fboTexId[0], cubeBuf, texCoordBuf);
         }
 
         // ── Pass 3: Style filter → encoder surface (FB 0) ───────────────────
@@ -398,7 +410,8 @@ public class GlFilterRecorder {
         GLES20.glClearColor(0f, 0f, 0f, 1f);
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
         if (styleFilter != null) {
-            styleFilter.onDraw(fboTexId[1], floatBuf(CUBE), floatBuf(TEX_COORDS));
+            cubeBuf.rewind(); texCoordBuf.rewind();
+            styleFilter.onDraw(fboTexId[1], cubeBuf, texCoordBuf);
         }
 
         // Commit frame to MediaCodec with PTS
@@ -411,29 +424,45 @@ public class GlFilterRecorder {
         int yLen  = w * h;
         int uvLen = yLen / 2;
 
+        // 确保 direct buffer 已分配（首帧或尺寸变化后）
+        if (yDirectBuf == null || yDirectBuf.capacity() < yLen) {
+            yDirectBuf  = ByteBuffer.allocateDirect(yLen).order(ByteOrder.nativeOrder());
+            uvDirectBuf = ByteBuffer.allocateDirect(uvLen).order(ByteOrder.nativeOrder());
+        }
+
+        // 复制 Y 平面到 direct buffer
+        yDirectBuf.clear();
+        yDirectBuf.put(nv21, 0, yLen);
+        yDirectBuf.rewind();
+
         // Y: GL_LUMINANCE, w x h
         GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, yTexId[0]);
         GLES20.glTexImage2D(GLES20.GL_TEXTURE_2D, 0, GLES20.GL_LUMINANCE,
                 w, h, 0, GLES20.GL_LUMINANCE, GLES20.GL_UNSIGNED_BYTE,
-                ByteBuffer.wrap(nv21, 0, yLen));
+                yDirectBuf);
         texParams();
+
+        // 复制 UV 平面到 direct buffer
+        uvDirectBuf.clear();
+        uvDirectBuf.put(nv21, yLen, uvLen);
+        uvDirectBuf.rewind();
 
         // UV: GL_LUMINANCE_ALPHA, w/2 x h/2  (NV21 stores V,U interleaved → .r=V, .a=U)
         GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, uvTexId[0]);
         GLES20.glTexImage2D(GLES20.GL_TEXTURE_2D, 0, GLES20.GL_LUMINANCE_ALPHA,
                 w / 2, h / 2, 0, GLES20.GL_LUMINANCE_ALPHA, GLES20.GL_UNSIGNED_BYTE,
-                ByteBuffer.wrap(nv21, yLen, uvLen));
+                uvDirectBuf);
         texParams();
 
         // Draw YUV→RGBA
         GLES20.glUseProgram(yuvProgId);
 
-        FloatBuffer cube = floatBuf(CUBE);
-        GLES20.glVertexAttribPointer(yuvPosAttr, 2, GLES20.GL_FLOAT, false, 0, cube);
+        cubeBuf.rewind();
+        GLES20.glVertexAttribPointer(yuvPosAttr, 2, GLES20.GL_FLOAT, false, 0, cubeBuf);
         GLES20.glEnableVertexAttribArray(yuvPosAttr);
 
-        FloatBuffer tex = floatBuf(TEX_COORDS);
-        GLES20.glVertexAttribPointer(yuvTexCoordAttr, 2, GLES20.GL_FLOAT, false, 0, tex);
+        texCoordBuf.rewind();
+        GLES20.glVertexAttribPointer(yuvTexCoordAttr, 2, GLES20.GL_FLOAT, false, 0, texCoordBuf);
         GLES20.glEnableVertexAttribArray(yuvTexCoordAttr);
 
         GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
@@ -740,7 +769,7 @@ public class GlFilterRecorder {
         return shader;
     }
 
-    private static FloatBuffer floatBuf(float[] arr) {
+    private static FloatBuffer makeDirectFloat(float[] arr) {
         FloatBuffer buf = ByteBuffer.allocateDirect(arr.length * 4)
                 .order(ByteOrder.nativeOrder()).asFloatBuffer();
         buf.put(arr).rewind();

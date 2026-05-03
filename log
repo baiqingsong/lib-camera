@@ -1,194 +1,405 @@
-2026-05-03 19:26:45.307  4162-4162  .dawn.libfilter         com.dawn.libfilter                   I  type=1400 audit(0.0:17145): avc: denied { search } for name="/" dev="mmcblk2p15" ino=2 scontext=u:r:untrusted_app:s0:c121,c256,c512,c768 tcontext=u:object_r:unlabeled:s0 tclass=dir permissive=1 app=com.dawn.libfilter
-2026-05-03 19:26:45.310  4162-4162  .dawn.libfilter         com.dawn.libfilter                   I  type=1400 audit(0.0:17146): avc: denied { getattr } for path="/ztloem/lib64" dev="mmcblk2p15" ino=17 scontext=u:r:untrusted_app:s0:c121,c256,c512,c768 tcontext=u:object_r:unlabeled:s0 tclass=dir permissive=1 app=com.dawn.libfilter
-2026-05-03 19:26:45.344  4162-4162  NetworkSecurityConfig   com.dawn.libfilter                   D  No Network Security Config specified, using platform default
-2026-05-03 19:26:45.346  4162-4162  NetworkSecurityConfig   com.dawn.libfilter                   D  No Network Security Config specified, using platform default
-2026-05-03 19:26:45.548  4162-4162  AppCompatDelegate       com.dawn.libfilter                   D  Checking for metadata for AppLocalesMetadataHolderService : Service not found
-2026-05-03 19:26:45.991  4162-4162  Choreographer           com.dawn.libfilter                   I  Skipped 35 frames!  The application may be doing too much work on its main thread.
-2026-05-03 19:26:46.056  4162-4188  mali_so                 com.dawn.libfilter                   I  [File] : hardware/rockchip/mali_so/driver/product/base/src/mali_base_kbase.c; [Line] : 1311; [Func] : base_context_deal_with_version_affairs_rk_ext;
+2026-05-03 21:13:49.630  5133-5171  ProfileInstaller        com.dawn.libfilter                   D  Installing profile for com.dawn.libfilter
+2026-05-03 21:13:53.615  5133-5178  CameraManagerGlobal     com.dawn.libfilter                   I  Connecting to camera service
+2026-05-03 21:13:53.620  5133-5133  Choreographer           com.dawn.libfilter                   I  Skipped 34 frames!  The application may be doing too much work on its main thread.
+2026-05-03 21:13:53.667  5133-5178  CameraRepository        com.dawn.libfilter                   D  Added camera: 0
+2026-05-03 21:13:53.755  5133-5178  Camera2CameraInfo       com.dawn.libfilter                   I  Device Level: INFO_SUPPORTED_HARDWARE_LEVEL_EXTERNAL
+2026-05-03 21:13:53.772  5133-5178  CameraValidator         com.dawn.libfilter                   D  Verifying camera lens facing on rk3568_r, lensFacingInteger: null
+2026-05-03 21:13:53.777  5133-5178  CameraValidator         com.dawn.libfilter                   E  Camera LensFacing verification failed, existing cameras: [Camera@40edc26[id=0]]
+2026-05-03 21:13:53.779  5133-5178  CameraX                 com.dawn.libfilter                   W  Retry init. Start time 17777710 current time 17777894 (Ask Gemini)
+                                                                                                    androidx.camera.core.impl.CameraValidator$CameraIdListIncorrectException: Expected camera missing from device.
+                                                                                                    	at androidx.camera.core.impl.CameraValidator.validateCameras(CameraValidator.java:97)
+                                                                                                    	at androidx.camera.core.CameraX.lambda$initAndRetryRecursively$2$androidx-camera-core-CameraX(CameraX.java:334)
+                                                                                                    	at androidx.camera.core.CameraX$$ExternalSyntheticLambda3.run(Unknown Source:10)
+                                                                                                    	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1167)
+                                                                                                    	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)
+                                                                                                    	at java.lang.Thread.run(Thread.java:923)
+                                                                                                    Caused by: java.lang.IllegalArgumentException: No available camera can be found
+                                                                                                    	at androidx.camera.core.CameraSelector.select(CameraSelector.java:94)
+                                                                                                    	at androidx.camera.core.impl.CameraValidator.validateCameras(CameraValidator.java:91)
+                                                                                                    	at androidx.camera.core.CameraX.lambda$initAndRetryRecursively$2$androidx-camera-core-CameraX(CameraX.java:334) 
+                                                                                                    	at androidx.camera.core.CameraX$$ExternalSyntheticLambda3.run(Unknown Source:10) 
+                                                                                                    	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1167) 
+                                                                                                    	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641) 
+                                                                                                    	at java.lang.Thread.run(Thread.java:923) 
+2026-05-03 21:13:53.880  5133-5133  GLSurfaceView           com.dawn.libfilter                   D  surface set framrate 30
+2026-05-03 21:13:53.914  5133-5175  .dawn.libfilte          com.dawn.libfilter                   W  Accessing hidden method Ljava/nio/NIOAccess;->getBaseArray(Ljava/nio/Buffer;)Ljava/lang/Object; (greylist,core-platform-api, JNI, allowed)
+2026-05-03 21:13:53.914  5133-5175  .dawn.libfilte          com.dawn.libfilter                   W  Accessing hidden method Ljava/nio/NIOAccess;->getBaseArrayOffset(Ljava/nio/Buffer;)I (greylist,core-platform-api, JNI, allowed)
+2026-05-03 21:13:54.004  5133-5157  OpenGLRenderer          com.dawn.libfilter                   I  Davey! duration=962ms; Flags=1, IntendedVsync=17777158271290, Vsync=17777724937934, OldestInputEvent=9223372036854775807, NewestInputEvent=0, HandleInputStart=17777737415729, AnimationStart=17777737428271, PerformTraversalsStart=17777739699188, DrawStart=17777999502172, SyncQueued=17778082672389, SyncStart=17778083195639, IssueDrawCommandsStart=17778084315931, SwapBuffers=17778120360976, FrameCompleted=17778121730059, DequeueBufferDuration=2182542, QueueBufferDuration=427875, GpuCompleted=4575657221408423936, 
+2026-05-03 21:13:54.011  5133-5157  OpenGLRenderer          com.dawn.libfilter                   I  Davey! duration=969ms; Flags=1, IntendedVsync=17777158271290, Vsync=17777724937934, OldestInputEvent=9223372036854775807, NewestInputEvent=0, HandleInputStart=17777737415729, AnimationStart=17777737428271, PerformTraversalsStart=17777739699188, DrawStart=17778123258393, SyncQueued=17778123364851, SyncStart=17778123844060, IssueDrawCommandsStart=17778123933310, SwapBuffers=17778126060726, FrameCompleted=17778128338643, DequeueBufferDuration=325209, QueueBufferDuration=522958, GpuCompleted=0, 
+2026-05-03 21:13:54.325   188-1090  BufferQueueProducer     pid-188                              E  [com.dawn.libfilter/com.dawn.libfilter.MainActivity#0](id:bc00000086,api:0,p:-1,c:188) disconnect: not connected (req=1)
+2026-05-03 21:13:54.325  5133-5157  libEGL                  com.dawn.libfilter                   W  EGLNativeWindowType 0xb4000078873012b0 disconnect failed
+2026-05-03 21:13:54.337  5133-5178  CameraRepository        com.dawn.libfilter                   D  Added camera: 0
+2026-05-03 21:13:54.350  5133-5178  Camera2CameraInfo       com.dawn.libfilter                   I  Device Level: INFO_SUPPORTED_HARDWARE_LEVEL_EXTERNAL
+2026-05-03 21:13:54.353  5133-5178  CameraValidator         com.dawn.libfilter                   D  Verifying camera lens facing on rk3568_r, lensFacingInteger: null
+2026-05-03 21:13:54.355  5133-5178  CameraValidator         com.dawn.libfilter                   E  Camera LensFacing verification failed, existing cameras: [Camera@103579d[id=0]]
+2026-05-03 21:13:54.357  5133-5178  CameraX                 com.dawn.libfilter                   W  Retry init. Start time 17777710 current time 17778472 (Ask Gemini)
+                                                                                                    androidx.camera.core.impl.CameraValidator$CameraIdListIncorrectException: Expected camera missing from device.
+                                                                                                    	at androidx.camera.core.impl.CameraValidator.validateCameras(CameraValidator.java:97)
+                                                                                                    	at androidx.camera.core.CameraX.lambda$initAndRetryRecursively$2$androidx-camera-core-CameraX(CameraX.java:334)
+                                                                                                    	at androidx.camera.core.CameraX$$ExternalSyntheticLambda3.run(Unknown Source:10)
+                                                                                                    	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1167)
+                                                                                                    	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)
+                                                                                                    	at java.lang.Thread.run(Thread.java:923)
+                                                                                                    Caused by: java.lang.IllegalArgumentException: No available camera can be found
+                                                                                                    	at androidx.camera.core.CameraSelector.select(CameraSelector.java:94)
+                                                                                                    	at androidx.camera.core.impl.CameraValidator.validateCameras(CameraValidator.java:91)
+                                                                                                    	at androidx.camera.core.CameraX.lambda$initAndRetryRecursively$2$androidx-camera-core-CameraX(CameraX.java:334) 
+                                                                                                    	at androidx.camera.core.CameraX$$ExternalSyntheticLambda3.run(Unknown Source:10) 
+                                                                                                    	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1167) 
+                                                                                                    	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641) 
+                                                                                                    	at java.lang.Thread.run(Thread.java:923) 
+2026-05-03 21:13:54.903  5133-5178  CameraRepository        com.dawn.libfilter                   D  Added camera: 0
+2026-05-03 21:13:54.906  5133-5178  Camera2CameraInfo       com.dawn.libfilter                   I  Device Level: INFO_SUPPORTED_HARDWARE_LEVEL_EXTERNAL
+2026-05-03 21:13:54.907  5133-5178  CameraValidator         com.dawn.libfilter                   D  Verifying camera lens facing on rk3568_r, lensFacingInteger: null
+2026-05-03 21:13:54.909  5133-5178  CameraValidator         com.dawn.libfilter                   E  Camera LensFacing verification failed, existing cameras: [Camera@50b44a4[id=0]]
+2026-05-03 21:13:54.911  5133-5178  CameraX                 com.dawn.libfilter                   W  Retry init. Start time 17777710 current time 17779027 (Ask Gemini)
+                                                                                                    androidx.camera.core.impl.CameraValidator$CameraIdListIncorrectException: Expected camera missing from device.
+                                                                                                    	at androidx.camera.core.impl.CameraValidator.validateCameras(CameraValidator.java:97)
+                                                                                                    	at androidx.camera.core.CameraX.lambda$initAndRetryRecursively$2$androidx-camera-core-CameraX(CameraX.java:334)
+                                                                                                    	at androidx.camera.core.CameraX$$ExternalSyntheticLambda3.run(Unknown Source:10)
+                                                                                                    	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1167)
+                                                                                                    	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)
+                                                                                                    	at java.lang.Thread.run(Thread.java:923)
+                                                                                                    Caused by: java.lang.IllegalArgumentException: No available camera can be found
+                                                                                                    	at androidx.camera.core.CameraSelector.select(CameraSelector.java:94)
+                                                                                                    	at androidx.camera.core.impl.CameraValidator.validateCameras(CameraValidator.java:91)
+                                                                                                    	at androidx.camera.core.CameraX.lambda$initAndRetryRecursively$2$androidx-camera-core-CameraX(CameraX.java:334) 
+                                                                                                    	at androidx.camera.core.CameraX$$ExternalSyntheticLambda3.run(Unknown Source:10) 
+                                                                                                    	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1167) 
+                                                                                                    	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641) 
+                                                                                                    	at java.lang.Thread.run(Thread.java:923) 
+2026-05-03 21:13:55.455  5133-5178  CameraRepository        com.dawn.libfilter                   D  Added camera: 0
+2026-05-03 21:13:55.467  5133-5178  Camera2CameraInfo       com.dawn.libfilter                   I  Device Level: INFO_SUPPORTED_HARDWARE_LEVEL_EXTERNAL
+2026-05-03 21:13:55.469  5133-5178  CameraValidator         com.dawn.libfilter                   D  Verifying camera lens facing on rk3568_r, lensFacingInteger: null
+2026-05-03 21:13:55.470  5133-5178  CameraValidator         com.dawn.libfilter                   E  Camera LensFacing verification failed, existing cameras: [Camera@e1ac5c5[id=0]]
+2026-05-03 21:13:55.472  5133-5178  CameraX                 com.dawn.libfilter                   W  Retry init. Start time 17777710 current time 17779588 (Ask Gemini)
+                                                                                                    androidx.camera.core.impl.CameraValidator$CameraIdListIncorrectException: Expected camera missing from device.
+                                                                                                    	at androidx.camera.core.impl.CameraValidator.validateCameras(CameraValidator.java:97)
+                                                                                                    	at androidx.camera.core.CameraX.lambda$initAndRetryRecursively$2$androidx-camera-core-CameraX(CameraX.java:334)
+                                                                                                    	at androidx.camera.core.CameraX$$ExternalSyntheticLambda3.run(Unknown Source:10)
+                                                                                                    	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1167)
+                                                                                                    	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)
+                                                                                                    	at java.lang.Thread.run(Thread.java:923)
+                                                                                                    Caused by: java.lang.IllegalArgumentException: No available camera can be found
+                                                                                                    	at androidx.camera.core.CameraSelector.select(CameraSelector.java:94)
+                                                                                                    	at androidx.camera.core.impl.CameraValidator.validateCameras(CameraValidator.java:91)
+                                                                                                    	at androidx.camera.core.CameraX.lambda$initAndRetryRecursively$2$androidx-camera-core-CameraX(CameraX.java:334) 
+                                                                                                    	at androidx.camera.core.CameraX$$ExternalSyntheticLambda3.run(Unknown Source:10) 
+                                                                                                    	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1167) 
+                                                                                                    	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641) 
+                                                                                                    	at java.lang.Thread.run(Thread.java:923) 
+2026-05-03 21:13:56.021  5133-5178  CameraRepository        com.dawn.libfilter                   D  Added camera: 0
+2026-05-03 21:13:56.024  5133-5178  Camera2CameraInfo       com.dawn.libfilter                   I  Device Level: INFO_SUPPORTED_HARDWARE_LEVEL_EXTERNAL
+2026-05-03 21:13:56.025  5133-5178  CameraValidator         com.dawn.libfilter                   D  Verifying camera lens facing on rk3568_r, lensFacingInteger: null
+2026-05-03 21:13:56.030  5133-5178  CameraValidator         com.dawn.libfilter                   E  Camera LensFacing verification failed, existing cameras: [Camera@5af4372[id=0]]
+2026-05-03 21:13:56.033  5133-5178  CameraX                 com.dawn.libfilter                   W  Retry init. Start time 17777710 current time 17780147 (Ask Gemini)
+                                                                                                    androidx.camera.core.impl.CameraValidator$CameraIdListIncorrectException: Expected camera missing from device.
+                                                                                                    	at androidx.camera.core.impl.CameraValidator.validateCameras(CameraValidator.java:97)
+                                                                                                    	at androidx.camera.core.CameraX.lambda$initAndRetryRecursively$2$androidx-camera-core-CameraX(CameraX.java:334)
+                                                                                                    	at androidx.camera.core.CameraX$$ExternalSyntheticLambda3.run(Unknown Source:10)
+                                                                                                    	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1167)
+                                                                                                    	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)
+                                                                                                    	at java.lang.Thread.run(Thread.java:923)
+                                                                                                    Caused by: java.lang.IllegalArgumentException: No available camera can be found
+                                                                                                    	at androidx.camera.core.CameraSelector.select(CameraSelector.java:94)
+                                                                                                    	at androidx.camera.core.impl.CameraValidator.validateCameras(CameraValidator.java:91)
+                                                                                                    	at androidx.camera.core.CameraX.lambda$initAndRetryRecursively$2$androidx-camera-core-CameraX(CameraX.java:334) 
+                                                                                                    	at androidx.camera.core.CameraX$$ExternalSyntheticLambda3.run(Unknown Source:10) 
+                                                                                                    	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1167) 
+                                                                                                    	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641) 
+                                                                                                    	at java.lang.Thread.run(Thread.java:923) 
+2026-05-03 21:13:56.583  5133-5178  CameraRepository        com.dawn.libfilter                   D  Added camera: 0
+2026-05-03 21:13:56.586  5133-5178  Camera2CameraInfo       com.dawn.libfilter                   I  Device Level: INFO_SUPPORTED_HARDWARE_LEVEL_EXTERNAL
+2026-05-03 21:13:56.588  5133-5178  CameraValidator         com.dawn.libfilter                   D  Verifying camera lens facing on rk3568_r, lensFacingInteger: null
+2026-05-03 21:13:56.589  5133-5178  CameraValidator         com.dawn.libfilter                   E  Camera LensFacing verification failed, existing cameras: [Camera@988c83b[id=0]]
+2026-05-03 21:13:56.590  5133-5178  CameraX                 com.dawn.libfilter                   E  The device might underreport the amount of the cameras. Finish the initialize task since we are already reaching the maximum number of retries.
+2026-05-03 21:13:56.593  5133-5133  CameraFilterHelper      com.dawn.libfilter                   W  No FRONT/BACK camera, using available camera index=0 (total=1)
+2026-05-03 21:13:56.673  5133-5133  CameraOrientationUtil   com.dawn.libfilter                   D  getRelativeImageRotation: destRotationDegrees=0, sourceRotationDegrees=0, isOppositeFacing=true, result=0
+2026-05-03 21:13:56.717  5133-5133  chatty                  com.dawn.libfilter                   I  uid=10121(com.dawn.libfilter) identical 4 lines
+2026-05-03 21:13:56.718  5133-5133  CameraOrientationUtil   com.dawn.libfilter                   D  getRelativeImageRotation: destRotationDegrees=0, sourceRotationDegrees=0, isOppositeFacing=true, result=0
+2026-05-03 21:13:56.730  5133-5133  DeferrableSurface       com.dawn.libfilter                   D  Surface created[total_surfaces=1, used_surfaces=0](androidx.camera.core.impl.ImmediateSurface@2667a2a}
+2026-05-03 21:13:56.739  5133-5178  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@988c83b[id=0]} Use case androidx.camera.core.ImageAnalysis-ac29c8d7-2bf6-4ae6-b333-57bc80d5ee98121463506 ACTIVE
+2026-05-03 21:13:56.741  5133-5133  CameraFilterHelper      com.dawn.libfilter                   I  CameraX bound, lensFacing=0 index=0
+2026-05-03 21:13:56.748  5133-5178  UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [] for camera: 0
+2026-05-03 21:13:56.757  5133-5178  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@988c83b[id=0]} Use cases [androidx.camera.core.ImageAnalysis-ac29c8d7-2bf6-4ae6-b333-57bc80d5ee98121463506] now ATTACHED
+2026-05-03 21:13:56.759  5133-5178  UseCaseAttachState      com.dawn.libfilter                   D  All use case: [androidx.camera.core.ImageAnalysis-ac29c8d7-2bf6-4ae6-b333-57bc80d5ee98121463506] for camera: 0
+2026-05-03 21:13:56.762  5133-5178  UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [androidx.camera.core.ImageAnalysis-ac29c8d7-2bf6-4ae6-b333-57bc80d5ee98121463506] for camera: 0
+2026-05-03 21:13:56.775  5133-5178  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@988c83b[id=0]} Resetting Capture Session
+2026-05-03 21:13:56.776  5133-5178  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@988c83b[id=0]} Releasing session in state INITIALIZED
+2026-05-03 21:13:56.780  5133-5178  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@988c83b[id=0]} Attempting to force open the camera.
+2026-05-03 21:13:56.781  5133-5178  CameraStateRegistry     com.dawn.libfilter                   D  tryOpenCamera(Camera@988c83b[id=0]) [Available Cameras: 1, Already Open: false (Previous state: null)] --> SUCCESS
+2026-05-03 21:13:56.784  5133-5178  CameraStateRegistry     com.dawn.libfilter                   D  Recalculating open cameras:
+                                                                                                    Camera                                       State                 
+                                                                                                    -------------------------------------------------------------------
+                                                                                                    Camera@988c83b[id=0]                         OPENING               
+                                                                                                    -------------------------------------------------------------------
+                                                                                                    Open count: 1 (Max allowed: 1)
+2026-05-03 21:13:56.785  5133-5178  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@988c83b[id=0]} Opening camera.
+2026-05-03 21:13:56.786  5133-5178  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@988c83b[id=0]} Transitioning camera internal state: INITIALIZED --> OPENING
+2026-05-03 21:13:56.788  5133-5178  CameraStateMachine      com.dawn.libfilter                   D  New public camera state CameraState{type=OPENING, error=null} from OPENING and null
+2026-05-03 21:13:56.788  5133-5178  CameraStateMachine      com.dawn.libfilter                   D  Publishing new public camera state CameraState{type=OPENING, error=null}
+2026-05-03 21:13:56.790  5133-5178  UseCaseAttachState      com.dawn.libfilter                   D  All use case: [androidx.camera.core.ImageAnalysis-ac29c8d7-2bf6-4ae6-b333-57bc80d5ee98121463506] for camera: 0
+2026-05-03 21:13:56.850  5133-5178  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@988c83b[id=0]} Use case androidx.camera.core.ImageAnalysis-ac29c8d7-2bf6-4ae6-b333-57bc80d5ee98121463506 ACTIVE
+2026-05-03 21:13:56.853  5133-5178  UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [androidx.camera.core.ImageAnalysis-ac29c8d7-2bf6-4ae6-b333-57bc80d5ee98121463506] for camera: 0
+2026-05-03 21:13:56.872  5133-5178  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@988c83b[id=0]} CameraDevice.onOpened()
+2026-05-03 21:13:56.873  5133-5178  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@988c83b[id=0]} Transitioning camera internal state: OPENING --> OPENED
+2026-05-03 21:13:56.876  5133-5178  CameraStateRegistry     com.dawn.libfilter                   D  Recalculating open cameras:
+                                                                                                    Camera                                       State                 
+                                                                                                    -------------------------------------------------------------------
+                                                                                                    Camera@988c83b[id=0]                         OPEN                  
+                                                                                                    -------------------------------------------------------------------
+                                                                                                    Open count: 1 (Max allowed: 1)
+2026-05-03 21:13:56.877  5133-5178  CameraStateMachine      com.dawn.libfilter                   D  New public camera state CameraState{type=OPEN, error=null} from OPEN and null
+2026-05-03 21:13:56.877  5133-5178  CameraStateMachine      com.dawn.libfilter                   D  Publishing new public camera state CameraState{type=OPEN, error=null}
+2026-05-03 21:13:56.879  5133-5178  UseCaseAttachState      com.dawn.libfilter                   D  All use case: [androidx.camera.core.ImageAnalysis-ac29c8d7-2bf6-4ae6-b333-57bc80d5ee98121463506] for camera: 0
+2026-05-03 21:13:56.901  5133-5178  UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [androidx.camera.core.ImageAnalysis-ac29c8d7-2bf6-4ae6-b333-57bc80d5ee98121463506] for camera: 0
+2026-05-03 21:13:56.911  5133-5178  SyncCaptureSessionBase  com.dawn.libfilter                   D  [androidx.camera.camera2.internal.SynchronizedCaptureSessionBaseImpl@f8dbce8] getSurface...done
+2026-05-03 21:13:56.912  5133-5178  CaptureSession          com.dawn.libfilter                   D  Opening capture session.
+2026-05-03 21:13:56.930  5133-5178  DeferrableSurface       com.dawn.libfilter                   D  New surface in use[total_surfaces=1, used_surfaces=1](androidx.camera.core.impl.ImmediateSurface@2667a2a}
+2026-05-03 21:13:56.931  5133-5178  DeferrableSurface       com.dawn.libfilter                   D  use count+1, useCount=1 androidx.camera.core.impl.ImmediateSurface@2667a2a
+2026-05-03 21:13:56.996  5133-5178  CaptureSession          com.dawn.libfilter                   D  Attempting to send capture request onConfigured
+2026-05-03 21:13:56.996  5133-5178  CaptureSession          com.dawn.libfilter                   D  Issuing request for session.
+2026-05-03 21:13:57.002  5133-5178  Camera2Cap...estBuilder com.dawn.libfilter                   D  createCaptureRequest
+2026-05-03 21:13:57.011  5133-5178  CaptureSession          com.dawn.libfilter                   D  CameraCaptureSession.onConfigured() mState=OPENED
+2026-05-03 21:13:57.016  5133-5178  CaptureSession          com.dawn.libfilter                   D  CameraCaptureSession.onReady() OPENED
+2026-05-03 21:13:57.738  5133-5188  ion                     com.dawn.libfilter                   E  ioctl c0044901 failed with code -1: Inappropriate ioctl for device
+2026-05-03 21:14:00.030  5133-5192  OMXClient               com.dawn.libfilter                   I  IOmx service obtained
+2026-05-03 21:14:00.040  5133-5192  OMXUtils                com.dawn.libfilter                   W  do not know color format 0x7f000789 = 2130708361
+2026-05-03 21:14:00.048  5133-5192  ACodec                  com.dawn.libfilter                   I  setupAVCEncoderParameters with [profile: Baseline] [level: Level31]
+2026-05-03 21:14:00.050  5133-5192  ACodec                  com.dawn.libfilter                   I  [OMX.rk.video_encoder.avc] cannot encode HDR static metadata. Ignoring.
+2026-05-03 21:14:00.050  5133-5192  ACodec                  com.dawn.libfilter                   I  setupVideoEncoder succeeded
+2026-05-03 21:14:00.050  5133-5192  OMXUtils                com.dawn.libfilter                   W  do not know color format 0x7f000789 = 2130708361
+2026-05-03 21:14:00.055  5133-5192  ColorUtils              com.dawn.libfilter                   W  expected specified color aspects (0:0:0:0)
+2026-05-03 21:14:00.103  5133-5201  CCodec                  com.dawn.libfilter                   D  allocate(c2.android.aac.encoder)
+2026-05-03 21:14:00.113  5133-5201  Codec2Client            com.dawn.libfilter                   I  Available Codec2 services: "software"
+2026-05-03 21:14:00.139  5133-5201  CCodec                  com.dawn.libfilter                   I  Created component [c2.android.aac.encoder]
+2026-05-03 21:14:00.140  5133-5201  CCodecConfig            com.dawn.libfilter                   D  read media type: audio/mp4a-latm
+2026-05-03 21:14:00.148  5133-5201  ReflectedParamUpdater   com.dawn.libfilter                   D  extent() != 1 for single value type: algo.buffers.max-count.values
+2026-05-03 21:14:00.148  5133-5201  ReflectedParamUpdater   com.dawn.libfilter                   D  extent() != 1 for single value type: output.subscribed-indices.values
+2026-05-03 21:14:00.149  5133-5201  ReflectedParamUpdater   com.dawn.libfilter                   D  extent() != 1 for single value type: input.buffers.allocator-ids.values
+2026-05-03 21:14:00.150  5133-5201  ReflectedParamUpdater   com.dawn.libfilter                   D  extent() != 1 for single value type: output.buffers.allocator-ids.values
+2026-05-03 21:14:00.150  5133-5201  ReflectedParamUpdater   com.dawn.libfilter                   D  extent() != 1 for single value type: algo.buffers.allocator-ids.values
+2026-05-03 21:14:00.151  5133-5201  ReflectedParamUpdater   com.dawn.libfilter                   D  extent() != 1 for single value type: output.buffers.pool-ids.values
+2026-05-03 21:14:00.151  5133-5201  ReflectedParamUpdater   com.dawn.libfilter                   D  extent() != 1 for single value type: algo.buffers.pool-ids.values
+2026-05-03 21:14:00.155  5133-5201  CCodecConfig            com.dawn.libfilter                   I  query failed after returning 9 values (BAD_INDEX)
+2026-05-03 21:14:00.155  5133-5201  CCodecConfig            com.dawn.libfilter                   D  c2 config diff is Dict {
+                                                                                                      c2::u32 coded.bitrate.value = 64000
+                                                                                                      c2::u32 coded.pl.level = 0
+                                                                                                      c2::u32 coded.pl.profile = 8192
+                                                                                                      c2::u32 coding.aac-sbr-mode.value = 3
+                                                                                                      c2::u32 input.buffers.max-size.value = 2048
+                                                                                                      c2::u32 input.delay.value = 0
+                                                                                                      string input.media-type.value = "audio/raw"
+                                                                                                      string output.media-type.value = "audio/mp4a-latm"
+                                                                                                      c2::u32 raw.channel-count.value = 1
+                                                                                                      c2::u32 raw.sample-rate.value = 44100
+                                                                                                    }
+2026-05-03 21:14:00.159  5133-5201  CCodec                  com.dawn.libfilter                   D  [c2.android.aac.encoder] buffers are bound to CCodec for this session
+2026-05-03 21:14:00.159  5133-5201  CCodecConfig            com.dawn.libfilter                   D  no c2 equivalents for aac-profile
+2026-05-03 21:14:00.159  5133-5201  CCodecConfig            com.dawn.libfilter                   D  no c2 equivalents for flags
+2026-05-03 21:14:00.159  5133-5201  CCodecConfig            com.dawn.libfilter                   D  no c2 equivalents for encoder
+2026-05-03 21:14:00.160  5133-5201  CCodecConfig            com.dawn.libfilter                   D  c2 config diff is   c2::u32 coded.bitrate.value = 128000
+2026-05-03 21:14:00.161  5133-5201  Codec2Client            com.dawn.libfilter                   W  query -- param skipped: index = 1107298332.
+2026-05-03 21:14:00.162  5133-5201  CCodec                  com.dawn.libfilter                   D  setup formats input: AMessage(what = 0x00000000) = {
+                                                                                                      int32_t aac-sbr-mode = 3
+                                                                                                      int32_t channel-count = 1
+                                                                                                      int32_t max-input-size = 2048
+                                                                                                      string mime = "audio/raw"
+                                                                                                      int32_t sample-rate = 44100
+                                                                                                    } and output: AMessage(what = 0x00000000) = {
+                                                                                                      int32_t aac-sbr-mode = 3
+                                                                                                      int32_t bitrate = 128000
+                                                                                                      int32_t channel-count = 1
+                                                                                                      int32_t level = 0
+                                                                                                      int32_t max-bitrate = 128000
+                                                                                                      string mime = "audio/mp4a-latm"
+                                                                                                      int32_t profile = 2
+                                                                                                      int32_t sample-rate = 44100
+                                                                                                    }
+2026-05-03 21:14:00.168  5133-5201  Codec2Client            com.dawn.libfilter                   W  query -- param skipped: index = 1342179345.
+2026-05-03 21:14:00.168  5133-5201  Codec2Client            com.dawn.libfilter                   W  query -- param skipped: index = 2415921170.
+2026-05-03 21:14:00.182  5133-5201  FMQ                     com.dawn.libfilter                   E  grantorIdx must be less than 3
+2026-05-03 21:14:00.182  5133-5201  FMQ                     com.dawn.libfilter                   E  grantorIdx must be less than 3
+2026-05-03 21:14:00.182  5133-5201  CCodecBufferChannel     com.dawn.libfilter                   D  [c2.android.aac.encoder#478] Created input block pool with allocatorID 16 => poolID 17 - OK (0)
+2026-05-03 21:14:00.186  5133-5201  CCodecBufferChannel     com.dawn.libfilter                   I  [c2.android.aac.encoder#478] Created output block pool with allocatorID 16 => poolID 33 - OK
+2026-05-03 21:14:00.186  5133-5201  CCodecBufferChannel     com.dawn.libfilter                   D  [c2.android.aac.encoder#478] Configured output block pool ids 33 => OK
+2026-05-03 21:14:00.188  5133-5201  ion                     com.dawn.libfilter                   E  ioctl c0044901 failed with code -1: Inappropriate ioctl for device
+2026-05-03 21:14:00.234  5133-5133  MPEG4Writer             com.dawn.libfilter                   D  PreAllocation enabled
+2026-05-03 21:14:00.249  5133-5133  CameraFilterHelper      com.dawn.libfilter                   I  录制开始（含滤镜）: /storage/emulated/0/Android/data/com.dawn.libfilter/files/Movies/VID_1777814039993.mp4
+2026-05-03 21:14:00.298   188-199   BufferQueueProducer     pid-188                              E  [SurfaceView - com.dawn.libfilter/com.dawn.libfilter.CameraFilterActivity#0](id:bc00000088,api:0,p:-1,c:188) disconnect: not connected (req=1)
+2026-05-03 21:14:00.298  5133-5175  libEGL                  com.dawn.libfilter                   W  EGLNativeWindowType 0xb400007887409270 disconnect failed
+2026-05-03 21:14:00.338  5133-5201  FMQ                     com.dawn.libfilter                   E  grantorIdx must be less than 3
+2026-05-03 21:14:00.351  5133-5193  FMQ                     com.dawn.libfilter                   E  grantorIdx must be less than 3
+2026-05-03 21:14:00.356  5133-5201  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#478:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
+                                                                                                      int32_t aac-sbr-mode = 3
+                                                                                                      int32_t bitrate = 128000
+                                                                                                      int32_t channel-count = 1
+                                                                                                      int32_t level = 0
+                                                                                                      int32_t max-bitrate = 128000
+                                                                                                      string mime = "audio/mp4a-latm"
+                                                                                                      int32_t profile = 2
+                                                                                                      int32_t sample-rate = 44100
+                                                                                                      Buffer csd-0 = {
+                                                                                                        00000000:  12 08                                             ..
+                                                                                                      }
+                                                                                                    }
+2026-05-03 21:14:00.523  5133-5201  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#478:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
+                                                                                                      int32_t aac-sbr-mode = 3
+                                                                                                      int32_t bitrate = 128000
+                                                                                                      int32_t channel-count = 1
+                                                                                                      int32_t level = 0
+                                                                                                      int32_t max-bitrate = 128000
+                                                                                                      string mime = "audio/mp4a-latm"
+                                                                                                      int32_t profile = 2
+                                                                                                      int32_t sample-rate = 44100
+                                                                                                      Buffer csd-0 = {
+                                                                                                        00000000:  12 08                                             ..
+                                                                                                      }
+                                                                                                    }
+2026-05-03 21:14:00.582  5133-5210  libc                    com.dawn.libfilter                   A  Pointer tag for 0x76bc400c was truncated.
+2026-05-03 21:14:00.582  5133-5210  libc                    com.dawn.libfilter                   A  Fatal signal 6 (SIGABRT), code -1 (SI_QUEUE) in tid 5210 (GlFilterEncoder), pid 5133 (.dawn.libfilter)
+2026-05-03 21:14:00.668  5133-5201  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#478:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
+                                                                                                      int32_t aac-sbr-mode = 3
+                                                                                                      int32_t bitrate = 128000
+                                                                                                      int32_t channel-count = 1
+                                                                                                      int32_t level = 0
+                                                                                                      int32_t max-bitrate = 128000
+                                                                                                      string mime = "audio/mp4a-latm"
+                                                                                                      int32_t profile = 2
+                                                                                                      int32_t sample-rate = 44100
+                                                                                                      Buffer csd-0 = {
+                                                                                                        00000000:  12 08                                             ..
+                                                                                                      }
+                                                                                                    }
+2026-05-03 21:14:00.782  5217-5217  DEBUG                   pid-5217                             A  pid: 5133, tid: 5210, name: GlFilterEncoder  >>> com.dawn.libfilter <<<
+2026-05-03 21:14:00.841  5133-5201  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#478:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
+                                                                                                      int32_t aac-sbr-mode = 3
+                                                                                                      int32_t bitrate = 128000
+                                                                                                      int32_t channel-count = 1
+                                                                                                      int32_t level = 0
+                                                                                                      int32_t max-bitrate = 128000
+                                                                                                      string mime = "audio/mp4a-latm"
+                                                                                                      int32_t profile = 2
+                                                                                                      int32_t sample-rate = 44100
+                                                                                                      Buffer csd-0 = {
+                                                                                                        00000000:  12 08                                             ..
+                                                                                                      }
+                                                                                                    }
+2026-05-03 21:14:00.981  5133-5201  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#478:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
+                                                                                                      int32_t aac-sbr-mode = 3
+                                                                                                      int32_t bitrate = 128000
+                                                                                                      int32_t channel-count = 1
+                                                                                                      int32_t level = 0
+                                                                                                      int32_t max-bitrate = 128000
+                                                                                                      string mime = "audio/mp4a-latm"
+                                                                                                      int32_t profile = 2
+                                                                                                      int32_t sample-rate = 44100
+                                                                                                      Buffer csd-0 = {
+                                                                                                        00000000:  12 08                                             ..
+                                                                                                      }
+                                                                                                    }
+2026-05-03 21:14:01.164  5217-5217  DEBUG                   pid-5217                             A        #12 pc 000000000000c0b2  /data/data/com.dawn.libfilter/code_cache/.overlay/base.apk/classes2.dex (com.dawn.filter.GlFilterRecorder.uploadNv21AndDraw+138)
+2026-05-03 21:14:01.164  5217-5217  DEBUG                   pid-5217                             A        #15 pc 000000000000bc9c  /data/data/com.dawn.libfilter/code_cache/.overlay/base.apk/classes2.dex (com.dawn.filter.GlFilterRecorder.renderAndEncode+120)
+2026-05-03 21:14:01.165  5217-5217  DEBUG                   pid-5217                             A        #18 pc 000000000000b5c0  /data/data/com.dawn.libfilter/code_cache/.overlay/base.apk/classes2.dex (com.dawn.filter.GlFilterRecorder.encodeLoop+136)
+2026-05-03 21:14:01.165  5217-5217  DEBUG                   pid-5217                             A        #21 pc 000000000000b00c  /data/data/com.dawn.libfilter/code_cache/.overlay/base.apk/classes2.dex (com.dawn.filter.GlFilterRecorder.$r8$lambda$wYHQ5FWg40oo589P2vPxwBI1j7E)
+2026-05-03 21:14:01.165  5217-5217  DEBUG                   pid-5217                             A        #27 pc 000000000000ac00  /data/data/com.dawn.libfilter/code_cache/.overlay/base.apk/classes2.dex (com.dawn.filter.GlFilterRecorder$$ExternalSyntheticLambda1.run+4)
+2026-05-03 21:14:01.182  5133-5201  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#478:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
+                                                                                                      int32_t aac-sbr-mode = 3
+                                                                                                      int32_t bitrate = 128000
+                                                                                                      int32_t channel-count = 1
+                                                                                                      int32_t level = 0
+                                                                                                      int32_t max-bitrate = 128000
+                                                                                                      string mime = "audio/mp4a-latm"
+                                                                                                      int32_t profile = 2
+                                                                                                      int32_t sample-rate = 44100
+                                                                                                      Buffer csd-0 = {
+                                                                                                        00000000:  12 08                                             ..
+                                                                                                      }
+                                                                                                    }
+2026-05-03 21:14:01.337  5133-5201  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#478:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
+                                                                                                      int32_t aac-sbr-mode = 3
+                                                                                                      int32_t bitrate = 128000
+                                                                                                      int32_t channel-count = 1
+                                                                                                      int32_t level = 0
+                                                                                                      int32_t max-bitrate = 128000
+                                                                                                      string mime = "audio/mp4a-latm"
+                                                                                                      int32_t profile = 2
+                                                                                                      int32_t sample-rate = 44100
+                                                                                                      Buffer csd-0 = {
+                                                                                                        00000000:  12 08                                             ..
+                                                                                                      }
+                                                                                                    }
+2026-05-03 21:14:01.493  5133-5201  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#478:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
+                                                                                                      int32_t aac-sbr-mode = 3
+                                                                                                      int32_t bitrate = 128000
+                                                                                                      int32_t channel-count = 1
+                                                                                                      int32_t level = 0
+                                                                                                      int32_t max-bitrate = 128000
+                                                                                                      string mime = "audio/mp4a-latm"
+                                                                                                      int32_t profile = 2
+                                                                                                      int32_t sample-rate = 44100
+                                                                                                      Buffer csd-0 = {
+                                                                                                        00000000:  12 08                                             ..
+                                                                                                      }
+                                                                                                    }
+2026-05-03 21:14:01.829  5133-5201  chatty                  com.dawn.libfilter                   I  uid=10121(com.dawn.libfilter) MediaCodec_loop identical 2 lines
+2026-05-03 21:14:01.990  5133-5201  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#478:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
+                                                                                                      int32_t aac-sbr-mode = 3
+                                                                                                      int32_t bitrate = 128000
+                                                                                                      int32_t channel-count = 1
+                                                                                                      int32_t level = 0
+                                                                                                      int32_t max-bitrate = 128000
+                                                                                                      string mime = "audio/mp4a-latm"
+                                                                                                      int32_t profile = 2
+                                                                                                      int32_t sample-rate = 44100
+                                                                                                      Buffer csd-0 = {
+                                                                                                        00000000:  12 08                                             ..
+                                                                                                      }
+                                                                                                    }
+2026-05-03 21:14:02.145  5133-5201  CCodecBuffers           com.dawn.libfilter                   D  [c2.android.aac.encoder#478:Output[N]] popFromStashAndRegister: output format changed to AMessage(what = 0x00000000) = {
+                                                                                                      int32_t aac-sbr-mode = 3
+                                                                                                      int32_t bitrate = 128000
+                                                                                                      int32_t channel-count = 1
+                                                                                                      int32_t level = 0
+                                                                                                      int32_t max-bitrate = 128000
+                                                                                                      string mime = "audio/mp4a-latm"
+                                                                                                      int32_t profile = 2
+                                                                                                      int32_t sample-rate = 44100
+                                                                                                      Buffer csd-0 = {
+                                                                                                        00000000:  12 08                                             ..
+                                                                                                      }
+                                                                                                    }
+---------------------------- PROCESS ENDED (5133) for package com.dawn.libfilter ----------------------------
+2026-05-03 21:14:02.568   482-509   AppOps                  system_process                       E  startOperation (Ask Gemini)
+                                                                                                    java.lang.SecurityException: Specified package com.dawn.libfilter under uid 1000 but it is really 10121
+                                                                                                    	at com.android.server.appop.AppOpsService.verifyAndGetBypass(AppOpsService.java:3945)
+                                                                                                    	at com.android.server.appop.AppOpsService.startOperation(AppOpsService.java:3469)
+                                                                                                    	at android.app.AppOpsManager.startOpNoThrow(AppOpsManager.java:8088)
+                                                                                                    	at com.android.server.wm.WindowState.initAppOpsState(WindowState.java:3090)
+                                                                                                    	at com.android.server.wm.WindowManagerService.addWindow(WindowManagerService.java:1650)
+                                                                                                    	at com.android.server.wm.Session.addToDisplayAsUser(Session.java:176)
+                                                                                                    	at android.view.ViewRootImpl.setView(ViewRootImpl.java:1031)
+                                                                                                    	at android.view.WindowManagerGlobal.addView(WindowManagerGlobal.java:409)
+                                                                                                    	at android.view.WindowManagerImpl.addView(WindowManagerImpl.java:109)
+                                                                                                    	at com.android.server.policy.PhoneWindowManager.addSplashScreen(PhoneWindowManager.java:2558)
+                                                                                                    	at com.android.server.wm.SplashScreenStartingData.createStartingSurface(SplashScreenStartingData.java:56)
+                                                                                                    	at com.android.server.wm.ActivityRecord$AddStartingWindow.run(ActivityRecord.java:1885)
+                                                                                                    	at android.os.Handler.handleCallback(Handler.java:938)
+                                                                                                    	at android.os.Handler.dispatchMessage(Handler.java:99)
+                                                                                                    	at android.os.Looper.loop(Looper.java:223)
+                                                                                                    	at android.os.HandlerThread.run(HandlerThread.java:67)
+                                                                                                    	at com.android.server.ServiceThread.run(ServiceThread.java:44)
+2026-05-03 21:14:02.797   188-1090  BufferQueueProducer     pid-188                              E  [Application Error: com.dawn.libfilter#0](id:bc00000089,api:0,p:-1,c:188) disconnect: not connected (req=1)
+---------------------------- PROCESS STARTED (5232) for package com.dawn.libfilter ----------------------------
+2026-05-03 21:14:03.523  5232-5232  NetworkSecurityConfig   com.dawn.libfilter                   D  No Network Security Config specified, using platform default
+2026-05-03 21:14:03.525  5232-5232  NetworkSecurityConfig   com.dawn.libfilter                   D  No Network Security Config specified, using platform default
+2026-05-03 21:14:03.731  5232-5232  AppCompatDelegate       com.dawn.libfilter                   D  Checking for metadata for AppLocalesMetadataHolderService : Service not found
+2026-05-03 21:14:04.220  5232-5232  Choreographer           com.dawn.libfilter                   I  Skipped 38 frames!  The application may be doing too much work on its main thread.
+2026-05-03 21:14:04.273  5232-5257  mali_so                 com.dawn.libfilter                   I  [File] : hardware/rockchip/mali_so/driver/product/base/src/mali_base_kbase.c; [Line] : 1311; [Func] : base_context_deal_with_version_affairs_rk_ext;
                                                                                                     arm_release_ver of this mali_so is 'g2p0-01eac0', rk_so_ver is '8@0 '.
-2026-05-03 19:26:46.056  4162-4188  mali_so                 com.dawn.libfilter                   I  [File] : hardware/rockchip/mali_so/driver/product/base/src/mali_base_kbase.c; [Line] : 1327; [Func] : base_context_deal_with_version_affairs_rk_ext;
+2026-05-03 21:14:04.273  5232-5257  mali_so                 com.dawn.libfilter                   I  [File] : hardware/rockchip/mali_so/driver/product/base/src/mali_base_kbase.c; [Line] : 1327; [Func] : base_context_deal_with_version_affairs_rk_ext;
                                                                                                     arm_release_vers are match. to set the full mali_ver 'g2p0-01eac0-x-8@0' as value of 'sys.gmali.version'.
-2026-05-03 19:26:46.053  4162-4162  RenderThread            com.dawn.libfilter                   I  type=1400 audit(0.0:17147): avc: denied { write } for name="property_service" dev="tmpfs" ino=18524 scontext=u:r:untrusted_app:s0:c121,c256,c512,c768 tcontext=u:object_r:property_socket:s0 tclass=sock_file permissive=1 app=com.dawn.libfilter
-2026-05-03 19:26:46.176  4162-4188  OpenGLRenderer          com.dawn.libfilter                   I  Davey! duration=782ms; Flags=1, IntendedVsync=11349574324293, Vsync=11350157657603, OldestInputEvent=9223372036854775807, NewestInputEvent=0, HandleInputStart=11350171785325, AnimationStart=11350171799325, PerformTraversalsStart=11350172315284, DrawStart=11350283248087, SyncQueued=11350312801506, SyncStart=11350313309006, IssueDrawCommandsStart=11350313416048, SwapBuffers=11350329590425, FrameCompleted=11350356901511, DequeueBufferDuration=352625, QueueBufferDuration=527917, GpuCompleted=0, 
-2026-05-03 19:26:46.592  4162-4178  System                  com.dawn.libfilter                   W  A resource failed to call close. 
-2026-05-03 19:26:49.475  4162-4206  CameraManagerGlobal     com.dawn.libfilter                   I  Connecting to camera service
-2026-05-03 19:26:49.480  4162-4162  Choreographer           com.dawn.libfilter                   I  Skipped 34 frames!  The application may be doing too much work on its main thread.
-2026-05-03 19:26:49.525  4162-4206  CameraRepository        com.dawn.libfilter                   D  Added camera: 0
-2026-05-03 19:26:49.624  4162-4206  Camera2CameraInfo       com.dawn.libfilter                   I  Device Level: INFO_SUPPORTED_HARDWARE_LEVEL_EXTERNAL
-2026-05-03 19:26:49.644  4162-4206  CameraValidator         com.dawn.libfilter                   D  Verifying camera lens facing on rk3568_r, lensFacingInteger: null
-2026-05-03 19:26:49.648  4162-4206  CameraValidator         com.dawn.libfilter                   E  Camera LensFacing verification failed, existing cameras: [Camera@f53274c[id=0]]
-2026-05-03 19:26:49.650  4162-4206  CameraX                 com.dawn.libfilter                   W  Retry init. Start time 11353633 current time 11353829 (Ask Gemini)
-                                                                                                    androidx.camera.core.impl.CameraValidator$CameraIdListIncorrectException: Expected camera missing from device.
-                                                                                                    	at androidx.camera.core.impl.CameraValidator.validateCameras(CameraValidator.java:97)
-                                                                                                    	at androidx.camera.core.CameraX.lambda$initAndRetryRecursively$2$androidx-camera-core-CameraX(CameraX.java:334)
-                                                                                                    	at androidx.camera.core.CameraX$$ExternalSyntheticLambda3.run(Unknown Source:10)
-                                                                                                    	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1167)
-                                                                                                    	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)
-                                                                                                    	at java.lang.Thread.run(Thread.java:923)
-                                                                                                    Caused by: java.lang.IllegalArgumentException: No available camera can be found
-                                                                                                    	at androidx.camera.core.CameraSelector.select(CameraSelector.java:94)
-                                                                                                    	at androidx.camera.core.impl.CameraValidator.validateCameras(CameraValidator.java:91)
-                                                                                                    	at androidx.camera.core.CameraX.lambda$initAndRetryRecursively$2$androidx-camera-core-CameraX(CameraX.java:334) 
-                                                                                                    	at androidx.camera.core.CameraX$$ExternalSyntheticLambda3.run(Unknown Source:10) 
-                                                                                                    	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1167) 
-                                                                                                    	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641) 
-                                                                                                    	at java.lang.Thread.run(Thread.java:923) 
-2026-05-03 19:26:49.736  4162-4162  GLSurfaceView           com.dawn.libfilter                   D  surface set framrate 30
-2026-05-03 19:26:49.766  4162-4203  mali_so                 com.dawn.libfilter                   E  encounter the first gles_error : 0x0003; gles_state_error_info : glUniform1i and glUniform1iv are the only two functions that may be used to load uniform variables defined as sampler types (gles2_programp_set_uniform_checked at hardware/rockchip/mali_so/driver/product/gles/src/program/mali_gles2_program_internal.c:1173)
-2026-05-03 19:26:49.767  4162-4203  .dawn.libfilte          com.dawn.libfilter                   W  Accessing hidden method Ljava/nio/NIOAccess;->getBaseArray(Ljava/nio/Buffer;)Ljava/lang/Object; (greylist,core-platform-api, JNI, allowed)
-2026-05-03 19:26:49.767  4162-4203  .dawn.libfilte          com.dawn.libfilter                   W  Accessing hidden method Ljava/nio/NIOAccess;->getBaseArrayOffset(Ljava/nio/Buffer;)I (greylist,core-platform-api, JNI, allowed)
-2026-05-03 19:26:49.865  4162-4188  OpenGLRenderer          com.dawn.libfilter                   I  Davey! duration=954ms; Flags=1, IntendedVsync=11353090966272, Vsync=11353657632916, OldestInputEvent=9223372036854775807, NewestInputEvent=0, HandleInputStart=11353660936384, AnimationStart=11353660948634, PerformTraversalsStart=11353663055343, DrawStart=11353932235995, SyncQueued=11354013546253, SyncStart=11354014005628, IssueDrawCommandsStart=11354015280212, SwapBuffers=11354043691173, FrameCompleted=11354045743631, DequeueBufferDuration=2138792, QueueBufferDuration=1108333, GpuCompleted=4575657221408423936, 
-2026-05-03 19:26:49.870  4162-4188  OpenGLRenderer          com.dawn.libfilter                   I  Davey! duration=959ms; Flags=1, IntendedVsync=11353090966272, Vsync=11353657632916, OldestInputEvent=9223372036854775807, NewestInputEvent=0, HandleInputStart=11353660936384, AnimationStart=11353660948634, PerformTraversalsStart=11353663055343, DrawStart=11354047087340, SyncQueued=11354047186798, SyncStart=11354047554298, IssueDrawCommandsStart=11354047637715, SwapBuffers=11354049460632, FrameCompleted=11354050724715, DequeueBufferDuration=266000, QueueBufferDuration=373917, GpuCompleted=1354767457252541391, 
-2026-05-03 19:26:50.167   188-199   BufferQueueProducer     surfaceflinger                       E  [com.dawn.libfilter/com.dawn.libfilter.MainActivity#0](id:bc0000006c,api:0,p:-1,c:188) disconnect: not connected (req=1)
-2026-05-03 19:26:50.173  4162-4188  libEGL                  com.dawn.libfilter                   W  EGLNativeWindowType 0xb4000078873012b0 disconnect failed
-2026-05-03 19:26:50.193  4162-4206  CameraRepository        com.dawn.libfilter                   D  Added camera: 0
-2026-05-03 19:26:50.197  4162-4206  Camera2CameraInfo       com.dawn.libfilter                   I  Device Level: INFO_SUPPORTED_HARDWARE_LEVEL_EXTERNAL
-2026-05-03 19:26:50.200  4162-4206  CameraValidator         com.dawn.libfilter                   D  Verifying camera lens facing on rk3568_r, lensFacingInteger: null
-2026-05-03 19:26:50.202  4162-4206  CameraValidator         com.dawn.libfilter                   E  Camera LensFacing verification failed, existing cameras: [Camera@dbfb6bd[id=0]]
-2026-05-03 19:26:50.203  4162-4206  CameraX                 com.dawn.libfilter                   W  Retry init. Start time 11353633 current time 11354383 (Ask Gemini)
-                                                                                                    androidx.camera.core.impl.CameraValidator$CameraIdListIncorrectException: Expected camera missing from device.
-                                                                                                    	at androidx.camera.core.impl.CameraValidator.validateCameras(CameraValidator.java:97)
-                                                                                                    	at androidx.camera.core.CameraX.lambda$initAndRetryRecursively$2$androidx-camera-core-CameraX(CameraX.java:334)
-                                                                                                    	at androidx.camera.core.CameraX$$ExternalSyntheticLambda3.run(Unknown Source:10)
-                                                                                                    	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1167)
-                                                                                                    	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)
-                                                                                                    	at java.lang.Thread.run(Thread.java:923)
-                                                                                                    Caused by: java.lang.IllegalArgumentException: No available camera can be found
-                                                                                                    	at androidx.camera.core.CameraSelector.select(CameraSelector.java:94)
-                                                                                                    	at androidx.camera.core.impl.CameraValidator.validateCameras(CameraValidator.java:91)
-                                                                                                    	at androidx.camera.core.CameraX.lambda$initAndRetryRecursively$2$androidx-camera-core-CameraX(CameraX.java:334) 
-                                                                                                    	at androidx.camera.core.CameraX$$ExternalSyntheticLambda3.run(Unknown Source:10) 
-                                                                                                    	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1167) 
-                                                                                                    	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641) 
-                                                                                                    	at java.lang.Thread.run(Thread.java:923) 
-2026-05-03 19:26:50.746  4162-4206  CameraRepository        com.dawn.libfilter                   D  Added camera: 0
-2026-05-03 19:26:50.748  4162-4206  Camera2CameraInfo       com.dawn.libfilter                   I  Device Level: INFO_SUPPORTED_HARDWARE_LEVEL_EXTERNAL
-2026-05-03 19:26:50.749  4162-4206  CameraValidator         com.dawn.libfilter                   D  Verifying camera lens facing on rk3568_r, lensFacingInteger: null
-2026-05-03 19:26:50.751  4162-4206  CameraValidator         com.dawn.libfilter                   E  Camera LensFacing verification failed, existing cameras: [Camera@39f5157[id=0]]
-2026-05-03 19:26:50.752  4162-4206  CameraX                 com.dawn.libfilter                   W  Retry init. Start time 11353633 current time 11354931 (Ask Gemini)
-                                                                                                    androidx.camera.core.impl.CameraValidator$CameraIdListIncorrectException: Expected camera missing from device.
-                                                                                                    	at androidx.camera.core.impl.CameraValidator.validateCameras(CameraValidator.java:97)
-                                                                                                    	at androidx.camera.core.CameraX.lambda$initAndRetryRecursively$2$androidx-camera-core-CameraX(CameraX.java:334)
-                                                                                                    	at androidx.camera.core.CameraX$$ExternalSyntheticLambda3.run(Unknown Source:10)
-                                                                                                    	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1167)
-                                                                                                    	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)
-                                                                                                    	at java.lang.Thread.run(Thread.java:923)
-                                                                                                    Caused by: java.lang.IllegalArgumentException: No available camera can be found
-                                                                                                    	at androidx.camera.core.CameraSelector.select(CameraSelector.java:94)
-                                                                                                    	at androidx.camera.core.impl.CameraValidator.validateCameras(CameraValidator.java:91)
-                                                                                                    	at androidx.camera.core.CameraX.lambda$initAndRetryRecursively$2$androidx-camera-core-CameraX(CameraX.java:334) 
-                                                                                                    	at androidx.camera.core.CameraX$$ExternalSyntheticLambda3.run(Unknown Source:10) 
-                                                                                                    	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1167) 
-                                                                                                    	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641) 
-                                                                                                    	at java.lang.Thread.run(Thread.java:923) 
-2026-05-03 19:26:51.300  4162-4206  CameraRepository        com.dawn.libfilter                   D  Added camera: 0
-2026-05-03 19:26:51.303  4162-4206  Camera2CameraInfo       com.dawn.libfilter                   I  Device Level: INFO_SUPPORTED_HARDWARE_LEVEL_EXTERNAL
-2026-05-03 19:26:51.304  4162-4206  CameraValidator         com.dawn.libfilter                   D  Verifying camera lens facing on rk3568_r, lensFacingInteger: null
-2026-05-03 19:26:51.306  4162-4206  CameraValidator         com.dawn.libfilter                   E  Camera LensFacing verification failed, existing cameras: [Camera@c2be7dc[id=0]]
-2026-05-03 19:26:51.307  4162-4206  CameraX                 com.dawn.libfilter                   W  Retry init. Start time 11353633 current time 11355486 (Ask Gemini)
-                                                                                                    androidx.camera.core.impl.CameraValidator$CameraIdListIncorrectException: Expected camera missing from device.
-                                                                                                    	at androidx.camera.core.impl.CameraValidator.validateCameras(CameraValidator.java:97)
-                                                                                                    	at androidx.camera.core.CameraX.lambda$initAndRetryRecursively$2$androidx-camera-core-CameraX(CameraX.java:334)
-                                                                                                    	at androidx.camera.core.CameraX$$ExternalSyntheticLambda3.run(Unknown Source:10)
-                                                                                                    	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1167)
-                                                                                                    	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)
-                                                                                                    	at java.lang.Thread.run(Thread.java:923)
-                                                                                                    Caused by: java.lang.IllegalArgumentException: No available camera can be found
-                                                                                                    	at androidx.camera.core.CameraSelector.select(CameraSelector.java:94)
-                                                                                                    	at androidx.camera.core.impl.CameraValidator.validateCameras(CameraValidator.java:91)
-                                                                                                    	at androidx.camera.core.CameraX.lambda$initAndRetryRecursively$2$androidx-camera-core-CameraX(CameraX.java:334) 
-                                                                                                    	at androidx.camera.core.CameraX$$ExternalSyntheticLambda3.run(Unknown Source:10) 
-                                                                                                    	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1167) 
-                                                                                                    	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641) 
-                                                                                                    	at java.lang.Thread.run(Thread.java:923) 
-2026-05-03 19:26:51.859  4162-4206  CameraRepository        com.dawn.libfilter                   D  Added camera: 0
-2026-05-03 19:26:51.862  4162-4206  Camera2CameraInfo       com.dawn.libfilter                   I  Device Level: INFO_SUPPORTED_HARDWARE_LEVEL_EXTERNAL
-2026-05-03 19:26:51.864  4162-4206  CameraValidator         com.dawn.libfilter                   D  Verifying camera lens facing on rk3568_r, lensFacingInteger: null
-2026-05-03 19:26:51.865  4162-4206  CameraValidator         com.dawn.libfilter                   E  Camera LensFacing verification failed, existing cameras: [Camera@38c5412[id=0]]
-2026-05-03 19:26:51.866  4162-4211  ProfileInstaller        com.dawn.libfilter                   D  Installing profile for com.dawn.libfilter
-2026-05-03 19:26:51.867  4162-4206  CameraX                 com.dawn.libfilter                   W  Retry init. Start time 11353633 current time 11356046 (Ask Gemini)
-                                                                                                    androidx.camera.core.impl.CameraValidator$CameraIdListIncorrectException: Expected camera missing from device.
-                                                                                                    	at androidx.camera.core.impl.CameraValidator.validateCameras(CameraValidator.java:97)
-                                                                                                    	at androidx.camera.core.CameraX.lambda$initAndRetryRecursively$2$androidx-camera-core-CameraX(CameraX.java:334)
-                                                                                                    	at androidx.camera.core.CameraX$$ExternalSyntheticLambda3.run(Unknown Source:10)
-                                                                                                    	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1167)
-                                                                                                    	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)
-                                                                                                    	at java.lang.Thread.run(Thread.java:923)
-                                                                                                    Caused by: java.lang.IllegalArgumentException: No available camera can be found
-                                                                                                    	at androidx.camera.core.CameraSelector.select(CameraSelector.java:94)
-                                                                                                    	at androidx.camera.core.impl.CameraValidator.validateCameras(CameraValidator.java:91)
-                                                                                                    	at androidx.camera.core.CameraX.lambda$initAndRetryRecursively$2$androidx-camera-core-CameraX(CameraX.java:334) 
-                                                                                                    	at androidx.camera.core.CameraX$$ExternalSyntheticLambda3.run(Unknown Source:10) 
-                                                                                                    	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1167) 
-                                                                                                    	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641) 
-                                                                                                    	at java.lang.Thread.run(Thread.java:923) 
-2026-05-03 19:26:52.407  4162-4206  CameraRepository        com.dawn.libfilter                   D  Added camera: 0
-2026-05-03 19:26:52.416  4162-4206  Camera2CameraInfo       com.dawn.libfilter                   I  Device Level: INFO_SUPPORTED_HARDWARE_LEVEL_EXTERNAL
-2026-05-03 19:26:52.419  4162-4206  CameraValidator         com.dawn.libfilter                   D  Verifying camera lens facing on rk3568_r, lensFacingInteger: null
-2026-05-03 19:26:52.422  4162-4206  CameraValidator         com.dawn.libfilter                   E  Camera LensFacing verification failed, existing cameras: [Camera@fa536a[id=0]]
-2026-05-03 19:26:52.422  4162-4206  CameraX                 com.dawn.libfilter                   E  The device might underreport the amount of the cameras. Finish the initialize task since we are already reaching the maximum number of retries.
-2026-05-03 19:26:52.459  4162-4162  CameraFilterHelper      com.dawn.libfilter                   W  No FRONT/BACK camera, using available camera index=0 (total=1)
-2026-05-03 19:26:52.562  4162-4162  CameraOrientationUtil   com.dawn.libfilter                   D  getRelativeImageRotation: destRotationDegrees=0, sourceRotationDegrees=0, isOppositeFacing=true, result=0
-2026-05-03 19:26:52.564  4162-4162  CameraOrientationUtil   com.dawn.libfilter                   D  getRelativeImageRotation: destRotationDegrees=0, sourceRotationDegrees=0, isOppositeFacing=true, result=0
-2026-05-03 19:26:52.586  4162-4162  CameraOrientationUtil   com.dawn.libfilter                   D  getRelativeImageRotation: destRotationDegrees=0, sourceRotationDegrees=0, isOppositeFacing=true, result=0
-2026-05-03 19:26:52.616  4162-4162  chatty                  com.dawn.libfilter                   I  uid=10121(com.dawn.libfilter) identical 2 lines
-2026-05-03 19:26:52.617  4162-4162  CameraOrientationUtil   com.dawn.libfilter                   D  getRelativeImageRotation: destRotationDegrees=0, sourceRotationDegrees=0, isOppositeFacing=true, result=0
-2026-05-03 19:26:52.629  4162-4162  DeferrableSurface       com.dawn.libfilter                   D  Surface created[total_surfaces=1, used_surfaces=0](androidx.camera.core.impl.ImmediateSurface@988c83b}
-2026-05-03 19:26:52.638  4162-4206  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@fa536a[id=0]} Use case androidx.camera.core.ImageAnalysis-b4be9f33-bf1d-445f-9e7a-48e47b83b474240690115 ACTIVE
-2026-05-03 19:26:52.643  4162-4162  CameraFilterHelper      com.dawn.libfilter                   I  CameraX bound, lensFacing=0 index=0
-2026-05-03 19:26:52.644  4162-4206  UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [] for camera: 0
-2026-05-03 19:26:52.651  4162-4206  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@fa536a[id=0]} Use cases [androidx.camera.core.ImageAnalysis-b4be9f33-bf1d-445f-9e7a-48e47b83b474240690115] now ATTACHED
-2026-05-03 19:26:52.651  4162-4162  DeferrableSurface       com.dawn.libfilter                   D  surface closed,  useCount=0 closed=true androidx.camera.core.impl.ImmediateSurface@988c83b
-2026-05-03 19:26:52.651  4162-4162  DeferrableSurface       com.dawn.libfilter                   D  Surface terminated[total_surfaces=0, used_surfaces=0](androidx.camera.core.impl.ImmediateSurface@988c83b}
-2026-05-03 19:26:52.653  4162-4206  UseCaseAttachState      com.dawn.libfilter                   D  All use case: [androidx.camera.core.ImageAnalysis-b4be9f33-bf1d-445f-9e7a-48e47b83b474240690115] for camera: 0
-2026-05-03 19:26:52.657  4162-4206  UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [androidx.camera.core.ImageAnalysis-b4be9f33-bf1d-445f-9e7a-48e47b83b474240690115] for camera: 0
-2026-05-03 19:26:52.664   188-199   BufferQueueProducer     surfaceflinger                       E  [SurfaceView - com.dawn.libfilter/com.dawn.libfilter.CameraFilterActivity#0](id:bc0000006e,api:0,p:-1,c:188) disconnect: not connected (req=1)
-2026-05-03 19:26:52.665  4162-4203  libEGL                  com.dawn.libfilter                   W  EGLNativeWindowType 0xb400007887409270 disconnect failed
-2026-05-03 19:26:52.668  4162-4206  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@fa536a[id=0]} Resetting Capture Session
-2026-05-03 19:26:52.672  4162-4206  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@fa536a[id=0]} Releasing session in state INITIALIZED
-2026-05-03 19:26:52.675  4162-4206  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@fa536a[id=0]} Attempting to force open the camera.
-2026-05-03 19:26:52.676  4162-4206  CameraStateRegistry     com.dawn.libfilter                   D  tryOpenCamera(Camera@fa536a[id=0]) [Available Cameras: 1, Already Open: false (Previous state: null)] --> SUCCESS
-2026-05-03 19:26:52.679  4162-4206  CameraStateRegistry     com.dawn.libfilter                   D  Recalculating open cameras:
-                                                                                                    Camera                                       State                 
-                                                                                                    -------------------------------------------------------------------
-                                                                                                    Camera@fa536a[id=0]                          OPENING               
-                                                                                                    -------------------------------------------------------------------
-                                                                                                    Open count: 1 (Max allowed: 1)
-2026-05-03 19:26:52.682  4162-4206  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@fa536a[id=0]} Opening camera.
-2026-05-03 19:26:52.685  4162-4206  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@fa536a[id=0]} Transitioning camera internal state: INITIALIZED --> OPENING
-2026-05-03 19:26:52.687  4162-4206  CameraStateMachine      com.dawn.libfilter                   D  New public camera state CameraState{type=OPENING, error=null} from OPENING and null
-2026-05-03 19:26:52.687  4162-4206  CameraStateMachine      com.dawn.libfilter                   D  Publishing new public camera state CameraState{type=OPENING, error=null}
-2026-05-03 19:26:52.689  4162-4206  UseCaseAttachState      com.dawn.libfilter                   D  All use case: [androidx.camera.core.ImageAnalysis-b4be9f33-bf1d-445f-9e7a-48e47b83b474240690115] for camera: 0
-2026-05-03 19:26:52.745  4162-4206  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@fa536a[id=0]} Use case androidx.camera.core.ImageAnalysis-b4be9f33-bf1d-445f-9e7a-48e47b83b474240690115 ACTIVE
-2026-05-03 19:26:52.747  4162-4206  UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [androidx.camera.core.ImageAnalysis-b4be9f33-bf1d-445f-9e7a-48e47b83b474240690115] for camera: 0
-2026-05-03 19:26:52.760  4162-4206  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@fa536a[id=0]} Use cases [androidx.camera.core.ImageAnalysis-b4be9f33-bf1d-445f-9e7a-48e47b83b474240690115] now DETACHED for camera
-2026-05-03 19:26:52.760  4162-4206  UseCaseAttachState      com.dawn.libfilter                   D  All use case: [] for camera: 0
-2026-05-03 19:26:52.762  4162-4206  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@fa536a[id=0]} Resetting Capture Session
-2026-05-03 19:26:52.764  4162-4206  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@fa536a[id=0]} Releasing session in state OPENING
-2026-05-03 19:26:52.764  4162-4206  UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [] for camera: 0
-2026-05-03 19:26:52.768  4162-4206  UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [] for camera: 0
-2026-05-03 19:26:52.772  4162-4206  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@fa536a[id=0]} Closing camera.
-2026-05-03 19:26:52.774  4162-4206  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@fa536a[id=0]} Transitioning camera internal state: OPENING --> CLOSING
-2026-05-03 19:26:52.776  4162-4206  CameraStateRegistry     com.dawn.libfilter                   D  Recalculating open cameras:
-                                                                                                    Camera                                       State                 
-                                                                                                    -------------------------------------------------------------------
-                                                                                                    Camera@fa536a[id=0]                          CLOSING               
-                                                                                                    -------------------------------------------------------------------
-                                                                                                    Open count: 1 (Max allowed: 1)
-2026-05-03 19:26:52.776  4162-4206  CameraStateMachine      com.dawn.libfilter                   D  New public camera state CameraState{type=CLOSING, error=null} from CLOSING and null
-2026-05-03 19:26:52.776  4162-4206  CameraStateMachine      com.dawn.libfilter                   D  Publishing new public camera state CameraState{type=CLOSING, error=null}
-2026-05-03 19:26:52.781  4162-4206  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@fa536a[id=0]} CameraDevice.onOpened()
-2026-05-03 19:26:52.843  4162-4206  UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [] for camera: 0
-2026-05-03 19:26:52.849  4162-4206  UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [] for camera: 0
-2026-05-03 19:26:52.856  4162-4206  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@fa536a[id=0]} CameraDevice.onClosed()
-2026-05-03 19:26:52.857  4162-4206  Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@fa536a[id=0]} Transitioning camera internal state: CLOSING --> INITIALIZED
-2026-05-03 19:26:52.860  4162-4206  CameraStateRegistry     com.dawn.libfilter                   D  Recalculating open cameras:
-                                                                                                    Camera                                       State                 
-                                                                                                    -------------------------------------------------------------------
-                                                                                                    Camera@fa536a[id=0]                          CLOSED                
-                                                                                                    -------------------------------------------------------------------
-                                                                                                    Open count: 0 (Max allowed: 1)
-2026-05-03 19:26:52.860  4162-4206  CameraStateMachine      com.dawn.libfilter                   D  New public camera state CameraState{type=CLOSED, error=null} from CLOSED and null
-2026-05-03 19:26:52.861  4162-4206  CameraStateMachine      com.dawn.libfilter                   D  Publishing new public camera state CameraState{type=CLOSED, error=null}
-2026-05-03 19:26:53.078   188-1089  BufferQueueProducer     surfaceflinger                       E  [com.dawn.libfilter/com.dawn.libfilter.CameraFilterActivity#0](id:bc0000006d,api:0,p:-1,c:188) disconnect: not connected (req=1)
-2026-05-03 19:26:53.078  4162-4188  libEGL                  com.dawn.libfilter                   W  EGLNativeWindowType 0xb40000788740d690 disconnect failed
+2026-05-03 21:14:04.269  5232-5232  RenderThread            com.dawn.libfilter                   I  type=1400 audit(0.0:22488): avc: denied { write } for name="property_service" dev="tmpfs" ino=18524 scontext=u:r:untrusted_app:s0:c121,c256,c512,c768 tcontext=u:object_r:property_socket:s0 tclass=sock_file permissive=1 app=com.dawn.libfilter
+2026-05-03 21:14:04.390  5232-5257  OpenGLRenderer          com.dawn.libfilter                   I  Davey! duration=814ms; Flags=1, IntendedVsync=17787692421614, Vsync=17788325754922, OldestInputEvent=9223372036854775807, NewestInputEvent=0, HandleInputStart=17788337429877, AnimationStart=17788337442127, PerformTraversalsStart=17788337861252, DrawStart=17788436221471, SyncQueued=17788464950932, SyncStart=17788465384640, IssueDrawCommandsStart=17788465490807, SwapBuffers=17788481706892, FrameCompleted=17788507436561, DequeueBufferDuration=323166, QueueBufferDuration=535792, GpuCompleted=0, 
+2026-05-03 21:14:04.675  5232-5249  System                  com.dawn.libfilter                   W  A resource failed to call close. 
+2026-05-03 21:14:09.501  5232-5271  ProfileInstaller        com.dawn.libfilter                   D  Installing profile for com.dawn.libfilter

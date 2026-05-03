@@ -74,6 +74,12 @@ public class CameraFilterHelper {
     private volatile int  previewHeight   = 720;
     private volatile int  rotationDegrees = 0;
 
+    // 上一帧的 Bitmap（在下一帧到达时 recycle，确保 GL 线程已完成上传）
+    // processFrame 运行在单线程 analysisExecutor 上，无需同步
+    private Bitmap pendingRecycleBitmap = null;
+    private volatile boolean firstFrameDelivered = false;
+    private OnFirstFrameListener firstFrameListener;
+
     // 录制
     private GlFilterRecorder   glFilterRecorder;
     private File               currentRecordingFile;
@@ -92,9 +98,18 @@ public class CameraFilterHelper {
         void onError(String message);
     }
 
+    /** 首帧渲染到 GPUImage 后回调一次，用于隐藏 Loading 遮罩。 */
+    public interface OnFirstFrameListener {
+        void onFirstFrame();
+    }
+
     public CameraFilterHelper(Context context, CameraFilterView filterView) {
         this.context    = context;
         this.filterView = filterView;
+    }
+
+    public void setOnFirstFrameListener(OnFirstFrameListener listener) {
+        this.firstFrameListener = listener;
     }
 
     // ==========================================================
@@ -233,10 +248,31 @@ public class CameraFilterHelper {
         }
 
         // 上传到 GPUImage 渲染管线（美颜 + 风格滤镜）
-        // setImageBitmap(bitmap, recycle=true)：GL 线程上传后自动回收 Bitmap，无内存泄漏
+        // ─────────────────────────────────────────────────────────────────────
+        // 不使用 recycle=true：GPUImage 2.1.0 内部把 bitmap 引用存入成员变量，
+        // 在后续 onDrawFrame 里仍会调用 bitmap.getWidth()/getHeight()（用于
+        // adjustImageScaling），若此时 bitmap 已被 recycle 则每帧输出
+        // "Called getWidth() on a recycle()'d bitmap" 警告。
+        // 改为：由我们在下一帧开始时手动 recycle 上一帧的 bitmap。
+        // processFrame 跑在单线程 analysisExecutor 上，帧间隔 ≥ 50ms，
+        // GL 线程（60fps，≤16ms/帧）必然已完成纹理上传，recycle 是安全的。
+        if (pendingRecycleBitmap != null && !pendingRecycleBitmap.isRecycled()) {
+            pendingRecycleBitmap.recycle();
+        }
+        pendingRecycleBitmap = displayBitmap;
+
         GPUImageView gpuView = filterView.getGPUImageView();
-        gpuView.getGPUImage().getRenderer().setImageBitmap(displayBitmap, true);
+        gpuView.getGPUImage().getRenderer().setImageBitmap(displayBitmap, false);
         gpuView.requestRender();
+
+        // 首帧回调（只触发一次）
+        if (!firstFrameDelivered) {
+            firstFrameDelivered = true;
+            OnFirstFrameListener l = firstFrameListener;
+            if (l != null) {
+                mainHandler.post(l::onFirstFrame);
+            }
+        }
 
         // ── 录制路径 ──────────────────────────────────────────────────────────
         if (isRecording && glFilterRecorder != null) {
@@ -308,6 +344,12 @@ public class CameraFilterHelper {
             cameraProvider.unbindAll();
         }
         isPreviewing = false;
+        // 回收最后一帧 bitmap（analysisExecutor 已无新帧投递）
+        if (pendingRecycleBitmap != null && !pendingRecycleBitmap.isRecycled()) {
+            pendingRecycleBitmap.recycle();
+        }
+        pendingRecycleBitmap = null;
+        firstFrameDelivered  = false;
     }
 
     /**
