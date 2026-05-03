@@ -274,7 +274,7 @@ public final class CameraKit {
          */
         public CameraSession setBeautyAndFilter(BeautyParams params, FilterStyle style,
                                                 float intensity) {
-            filterView.setBeautyAndFilter(params, style, intensity);
+            helper.notifyFilterChanged(params, style, intensity);
             return this;
         }
 
@@ -285,7 +285,10 @@ public final class CameraKit {
          * @return this
          */
         public CameraSession updateBeauty(BeautyParams params) {
-            filterView.updateBeautyParams(params);
+            BeautyParams bp = params != null ? params : BeautyParams.defaultCamera();
+            helper.notifyFilterChanged(bp,
+                    filterView.getCurrentFilterStyle(),
+                    filterView.getCurrentFilterIntensity());
             return this;
         }
 
@@ -297,7 +300,7 @@ public final class CameraKit {
          * @return this
          */
         public CameraSession switchFilter(FilterStyle style, float intensity) {
-            filterView.updateFilterStyle(style, intensity);
+            helper.notifyFilterChanged(filterView.getCurrentBeautyParams(), style, intensity);
             return this;
         }
 
@@ -308,14 +311,15 @@ public final class CameraKit {
          * @return this
          */
         public CameraSession setFilterIntensity(float intensity) {
-            filterView.updateFilterIntensity(intensity);
+            helper.notifyFilterChanged(filterView.getCurrentBeautyParams(),
+                    filterView.getCurrentFilterStyle(), intensity);
             return this;
         }
 
         /**
-         * 开始录制视频（带音频）。
+         * 开始录制视频（带音频+滤镜效果）。
          * <p>
-         * 注意：Camera1 限制，录制视频不含 GPU 滤镜/美颜效果；预览仍显示滤镜。
+         * 录制的视频与预览画面一致，包含当前美颜和滤镜效果。
          * 需要 {@code CAMERA} + {@code RECORD_AUDIO} 权限。
          *
          * @param outputFile 输出 .mp4 文件，传 {@code null} 自动生成到应用外部 Movies 目录
