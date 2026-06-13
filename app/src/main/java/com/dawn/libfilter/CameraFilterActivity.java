@@ -1,5 +1,6 @@
 package com.dawn.libfilter;
 
+import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -33,7 +34,6 @@ public class CameraFilterActivity extends AppCompatActivity {
     private CameraFilterView cameraFilterView;
     private CameraFilterHelper cameraHelper;
     private SeekBar seekBarIntensity;
-    private LinearLayout beautyControls;
     private SeekBar seekBarSmoothness;
     private SeekBar seekBarWhiten;
     private SeekBar seekBarRosy;
@@ -43,6 +43,13 @@ public class CameraFilterActivity extends AppCompatActivity {
     private SeekBar seekBarBeautySaturation;
     private TextView tvFilterName;
     private RecyclerView rvFilters;
+
+    // Tab 切换
+    private LinearLayout layoutTabs;
+    private View tabIndicator;
+    private View panelFilter, panelBeauty, panelSetting;
+    private TextView tabFilter, tabBeauty, tabSetting;
+    private int currentTab = 0;
 
     private Button btnRecord;
     private TextView tvRecordCountdown;
@@ -62,7 +69,6 @@ public class CameraFilterActivity extends AppCompatActivity {
 
         cameraFilterView = findViewById(R.id.camera_filter_view);
         seekBarIntensity = findViewById(R.id.seekbar_intensity);
-        beautyControls = findViewById(R.id.layout_beauty_controls);
         seekBarSmoothness = findViewById(R.id.seekbar_smoothness);
         seekBarWhiten = findViewById(R.id.seekbar_whiten);
         seekBarRosy = findViewById(R.id.seekbar_rosy);
@@ -73,6 +79,16 @@ public class CameraFilterActivity extends AppCompatActivity {
         tvFilterName = findViewById(R.id.tv_filter_name);
         rvFilters = findViewById(R.id.rv_filters);
 
+        // Tab 切换
+        layoutTabs = findViewById(R.id.layout_tabs);
+        tabIndicator = findViewById(R.id.tab_indicator);
+        panelFilter = findViewById(R.id.panel_filter);
+        panelBeauty = findViewById(R.id.panel_beauty);
+        panelSetting = findViewById(R.id.panel_setting);
+        tabFilter = findViewById(R.id.tab_filter);
+        tabBeauty = findViewById(R.id.tab_beauty);
+        tabSetting = findViewById(R.id.tab_setting);
+
         cameraHelper = new CameraFilterHelper(this, cameraFilterView);
 
         // 首帧到达时隐藏 loading 遮罩
@@ -81,6 +97,7 @@ public class CameraFilterActivity extends AppCompatActivity {
         setupFilterList();
         setupFilterIntensitySeekBar();
         setupBeautyControls();
+        setupTabs();
 
         applyModules();
 
@@ -353,6 +370,44 @@ public class CameraFilterActivity extends AppCompatActivity {
         void onChanged(float value);
     }
 
+    // ==================== Tab 切换 ====================
+
+    private void setupTabs() {
+        tabFilter.setOnClickListener(v -> switchTab(0));
+        tabBeauty.setOnClickListener(v -> switchTab(1));
+        tabSetting.setOnClickListener(v -> switchTab(2));
+        // 初始化指示器宽度为屏幕1/3
+        tabIndicator.post(() -> {
+            int tabW = layoutTabs.getWidth() / 3;
+            tabIndicator.getLayoutParams().width = tabW;
+            tabIndicator.requestLayout();
+        });
+    }
+
+    private void switchTab(int tab) {
+        if (currentTab == tab) return;
+        currentTab = tab;
+
+        // 面板切换
+        panelFilter.setVisibility(tab == 0 ? View.VISIBLE : View.GONE);
+        panelBeauty.setVisibility(tab == 1 ? View.VISIBLE : View.GONE);
+        panelSetting.setVisibility(tab == 2 ? View.VISIBLE : View.GONE);
+
+        // Tab 文字颜色
+        tabFilter.setTextColor(tab == 0 ? 0xFFFFFFFF : 0x88FFFFFF);
+        tabBeauty.setTextColor(tab == 1 ? 0xFFFFFFFF : 0x88FFFFFF);
+        tabSetting.setTextColor(tab == 2 ? 0xFFFFFFFF : 0x88FFFFFF);
+
+        // 指示器动画
+        int tabW = layoutTabs.getWidth() / 3;
+        float targetX = tab * tabW;
+        ValueAnimator anim = ValueAnimator.ofFloat(tabIndicator.getTranslationX(), targetX);
+        anim.setDuration(200);
+        anim.addUpdateListener(a ->
+                tabIndicator.setTranslationX((Float) a.getAnimatedValue()));
+        anim.start();
+    }
+
     // ==================== 滤镜 Adapter ====================
 
     private class FilterAdapter extends RecyclerView.Adapter<FilterAdapter.VH> {
@@ -374,8 +429,10 @@ public class CameraFilterActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(@NonNull VH holder, int position) {
             FilterStyle style = items.get(position);
+            boolean selected = position == selectedPos;
             holder.tvName.setText(style.getDisplayNameCn());
-            holder.itemView.setSelected(position == selectedPos);
+            holder.tvName.setTextColor(selected ? 0xFFFFFFFF : 0x88FFFFFF);
+            holder.itemView.setSelected(selected);
             holder.itemView.setOnClickListener(v -> {
                 int old = selectedPos;
                 selectedPos = holder.getBindingAdapterPosition();

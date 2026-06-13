@@ -1,5 +1,6 @@
 package com.dawn.libfilter;
 
+import android.animation.ValueAnimator;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -10,6 +11,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -36,7 +38,6 @@ public class ImageFilterActivity extends AppCompatActivity {
 
     private GPUImageView gpuImageView;
     private SeekBar seekBarIntensity;
-    private LinearLayout beautyControls;
     private SeekBar seekBarSmoothness;
     private SeekBar seekBarWhiten;
     private SeekBar seekBarRosy;
@@ -46,6 +47,13 @@ public class ImageFilterActivity extends AppCompatActivity {
     private SeekBar seekBarBeautySaturation;
     private TextView tvFilterName;
     private RecyclerView rvFilters;
+
+    // Tab 切换
+    private LinearLayout layoutTabs;
+    private View tabIndicator;
+    private View panelFilter, panelBeauty, panelSetting;
+    private TextView tabFilter, tabBeauty, tabSetting;
+    private int currentTab = 0;
 
     private FilterManager filterManager;
     private Bitmap originalBitmap;
@@ -70,7 +78,6 @@ public class ImageFilterActivity extends AppCompatActivity {
 
         gpuImageView = findViewById(R.id.gpu_image_view);
         seekBarIntensity = findViewById(R.id.seekbar_intensity);
-        beautyControls = findViewById(R.id.layout_beauty_controls);
         seekBarSmoothness = findViewById(R.id.seekbar_smoothness);
         seekBarWhiten = findViewById(R.id.seekbar_whiten);
         seekBarRosy = findViewById(R.id.seekbar_rosy);
@@ -81,14 +88,27 @@ public class ImageFilterActivity extends AppCompatActivity {
         tvFilterName = findViewById(R.id.tv_filter_name);
         rvFilters = findViewById(R.id.rv_filters);
 
+        // Tab 切换
+        layoutTabs = findViewById(R.id.layout_tabs);
+        tabIndicator = findViewById(R.id.tab_indicator);
+        panelFilter = findViewById(R.id.panel_filter);
+        panelBeauty = findViewById(R.id.panel_beauty);
+        panelSetting = findViewById(R.id.panel_setting);
+        tabFilter = findViewById(R.id.tab_filter);
+        tabBeauty = findViewById(R.id.tab_beauty);
+        tabSetting = findViewById(R.id.tab_setting);
+
         setupFilterList();
         setupFilterIntensitySeekBar();
         setupBeautyControls();
+        setupTabs();
 
-        // 选择图片按钮
+        // 选择图片按钮（顶部 + 设置面板底部）
         findViewById(R.id.btn_pick_image).setOnClickListener(v -> pickImage.launch("image/*"));
-        // 保存按钮
+        findViewById(R.id.btn_pick_image_bottom).setOnClickListener(v -> pickImage.launch("image/*"));
+        // 保存按钮（顶部 + 设置面板底部）
         findViewById(R.id.btn_save).setOnClickListener(v -> saveImage());
+        findViewById(R.id.btn_save_bottom).setOnClickListener(v -> saveImage());
     }
 
     private void loadImage(Uri uri) {
@@ -287,8 +307,10 @@ public class ImageFilterActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(@NonNull VH holder, int position) {
             FilterStyle style = items.get(position);
+            boolean selected = position == selectedPos;
             holder.tvName.setText(style.getDisplayNameCn());
-            holder.itemView.setSelected(position == selectedPos);
+            holder.tvName.setTextColor(selected ? 0xFFFFFFFF : 0x88FFFFFF);
+            holder.itemView.setSelected(selected);
             holder.itemView.setOnClickListener(v -> {
                 int old = selectedPos;
                 selectedPos = holder.getBindingAdapterPosition();
@@ -327,5 +349,39 @@ public class ImageFilterActivity extends AppCompatActivity {
 
     private interface OnBeautyValueChanged {
         void onChanged(float value);
+    }
+
+    // ==================== Tab 切换 ====================
+
+    private void setupTabs() {
+        tabFilter.setOnClickListener(v -> switchTab(0));
+        tabBeauty.setOnClickListener(v -> switchTab(1));
+        tabSetting.setOnClickListener(v -> switchTab(2));
+        tabIndicator.post(() -> {
+            int tabW = layoutTabs.getWidth() / 3;
+            tabIndicator.getLayoutParams().width = tabW;
+            tabIndicator.requestLayout();
+        });
+    }
+
+    private void switchTab(int tab) {
+        if (currentTab == tab) return;
+        currentTab = tab;
+
+        panelFilter.setVisibility(tab == 0 ? View.VISIBLE : View.GONE);
+        panelBeauty.setVisibility(tab == 1 ? View.VISIBLE : View.GONE);
+        panelSetting.setVisibility(tab == 2 ? View.VISIBLE : View.GONE);
+
+        tabFilter.setTextColor(tab == 0 ? 0xFFFFFFFF : 0x88FFFFFF);
+        tabBeauty.setTextColor(tab == 1 ? 0xFFFFFFFF : 0x88FFFFFF);
+        tabSetting.setTextColor(tab == 2 ? 0xFFFFFFFF : 0x88FFFFFF);
+
+        int tabW = layoutTabs.getWidth() / 3;
+        float targetX = tab * tabW;
+        ValueAnimator anim = ValueAnimator.ofFloat(tabIndicator.getTranslationX(), targetX);
+        anim.setDuration(200);
+        anim.addUpdateListener(a ->
+                tabIndicator.setTranslationX((Float) a.getAnimatedValue()));
+        anim.start();
     }
 }
