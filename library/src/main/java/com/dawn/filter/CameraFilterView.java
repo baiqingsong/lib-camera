@@ -195,8 +195,17 @@ public class CameraFilterView extends FrameLayout {
 
     public void setBeautyAndFilter(BeautyParams beautyParams, FilterStyle filterStyle, float intensity) {
         currentBeautyParams = beautyParams == null ? BeautyParams.defaultCamera() : beautyParams.copy();
-        currentFilterStyle = filterStyle == null ? FilterStyle.ORIGINAL : filterStyle;
         currentFilterIntensity = Math.max(0f, Math.min(1f, intensity));
+
+        // 滤镜类型没变时，仅更新强度和美颜参数，避免重建 shader 和 LUT 导致崩溃
+        if (activePipeline != null && currentFilterStyle == filterStyle) {
+            activePipeline.updateBeautyParams(currentBeautyParams);
+            activePipeline.updateFilterIntensity(currentFilterIntensity);
+            gpuImageView.requestRender();
+            return;
+        }
+
+        currentFilterStyle = filterStyle == null ? FilterStyle.ORIGINAL : filterStyle;
         activePipeline = new BeautyFilterPipeline(currentBeautyParams, currentFilterStyle, currentFilterIntensity);
         activeFilter = activePipeline;
         gpuImageView.setFilter(activePipeline);

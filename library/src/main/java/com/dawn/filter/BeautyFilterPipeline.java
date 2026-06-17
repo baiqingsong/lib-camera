@@ -45,6 +45,8 @@ public class BeautyFilterPipeline extends GPUImageFilterGroup {
         this.filterIntensity = clamp(filterIntensity);
         if (styleFilter instanceof GPUImageLookupFilter) {
             ((GPUImageLookupFilter) styleFilter).setIntensity(this.filterIntensity);
+        } else if (styleFilter instanceof RetroFilter) {
+            ((RetroFilter) styleFilter).setIntensity(this.filterIntensity);
         } else if (styleFilter instanceof BlackWhiteMoodFilter) {
             ((BlackWhiteMoodFilter) styleFilter).setIntensity(this.filterIntensity);
         } else if (styleFilter instanceof TexturedGrayFilter) {

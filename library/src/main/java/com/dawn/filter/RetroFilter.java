@@ -29,7 +29,17 @@ public class RetroFilter extends GPUImageFilterGroup {
     private float intensity;
 
     public RetroFilter(float intensity) {
-        this(FilterPreset.RETRO_BOOTH.createLookupFilter(clamp(intensity)), clamp(intensity));
+        this(FilterPreset.RETRO_BOOTH, intensity);
+    }
+
+    /**
+     * 使用指定预设创建复古滤镜。
+     *
+     * @param preset    调色预设（如 RETRO_BOOTH / RETRO_BOOTH_2）
+     * @param intensity 强度 0.0~1.0
+     */
+    public RetroFilter(FilterPreset preset, float intensity) {
+        this(preset.createLookupFilter(clamp(intensity)), clamp(intensity));
     }
 
     private RetroFilter(GPUImageLookupFilter lookupFilter, float intensity) {

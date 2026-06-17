@@ -84,6 +84,15 @@ public class FilterPreset implements Serializable {
                     .shadowsLift(0.01f).highlightsPull(0.04f)
                     .shadowTint(0f, 0f, 0.005f));
 
+    /** 复古照相亭2：暖调褪色 + 低对比 + 暗部浮起，模拟老照片经年存放后的暖黄褪色质感 */
+    public static final FilterPreset RETRO_BOOTH_2 = new FilterPreset(
+            "复古照相亭2", "暖调褪色老照片风格",
+            new LutGenerator.ColorParams()
+                    .saturation(0.18f).contrast(0.95f).temperature(0.07f).tint(0f)
+                    .brightness(0.02f).gamma(0.97f)
+                    .shadowsLift(0.05f).highlightsPull(0.02f)
+                    .shadowTint(0.02f, 0.01f, 0f));
+
     /** 清新：冷青通透、低饱和，适合日常和探店自拍 */
     public static final FilterPreset FRESH = new FilterPreset(
             "清新", "冷青通透风格",

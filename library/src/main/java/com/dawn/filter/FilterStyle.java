@@ -13,6 +13,7 @@ public enum FilterStyle {
 
     ORIGINAL("原图", null),
     RETRO("复古", FilterPreset.RETRO_BOOTH),
+    RETRO_2("复古2", FilterPreset.RETRO_BOOTH_2),
     BLACK_WHITE("黑白", FilterPreset.BLACK_WHITE),
     FRESH("小清新", FilterPreset.FRESH),
     ICE_BLUE("冰蓝", FilterPreset.ICE_BLUE),
@@ -41,6 +42,9 @@ public enum FilterStyle {
     public GPUImageFilter createFilter(float intensity) {
         if (this == RETRO) {
             return new RetroFilter(intensity);
+        }
+        if (this == RETRO_2) {
+            return new RetroFilter(FilterPreset.RETRO_BOOTH_2, intensity);
         }
         if (this == BLACK_WHITE) {
             return new BlackWhiteMoodFilter(intensity);
@@ -74,6 +78,7 @@ public enum FilterStyle {
         List<FilterStyle> styles = new ArrayList<>();
         styles.add(ORIGINAL);
         styles.add(RETRO);
+        styles.add(RETRO_2);
         styles.add(ICE_BLUE);
         styles.add(FRESH);
         styles.add(PEACH);
