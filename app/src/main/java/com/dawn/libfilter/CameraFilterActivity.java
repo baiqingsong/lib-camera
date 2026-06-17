@@ -57,6 +57,7 @@ public class CameraFilterActivity extends AppCompatActivity {
 
     private Button btnFlipH;
     private Button btnFlipV;
+    private Button btnRotate90;
 
     private FilterStyle currentFilterStyle = FilterStyle.ORIGINAL;
     private float currentFilterIntensity = 0.8f;
@@ -150,6 +151,15 @@ public class CameraFilterActivity extends AppCompatActivity {
             btnFlipV.setAlpha(next ? 1f : 0.5f);
         });
         btnFlipV.setAlpha(0.5f);
+
+        // 旋转90°
+        btnRotate90 = findViewById(R.id.btn_rotate_90);
+        btnRotate90.setOnClickListener(v -> {
+            boolean next = !cameraHelper.isExtraRotate90();
+            cameraHelper.setExtraRotate90(next);
+            btnRotate90.setAlpha(next ? 1f : 0.5f);
+        });
+        btnRotate90.setAlpha(0.5f);
 
         // 视频列表
         findViewById(R.id.btn_video_list).setOnClickListener(v ->

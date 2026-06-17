@@ -64,9 +64,10 @@ public class CameraFilterHelper {
     private boolean               isSwitchingCamera= false;
     private boolean               isCapturing      = false;
     private volatile boolean      isRecording      = false;
-    // 用户手动控制的额外镜像（干准自动方向修正之上）
+    // 用户手动控制的额外镜像/旋转（叠加在自动方向修正之上）
     private volatile boolean      extraFlipH       = false;
     private volatile boolean      extraFlipV       = false;
+    private volatile boolean      extraRotate90    = false;
     // 防止多次调用 startCamera() 产生重复的 ProcessCameraProvider 回调
     private volatile int          startCameraGen   = 0;
     private long                  lastSwitchAtMs   = 0L;
@@ -132,7 +133,8 @@ public class CameraFilterHelper {
         this.extraFlipH = flip;
         if (isRecording && glFilterRecorder != null) {
             boolean isFront = (lensFacing == CameraSelector.LENS_FACING_FRONT);
-            glFilterRecorder.setTransform(rotationDegrees, isFront ^ extraFlipH, extraFlipV);
+            int totalRotDeg = (rotationDegrees + (extraRotate90 ? 90 : 0)) % 360;
+            glFilterRecorder.setTransform(totalRotDeg, isFront ^ extraFlipH, extraFlipV);
         }
     }
 
@@ -143,11 +145,36 @@ public class CameraFilterHelper {
         this.extraFlipV = flip;
         if (isRecording && glFilterRecorder != null) {
             boolean isFront = (lensFacing == CameraSelector.LENS_FACING_FRONT);
-            glFilterRecorder.setTransform(rotationDegrees, isFront ^ extraFlipH, extraFlipV);
+            int totalRotDeg = (rotationDegrees + (extraRotate90 ? 90 : 0)) % 360;
+            glFilterRecorder.setTransform(totalRotDeg, isFront ^ extraFlipH, extraFlipV);
         }
     }
 
     public boolean isExtraFlipV() { return extraFlipV; }
+
+    /** 切换 90° 旋转状态。Bitmap 旋转会改变帧尺寸，因此同时重建 GPUImageView
+     *  以清空 GL 上下文，避免纹理尺寸变化导致 GL vertex attribute 溢出。 */
+    public void setExtraRotate90(boolean rotate) {
+        if (this.extraRotate90 == rotate) return;
+        this.extraRotate90 = rotate;
+        // 重建 GPUImageView：清空 GL 上下文，使新尺寸的帧从零开始初始化
+        filterView.recreateGPUImageView();
+        resetFirstFrameState();
+        // 录制：通过 setTransform 将旋转烘焙进视频帧
+        if (isRecording && glFilterRecorder != null) {
+            boolean isFront = (lensFacing == CameraSelector.LENS_FACING_FRONT);
+            int totalRotDeg = (rotationDegrees + (extraRotate90 ? 90 : 0)) % 360;
+            glFilterRecorder.setTransform(totalRotDeg, isFront ^ extraFlipH, extraFlipV);
+        }
+    }
+
+    /** 重置首帧状态，使 recreateGPUImageView 后的首帧重新触发 loading 隐藏。 */
+    private void resetFirstFrameState() {
+        firstFrameDelivered = false;
+        mainHandler.post(() -> filterView.setLoadingVisible(true));
+    }
+
+    public boolean isExtraRotate90() { return extraRotate90; }
 
     // ==========================================================
     // 权限
@@ -271,16 +298,18 @@ public class CameraFilterHelper {
         // "if (runOnDraw.isEmpty())" 检查在特定时机会丢弃所有帧。
         Bitmap srcBitmap = image.toBitmap();
 
-        // 旋转 + 前置摄像头水平镜像 + 用户额外镜像（在 CPU 侧用 Matrix 处理，不依赖 GPUImage setRotation）
+        // 旋转 + 前置水平镜像 + 用户额外镜像/旋转（CPU 侧 Matrix，不依赖 GPUImage setRotation）
         boolean isFront = (lensFacing == CameraSelector.LENS_FACING_FRONT);
-        boolean needFlipH = isFront ^ extraFlipH;   // 前置镜像 XOR 用户手动镜像
+        boolean needFlipH = isFront ^ extraFlipH;
         boolean needFlipV = extraFlipV;
+        boolean needRotate90 = extraRotate90;
         Bitmap displayBitmap;
-        if (rDeg == 0 && !needFlipH && !needFlipV) {
+        if (rDeg == 0 && !needFlipH && !needFlipV && !needRotate90) {
             displayBitmap = srcBitmap;
         } else {
             Matrix matrix = new Matrix();
-            matrix.setRotate(rDeg);
+            int totalRotDeg = (rDeg + (needRotate90 ? 90 : 0)) % 360;
+            matrix.setRotate(totalRotDeg);
             if (needFlipH || needFlipV) {
                 matrix.postScale(needFlipH ? -1f : 1f, needFlipV ? -1f : 1f);
             }
@@ -650,7 +679,8 @@ public class CameraFilterHelper {
 
         // 将旋转和镜像烘焙进视频帧，不再依赖播放器解析 orientation hint
         boolean recFlipH = (lensFacing == CameraSelector.LENS_FACING_FRONT) ^ extraFlipH;
-        glFilterRecorder.setTransform(rotationDegrees, recFlipH, extraFlipV);
+        int totalRotDeg = (rotationDegrees + (extraRotate90 ? 90 : 0)) % 360;
+        glFilterRecorder.setTransform(totalRotDeg, recFlipH, extraFlipV);
 
         try {
             glFilterRecorder.prepare();
