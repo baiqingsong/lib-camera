@@ -12,6 +12,7 @@ import jp.co.cyberagent.android.gpuimage.filter.GPUImageFilter;
 public enum FilterStyle {
 
     ORIGINAL("原图", null),
+    RETRO("复古", FilterPreset.RETRO_BOOTH),
     BLACK_WHITE("黑白", FilterPreset.BLACK_WHITE),
     FRESH("小清新", FilterPreset.FRESH),
     ICE_BLUE("冰蓝", FilterPreset.ICE_BLUE),
@@ -38,6 +39,9 @@ public enum FilterStyle {
     }
 
     public GPUImageFilter createFilter(float intensity) {
+        if (this == RETRO) {
+            return new RetroFilter(intensity);
+        }
         if (this == BLACK_WHITE) {
             return new BlackWhiteMoodFilter(intensity);
         }
@@ -69,6 +73,7 @@ public enum FilterStyle {
     public static List<FilterStyle> getSupportedStyles() {
         List<FilterStyle> styles = new ArrayList<>();
         styles.add(ORIGINAL);
+        styles.add(RETRO);
         styles.add(ICE_BLUE);
         styles.add(FRESH);
         styles.add(PEACH);
