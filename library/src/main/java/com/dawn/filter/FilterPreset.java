@@ -58,12 +58,27 @@ public class FilterPreset implements Serializable {
     }
 
     public GPUImageLookupFilter createLookupFilter(float intensity) {
-        if (cachedLut == null) {
-            cachedLut = LutGenerator.generateLut(colorParams);
-        }
-                GPUImageLookupFilter filter = new GPUImageLookupFilter(Math.max(0f, Math.min(1f, intensity)));
-        filter.setBitmap(cachedLut);
+        GPUImageLookupFilter filter =
+                new GPUImageLookupFilter(Math.max(0f, Math.min(1f, intensity)));
+        filter.setBitmap(getLut());
         return filter;
+    }
+
+    /**
+     * 获取缓存的 LUT 位图（线程安全的懒加载）。
+     */
+    private Bitmap getLut() {
+        Bitmap lut = cachedLut;
+        if (lut == null) {
+            synchronized (this) {
+                lut = cachedLut;
+                if (lut == null) {
+                    lut = LutGenerator.generateLut(colorParams);
+                    cachedLut = lut;
+                }
+            }
+        }
+        return lut;
     }
 
     // ========================= 预设定义 =========================
@@ -318,6 +333,7 @@ public class FilterPreset implements Serializable {
      */
     public static List<FilterPreset> getAllPresets() {
         List<FilterPreset> presets = new ArrayList<>();
+        // 业务精选预设（与 FilterStyle 对应）
         presets.add(BLACK_WHITE);
         presets.add(FRESH);
         presets.add(ICE_BLUE);
@@ -326,13 +342,38 @@ public class FilterPreset implements Serializable {
         presets.add(PERSONALITY);
         presets.add(COOL_WHITE_SKIN);
         presets.add(ADVANCED_GRAY);
+        // 其余全部预设
+        presets.add(VINTAGE);
+        presets.add(RETRO_BOOTH);
+        presets.add(RETRO_BOOTH_2);
+        presets.add(FILM);
+        presets.add(DREAMY);
+        presets.add(COOL);
+        presets.add(WARM);
+        presets.add(LOMO);
+        presets.add(JAPANESE);
+        presets.add(SUNSET);
+        presets.add(HK_VINTAGE);
+        presets.add(FOREST);
+        presets.add(MINT);
+        presets.add(CREAM);
+        presets.add(DARK_MOODY);
+        presets.add(ICY);
+        presets.add(BRIGHTEN);
+        presets.add(FADED);
+        presets.add(CANDY);
+        presets.add(CYBERPUNK);
+        presets.add(INSTAGRAM);
+        presets.add(PURPLE_HAZE);
+        presets.add(ORANGE_SODA);
+        presets.add(TEAL_ORANGE);
         return presets;
     }
 
     /**
      * 释放缓存的 LUT 位图，回收内存。
      */
-    public void clearLutCache() {
+    public synchronized void clearLutCache() {
         if (cachedLut != null && !cachedLut.isRecycled()) {
             cachedLut.recycle();
         }
@@ -346,29 +387,6 @@ public class FilterPreset implements Serializable {
         for (FilterPreset preset : getAllPresets()) {
             preset.clearLutCache();
         }
-        // 也清除未在列表中的预设
-        VINTAGE.clearLutCache();
-        FILM.clearLutCache();
-        DREAMY.clearLutCache();
-        COOL.clearLutCache();
-        WARM.clearLutCache();
-        LOMO.clearLutCache();
-        JAPANESE.clearLutCache();
-        SUNSET.clearLutCache();
-        HK_VINTAGE.clearLutCache();
-        FOREST.clearLutCache();
-        MINT.clearLutCache();
-        CREAM.clearLutCache();
-        DARK_MOODY.clearLutCache();
-        ICY.clearLutCache();
-        BRIGHTEN.clearLutCache();
-        FADED.clearLutCache();
-        CANDY.clearLutCache();
-        CYBERPUNK.clearLutCache();
-        INSTAGRAM.clearLutCache();
-        PURPLE_HAZE.clearLutCache();
-        ORANGE_SODA.clearLutCache();
-        TEAL_ORANGE.clearLutCache();
     }
 
     @Override

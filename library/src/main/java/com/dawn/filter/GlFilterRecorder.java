@@ -41,7 +41,7 @@ import jp.co.cyberagent.android.gpuimage.filter.GPUImageFilter;
  * </pre>
  * 音频：AudioRecord → AAC encoder → MediaMuxer
  */
-public class GlFilterRecorder {
+class GlFilterRecorder {
 
     private static final String TAG = "GlFilterRecorder";
 

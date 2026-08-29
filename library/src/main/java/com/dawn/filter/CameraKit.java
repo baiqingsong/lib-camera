@@ -77,6 +77,9 @@ public final class CameraKit {
      * @param context Application 或 Activity context 均可，内部持有 ApplicationContext。
      */
     public static void init(Context context) {
+        if (context == null) {
+            throw new IllegalArgumentException("context must not be null");
+        }
         if (instance == null) {
             synchronized (CameraKit.class) {
                 if (instance == null) {
@@ -224,6 +227,16 @@ public final class CameraKit {
         return FilterStyle.getSupportedStyles();
     }
 
+    /**
+     * 清除所有滤镜预设缓存的 LUT 位图，释放内存。
+     * <p>
+     * 注意：仅在确认无滤镜正在使用时调用（如相机已 onPause、FilterManager 已 release），
+     * 否则可能触发 “trying to use a recycled bitmap” 崩溃。
+     */
+    public static void clearLutCaches() {
+        FilterPreset.clearAllLutCaches();
+    }
+
     // =========================================================
     //  CameraSession — 相机实时预览的生命周期封装
     // =========================================================
@@ -313,6 +326,76 @@ public final class CameraKit {
         public CameraSession setFilterIntensity(float intensity) {
             helper.notifyFilterChanged(filterView.getCurrentBeautyParams(),
                     filterView.getCurrentFilterStyle(), intensity);
+            return this;
+        }
+
+        // ── 预览控制（镜像 / 旋转 / 宽高比 / 首帧回调） ──────────────
+
+        /**
+         * 设置首帧渲染回调（用于隐藏启动 Loading 遮罩等）。
+         *
+         * @param listener 首帧回调（主线程），传 null 移除
+         * @return this
+         */
+        public CameraSession setOnFirstFrameListener(
+                CameraFilterHelper.OnFirstFrameListener listener) {
+            helper.setOnFirstFrameListener(listener);
+            return this;
+        }
+
+        /**
+         * 切换水平镜像（预览与录制同步生效）。
+         *
+         * @return this
+         */
+        public CameraSession setExtraFlipH(boolean flip) {
+            helper.setExtraFlipH(flip);
+            return this;
+        }
+
+        /** 当前是否开启水平镜像。 */
+        public boolean isExtraFlipH() {
+            return helper.isExtraFlipH();
+        }
+
+        /**
+         * 切换垂直翻转（预览与录制同步生效）。
+         *
+         * @return this
+         */
+        public CameraSession setExtraFlipV(boolean flip) {
+            helper.setExtraFlipV(flip);
+            return this;
+        }
+
+        /** 当前是否开启垂直翻转。 */
+        public boolean isExtraFlipV() {
+            return helper.isExtraFlipV();
+        }
+
+        /**
+         * 切换 90° 旋转（预览与录制同步生效）。
+         *
+         * @return this
+         */
+        public CameraSession setExtraRotate90(boolean rotate) {
+            helper.setExtraRotate90(rotate);
+            return this;
+        }
+
+        /** 当前是否开启 90° 旋转。 */
+        public boolean isExtraRotate90() {
+            return helper.isExtraRotate90();
+        }
+
+        /**
+         * 设置预览宽高比。
+         *
+         * @param ratio 宽 / 高，例如 3f/4f、9f/16f；非正数忽略
+         * @return this
+         */
+        public CameraSession setPreviewAspectRatio(float ratio) {
+            filterView.setPreviewAspectRatio(ratio);
             return this;
         }
 
@@ -434,14 +517,20 @@ public final class CameraKit {
 
         /**
          * 返回内部 {@link CameraFilterHelper}，供需要精细控制的高级用法。
+         *
+         * @deprecated 暴露内部实现，破坏封装。请优先使用 {@link CameraSession} 提供的高层 API。
          */
+        @Deprecated
         public CameraFilterHelper getHelper() {
             return helper;
         }
 
         /**
          * 返回内部 {@link CameraFilterView}，供直接操作视图。
+         *
+         * @deprecated 暴露内部实现，破坏封装。请优先使用 {@link CameraSession} 提供的高层 API。
          */
+        @Deprecated
         public CameraFilterView getFilterView() {
             return filterView;
         }

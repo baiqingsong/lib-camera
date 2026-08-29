@@ -28,7 +28,7 @@ import jp.co.cyberagent.android.gpuimage.filter.GPUImageFilterGroup;
  *   Bitmap result3 = fm.applyFilterChain(bitmap, chain);
  * </pre>
  */
-public class FilterManager {
+public class FilterManager implements AutoCloseable {
 
     private final GPUImage gpuImage;
 
@@ -189,7 +189,11 @@ public class FilterManager {
 
     /**
      * 获取内部 GPUImage 实例（高级用法，如绑定到 GPUImageView）。
+     *
+     * @deprecated 暴露内部渲染引擎实现，破坏封装。请优先使用 {@link #applyFilter} /
+     *             {@link #applyBeauty} / {@link #applyModules} 等高层 API。
      */
+    @Deprecated
     public GPUImage getGpuImage() {
         return gpuImage;
     }
@@ -201,5 +205,14 @@ public class FilterManager {
         if (gpuImage != null) {
             gpuImage.deleteImage();
         }
+    }
+
+    /**
+     * {@link AutoCloseable} 语义，等价于 {@link #release()}，
+     * 支持 try-with-resources 自动释放 GPU 资源。
+     */
+    @Override
+    public void close() {
+        release();
     }
 }
