@@ -39,7 +39,7 @@ public enum FilterStyle {
         return preset != null;
     }
 
-    public GPUImageFilter createFilter(float intensity) {
+    GPUImageFilter createFilter(float intensity) {
         if (this == RETRO) {
             return new RetroFilter(intensity);
         }

@@ -105,7 +105,7 @@ public class CameraFilterView extends FrameLayout {
     /**
      * 获取内部 GPUImageView，用于 CameraHelper 绑定相机。
      */
-    public GPUImageView getGPUImageView() {
+    GPUImageView getGPUImageView() {
         return gpuImageView;
     }
 

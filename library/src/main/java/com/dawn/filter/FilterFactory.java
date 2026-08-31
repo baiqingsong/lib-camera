@@ -6,7 +6,7 @@ import jp.co.cyberagent.android.gpuimage.filter.*;
  * 滤镜工厂：根据 FilterType 创建对应的 GPUImageFilter 实例。
  * 支持传入 intensity (0.0~1.0) 来控制滤镜强度。
  */
-public class FilterFactory {
+class FilterFactory {
 
     private FilterFactory() {
     }

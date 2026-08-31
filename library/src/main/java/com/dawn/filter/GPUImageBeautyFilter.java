@@ -8,7 +8,7 @@ import jp.co.cyberagent.android.gpuimage.filter.GPUImageFilter;
  * 单 pass 实时美颜滤镜。
  * 将磨皮、美白、红润、亮度和对比度合并到同一着色器中，降低实时预览开销。
  */
-public class GPUImageBeautyFilter extends GPUImageFilter {
+class GPUImageBeautyFilter extends GPUImageFilter {
 
     private static final String BEAUTY_FRAGMENT_SHADER =
             "precision highp float;\n" +

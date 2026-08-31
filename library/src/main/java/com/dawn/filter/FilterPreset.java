@@ -26,6 +26,10 @@ public class FilterPreset implements Serializable {
 
     /** 缓存生成的 LUT，避免重复计算 */
     private transient Bitmap cachedLut;
+    /** 当前仍引用该 LUT 的滤镜数量 */
+    private transient int lutRefCount;
+    /** 等待最后一个滤镜释放后再回收的标记 */
+    private transient boolean clearPending;
 
     public FilterPreset(String name, String description, LutGenerator.ColorParams colorParams) {
         this.name = name;
@@ -49,36 +53,68 @@ public class FilterPreset implements Serializable {
      * 创建该预设的 GPU 滤镜（单通道 LUT 查找）。
      * 可多次调用，LUT 位图会缓存。
      */
-    public GPUImageFilter createFilter() {
+    GPUImageFilter createFilter() {
         return createFilter(1.0f);
     }
 
-    public GPUImageFilter createFilter(float intensity) {
+    GPUImageFilter createFilter(float intensity) {
         return createLookupFilter(intensity);
     }
 
-    public GPUImageLookupFilter createLookupFilter(float intensity) {
-        GPUImageLookupFilter filter =
-                new GPUImageLookupFilter(Math.max(0f, Math.min(1f, intensity)));
-        filter.setBitmap(getLut());
+    GPUImageLookupFilter createLookupFilter(float intensity) {
+        RefCountedLookupFilter filter = new RefCountedLookupFilter(
+                this, Math.max(0f, Math.min(1f, intensity)));
+        synchronized (this) {
+            lutRefCount++;
+            filter.setBitmap(lutOrCreate());
+        }
         return filter;
     }
 
-    /**
-     * 获取缓存的 LUT 位图（线程安全的懒加载）。
-     */
-    private Bitmap getLut() {
-        Bitmap lut = cachedLut;
-        if (lut == null) {
-            synchronized (this) {
-                lut = cachedLut;
-                if (lut == null) {
-                    lut = LutGenerator.generateLut(colorParams);
-                    cachedLut = lut;
-                }
+    /** 生成或复用缓存的 LUT（必须在 synchronized(this) 内调用）。 */
+    private Bitmap lutOrCreate() {
+        if (cachedLut == null) {
+            cachedLut = LutGenerator.generateLut(colorParams);
+        }
+        return cachedLut;
+    }
+
+    /** 某个 LUT 滤镜被销毁时回调：引用计数减一，必要时延迟回收。 */
+    private void onLutFilterDestroyed() {
+        synchronized (this) {
+            lutRefCount--;
+            if (lutRefCount <= 0 && clearPending) {
+                recycleLut();
             }
         }
-        return lut;
+    }
+
+    /** 真正回收 LUT 位图（必须在 synchronized(this) 内调用）。 */
+    private void recycleLut() {
+        if (cachedLut != null && !cachedLut.isRecycled()) {
+            cachedLut.recycle();
+        }
+        cachedLut = null;
+        clearPending = false;
+    }
+
+    /**
+     * 带引用计数的 LUT 滤镜：被销毁时通知所属预设，确保缓存 LUT
+     * 仅在最后一个使用者释放后才允许回收，避免 "trying to use a recycled bitmap"。
+     */
+    private static final class RefCountedLookupFilter extends GPUImageLookupFilter {
+        private final FilterPreset owner;
+
+        RefCountedLookupFilter(FilterPreset owner, float intensity) {
+            super(intensity);
+            this.owner = owner;
+        }
+
+        @Override
+        public void onDestroy() {
+            super.onDestroy();
+            owner.onLutFilterDestroyed();
+        }
     }
 
     // ========================= 预设定义 =========================
@@ -372,12 +408,15 @@ public class FilterPreset implements Serializable {
 
     /**
      * 释放缓存的 LUT 位图，回收内存。
+     * <p>
+     * 若仍有滤镜正在使用该 LUT，则先标记，待最后一个滤镜释放后再回收，保证安全。
      */
     public synchronized void clearLutCache() {
-        if (cachedLut != null && !cachedLut.isRecycled()) {
-            cachedLut.recycle();
+        if (lutRefCount > 0) {
+            clearPending = true;
+            return;
         }
-        cachedLut = null;
+        recycleLut();
     }
 
     /**

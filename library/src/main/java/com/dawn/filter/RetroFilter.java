@@ -21,7 +21,7 @@ import jp.co.cyberagent.android.gpuimage.filter.GPUImageVignetteFilter;
  *   <li>暗角：四角轻微自然压暗，模拟照相亭闪光灯效果</li>
  * </ul>
  */
-public class RetroFilter extends GPUImageFilterGroup {
+class RetroFilter extends GPUImageFilterGroup {
 
     private final GPUImageLookupFilter lookupFilter;
     private final GPUImageGaussianBlurFilter blurFilter;

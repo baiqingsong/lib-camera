@@ -10,7 +10,7 @@ import jp.co.cyberagent.android.gpuimage.filter.GPUImageSharpenFilter;
  * 质感灰滤镜。
  * 在冷青灰 LUT 基础上叠加适度锐化，强化面部和服饰细节。
  */
-public class TexturedGrayFilter extends GPUImageFilterGroup {
+class TexturedGrayFilter extends GPUImageFilterGroup {
 
     private final GPUImageLookupFilter lookupFilter;
     private final GPUImageSharpenFilter sharpenFilter;

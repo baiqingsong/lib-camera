@@ -10,7 +10,7 @@ import jp.co.cyberagent.android.gpuimage.filter.GPUImageSharpenFilter;
  * 个性滤镜。
  * 通过更明确的色调风格和适度锐化，强化创意自拍的清晰度和层次感。
  */
-public class PersonalityFilter extends GPUImageFilterGroup {
+class PersonalityFilter extends GPUImageFilterGroup {
 
     private final GPUImageLookupFilter lookupFilter;
     private final GPUImageSharpenFilter sharpenFilter;

@@ -188,17 +188,6 @@ public class FilterManager implements AutoCloseable {
     }
 
     /**
-     * 获取内部 GPUImage 实例（高级用法，如绑定到 GPUImageView）。
-     *
-     * @deprecated 暴露内部渲染引擎实现，破坏封装。请优先使用 {@link #applyFilter} /
-     *             {@link #applyBeauty} / {@link #applyModules} 等高层 API。
-     */
-    @Deprecated
-    public GPUImage getGpuImage() {
-        return gpuImage;
-    }
-
-    /**
      * 释放 GPUImage 资源。不再使用时调用。
      */
     public void release() {

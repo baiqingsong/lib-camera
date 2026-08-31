@@ -12,7 +12,7 @@ import jp.co.cyberagent.android.gpuimage.filter.GPUImageVignetteFilter;
  * 黑白氛围滤镜。
  * 在黑白 LUT 基础上叠加轻暗角，强化主体聚焦和复古氛围。
  */
-public class BlackWhiteMoodFilter extends GPUImageFilterGroup {
+class BlackWhiteMoodFilter extends GPUImageFilterGroup {
 
     private final GPUImageLookupFilter lookupFilter;
     private final GPUImageVignetteFilter vignetteFilter;
