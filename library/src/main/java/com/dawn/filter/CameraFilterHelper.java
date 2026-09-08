@@ -82,6 +82,9 @@ public class CameraFilterHelper {
     private volatile int  previewWidth    = 1280;
     private volatile int  previewHeight   = 720;
     private volatile int  rotationDegrees = 0;
+    // 上一帧显示位图尺寸（旋转90°后宽高交换），用于检测纹理尺寸变化
+    private int lastDisplayW = 0;
+    private int lastDisplayH = 0;
 
     // Bitmap 生命周期管理（processFrame 运行在单线程 analysisExecutor 上，无需同步）:
     // setImageBitmap(bitmap, false) 将 Runnable 排入 GL 线程队列，存在延迟。
@@ -340,6 +343,21 @@ public class CameraFilterHelper {
         lastDisplayBitmap    = displayBitmap;       // 当前帧记为「上一帧」
 
         GPUImageView gpuView = filterView.getGPUImageView();
+
+        // 旋转90°会交换显示位图的宽高，导致 GPUImage 旧纹理尺寸与新位图不匹配，
+        // glTexSubImage2D 报 "invalid dimensions"。这里检测尺寸变化，先 deleteImage
+        // 重置纹理 ID（随后的 setImageBitmap 会用 glTexImage2D 重新分配），
+        // 并同步更新预览宽高比，避免画面被压缩/拉伸。
+        int dw = displayBitmap.getWidth();
+        int dh = displayBitmap.getHeight();
+        if (dw != lastDisplayW || dh != lastDisplayH) {
+            lastDisplayW = dw;
+            lastDisplayH = dh;
+            gpuView.getGPUImage().deleteImage();
+            final float ratio = (float) dw / dh;
+            mainHandler.post(() -> filterView.setPreviewAspectRatio(ratio));
+        }
+
         gpuView.getGPUImage().getRenderer().setImageBitmap(displayBitmap, false);
         gpuView.requestRender();
 
