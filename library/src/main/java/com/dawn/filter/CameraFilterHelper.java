@@ -6,6 +6,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.PixelFormat;
+import android.hardware.camera2.CameraCharacteristics;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
@@ -20,6 +22,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import androidx.annotation.NonNull;
+import androidx.camera.camera2.interop.Camera2CameraInfo;
+import androidx.camera.camera2.interop.ExperimentalCamera2Interop;
 import androidx.camera.core.Camera;
 import androidx.camera.core.CameraSelector;
 import androidx.camera.core.ExperimentalGetImage;
@@ -259,12 +263,15 @@ public class CameraFilterHelper {
         ImageAnalysis analysis = new ImageAnalysis.Builder()
                 .setTargetResolution(new Size(1280, 720))
                 .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
-                .setOutputImageFormat(ImageAnalysis.OUTPUT_IMAGE_FORMAT_YUV_420_888)
+                .setOutputImageFormat(ImageAnalysis.OUTPUT_IMAGE_FORMAT_RGBA_8888)
                 .build();
 
         analysis.setAnalyzer(analysisExecutor, image -> {
             try {
                 processFrame(image);
+            } catch (Throwable t) {
+                // 单帧失败不能击穿 analyzer 线程，否则后续帧不再回调 → 永久黑屏
+                Log.e(TAG, "processFrame error, format=" + image.getFormat(), t);
             } finally {
                 image.close();
             }
@@ -275,7 +282,9 @@ public class CameraFilterHelper {
                     (LifecycleOwner) context, selector, analysis);
             isPreviewing = true;
             isCameraActive = true;  // 允许 processFrame() 向 GL 线程投递 bitmap
-            Log.i(TAG, "CameraX bound, lensFacing=" + lensFacing + " index=" + cameraIndex);
+            CameraInfo boundInfo = camera.getCameraInfo();
+            Log.i(TAG, "CameraX bound, actualLensFacing=" + boundInfo.getLensFacing()
+                    + ", selector=" + boundInfo.getCameraSelector());
         } catch (Exception e) {
             Log.e(TAG, "bindToLifecycle failed", e);
             isPreviewing = false;
@@ -346,9 +355,58 @@ public class CameraFilterHelper {
         // 用局部变量捕获引用，避免 stopRecordingInternal() 在检查和调用之间将其置 null（TOCTOU）
         GlFilterRecorder activeRecorder = glFilterRecorder;
         if (isRecording && activeRecorder != null) {
-            byte[] nv21 = yuv420ToNv21(image);  // 录制仍用 NV21 路径
+            byte[] nv21 = imageToNv21(image);  // 兼容 YUV/RGBA 两种输出格式
             activeRecorder.enqueueFrame(nv21, w, h);
         }
+    }
+
+    /**
+     * 将 ImageProxy 转为 NV21（兼容 YUV_420_888 与 RGBA_8888 两种输出格式）。
+     * 预览改用 RGBA_8888 后，录制路径仍统一转成 NV21，保证 GlFilterRecorder 可用。
+     */
+    private static byte[] imageToNv21(@NonNull ImageProxy image) {
+        if (image.getFormat() == PixelFormat.RGBA_8888) {
+            return rgbaToNv21(image);
+        }
+        return yuv420ToNv21(image);
+    }
+
+    /**
+     * RGBA_8888（单平面，pixelStride=4）→ NV21。
+     * 逐像素转换，正确处理 rowStride padding，适配所有设备。
+     */
+    private static byte[] rgbaToNv21(@NonNull ImageProxy image) {
+        int w = image.getWidth();
+        int h = image.getHeight();
+        ImageProxy.PlaneProxy plane = image.getPlanes()[0];
+        ByteBuffer buf = plane.getBuffer();
+        int rowStride   = plane.getRowStride();
+        int pixelStride = plane.getPixelStride();  // RGBA_8888 固定为 4
+
+        byte[] nv21 = new byte[w * h * 3 / 2];
+        int yIndex  = 0;
+        int uvIndex = w * h;
+
+        for (int j = 0; j < h; j++) {
+            int rowStart = j * rowStride;
+            for (int i = 0; i < w; i++) {
+                int idx = rowStart + i * pixelStride;
+                int r = buf.get(idx)     & 0xFF;
+                int g = buf.get(idx + 1) & 0xFF;
+                int b = buf.get(idx + 2) & 0xFF;
+
+                int y = ((66 * r + 129 * g + 25 * b + 128) >> 8) + 16;
+                nv21[yIndex++] = (byte) Math.min(255, Math.max(0, y));
+
+                if ((j & 1) == 0 && (i & 1) == 0) {
+                    int u = ((-38 * r - 74 * g + 112 * b + 128) >> 8) + 128;
+                    int v = ((112 * r - 94 * g - 18 * b + 128) >> 8) + 128;
+                    nv21[uvIndex++] = (byte) Math.min(255, Math.max(0, v)); // V
+                    nv21[uvIndex++] = (byte) Math.min(255, Math.max(0, u)); // U
+                }
+            }
+        }
+        return nv21;
     }
 
     /**
@@ -435,12 +493,46 @@ public class CameraFilterHelper {
      *       适配外接 USB 摄像头、只有 EXTERNAL 类型摄像头的设备（如 rk3568_r）。
      * </ul>
      */
+    @ExperimentalCamera2Interop
     private CameraSelector buildCameraSelector() {
         if (cameraProvider == null) return null;
         List<CameraInfo> available = cameraProvider.getAvailableCameraInfos();
-        if (available.isEmpty()) return null;
+        if (available.isEmpty()) {
+            Log.e(TAG, "buildCameraSelector: no available camera");
+            return null;
+        }
 
-        // 1. 尝试按 lensFacing 匹配
+        // 打印所有可用摄像头，便于排查 USB/外接摄像头枚举问题
+        for (int i = 0; i < available.size(); i++) {
+            CameraInfo info = available.get(i);
+            Log.i(TAG, "available camera[" + i + "]: selector=" + info.getCameraSelector()
+                    + " lensFacing=" + info.getLensFacing());
+        }
+
+        // 1. 优先选择 USB/外接摄像头（LENS_FACING_EXTERNAL / HARDWARE_LEVEL_EXTERNAL）。
+        //    RK3576 等主板会同时枚举一个不可用的内置 LIMITED 摄像头（id 较小），
+        //    若按索引取会选错，导致 ERROR_CAMERA_DEVICE 反复重开、预览无画面。
+        for (int i = 0; i < available.size(); i++) {
+            CameraInfo info = available.get(i);
+            try {
+                Camera2CameraInfo c2 = Camera2CameraInfo.from(info);
+                Integer facing = c2.getCameraCharacteristic(CameraCharacteristics.LENS_FACING);
+                Integer level  = c2.getCameraCharacteristic(
+                        CameraCharacteristics.INFO_SUPPORTED_HARDWARE_LEVEL);
+                boolean isExternal = (facing != null
+                        && facing == CameraCharacteristics.LENS_FACING_EXTERNAL)
+                        || (level != null
+                        && level == CameraCharacteristics.INFO_SUPPORTED_HARDWARE_LEVEL_EXTERNAL);
+                if (isExternal) {
+                    Log.i(TAG, "select external camera, index=" + i
+                            + " selector=" + info.getCameraSelector());
+                    return info.getCameraSelector();
+                }
+            } catch (Throwable ignored) {
+            }
+        }
+
+        // 2. 尝试按 lensFacing 匹配
         CameraSelector byFacing = new CameraSelector.Builder()
                 .requireLensFacing(lensFacing)
                 .build();
@@ -450,11 +542,27 @@ public class CameraFilterHelper {
             }
         } catch (Exception ignored) {}
 
-        // 2. 外接/无 lensFacing 设备：按索引取当前可用摄像头
+        // 3. 外接/无 lensFacing 设备：按索引取当前可用摄像头
         Log.w(TAG, "No FRONT/BACK camera, using available camera index=" + cameraIndex
                 + " (total=" + available.size() + ")");
         cameraIndex = Math.min(cameraIndex, available.size() - 1);
         return available.get(cameraIndex).getCameraSelector();
+    }
+
+    /**
+     * 指定优先使用的摄像头朝向（FRONT / BACK / UNKNOWN）。
+     * 对仅有 USB/外接摄像头的设备无效（此类设备按 cameraIndex 选择）。
+     */
+    public void setPreferredLensFacing(int facing) {
+        this.lensFacing = facing;
+    }
+
+    /**
+     * 指定外接摄像头索引（当设备无 FRONT/BACK 摄像头时生效）。
+     * 用于 RK 主板同时存在 CSI 节点 + USB 摄像头时，显式选中 USB 摄像头。
+     */
+    public void setCameraIndex(int index) {
+        this.cameraIndex = index;
     }
 
     // ==========================================================================================

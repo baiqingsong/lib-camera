@@ -1,7 +1,210 @@
----------------------------- PROCESS ENDED (4208) for package com.dawn.libfilter ----------------------------
----------------------------- PROCESS STARTED (4333) for package com.dawn.libfilter ----------------------------
----------------------------- PROCESS ENDED (4333) for package com.dawn.libfilter ----------------------------
----------------------------- PROCESS STARTED (4443) for package com.dawn.libfilter ----------------------------
----------------------------- PROCESS ENDED (4443) for package com.dawn.libfilter ----------------------------
----------------------------- PROCESS STARTED (4511) for package com.dawn.libfilter ----------------------------
----------------------------- PROCESS ENDED (4511) for package com.dawn.libfilter ----------------------------
+---------------------------- PROCESS STARTED (13023) for package com.dawn.libfilter ----------------------------
+2026-09-08 14:37:58.445 13023-13023 ziparchive              com.dawn.libfilter                   W  Unable to open '/data/data/com.dawn.libfilter/code_cache/.overlay/base.apk/classes2.dm': No such file or directory
+2026-09-08 14:37:58.447 13023-13023 ziparchive              com.dawn.libfilter                   W  Unable to open '/data/app/~~-2qjsaWXDi-NSMzVN4rEKA==/com.dawn.libfilter-OCqucU516vLUtnS6WuayuQ==/base.dm': No such file or directory
+2026-09-08 14:37:58.447 13023-13023 ziparchive              com.dawn.libfilter                   W  Unable to open '/data/app/~~-2qjsaWXDi-NSMzVN4rEKA==/com.dawn.libfilter-OCqucU516vLUtnS6WuayuQ==/base.dm': No such file or directory
+2026-09-08 14:37:58.569 13023-13023 nativeloader            com.dawn.libfilter                   D  Configuring clns-6 for other apk /data/app/~~-2qjsaWXDi-NSMzVN4rEKA==/com.dawn.libfilter-OCqucU516vLUtnS6WuayuQ==/base.apk. target_sdk_version=34, uses_libraries=, library_path=/data/app/~~-2qjsaWXDi-NSMzVN4rEKA==/com.dawn.libfilter-OCqucU516vLUtnS6WuayuQ==/lib/arm64:/data/app/~~-2qjsaWXDi-NSMzVN4rEKA==/com.dawn.libfilter-OCqucU516vLUtnS6WuayuQ==/base.apk!/lib/arm64-v8a, permitted_path=/data:/mnt/expand:/data/user/0/com.dawn.libfilter
+2026-09-08 14:37:58.605 13023-13023 GraphicsEnvironment     com.dawn.libfilter                   V  Currently set values for:
+2026-09-08 14:37:58.605 13023-13023 GraphicsEnvironment     com.dawn.libfilter                   V    angle_gl_driver_selection_pkgs=[]
+2026-09-08 14:37:58.605 13023-13023 GraphicsEnvironment     com.dawn.libfilter                   V    angle_gl_driver_selection_values=[]
+2026-09-08 14:37:58.607 13023-13023 GraphicsEnvironment     com.dawn.libfilter                   V  ANGLE GameManagerService for com.dawn.libfilter: false
+2026-09-08 14:37:58.607 13023-13023 GraphicsEnvironment     com.dawn.libfilter                   V  com.dawn.libfilter is not listed in per-application setting
+2026-09-08 14:37:58.607 13023-13023 GraphicsEnvironment     com.dawn.libfilter                   V  Neither updatable production driver nor prerelease driver is supported.
+2026-09-08 14:37:58.670 13023-13045 vulkan                  com.dawn.libfilter                   D  searching for layers in '/data/app/~~-2qjsaWXDi-NSMzVN4rEKA==/com.dawn.libfilter-OCqucU516vLUtnS6WuayuQ==/lib/arm64'
+2026-09-08 14:37:58.671 13023-13045 vulkan                  com.dawn.libfilter                   D  searching for layers in '/data/app/~~-2qjsaWXDi-NSMzVN4rEKA==/com.dawn.libfilter-OCqucU516vLUtnS6WuayuQ==/base.apk!/lib/arm64-v8a'
+2026-09-08 14:37:58.673 13023-13045 mali_so                 com.dawn.libfilter                   I  [File] : hardware/arm/mali_so/driver/product/base/src/mali_base_kbase.c; [Line] : 1403; [Func] : base_context_deal_with_version_affairs_rk_ext;
+                                                                                                    arm_release_ver of this mali_so is 'g15p0-01eac0', rk_so_ver is '4'.
+2026-09-08 14:37:58.673 13023-13045 mali_so                 com.dawn.libfilter                   I  [File] : hardware/arm/mali_so/driver/product/base/src/mali_base_kbase.c; [Line] : 1419; [Func] : base_context_deal_with_version_affairs_rk_ext;
+                                                                                                    arm_release_vers are match. to set the full mali_ver 'g15p0-01eac0-x-4' as value of 'sys.gmali.version'.
+2026-09-08 14:37:58.677 13023-13045 mali_so                 com.dawn.libfilter                   I  [File] : hardware/arm/mali_so/driver/product/base/src/mali_base_kbase.c; [Line] : 1403; [Func] : base_context_deal_with_version_affairs_rk_ext;
+                                                                                                    arm_release_ver of this mali_so is 'g15p0-01eac0', rk_so_ver is '4'.
+2026-09-08 14:37:58.677 13023-13045 mali_so                 com.dawn.libfilter                   I  [File] : hardware/arm/mali_so/driver/product/base/src/mali_base_kbase.c; [Line] : 1419; [Func] : base_context_deal_with_version_affairs_rk_ext;
+                                                                                                    arm_release_vers are match. to set the full mali_ver 'g15p0-01eac0-x-4' as value of 'sys.gmali.version'.
+2026-09-08 14:37:58.727 13023-13023 AppCompatDelegate       com.dawn.libfilter                   D  Checking for metadata for AppLocalesMetadataHolderService : Service not found
+2026-09-08 14:37:58.839 13023-13023 .dawn.libfilter         com.dawn.libfilter                   W  Accessing hidden method Landroid/view/View;->computeFitSystemWindows(Landroid/graphics/Rect;Landroid/graphics/Rect;)Z (unsupported, reflection, allowed)
+2026-09-08 14:37:58.839 13023-13023 .dawn.libfilter         com.dawn.libfilter                   W  Accessing hidden method Landroid/view/ViewGroup;->makeOptionalFitsSystemWindows()V (unsupported, reflection, allowed)
+2026-09-08 14:37:58.845 13023-13023 Compatibil...geReporter com.dawn.libfilter                   D  Compat change id reported: 210923482; UID 10103; state: ENABLED
+2026-09-08 14:37:58.980 13023-13023 Compatibil...geReporter com.dawn.libfilter                   D  Compat change id reported: 237531167; UID 10103; state: DISABLED
+2026-09-08 14:37:58.985 13023-13023 OpenGLRenderer          com.dawn.libfilter                   W  Unknown dataspace 0
+2026-09-08 14:38:03.756 13023-13069 ProfileInstaller        com.dawn.libfilter                   D  Installing profile for com.dawn.libfilter
+2026-09-08 14:38:16.110 13023-13075 CameraManagerGlobal     com.dawn.libfilter                   I  Connecting to camera service
+2026-09-08 14:38:16.141 13023-13075 CameraRepository        com.dawn.libfilter                   D  Added camera: 0
+2026-09-08 14:38:16.179 13023-13075 Camera2CameraInfo       com.dawn.libfilter                   I  Device Level: INFO_SUPPORTED_HARDWARE_LEVEL_LIMITED
+2026-09-08 14:38:16.186 13023-13075 CameraRepository        com.dawn.libfilter                   D  Added camera: 11
+2026-09-08 14:38:16.189 13023-13075 Camera2CameraInfo       com.dawn.libfilter                   I  Device Level: INFO_SUPPORTED_HARDWARE_LEVEL_EXTERNAL
+2026-09-08 14:38:16.191 13023-13075 CameraValidator         com.dawn.libfilter                   D  Verifying camera lens facing on rk3576_u, lensFacingInteger: null
+2026-09-08 14:38:16.196 13023-13075 CameraValidator         com.dawn.libfilter                   E  Camera LensFacing verification failed, existing cameras: [Camera@6217574[id=0], Camera@6a03399[id=11]]
+2026-09-08 14:38:16.199 13023-13075 CameraX                 com.dawn.libfilter                   W  Retry init. Start time 17911461 current time 17911573 (Ask Gemini)
+                                                                                                    androidx.camera.core.impl.CameraValidator$CameraIdListIncorrectException: Expected camera missing from device.
+                                                                                                    	at androidx.camera.core.impl.CameraValidator.validateCameras(CameraValidator.java:97)
+                                                                                                    	at androidx.camera.core.CameraX.lambda$initAndRetryRecursively$2$androidx-camera-core-CameraX(CameraX.java:334)
+                                                                                                    	at androidx.camera.core.CameraX$$ExternalSyntheticLambda3.run(Unknown Source:10)
+                                                                                                    	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+                                                                                                    	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:644)
+                                                                                                    	at java.lang.Thread.run(Thread.java:1012)
+                                                                                                    Caused by: java.lang.IllegalArgumentException: No available camera can be found
+                                                                                                    	at androidx.camera.core.CameraSelector.select(CameraSelector.java:94)
+                                                                                                    	at androidx.camera.core.impl.CameraValidator.validateCameras(CameraValidator.java:91)
+                                                                                                    	at androidx.camera.core.CameraX.lambda$initAndRetryRecursively$2$androidx-camera-core-CameraX(CameraX.java:334) 
+                                                                                                    	at androidx.camera.core.CameraX$$ExternalSyntheticLambda3.run(Unknown Source:10) 
+                                                                                                    	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) 
+                                                                                                    	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:644) 
+                                                                                                    	at java.lang.Thread.run(Thread.java:1012) 
+2026-09-08 14:38:16.352 13023-13073 libEGL                  com.dawn.libfilter                   D  loaded /vendor/lib64/egl/libGLES_mali.so
+2026-09-08 14:38:16.410 13023-13073 mali_so                 com.dawn.libfilter                   I  [File] : hardware/arm/mali_so/driver/product/base/src/mali_base_kbase.c; [Line] : 1403; [Func] : base_context_deal_with_version_affairs_rk_ext;
+                                                                                                    arm_release_ver of this mali_so is 'g15p0-01eac0', rk_so_ver is '4'.
+2026-09-08 14:38:16.410 13023-13073 mali_so                 com.dawn.libfilter                   I  [File] : hardware/arm/mali_so/driver/product/base/src/mali_base_kbase.c; [Line] : 1419; [Func] : base_context_deal_with_version_affairs_rk_ext;
+                                                                                                    arm_release_vers are match. to set the full mali_ver 'g15p0-01eac0-x-4' as value of 'sys.gmali.version'.
+2026-09-08 14:38:16.481 13023-13062 OpenGLRenderer          com.dawn.libfilter                   I  Davey! duration=833ms; Flags=1, FrameTimelineVsyncId=788691, IntendedVsync=17911011022230, Vsync=17911479145466, InputEventId=0, HandleInputStart=17911480348121, AnimationStart=17911480357455, PerformTraversalsStart=17911481747538, DrawStart=17911795616747, FrameDeadline=17911027688896, FrameInterval=17911479993746, FrameStartTime=16719566, SyncQueued=17911827019330, SyncStart=17911827161830, IssueDrawCommandsStart=17911828087580, SwapBuffers=17911843858580, FrameCompleted=17911844548372, DequeueBufferDuration=1704500, QueueBufferDuration=591500, GpuCompleted=17911844074830, SwapBuffersCompleted=17911844548372, DisplayPresentTime=0, CommandSubmissionCompleted=17911843858580, 
+2026-09-08 14:38:16.497 13023-13062 OpenGLRenderer          com.dawn.libfilter                   I  Davey! duration=837ms; Flags=1, FrameTimelineVsyncId=788691, IntendedVsync=17911011022230, Vsync=17911479145466, InputEventId=0, HandleInputStart=17911480348121, AnimationStart=17911480357455, PerformTraversalsStart=17911481747538, DrawStart=17911845766788, FrameDeadline=17911027688896, FrameInterval=17911479993746, FrameStartTime=16721375, SyncQueued=17911847051580, SyncStart=17911851253913, IssueDrawCommandsStart=17911851313122, SwapBuffers=17911852556205, FrameCompleted=17911853106747, DequeueBufferDuration=11667, QueueBufferDuration=234791, GpuCompleted=17911853106747, SwapBuffersCompleted=17911852855163, DisplayPresentTime=0, CommandSubmissionCompleted=17911852556205, 
+2026-09-08 14:38:16.722 13023-13077 CameraRepository        com.dawn.libfilter                   D  Added camera: 0
+2026-09-08 14:38:16.731 13023-13077 Camera2CameraInfo       com.dawn.libfilter                   I  Device Level: INFO_SUPPORTED_HARDWARE_LEVEL_LIMITED
+2026-09-08 14:38:16.735 13023-13077 CameraRepository        com.dawn.libfilter                   D  Added camera: 11
+2026-09-08 14:38:16.743 13023-13077 Camera2CameraInfo       com.dawn.libfilter                   I  Device Level: INFO_SUPPORTED_HARDWARE_LEVEL_EXTERNAL
+2026-09-08 14:38:16.747 13023-13077 CameraValidator         com.dawn.libfilter                   D  Verifying camera lens facing on rk3576_u, lensFacingInteger: null
+2026-09-08 14:38:16.753 13023-13077 CameraValidator         com.dawn.libfilter                   E  Camera LensFacing verification failed, existing cameras: [Camera@3435da5[id=0], Camera@a6519d2[id=11]]
+2026-09-08 14:38:16.761 13023-13077 CameraX                 com.dawn.libfilter                   W  Retry init. Start time 17911461 current time 17912130 (Ask Gemini)
+                                                                                                    androidx.camera.core.impl.CameraValidator$CameraIdListIncorrectException: Expected camera missing from device.
+                                                                                                    	at androidx.camera.core.impl.CameraValidator.validateCameras(CameraValidator.java:97)
+                                                                                                    	at androidx.camera.core.CameraX.lambda$initAndRetryRecursively$2$androidx-camera-core-CameraX(CameraX.java:334)
+                                                                                                    	at androidx.camera.core.CameraX$$ExternalSyntheticLambda3.run(Unknown Source:10)
+                                                                                                    	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+                                                                                                    	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:644)
+                                                                                                    	at java.lang.Thread.run(Thread.java:1012)
+                                                                                                    Caused by: java.lang.IllegalArgumentException: No available camera can be found
+                                                                                                    	at androidx.camera.core.CameraSelector.select(CameraSelector.java:94)
+                                                                                                    	at androidx.camera.core.impl.CameraValidator.validateCameras(CameraValidator.java:91)
+                                                                                                    	at androidx.camera.core.CameraX.lambda$initAndRetryRecursively$2$androidx-camera-core-CameraX(CameraX.java:334) 
+                                                                                                    	at androidx.camera.core.CameraX$$ExternalSyntheticLambda3.run(Unknown Source:10) 
+                                                                                                    	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) 
+                                                                                                    	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:644) 
+                                                                                                    	at java.lang.Thread.run(Thread.java:1012) 
+2026-09-08 14:38:17.278 13023-13075 CameraRepository        com.dawn.libfilter                   D  Added camera: 0
+2026-09-08 14:38:17.285 13023-13075 Camera2CameraInfo       com.dawn.libfilter                   I  Device Level: INFO_SUPPORTED_HARDWARE_LEVEL_LIMITED
+2026-09-08 14:38:17.288 13023-13075 CameraRepository        com.dawn.libfilter                   D  Added camera: 11
+2026-09-08 14:38:17.294 13023-13075 Camera2CameraInfo       com.dawn.libfilter                   I  Device Level: INFO_SUPPORTED_HARDWARE_LEVEL_EXTERNAL
+2026-09-08 14:38:17.296 13023-13075 CameraValidator         com.dawn.libfilter                   D  Verifying camera lens facing on rk3576_u, lensFacingInteger: null
+2026-09-08 14:38:17.303 13023-13075 CameraValidator         com.dawn.libfilter                   E  Camera LensFacing verification failed, existing cameras: [Camera@f9656cd[id=0], Camera@2328bfc[id=11]]
+2026-09-08 14:38:17.311 13023-13075 CameraX                 com.dawn.libfilter                   W  Retry init. Start time 17911461 current time 17912680 (Ask Gemini)
+                                                                                                    androidx.camera.core.impl.CameraValidator$CameraIdListIncorrectException: Expected camera missing from device.
+                                                                                                    	at androidx.camera.core.impl.CameraValidator.validateCameras(CameraValidator.java:97)
+                                                                                                    	at androidx.camera.core.CameraX.lambda$initAndRetryRecursively$2$androidx-camera-core-CameraX(CameraX.java:334)
+                                                                                                    	at androidx.camera.core.CameraX$$ExternalSyntheticLambda3.run(Unknown Source:10)
+                                                                                                    	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+                                                                                                    	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:644)
+                                                                                                    	at java.lang.Thread.run(Thread.java:1012)
+                                                                                                    Caused by: java.lang.IllegalArgumentException: No available camera can be found
+                                                                                                    	at androidx.camera.core.CameraSelector.select(CameraSelector.java:94)
+                                                                                                    	at androidx.camera.core.impl.CameraValidator.validateCameras(CameraValidator.java:91)
+                                                                                                    	at androidx.camera.core.CameraX.lambda$initAndRetryRecursively$2$androidx-camera-core-CameraX(CameraX.java:334) 
+                                                                                                    	at androidx.camera.core.CameraX$$ExternalSyntheticLambda3.run(Unknown Source:10) 
+                                                                                                    	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) 
+                                                                                                    	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:644) 
+                                                                                                    	at java.lang.Thread.run(Thread.java:1012) 
+2026-09-08 14:38:17.836 13023-13077 CameraRepository        com.dawn.libfilter                   D  Added camera: 0
+2026-09-08 14:38:17.844 13023-13077 Camera2CameraInfo       com.dawn.libfilter                   I  Device Level: INFO_SUPPORTED_HARDWARE_LEVEL_LIMITED
+2026-09-08 14:38:17.848 13023-13077 CameraRepository        com.dawn.libfilter                   D  Added camera: 11
+2026-09-08 14:38:17.857 13023-13077 Camera2CameraInfo       com.dawn.libfilter                   I  Device Level: INFO_SUPPORTED_HARDWARE_LEVEL_EXTERNAL
+2026-09-08 14:38:17.861 13023-13077 CameraValidator         com.dawn.libfilter                   D  Verifying camera lens facing on rk3576_u, lensFacingInteger: null
+2026-09-08 14:38:17.869 13023-13077 CameraValidator         com.dawn.libfilter                   E  Camera LensFacing verification failed, existing cameras: [Camera@a378d3d[id=0], Camera@12eec2c[id=11]]
+2026-09-08 14:38:17.877 13023-13077 CameraX                 com.dawn.libfilter                   W  Retry init. Start time 17911461 current time 17913247 (Ask Gemini)
+                                                                                                    androidx.camera.core.impl.CameraValidator$CameraIdListIncorrectException: Expected camera missing from device.
+                                                                                                    	at androidx.camera.core.impl.CameraValidator.validateCameras(CameraValidator.java:97)
+                                                                                                    	at androidx.camera.core.CameraX.lambda$initAndRetryRecursively$2$androidx-camera-core-CameraX(CameraX.java:334)
+                                                                                                    	at androidx.camera.core.CameraX$$ExternalSyntheticLambda3.run(Unknown Source:10)
+                                                                                                    	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+                                                                                                    	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:644)
+                                                                                                    	at java.lang.Thread.run(Thread.java:1012)
+                                                                                                    Caused by: java.lang.IllegalArgumentException: No available camera can be found
+                                                                                                    	at androidx.camera.core.CameraSelector.select(CameraSelector.java:94)
+                                                                                                    	at androidx.camera.core.impl.CameraValidator.validateCameras(CameraValidator.java:91)
+                                                                                                    	at androidx.camera.core.CameraX.lambda$initAndRetryRecursively$2$androidx-camera-core-CameraX(CameraX.java:334) 
+                                                                                                    	at androidx.camera.core.CameraX$$ExternalSyntheticLambda3.run(Unknown Source:10) 
+                                                                                                    	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) 
+                                                                                                    	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:644) 
+                                                                                                    	at java.lang.Thread.run(Thread.java:1012) 
+2026-09-08 14:38:18.398 13023-13075 CameraRepository        com.dawn.libfilter                   D  Added camera: 0
+2026-09-08 14:38:18.408 13023-13075 Camera2CameraInfo       com.dawn.libfilter                   I  Device Level: INFO_SUPPORTED_HARDWARE_LEVEL_LIMITED
+2026-09-08 14:38:18.414 13023-13075 CameraRepository        com.dawn.libfilter                   D  Added camera: 11
+2026-09-08 14:38:18.424 13023-13075 Camera2CameraInfo       com.dawn.libfilter                   I  Device Level: INFO_SUPPORTED_HARDWARE_LEVEL_EXTERNAL
+2026-09-08 14:38:18.429 13023-13075 CameraValidator         com.dawn.libfilter                   D  Verifying camera lens facing on rk3576_u, lensFacingInteger: null
+2026-09-08 14:38:18.437 13023-13075 CameraValidator         com.dawn.libfilter                   E  Camera LensFacing verification failed, existing cameras: [Camera@58b3fad[id=0], Camera@ddbb85c[id=11]]
+2026-09-08 14:38:18.444 13023-13075 CameraX                 com.dawn.libfilter                   W  Retry init. Start time 17911461 current time 17913815 (Ask Gemini)
+                                                                                                    androidx.camera.core.impl.CameraValidator$CameraIdListIncorrectException: Expected camera missing from device.
+                                                                                                    	at androidx.camera.core.impl.CameraValidator.validateCameras(CameraValidator.java:97)
+                                                                                                    	at androidx.camera.core.CameraX.lambda$initAndRetryRecursively$2$androidx-camera-core-CameraX(CameraX.java:334)
+                                                                                                    	at androidx.camera.core.CameraX$$ExternalSyntheticLambda3.run(Unknown Source:10)
+                                                                                                    	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+                                                                                                    	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:644)
+                                                                                                    	at java.lang.Thread.run(Thread.java:1012)
+                                                                                                    Caused by: java.lang.IllegalArgumentException: No available camera can be found
+                                                                                                    	at androidx.camera.core.CameraSelector.select(CameraSelector.java:94)
+                                                                                                    	at androidx.camera.core.impl.CameraValidator.validateCameras(CameraValidator.java:91)
+                                                                                                    	at androidx.camera.core.CameraX.lambda$initAndRetryRecursively$2$androidx-camera-core-CameraX(CameraX.java:334) 
+                                                                                                    	at androidx.camera.core.CameraX$$ExternalSyntheticLambda3.run(Unknown Source:10) 
+                                                                                                    	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) 
+                                                                                                    	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:644) 
+                                                                                                    	at java.lang.Thread.run(Thread.java:1012) 
+2026-09-08 14:38:18.969 13023-13077 CameraRepository        com.dawn.libfilter                   D  Added camera: 0
+2026-09-08 14:38:18.986 13023-13077 Camera2CameraInfo       com.dawn.libfilter                   I  Device Level: INFO_SUPPORTED_HARDWARE_LEVEL_LIMITED
+2026-09-08 14:38:18.991 13023-13077 CameraRepository        com.dawn.libfilter                   D  Added camera: 11
+2026-09-08 14:38:19.003 13023-13077 Camera2CameraInfo       com.dawn.libfilter                   I  Device Level: INFO_SUPPORTED_HARDWARE_LEVEL_EXTERNAL
+2026-09-08 14:38:19.006 13023-13077 CameraValidator         com.dawn.libfilter                   D  Verifying camera lens facing on rk3576_u, lensFacingInteger: null
+2026-09-08 14:38:19.012 13023-13077 CameraValidator         com.dawn.libfilter                   E  Camera LensFacing verification failed, existing cameras: [Camera@1286e1d[id=0], Camera@b2bf08c[id=11]]
+2026-09-08 14:38:19.012 13023-13077 CameraX                 com.dawn.libfilter                   E  The device might underreport the amount of the cameras. Finish the initialize task since we are already reaching the maximum number of retries.
+2026-09-08 14:38:19.017 13023-13023 CameraFilterHelper      com.dawn.libfilter                   I  available camera[0]: selector=androidx.camera.core.CameraSelector@bed8978 lensFacing=1
+2026-09-08 14:38:19.017 13023-13023 CameraFilterHelper      com.dawn.libfilter                   I  available camera[1]: selector=androidx.camera.core.CameraSelector@68279b7 lensFacing=2
+2026-09-08 14:38:19.018 13023-13023 CameraFilterHelper      com.dawn.libfilter                   I  select external camera, index=1 selector=androidx.camera.core.CameraSelector@1019a42
+2026-09-08 14:38:19.109 13023-13023 CameraOrientationUtil   com.dawn.libfilter                   D  getRelativeImageRotation: destRotationDegrees=0, sourceRotationDegrees=0, isOppositeFacing=false, result=0
+2026-09-08 14:38:19.112 13023-13023 CameraOrientationUtil   com.dawn.libfilter                   D  getRelativeImageRotation: destRotationDegrees=0, sourceRotationDegrees=0, isOppositeFacing=false, result=0
+2026-09-08 14:38:19.131 13023-13023 CameraOrientationUtil   com.dawn.libfilter                   D  getRelativeImageRotation: destRotationDegrees=0, sourceRotationDegrees=0, isOppositeFacing=false, result=0
+2026-09-08 14:38:19.132 13023-13023 CameraOrientationUtil   com.dawn.libfilter                   D  getRelativeImageRotation: destRotationDegrees=0, sourceRotationDegrees=0, isOppositeFacing=false, result=0
+2026-09-08 14:38:19.150 13023-13023 Compatibil...geReporter com.dawn.libfilter                   D  Compat change id reported: 236825255; UID 10103; state: ENABLED
+2026-09-08 14:38:19.154 13023-13023 CameraOrientationUtil   com.dawn.libfilter                   D  getRelativeImageRotation: destRotationDegrees=0, sourceRotationDegrees=0, isOppositeFacing=false, result=0
+2026-09-08 14:38:19.156 13023-13023 CameraOrientationUtil   com.dawn.libfilter                   D  getRelativeImageRotation: destRotationDegrees=0, sourceRotationDegrees=0, isOppositeFacing=false, result=0
+2026-09-08 14:38:19.161 13023-13023 DeferrableSurface       com.dawn.libfilter                   D  Surface created[total_surfaces=1, used_surfaces=0](androidx.camera.core.impl.ImmediateSurface@cdba16}
+2026-09-08 14:38:19.173 13023-13075 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@b2bf08c[id=11]} Use case androidx.camera.core.ImageAnalysis-6decd3c2-e855-4799-9def-8a4511fdcd56263412639 ACTIVE
+2026-09-08 14:38:19.174 13023-13023 CameraFilterHelper      com.dawn.libfilter                   I  CameraX bound, lensFacing=0 index=0
+2026-09-08 14:38:19.178 13023-13075 UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [] for camera: 11
+2026-09-08 14:38:19.187 13023-13075 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@b2bf08c[id=11]} Use cases [androidx.camera.core.ImageAnalysis-6decd3c2-e855-4799-9def-8a4511fdcd56263412639] now ATTACHED
+2026-09-08 14:38:19.189 13023-13075 UseCaseAttachState      com.dawn.libfilter                   D  All use case: [androidx.camera.core.ImageAnalysis-6decd3c2-e855-4799-9def-8a4511fdcd56263412639] for camera: 11
+2026-09-08 14:38:19.194 13023-13075 UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [androidx.camera.core.ImageAnalysis-6decd3c2-e855-4799-9def-8a4511fdcd56263412639] for camera: 11
+2026-09-08 14:38:19.211 13023-13075 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@b2bf08c[id=11]} Resetting Capture Session
+2026-09-08 14:38:19.213 13023-13075 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@b2bf08c[id=11]} Releasing session in state INITIALIZED
+2026-09-08 14:38:19.215 13023-13075 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@b2bf08c[id=11]} Attempting to force open the camera.
+2026-09-08 14:38:19.217 13023-13075 CameraStateRegistry     com.dawn.libfilter                   D  tryOpenCamera(Camera@b2bf08c[id=11]) [Available Cameras: 1, Already Open: false (Previous state: null)] --> SUCCESS
+2026-09-08 14:38:19.222 13023-13075 CameraStateRegistry     com.dawn.libfilter                   D  Recalculating open cameras:
+                                                                                                    Camera                                       State                 
+                                                                                                    -------------------------------------------------------------------
+                                                                                                    Camera@1286e1d[id=0]                         UNKNOWN               
+                                                                                                    Camera@b2bf08c[id=11]                        OPENING               
+                                                                                                    -------------------------------------------------------------------
+                                                                                                    Open count: 1 (Max allowed: 1)
+2026-09-08 14:38:19.223 13023-13075 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@b2bf08c[id=11]} Opening camera.
+2026-09-08 14:38:19.224 13023-13075 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@b2bf08c[id=11]} Transitioning camera internal state: INITIALIZED --> OPENING
+2026-09-08 14:38:19.225 13023-13075 CameraStateMachine      com.dawn.libfilter                   D  New public camera state CameraState{type=OPENING, error=null} from OPENING and null
+2026-09-08 14:38:19.225 13023-13075 CameraStateMachine      com.dawn.libfilter                   D  Publishing new public camera state CameraState{type=OPENING, error=null}
+2026-09-08 14:38:19.227 13023-13075 UseCaseAttachState      com.dawn.libfilter                   D  All use case: [androidx.camera.core.ImageAnalysis-6decd3c2-e855-4799-9def-8a4511fdcd56263412639] for camera: 11
+2026-09-08 14:38:19.341 13023-13075 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@b2bf08c[id=11]} Use case androidx.camera.core.ImageAnalysis-6decd3c2-e855-4799-9def-8a4511fdcd56263412639 ACTIVE
+2026-09-08 14:38:19.344 13023-13075 UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [androidx.camera.core.ImageAnalysis-6decd3c2-e855-4799-9def-8a4511fdcd56263412639] for camera: 11
+2026-09-08 14:38:19.358 13023-13075 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@b2bf08c[id=11]} CameraDevice.onOpened()
+2026-09-08 14:38:19.360 13023-13075 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@b2bf08c[id=11]} Transitioning camera internal state: OPENING --> OPENED
+2026-09-08 14:38:19.364 13023-13075 CameraStateRegistry     com.dawn.libfilter                   D  Recalculating open cameras:
+                                                                                                    Camera                                       State                 
+                                                                                                    -------------------------------------------------------------------
+                                                                                                    Camera@1286e1d[id=0]                         UNKNOWN               
+                                                                                                    Camera@b2bf08c[id=11]                        OPEN                  
+                                                                                                    -------------------------------------------------------------------
+                                                                                                    Open count: 1 (Max allowed: 1)
+2026-09-08 14:38:19.365 13023-13075 CameraStateMachine      com.dawn.libfilter                   D  New public camera state CameraState{type=OPEN, error=null} from OPEN and null
+2026-09-08 14:38:19.365 13023-13075 CameraStateMachine      com.dawn.libfilter                   D  Publishing new public camera state CameraState{type=OPEN, error=null}
+2026-09-08 14:38:19.367 13023-13075 UseCaseAttachState      com.dawn.libfilter                   D  All use case: [androidx.camera.core.ImageAnalysis-6decd3c2-e855-4799-9def-8a4511fdcd56263412639] for camera: 11
+2026-09-08 14:38:19.375 13023-13075 UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [androidx.camera.core.ImageAnalysis-6decd3c2-e855-4799-9def-8a4511fdcd56263412639] for camera: 11
+2026-09-08 14:38:19.389 13023-13075 SyncCaptureSessionBase  com.dawn.libfilter                   D  [androidx.camera.camera2.internal.SynchronizedCaptureSessionBaseImpl@7b477b4] getSurface...done
+2026-09-08 14:38:19.390 13023-13075 CaptureSession          com.dawn.libfilter                   D  Opening capture session.
+2026-09-08 14:38:19.404 13023-13075 DeferrableSurface       com.dawn.libfilter                   D  New surface in use[total_surfaces=1, used_surfaces=1](androidx.camera.core.impl.ImmediateSurface@cdba16}
+2026-09-08 14:38:19.404 13023-13075 DeferrableSurface       com.dawn.libfilter                   D  use count+1, useCount=1 androidx.camera.core.impl.ImmediateSurface@cdba16
+2026-09-08 14:38:19.969 13023-13075 CaptureSession          com.dawn.libfilter                   D  Attempting to send capture request onConfigured
+2026-09-08 14:38:19.969 13023-13075 CaptureSession          com.dawn.libfilter                   D  Issuing request for session.
+2026-09-08 14:38:19.975 13023-13075 Camera2Cap...estBuilder com.dawn.libfilter                   D  createCaptureRequest
+2026-09-08 14:38:19.989 13023-13075 CaptureSession          com.dawn.libfilter                   D  CameraCaptureSession.onConfigured() mState=OPENED
+2026-09-08 14:38:19.991 13023-13075 CaptureSession          com.dawn.libfilter                   D  CameraCaptureSession.onReady() OPENED
