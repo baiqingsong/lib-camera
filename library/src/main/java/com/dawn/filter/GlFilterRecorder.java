@@ -174,14 +174,14 @@ class GlFilterRecorder {
     }
 
     private static class FrameData {
-        final byte[] nv21;
+        final byte[] data;   // RGBA 帧数据
         final int    w, h;
         final long   timestampNs;
 
         static final FrameData EOS = new FrameData(null, 0, 0, -1);
 
-        FrameData(byte[] nv21, int w, int h, long tsNs) {
-            this.nv21 = nv21;
+        FrameData(byte[] data, int w, int h, long tsNs) {
+            this.data = data;
             this.w = w;
             this.h = h;
             this.timestampNs = tsNs;
@@ -281,10 +281,10 @@ class GlFilterRecorder {
         audioThread.start();
     }
 
-    /** 入队一帧 NV21，如队满则丢弃最旧帧。 */
-    public void enqueueFrame(byte[] nv21, int w, int h) {
+    /** 入队一帧 RGBA 数据，如队满则丢弃最旧帧。 */
+    public void enqueueFrame(byte[] rgba, int w, int h) {
         if (!running.get()) return;
-        FrameData fd = new FrameData(nv21, w, h, System.nanoTime());
+        FrameData fd = new FrameData(rgba, w, h, System.nanoTime());
         if (!queue.offer(fd)) {
             queue.poll();
             queue.offer(fd);
@@ -336,7 +336,9 @@ class GlFilterRecorder {
                     rebuildFilters();
                 }
 
-                renderAndEncode(fd);
+                // RGBA → NV21 在 encodeThread 上执行，避免阻塞相机分析线程
+                byte[] nv21 = rgbaToNv21(fd.data, fd.w, fd.h);
+                renderAndEncode(nv21, fd.w, fd.h, fd.timestampNs);
                 drainVideoEncoder(false);
             }
             // EOS → signal MediaCodec and drain remaining output
@@ -392,7 +394,7 @@ class GlFilterRecorder {
     // GL rendering (all called from encodeThread with EGL current)
     // ──────────────────────────────────────────────────────────────────────────
 
-    private void renderAndEncode(FrameData fd) {
+    private void renderAndEncode(byte[] nv21, int w, int h, long timestampNs) {
         // FBO 和编码目标使用 encodeWidth/Height（当旋转 90°/270° 时与传感器尺寸不同）
         if (encodeWidth != frameW || encodeHeight != frameH) {
             frameW = encodeWidth;
@@ -408,7 +410,7 @@ class GlFilterRecorder {
         GLES20.glBindFramebuffer(GLES20.GL_FRAMEBUFFER, fboId[0]);
         GLES20.glClearColor(0f, 0f, 0f, 1f);
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
-        uploadNv21AndDraw(fd.nv21, fd.w, fd.h);  // 以传感器尺寸上传纹理
+        uploadNv21AndDraw(nv21, w, h);  // 以传感器尺寸上传纹理
 
         // ── Pass 2: Beauty filter → fbo[1] ──────────────────────────────────
         GLES20.glBindFramebuffer(GLES20.GL_FRAMEBUFFER, fboId[1]);
@@ -429,8 +431,39 @@ class GlFilterRecorder {
         }
 
         // Commit frame to MediaCodec with PTS
-        EGLExt.eglPresentationTimeANDROID(eglDisplay, eglSurface, fd.timestampNs);
+        EGLExt.eglPresentationTimeANDROID(eglDisplay, eglSurface, timestampNs);
         EGL14.eglSwapBuffers(eglDisplay, eglSurface);
+    }
+
+    /**
+     * RGBA byte[] → NV21，逐像素颜色空间转换。
+     * 运行在 encodeThread 上，不阻塞相机分析线程。
+     */
+    private static byte[] rgbaToNv21(byte[] rgba, int w, int h) {
+        byte[] nv21 = new byte[w * h * 3 / 2];
+        int yIndex  = 0;
+        int uvIndex = w * h;
+
+        for (int j = 0; j < h; j++) {
+            int rowStart = j * w * 4;
+            for (int i = 0; i < w; i++) {
+                int idx = rowStart + i * 4;
+                int r = rgba[idx]     & 0xFF;
+                int g = rgba[idx + 1] & 0xFF;
+                int b = rgba[idx + 2] & 0xFF;
+
+                int y = ((66 * r + 129 * g + 25 * b + 128) >> 8) + 16;
+                nv21[yIndex++] = (byte) Math.min(255, Math.max(0, y));
+
+                if ((j & 1) == 0 && (i & 1) == 0) {
+                    int u = ((-38 * r - 74 * g + 112 * b + 128) >> 8) + 128;
+                    int v = ((112 * r - 94 * g - 18 * b + 128) >> 8) + 128;
+                    nv21[uvIndex++] = (byte) Math.min(255, Math.max(0, v)); // V
+                    nv21[uvIndex++] = (byte) Math.min(255, Math.max(0, u)); // U
+                }
+            }
+        }
+        return nv21;
     }
 
     /** Upload NV21 data as two GL textures and run YUV→RGBA shader. */

@@ -68,6 +68,7 @@ public class CameraFilterHelper {
     private boolean               isSwitchingCamera= false;
     private boolean               isCapturing      = false;
     private volatile boolean      isRecording      = false;
+    private volatile boolean      isPreparing      = false;  // 录制器 prepare 中（后台线程）
     // 用户手动控制的额外镜像/旋转（叠加在自动方向修正之上）
     private volatile boolean      extraFlipH       = false;
     private volatile boolean      extraFlipV       = false;
@@ -355,9 +356,39 @@ public class CameraFilterHelper {
         // 用局部变量捕获引用，避免 stopRecordingInternal() 在检查和调用之间将其置 null（TOCTOU）
         GlFilterRecorder activeRecorder = glFilterRecorder;
         if (isRecording && activeRecorder != null) {
-            byte[] nv21 = imageToNv21(image);  // 兼容 YUV/RGBA 两种输出格式
-            activeRecorder.enqueueFrame(nv21, w, h);
+            // 这里只做轻量的 RGBA 内存拷贝（memcpy）。逐像素的 RGBA→NV21
+            // 颜色空间转换移到录制器的 encodeThread 执行，避免阻塞
+            // analysisExecutor 导致录制时预览帧率骤降、明显卡顿。
+            byte[] rgba = copyRgba(image);
+            activeRecorder.enqueueFrame(rgba, w, h);
         }
+    }
+
+    /**
+     * 从 ImageProxy 的 RGBA 平面做轻量内存拷贝（逐行处理 rowStride padding）。
+     * 相比逐像素颜色空间转换，memcpy 开销小得多，适合在 analysisExecutor 上执行。
+     */
+    private static byte[] copyRgba(@NonNull ImageProxy image) {
+        int w = image.getWidth();
+        int h = image.getHeight();
+        ImageProxy.PlaneProxy plane = image.getPlanes()[0];
+        ByteBuffer buf = plane.getBuffer();
+        int rowStride   = plane.getRowStride();
+        int pixelStride = plane.getPixelStride();  // RGBA_8888 固定为 4
+
+        byte[] rgba = new byte[w * h * 4];
+        if (pixelStride == 4 && rowStride == w * 4) {
+            // 紧凑布局（无 padding）：一次性拷贝
+            buf.position(0);
+            buf.get(rgba, 0, rgba.length);
+        } else {
+            // 有 padding：逐行拷贝
+            for (int row = 0; row < h; row++) {
+                buf.position(row * rowStride);
+                buf.get(rgba, row * w * 4, w * 4);
+            }
+        }
+        return rgba;
     }
 
     /**
@@ -739,7 +770,7 @@ public class CameraFilterHelper {
             listener.onError("缺少权限（CAMERA / RECORD_AUDIO）");
             return;
         }
-        if (!isPreviewing || isSwitchingCamera || isRecording) {
+        if (!isPreviewing || isSwitchingCamera || isRecording || isPreparing) {
             listener.onError("相机未就绪或正在进行其他操作");
             return;
         }
@@ -794,25 +825,39 @@ public class CameraFilterHelper {
         int totalRotDeg = (rotationDegrees + (extraRotate90 ? 90 : 0)) % 360;
         glFilterRecorder.setTransform(totalRotDeg, recFlipH, extraFlipV);
 
-        try {
-            glFilterRecorder.prepare();
-            glFilterRecorder.start();
-            isRecording = true;
-
-            autoStopRunnable = () -> {
-                Log.i(TAG, "录制自动停止（超过 " + MAX_RECORD_DURATION_MS / 1000 + "s）");
-                stopRecording();
-            };
-            mainHandler.postDelayed(autoStopRunnable, MAX_RECORD_DURATION_MS);
-            Log.i(TAG, "录制开始（含滤镜）: " + dest.getAbsolutePath());
-        } catch (Exception e) {
-            Log.e(TAG, "startRecording failed", e);
-            if (glFilterRecorder != null) { glFilterRecorder.release(); glFilterRecorder = null; }
-            isRecording         = false;
-            videoRecordListener = null;
-            currentRecordingFile= null;
-            listener.onError("录制启动失败：" + e.getMessage());
-        }
+        isPreparing = true;
+        // 视频/音频编码器 + AudioRecord + MediaMuxer 的初始化较耗时（数百毫秒），
+        // 若在主线程执行会导致点击录制时明显卡顿。移到后台线程执行。
+        new Thread(() -> {
+            try {
+                glFilterRecorder.prepare();
+                glFilterRecorder.start();
+                isRecording = true;
+                isPreparing = false;
+                mainHandler.post(() -> {
+                    autoStopRunnable = () -> {
+                        Log.i(TAG, "录制自动停止（超过 " + MAX_RECORD_DURATION_MS / 1000 + "s）");
+                        stopRecording();
+                    };
+                    mainHandler.postDelayed(autoStopRunnable, MAX_RECORD_DURATION_MS);
+                    Log.i(TAG, "录制开始（含滤镜）: " + dest.getAbsolutePath());
+                });
+            } catch (Exception e) {
+                Log.e(TAG, "startRecording failed", e);
+                isPreparing = false;
+                final GlFilterRecorder failedRecorder = glFilterRecorder;
+                glFilterRecorder = null;
+                if (failedRecorder != null) {
+                    try { failedRecorder.release(); } catch (Throwable ignored) {}
+                }
+                mainHandler.post(() -> {
+                    isRecording = false;
+                    videoRecordListener = null;
+                    currentRecordingFile = null;
+                    listener.onError("录制启动失败：" + e.getMessage());
+                });
+            }
+        }, "RecorderPrepare").start();
     }
 
     public void stopRecording() {
