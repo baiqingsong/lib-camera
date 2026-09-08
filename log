@@ -1,39 +1,40 @@
----------------------------- PROCESS STARTED (13023) for package com.dawn.libfilter ----------------------------
-2026-09-08 14:37:58.445 13023-13023 ziparchive              com.dawn.libfilter                   W  Unable to open '/data/data/com.dawn.libfilter/code_cache/.overlay/base.apk/classes2.dm': No such file or directory
-2026-09-08 14:37:58.447 13023-13023 ziparchive              com.dawn.libfilter                   W  Unable to open '/data/app/~~-2qjsaWXDi-NSMzVN4rEKA==/com.dawn.libfilter-OCqucU516vLUtnS6WuayuQ==/base.dm': No such file or directory
-2026-09-08 14:37:58.447 13023-13023 ziparchive              com.dawn.libfilter                   W  Unable to open '/data/app/~~-2qjsaWXDi-NSMzVN4rEKA==/com.dawn.libfilter-OCqucU516vLUtnS6WuayuQ==/base.dm': No such file or directory
-2026-09-08 14:37:58.569 13023-13023 nativeloader            com.dawn.libfilter                   D  Configuring clns-6 for other apk /data/app/~~-2qjsaWXDi-NSMzVN4rEKA==/com.dawn.libfilter-OCqucU516vLUtnS6WuayuQ==/base.apk. target_sdk_version=34, uses_libraries=, library_path=/data/app/~~-2qjsaWXDi-NSMzVN4rEKA==/com.dawn.libfilter-OCqucU516vLUtnS6WuayuQ==/lib/arm64:/data/app/~~-2qjsaWXDi-NSMzVN4rEKA==/com.dawn.libfilter-OCqucU516vLUtnS6WuayuQ==/base.apk!/lib/arm64-v8a, permitted_path=/data:/mnt/expand:/data/user/0/com.dawn.libfilter
-2026-09-08 14:37:58.605 13023-13023 GraphicsEnvironment     com.dawn.libfilter                   V  Currently set values for:
-2026-09-08 14:37:58.605 13023-13023 GraphicsEnvironment     com.dawn.libfilter                   V    angle_gl_driver_selection_pkgs=[]
-2026-09-08 14:37:58.605 13023-13023 GraphicsEnvironment     com.dawn.libfilter                   V    angle_gl_driver_selection_values=[]
-2026-09-08 14:37:58.607 13023-13023 GraphicsEnvironment     com.dawn.libfilter                   V  ANGLE GameManagerService for com.dawn.libfilter: false
-2026-09-08 14:37:58.607 13023-13023 GraphicsEnvironment     com.dawn.libfilter                   V  com.dawn.libfilter is not listed in per-application setting
-2026-09-08 14:37:58.607 13023-13023 GraphicsEnvironment     com.dawn.libfilter                   V  Neither updatable production driver nor prerelease driver is supported.
-2026-09-08 14:37:58.670 13023-13045 vulkan                  com.dawn.libfilter                   D  searching for layers in '/data/app/~~-2qjsaWXDi-NSMzVN4rEKA==/com.dawn.libfilter-OCqucU516vLUtnS6WuayuQ==/lib/arm64'
-2026-09-08 14:37:58.671 13023-13045 vulkan                  com.dawn.libfilter                   D  searching for layers in '/data/app/~~-2qjsaWXDi-NSMzVN4rEKA==/com.dawn.libfilter-OCqucU516vLUtnS6WuayuQ==/base.apk!/lib/arm64-v8a'
-2026-09-08 14:37:58.673 13023-13045 mali_so                 com.dawn.libfilter                   I  [File] : hardware/arm/mali_so/driver/product/base/src/mali_base_kbase.c; [Line] : 1403; [Func] : base_context_deal_with_version_affairs_rk_ext;
+---------------------------- PROCESS ENDED (16738) for package com.dawn.libfilter ----------------------------
+---------------------------- PROCESS STARTED (17007) for package com.dawn.libfilter ----------------------------
+2026-09-08 17:52:10.755 17007-17007 ziparchive              com.dawn.libfilter                   W  Unable to open '/data/data/com.dawn.libfilter/code_cache/.overlay/base.apk/classes2.dm': No such file or directory
+2026-09-08 17:52:10.758 17007-17007 ziparchive              com.dawn.libfilter                   W  Unable to open '/data/app/~~5P1sPh85xiGmj2eevse0VQ==/com.dawn.libfilter-oEplmKlAFEgb_lTPMvsCEQ==/base.dm': No such file or directory
+2026-09-08 17:52:10.758 17007-17007 ziparchive              com.dawn.libfilter                   W  Unable to open '/data/app/~~5P1sPh85xiGmj2eevse0VQ==/com.dawn.libfilter-oEplmKlAFEgb_lTPMvsCEQ==/base.dm': No such file or directory
+2026-09-08 17:52:10.882 17007-17007 nativeloader            com.dawn.libfilter                   D  Configuring clns-6 for other apk /data/app/~~5P1sPh85xiGmj2eevse0VQ==/com.dawn.libfilter-oEplmKlAFEgb_lTPMvsCEQ==/base.apk. target_sdk_version=34, uses_libraries=, library_path=/data/app/~~5P1sPh85xiGmj2eevse0VQ==/com.dawn.libfilter-oEplmKlAFEgb_lTPMvsCEQ==/lib/arm64:/data/app/~~5P1sPh85xiGmj2eevse0VQ==/com.dawn.libfilter-oEplmKlAFEgb_lTPMvsCEQ==/base.apk!/lib/arm64-v8a, permitted_path=/data:/mnt/expand:/data/user/0/com.dawn.libfilter
+2026-09-08 17:52:10.907 17007-17007 GraphicsEnvironment     com.dawn.libfilter                   V  Currently set values for:
+2026-09-08 17:52:10.907 17007-17007 GraphicsEnvironment     com.dawn.libfilter                   V    angle_gl_driver_selection_pkgs=[]
+2026-09-08 17:52:10.907 17007-17007 GraphicsEnvironment     com.dawn.libfilter                   V    angle_gl_driver_selection_values=[]
+2026-09-08 17:52:10.908 17007-17007 GraphicsEnvironment     com.dawn.libfilter                   V  ANGLE GameManagerService for com.dawn.libfilter: false
+2026-09-08 17:52:10.908 17007-17007 GraphicsEnvironment     com.dawn.libfilter                   V  com.dawn.libfilter is not listed in per-application setting
+2026-09-08 17:52:10.909 17007-17007 GraphicsEnvironment     com.dawn.libfilter                   V  Neither updatable production driver nor prerelease driver is supported.
+2026-09-08 17:52:10.963 17007-17030 vulkan                  com.dawn.libfilter                   D  searching for layers in '/data/app/~~5P1sPh85xiGmj2eevse0VQ==/com.dawn.libfilter-oEplmKlAFEgb_lTPMvsCEQ==/lib/arm64'
+2026-09-08 17:52:10.963 17007-17030 vulkan                  com.dawn.libfilter                   D  searching for layers in '/data/app/~~5P1sPh85xiGmj2eevse0VQ==/com.dawn.libfilter-oEplmKlAFEgb_lTPMvsCEQ==/base.apk!/lib/arm64-v8a'
+2026-09-08 17:52:10.966 17007-17030 mali_so                 com.dawn.libfilter                   I  [File] : hardware/arm/mali_so/driver/product/base/src/mali_base_kbase.c; [Line] : 1403; [Func] : base_context_deal_with_version_affairs_rk_ext;
                                                                                                     arm_release_ver of this mali_so is 'g15p0-01eac0', rk_so_ver is '4'.
-2026-09-08 14:37:58.673 13023-13045 mali_so                 com.dawn.libfilter                   I  [File] : hardware/arm/mali_so/driver/product/base/src/mali_base_kbase.c; [Line] : 1419; [Func] : base_context_deal_with_version_affairs_rk_ext;
+2026-09-08 17:52:10.966 17007-17030 mali_so                 com.dawn.libfilter                   I  [File] : hardware/arm/mali_so/driver/product/base/src/mali_base_kbase.c; [Line] : 1419; [Func] : base_context_deal_with_version_affairs_rk_ext;
                                                                                                     arm_release_vers are match. to set the full mali_ver 'g15p0-01eac0-x-4' as value of 'sys.gmali.version'.
-2026-09-08 14:37:58.677 13023-13045 mali_so                 com.dawn.libfilter                   I  [File] : hardware/arm/mali_so/driver/product/base/src/mali_base_kbase.c; [Line] : 1403; [Func] : base_context_deal_with_version_affairs_rk_ext;
+2026-09-08 17:52:10.970 17007-17030 mali_so                 com.dawn.libfilter                   I  [File] : hardware/arm/mali_so/driver/product/base/src/mali_base_kbase.c; [Line] : 1403; [Func] : base_context_deal_with_version_affairs_rk_ext;
                                                                                                     arm_release_ver of this mali_so is 'g15p0-01eac0', rk_so_ver is '4'.
-2026-09-08 14:37:58.677 13023-13045 mali_so                 com.dawn.libfilter                   I  [File] : hardware/arm/mali_so/driver/product/base/src/mali_base_kbase.c; [Line] : 1419; [Func] : base_context_deal_with_version_affairs_rk_ext;
+2026-09-08 17:52:10.970 17007-17030 mali_so                 com.dawn.libfilter                   I  [File] : hardware/arm/mali_so/driver/product/base/src/mali_base_kbase.c; [Line] : 1419; [Func] : base_context_deal_with_version_affairs_rk_ext;
                                                                                                     arm_release_vers are match. to set the full mali_ver 'g15p0-01eac0-x-4' as value of 'sys.gmali.version'.
-2026-09-08 14:37:58.727 13023-13023 AppCompatDelegate       com.dawn.libfilter                   D  Checking for metadata for AppLocalesMetadataHolderService : Service not found
-2026-09-08 14:37:58.839 13023-13023 .dawn.libfilter         com.dawn.libfilter                   W  Accessing hidden method Landroid/view/View;->computeFitSystemWindows(Landroid/graphics/Rect;Landroid/graphics/Rect;)Z (unsupported, reflection, allowed)
-2026-09-08 14:37:58.839 13023-13023 .dawn.libfilter         com.dawn.libfilter                   W  Accessing hidden method Landroid/view/ViewGroup;->makeOptionalFitsSystemWindows()V (unsupported, reflection, allowed)
-2026-09-08 14:37:58.845 13023-13023 Compatibil...geReporter com.dawn.libfilter                   D  Compat change id reported: 210923482; UID 10103; state: ENABLED
-2026-09-08 14:37:58.980 13023-13023 Compatibil...geReporter com.dawn.libfilter                   D  Compat change id reported: 237531167; UID 10103; state: DISABLED
-2026-09-08 14:37:58.985 13023-13023 OpenGLRenderer          com.dawn.libfilter                   W  Unknown dataspace 0
-2026-09-08 14:38:03.756 13023-13069 ProfileInstaller        com.dawn.libfilter                   D  Installing profile for com.dawn.libfilter
-2026-09-08 14:38:16.110 13023-13075 CameraManagerGlobal     com.dawn.libfilter                   I  Connecting to camera service
-2026-09-08 14:38:16.141 13023-13075 CameraRepository        com.dawn.libfilter                   D  Added camera: 0
-2026-09-08 14:38:16.179 13023-13075 Camera2CameraInfo       com.dawn.libfilter                   I  Device Level: INFO_SUPPORTED_HARDWARE_LEVEL_LIMITED
-2026-09-08 14:38:16.186 13023-13075 CameraRepository        com.dawn.libfilter                   D  Added camera: 11
-2026-09-08 14:38:16.189 13023-13075 Camera2CameraInfo       com.dawn.libfilter                   I  Device Level: INFO_SUPPORTED_HARDWARE_LEVEL_EXTERNAL
-2026-09-08 14:38:16.191 13023-13075 CameraValidator         com.dawn.libfilter                   D  Verifying camera lens facing on rk3576_u, lensFacingInteger: null
-2026-09-08 14:38:16.196 13023-13075 CameraValidator         com.dawn.libfilter                   E  Camera LensFacing verification failed, existing cameras: [Camera@6217574[id=0], Camera@6a03399[id=11]]
-2026-09-08 14:38:16.199 13023-13075 CameraX                 com.dawn.libfilter                   W  Retry init. Start time 17911461 current time 17911573 (Ask Gemini)
+2026-09-08 17:52:11.017 17007-17007 AppCompatDelegate       com.dawn.libfilter                   D  Checking for metadata for AppLocalesMetadataHolderService : Service not found
+2026-09-08 17:52:11.132 17007-17007 .dawn.libfilter         com.dawn.libfilter                   W  Accessing hidden method Landroid/view/View;->computeFitSystemWindows(Landroid/graphics/Rect;Landroid/graphics/Rect;)Z (unsupported, reflection, allowed)
+2026-09-08 17:52:11.132 17007-17007 .dawn.libfilter         com.dawn.libfilter                   W  Accessing hidden method Landroid/view/ViewGroup;->makeOptionalFitsSystemWindows()V (unsupported, reflection, allowed)
+2026-09-08 17:52:11.139 17007-17007 Compatibil...geReporter com.dawn.libfilter                   D  Compat change id reported: 210923482; UID 10103; state: ENABLED
+2026-09-08 17:52:11.278 17007-17007 Compatibil...geReporter com.dawn.libfilter                   D  Compat change id reported: 237531167; UID 10103; state: DISABLED
+2026-09-08 17:52:11.282 17007-17007 OpenGLRenderer          com.dawn.libfilter                   W  Unknown dataspace 0
+2026-09-08 17:52:16.390 17007-17053 ProfileInstaller        com.dawn.libfilter                   D  Installing profile for com.dawn.libfilter
+2026-09-08 17:52:32.002 17007-17065 CameraManagerGlobal     com.dawn.libfilter                   I  Connecting to camera service
+2026-09-08 17:52:32.038 17007-17065 CameraRepository        com.dawn.libfilter                   D  Added camera: 0
+2026-09-08 17:52:32.078 17007-17065 Camera2CameraInfo       com.dawn.libfilter                   I  Device Level: INFO_SUPPORTED_HARDWARE_LEVEL_LIMITED
+2026-09-08 17:52:32.084 17007-17065 CameraRepository        com.dawn.libfilter                   D  Added camera: 11
+2026-09-08 17:52:32.088 17007-17065 Camera2CameraInfo       com.dawn.libfilter                   I  Device Level: INFO_SUPPORTED_HARDWARE_LEVEL_EXTERNAL
+2026-09-08 17:52:32.090 17007-17065 CameraValidator         com.dawn.libfilter                   D  Verifying camera lens facing on rk3576_u, lensFacingInteger: null
+2026-09-08 17:52:32.094 17007-17065 CameraValidator         com.dawn.libfilter                   E  Camera LensFacing verification failed, existing cameras: [Camera@6217574[id=0], Camera@344c65e[id=11]]
+2026-09-08 17:52:32.098 17007-17065 CameraX                 com.dawn.libfilter                   W  Retry init. Start time 29567355 current time 29567472 (Ask Gemini)
                                                                                                     androidx.camera.core.impl.CameraValidator$CameraIdListIncorrectException: Expected camera missing from device.
                                                                                                     	at androidx.camera.core.impl.CameraValidator.validateCameras(CameraValidator.java:97)
                                                                                                     	at androidx.camera.core.CameraX.lambda$initAndRetryRecursively$2$androidx-camera-core-CameraX(CameraX.java:334)
@@ -49,20 +50,19 @@
                                                                                                     	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) 
                                                                                                     	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:644) 
                                                                                                     	at java.lang.Thread.run(Thread.java:1012) 
-2026-09-08 14:38:16.352 13023-13073 libEGL                  com.dawn.libfilter                   D  loaded /vendor/lib64/egl/libGLES_mali.so
-2026-09-08 14:38:16.410 13023-13073 mali_so                 com.dawn.libfilter                   I  [File] : hardware/arm/mali_so/driver/product/base/src/mali_base_kbase.c; [Line] : 1403; [Func] : base_context_deal_with_version_affairs_rk_ext;
+2026-09-08 17:52:32.256 17007-17063 libEGL                  com.dawn.libfilter                   D  loaded /vendor/lib64/egl/libGLES_mali.so
+2026-09-08 17:52:32.297 17007-17063 mali_so                 com.dawn.libfilter                   I  [File] : hardware/arm/mali_so/driver/product/base/src/mali_base_kbase.c; [Line] : 1403; [Func] : base_context_deal_with_version_affairs_rk_ext;
                                                                                                     arm_release_ver of this mali_so is 'g15p0-01eac0', rk_so_ver is '4'.
-2026-09-08 14:38:16.410 13023-13073 mali_so                 com.dawn.libfilter                   I  [File] : hardware/arm/mali_so/driver/product/base/src/mali_base_kbase.c; [Line] : 1419; [Func] : base_context_deal_with_version_affairs_rk_ext;
+2026-09-08 17:52:32.297 17007-17063 mali_so                 com.dawn.libfilter                   I  [File] : hardware/arm/mali_so/driver/product/base/src/mali_base_kbase.c; [Line] : 1419; [Func] : base_context_deal_with_version_affairs_rk_ext;
                                                                                                     arm_release_vers are match. to set the full mali_ver 'g15p0-01eac0-x-4' as value of 'sys.gmali.version'.
-2026-09-08 14:38:16.481 13023-13062 OpenGLRenderer          com.dawn.libfilter                   I  Davey! duration=833ms; Flags=1, FrameTimelineVsyncId=788691, IntendedVsync=17911011022230, Vsync=17911479145466, InputEventId=0, HandleInputStart=17911480348121, AnimationStart=17911480357455, PerformTraversalsStart=17911481747538, DrawStart=17911795616747, FrameDeadline=17911027688896, FrameInterval=17911479993746, FrameStartTime=16719566, SyncQueued=17911827019330, SyncStart=17911827161830, IssueDrawCommandsStart=17911828087580, SwapBuffers=17911843858580, FrameCompleted=17911844548372, DequeueBufferDuration=1704500, QueueBufferDuration=591500, GpuCompleted=17911844074830, SwapBuffersCompleted=17911844548372, DisplayPresentTime=0, CommandSubmissionCompleted=17911843858580, 
-2026-09-08 14:38:16.497 13023-13062 OpenGLRenderer          com.dawn.libfilter                   I  Davey! duration=837ms; Flags=1, FrameTimelineVsyncId=788691, IntendedVsync=17911011022230, Vsync=17911479145466, InputEventId=0, HandleInputStart=17911480348121, AnimationStart=17911480357455, PerformTraversalsStart=17911481747538, DrawStart=17911845766788, FrameDeadline=17911027688896, FrameInterval=17911479993746, FrameStartTime=16721375, SyncQueued=17911847051580, SyncStart=17911851253913, IssueDrawCommandsStart=17911851313122, SwapBuffers=17911852556205, FrameCompleted=17911853106747, DequeueBufferDuration=11667, QueueBufferDuration=234791, GpuCompleted=17911853106747, SwapBuffersCompleted=17911852855163, DisplayPresentTime=0, CommandSubmissionCompleted=17911852556205, 
-2026-09-08 14:38:16.722 13023-13077 CameraRepository        com.dawn.libfilter                   D  Added camera: 0
-2026-09-08 14:38:16.731 13023-13077 Camera2CameraInfo       com.dawn.libfilter                   I  Device Level: INFO_SUPPORTED_HARDWARE_LEVEL_LIMITED
-2026-09-08 14:38:16.735 13023-13077 CameraRepository        com.dawn.libfilter                   D  Added camera: 11
-2026-09-08 14:38:16.743 13023-13077 Camera2CameraInfo       com.dawn.libfilter                   I  Device Level: INFO_SUPPORTED_HARDWARE_LEVEL_EXTERNAL
-2026-09-08 14:38:16.747 13023-13077 CameraValidator         com.dawn.libfilter                   D  Verifying camera lens facing on rk3576_u, lensFacingInteger: null
-2026-09-08 14:38:16.753 13023-13077 CameraValidator         com.dawn.libfilter                   E  Camera LensFacing verification failed, existing cameras: [Camera@3435da5[id=0], Camera@a6519d2[id=11]]
-2026-09-08 14:38:16.761 13023-13077 CameraX                 com.dawn.libfilter                   W  Retry init. Start time 17911461 current time 17912130 (Ask Gemini)
+2026-09-08 17:52:32.378 17007-17068 OpenGLRenderer          com.dawn.libfilter                   I  Davey! duration=823ms; Flags=1, FrameTimelineVsyncId=1436803, IntendedVsync=29566908118756, Vsync=29567376573708, InputEventId=0, HandleInputStart=29567378873804, AnimationStart=29567378881388, PerformTraversalsStart=29567380194763, DrawStart=29567688559346, FrameDeadline=29566924785422, FrameInterval=29567378523513, FrameStartTime=16715361, SyncQueued=29567720571805, SyncStart=29567720907805, IssueDrawCommandsStart=29567721327513, SwapBuffers=29567730407971, FrameCompleted=29567731518930, DequeueBufferDuration=1349542, QueueBufferDuration=1013833, GpuCompleted=29567730695596, SwapBuffersCompleted=29567731518930, DisplayPresentTime=0, CommandSubmissionCompleted=29567730407971, 
+2026-09-08 17:52:32.613 17007-17067 CameraRepository        com.dawn.libfilter                   D  Added camera: 0
+2026-09-08 17:52:32.617 17007-17067 Camera2CameraInfo       com.dawn.libfilter                   I  Device Level: INFO_SUPPORTED_HARDWARE_LEVEL_LIMITED
+2026-09-08 17:52:32.619 17007-17067 CameraRepository        com.dawn.libfilter                   D  Added camera: 11
+2026-09-08 17:52:32.623 17007-17067 Camera2CameraInfo       com.dawn.libfilter                   I  Device Level: INFO_SUPPORTED_HARDWARE_LEVEL_EXTERNAL
+2026-09-08 17:52:32.625 17007-17067 CameraValidator         com.dawn.libfilter                   D  Verifying camera lens facing on rk3576_u, lensFacingInteger: null
+2026-09-08 17:52:32.630 17007-17067 CameraValidator         com.dawn.libfilter                   E  Camera LensFacing verification failed, existing cameras: [Camera@7fb8988[id=0], Camera@5562aa3[id=11]]
+2026-09-08 17:52:32.636 17007-17067 CameraX                 com.dawn.libfilter                   W  Retry init. Start time 29567355 current time 29568008 (Ask Gemini)
                                                                                                     androidx.camera.core.impl.CameraValidator$CameraIdListIncorrectException: Expected camera missing from device.
                                                                                                     	at androidx.camera.core.impl.CameraValidator.validateCameras(CameraValidator.java:97)
                                                                                                     	at androidx.camera.core.CameraX.lambda$initAndRetryRecursively$2$androidx-camera-core-CameraX(CameraX.java:334)
@@ -78,13 +78,13 @@
                                                                                                     	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) 
                                                                                                     	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:644) 
                                                                                                     	at java.lang.Thread.run(Thread.java:1012) 
-2026-09-08 14:38:17.278 13023-13075 CameraRepository        com.dawn.libfilter                   D  Added camera: 0
-2026-09-08 14:38:17.285 13023-13075 Camera2CameraInfo       com.dawn.libfilter                   I  Device Level: INFO_SUPPORTED_HARDWARE_LEVEL_LIMITED
-2026-09-08 14:38:17.288 13023-13075 CameraRepository        com.dawn.libfilter                   D  Added camera: 11
-2026-09-08 14:38:17.294 13023-13075 Camera2CameraInfo       com.dawn.libfilter                   I  Device Level: INFO_SUPPORTED_HARDWARE_LEVEL_EXTERNAL
-2026-09-08 14:38:17.296 13023-13075 CameraValidator         com.dawn.libfilter                   D  Verifying camera lens facing on rk3576_u, lensFacingInteger: null
-2026-09-08 14:38:17.303 13023-13075 CameraValidator         com.dawn.libfilter                   E  Camera LensFacing verification failed, existing cameras: [Camera@f9656cd[id=0], Camera@2328bfc[id=11]]
-2026-09-08 14:38:17.311 13023-13075 CameraX                 com.dawn.libfilter                   W  Retry init. Start time 17911461 current time 17912680 (Ask Gemini)
+2026-09-08 17:52:33.156 17007-17065 CameraRepository        com.dawn.libfilter                   D  Added camera: 0
+2026-09-08 17:52:33.159 17007-17065 Camera2CameraInfo       com.dawn.libfilter                   I  Device Level: INFO_SUPPORTED_HARDWARE_LEVEL_LIMITED
+2026-09-08 17:52:33.160 17007-17065 CameraRepository        com.dawn.libfilter                   D  Added camera: 11
+2026-09-08 17:52:33.164 17007-17065 Camera2CameraInfo       com.dawn.libfilter                   I  Device Level: INFO_SUPPORTED_HARDWARE_LEVEL_EXTERNAL
+2026-09-08 17:52:33.165 17007-17065 CameraValidator         com.dawn.libfilter                   D  Verifying camera lens facing on rk3576_u, lensFacingInteger: null
+2026-09-08 17:52:33.168 17007-17065 CameraValidator         com.dawn.libfilter                   E  Camera LensFacing verification failed, existing cameras: [Camera@1039b82[id=0], Camera@7149285[id=11]]
+2026-09-08 17:52:33.173 17007-17065 CameraX                 com.dawn.libfilter                   W  Retry init. Start time 29567355 current time 29568546 (Ask Gemini)
                                                                                                     androidx.camera.core.impl.CameraValidator$CameraIdListIncorrectException: Expected camera missing from device.
                                                                                                     	at androidx.camera.core.impl.CameraValidator.validateCameras(CameraValidator.java:97)
                                                                                                     	at androidx.camera.core.CameraX.lambda$initAndRetryRecursively$2$androidx-camera-core-CameraX(CameraX.java:334)
@@ -100,13 +100,13 @@
                                                                                                     	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) 
                                                                                                     	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:644) 
                                                                                                     	at java.lang.Thread.run(Thread.java:1012) 
-2026-09-08 14:38:17.836 13023-13077 CameraRepository        com.dawn.libfilter                   D  Added camera: 0
-2026-09-08 14:38:17.844 13023-13077 Camera2CameraInfo       com.dawn.libfilter                   I  Device Level: INFO_SUPPORTED_HARDWARE_LEVEL_LIMITED
-2026-09-08 14:38:17.848 13023-13077 CameraRepository        com.dawn.libfilter                   D  Added camera: 11
-2026-09-08 14:38:17.857 13023-13077 Camera2CameraInfo       com.dawn.libfilter                   I  Device Level: INFO_SUPPORTED_HARDWARE_LEVEL_EXTERNAL
-2026-09-08 14:38:17.861 13023-13077 CameraValidator         com.dawn.libfilter                   D  Verifying camera lens facing on rk3576_u, lensFacingInteger: null
-2026-09-08 14:38:17.869 13023-13077 CameraValidator         com.dawn.libfilter                   E  Camera LensFacing verification failed, existing cameras: [Camera@a378d3d[id=0], Camera@12eec2c[id=11]]
-2026-09-08 14:38:17.877 13023-13077 CameraX                 com.dawn.libfilter                   W  Retry init. Start time 17911461 current time 17913247 (Ask Gemini)
+2026-09-08 17:52:33.691 17007-17067 CameraRepository        com.dawn.libfilter                   D  Added camera: 0
+2026-09-08 17:52:33.699 17007-17067 Camera2CameraInfo       com.dawn.libfilter                   I  Device Level: INFO_SUPPORTED_HARDWARE_LEVEL_LIMITED
+2026-09-08 17:52:33.703 17007-17067 CameraRepository        com.dawn.libfilter                   D  Added camera: 11
+2026-09-08 17:52:33.712 17007-17067 Camera2CameraInfo       com.dawn.libfilter                   I  Device Level: INFO_SUPPORTED_HARDWARE_LEVEL_EXTERNAL
+2026-09-08 17:52:33.716 17007-17067 CameraValidator         com.dawn.libfilter                   D  Verifying camera lens facing on rk3576_u, lensFacingInteger: null
+2026-09-08 17:52:33.724 17007-17067 CameraValidator         com.dawn.libfilter                   E  Camera LensFacing verification failed, existing cameras: [Camera@dde932[id=0], Camera@2f826f5[id=11]]
+2026-09-08 17:52:33.732 17007-17067 CameraX                 com.dawn.libfilter                   W  Retry init. Start time 29567355 current time 29569101 (Ask Gemini)
                                                                                                     androidx.camera.core.impl.CameraValidator$CameraIdListIncorrectException: Expected camera missing from device.
                                                                                                     	at androidx.camera.core.impl.CameraValidator.validateCameras(CameraValidator.java:97)
                                                                                                     	at androidx.camera.core.CameraX.lambda$initAndRetryRecursively$2$androidx-camera-core-CameraX(CameraX.java:334)
@@ -122,13 +122,13 @@
                                                                                                     	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) 
                                                                                                     	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:644) 
                                                                                                     	at java.lang.Thread.run(Thread.java:1012) 
-2026-09-08 14:38:18.398 13023-13075 CameraRepository        com.dawn.libfilter                   D  Added camera: 0
-2026-09-08 14:38:18.408 13023-13075 Camera2CameraInfo       com.dawn.libfilter                   I  Device Level: INFO_SUPPORTED_HARDWARE_LEVEL_LIMITED
-2026-09-08 14:38:18.414 13023-13075 CameraRepository        com.dawn.libfilter                   D  Added camera: 11
-2026-09-08 14:38:18.424 13023-13075 Camera2CameraInfo       com.dawn.libfilter                   I  Device Level: INFO_SUPPORTED_HARDWARE_LEVEL_EXTERNAL
-2026-09-08 14:38:18.429 13023-13075 CameraValidator         com.dawn.libfilter                   D  Verifying camera lens facing on rk3576_u, lensFacingInteger: null
-2026-09-08 14:38:18.437 13023-13075 CameraValidator         com.dawn.libfilter                   E  Camera LensFacing verification failed, existing cameras: [Camera@58b3fad[id=0], Camera@ddbb85c[id=11]]
-2026-09-08 14:38:18.444 13023-13075 CameraX                 com.dawn.libfilter                   W  Retry init. Start time 17911461 current time 17913815 (Ask Gemini)
+2026-09-08 17:52:34.256 17007-17065 CameraRepository        com.dawn.libfilter                   D  Added camera: 0
+2026-09-08 17:52:34.265 17007-17065 Camera2CameraInfo       com.dawn.libfilter                   I  Device Level: INFO_SUPPORTED_HARDWARE_LEVEL_LIMITED
+2026-09-08 17:52:34.267 17007-17065 CameraRepository        com.dawn.libfilter                   D  Added camera: 11
+2026-09-08 17:52:34.274 17007-17065 Camera2CameraInfo       com.dawn.libfilter                   I  Device Level: INFO_SUPPORTED_HARDWARE_LEVEL_EXTERNAL
+2026-09-08 17:52:34.279 17007-17065 CameraValidator         com.dawn.libfilter                   D  Verifying camera lens facing on rk3576_u, lensFacingInteger: null
+2026-09-08 17:52:34.285 17007-17065 CameraValidator         com.dawn.libfilter                   E  Camera LensFacing verification failed, existing cameras: [Camera@67f02e2[id=0], Camera@be1b765[id=11]]
+2026-09-08 17:52:34.295 17007-17065 CameraX                 com.dawn.libfilter                   W  Retry init. Start time 29567355 current time 29569663 (Ask Gemini)
                                                                                                     androidx.camera.core.impl.CameraValidator$CameraIdListIncorrectException: Expected camera missing from device.
                                                                                                     	at androidx.camera.core.impl.CameraValidator.validateCameras(CameraValidator.java:97)
                                                                                                     	at androidx.camera.core.CameraX.lambda$initAndRetryRecursively$2$androidx-camera-core-CameraX(CameraX.java:334)
@@ -144,67 +144,631 @@
                                                                                                     	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) 
                                                                                                     	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:644) 
                                                                                                     	at java.lang.Thread.run(Thread.java:1012) 
-2026-09-08 14:38:18.969 13023-13077 CameraRepository        com.dawn.libfilter                   D  Added camera: 0
-2026-09-08 14:38:18.986 13023-13077 Camera2CameraInfo       com.dawn.libfilter                   I  Device Level: INFO_SUPPORTED_HARDWARE_LEVEL_LIMITED
-2026-09-08 14:38:18.991 13023-13077 CameraRepository        com.dawn.libfilter                   D  Added camera: 11
-2026-09-08 14:38:19.003 13023-13077 Camera2CameraInfo       com.dawn.libfilter                   I  Device Level: INFO_SUPPORTED_HARDWARE_LEVEL_EXTERNAL
-2026-09-08 14:38:19.006 13023-13077 CameraValidator         com.dawn.libfilter                   D  Verifying camera lens facing on rk3576_u, lensFacingInteger: null
-2026-09-08 14:38:19.012 13023-13077 CameraValidator         com.dawn.libfilter                   E  Camera LensFacing verification failed, existing cameras: [Camera@1286e1d[id=0], Camera@b2bf08c[id=11]]
-2026-09-08 14:38:19.012 13023-13077 CameraX                 com.dawn.libfilter                   E  The device might underreport the amount of the cameras. Finish the initialize task since we are already reaching the maximum number of retries.
-2026-09-08 14:38:19.017 13023-13023 CameraFilterHelper      com.dawn.libfilter                   I  available camera[0]: selector=androidx.camera.core.CameraSelector@bed8978 lensFacing=1
-2026-09-08 14:38:19.017 13023-13023 CameraFilterHelper      com.dawn.libfilter                   I  available camera[1]: selector=androidx.camera.core.CameraSelector@68279b7 lensFacing=2
-2026-09-08 14:38:19.018 13023-13023 CameraFilterHelper      com.dawn.libfilter                   I  select external camera, index=1 selector=androidx.camera.core.CameraSelector@1019a42
-2026-09-08 14:38:19.109 13023-13023 CameraOrientationUtil   com.dawn.libfilter                   D  getRelativeImageRotation: destRotationDegrees=0, sourceRotationDegrees=0, isOppositeFacing=false, result=0
-2026-09-08 14:38:19.112 13023-13023 CameraOrientationUtil   com.dawn.libfilter                   D  getRelativeImageRotation: destRotationDegrees=0, sourceRotationDegrees=0, isOppositeFacing=false, result=0
-2026-09-08 14:38:19.131 13023-13023 CameraOrientationUtil   com.dawn.libfilter                   D  getRelativeImageRotation: destRotationDegrees=0, sourceRotationDegrees=0, isOppositeFacing=false, result=0
-2026-09-08 14:38:19.132 13023-13023 CameraOrientationUtil   com.dawn.libfilter                   D  getRelativeImageRotation: destRotationDegrees=0, sourceRotationDegrees=0, isOppositeFacing=false, result=0
-2026-09-08 14:38:19.150 13023-13023 Compatibil...geReporter com.dawn.libfilter                   D  Compat change id reported: 236825255; UID 10103; state: ENABLED
-2026-09-08 14:38:19.154 13023-13023 CameraOrientationUtil   com.dawn.libfilter                   D  getRelativeImageRotation: destRotationDegrees=0, sourceRotationDegrees=0, isOppositeFacing=false, result=0
-2026-09-08 14:38:19.156 13023-13023 CameraOrientationUtil   com.dawn.libfilter                   D  getRelativeImageRotation: destRotationDegrees=0, sourceRotationDegrees=0, isOppositeFacing=false, result=0
-2026-09-08 14:38:19.161 13023-13023 DeferrableSurface       com.dawn.libfilter                   D  Surface created[total_surfaces=1, used_surfaces=0](androidx.camera.core.impl.ImmediateSurface@cdba16}
-2026-09-08 14:38:19.173 13023-13075 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@b2bf08c[id=11]} Use case androidx.camera.core.ImageAnalysis-6decd3c2-e855-4799-9def-8a4511fdcd56263412639 ACTIVE
-2026-09-08 14:38:19.174 13023-13023 CameraFilterHelper      com.dawn.libfilter                   I  CameraX bound, lensFacing=0 index=0
-2026-09-08 14:38:19.178 13023-13075 UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [] for camera: 11
-2026-09-08 14:38:19.187 13023-13075 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@b2bf08c[id=11]} Use cases [androidx.camera.core.ImageAnalysis-6decd3c2-e855-4799-9def-8a4511fdcd56263412639] now ATTACHED
-2026-09-08 14:38:19.189 13023-13075 UseCaseAttachState      com.dawn.libfilter                   D  All use case: [androidx.camera.core.ImageAnalysis-6decd3c2-e855-4799-9def-8a4511fdcd56263412639] for camera: 11
-2026-09-08 14:38:19.194 13023-13075 UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [androidx.camera.core.ImageAnalysis-6decd3c2-e855-4799-9def-8a4511fdcd56263412639] for camera: 11
-2026-09-08 14:38:19.211 13023-13075 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@b2bf08c[id=11]} Resetting Capture Session
-2026-09-08 14:38:19.213 13023-13075 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@b2bf08c[id=11]} Releasing session in state INITIALIZED
-2026-09-08 14:38:19.215 13023-13075 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@b2bf08c[id=11]} Attempting to force open the camera.
-2026-09-08 14:38:19.217 13023-13075 CameraStateRegistry     com.dawn.libfilter                   D  tryOpenCamera(Camera@b2bf08c[id=11]) [Available Cameras: 1, Already Open: false (Previous state: null)] --> SUCCESS
-2026-09-08 14:38:19.222 13023-13075 CameraStateRegistry     com.dawn.libfilter                   D  Recalculating open cameras:
+2026-09-08 17:52:34.816 17007-17067 CameraRepository        com.dawn.libfilter                   D  Added camera: 0
+2026-09-08 17:52:34.826 17007-17067 Camera2CameraInfo       com.dawn.libfilter                   I  Device Level: INFO_SUPPORTED_HARDWARE_LEVEL_LIMITED
+2026-09-08 17:52:34.829 17007-17067 CameraRepository        com.dawn.libfilter                   D  Added camera: 11
+2026-09-08 17:52:34.836 17007-17067 Camera2CameraInfo       com.dawn.libfilter                   I  Device Level: INFO_SUPPORTED_HARDWARE_LEVEL_EXTERNAL
+2026-09-08 17:52:34.840 17007-17067 CameraValidator         com.dawn.libfilter                   D  Verifying camera lens facing on rk3576_u, lensFacingInteger: null
+2026-09-08 17:52:34.847 17007-17067 CameraValidator         com.dawn.libfilter                   E  Camera LensFacing verification failed, existing cameras: [Camera@731e892[id=0], Camera@d4843d5[id=11]]
+2026-09-08 17:52:34.848 17007-17067 CameraX                 com.dawn.libfilter                   E  The device might underreport the amount of the cameras. Finish the initialize task since we are already reaching the maximum number of retries.
+2026-09-08 17:52:34.854 17007-17007 CameraFilterHelper      com.dawn.libfilter                   I  available camera[0]: selector=androidx.camera.core.CameraSelector@ed64851 lensFacing=1
+2026-09-08 17:52:34.855 17007-17007 CameraFilterHelper      com.dawn.libfilter                   I  available camera[1]: selector=androidx.camera.core.CameraSelector@12dc524 lensFacing=2
+2026-09-08 17:52:34.855 17007-17007 CameraFilterHelper      com.dawn.libfilter                   I  select external camera, index=1 selector=androidx.camera.core.CameraSelector@bbafa53
+2026-09-08 17:52:34.942 17007-17007 CameraOrientationUtil   com.dawn.libfilter                   D  getRelativeImageRotation: destRotationDegrees=0, sourceRotationDegrees=0, isOppositeFacing=false, result=0
+2026-09-08 17:52:34.945 17007-17007 CameraOrientationUtil   com.dawn.libfilter                   D  getRelativeImageRotation: destRotationDegrees=0, sourceRotationDegrees=0, isOppositeFacing=false, result=0
+2026-09-08 17:52:34.968 17007-17007 CameraOrientationUtil   com.dawn.libfilter                   D  getRelativeImageRotation: destRotationDegrees=0, sourceRotationDegrees=0, isOppositeFacing=false, result=0
+2026-09-08 17:52:34.970 17007-17007 CameraOrientationUtil   com.dawn.libfilter                   D  getRelativeImageRotation: destRotationDegrees=0, sourceRotationDegrees=0, isOppositeFacing=false, result=0
+2026-09-08 17:52:34.991 17007-17007 Compatibil...geReporter com.dawn.libfilter                   D  Compat change id reported: 236825255; UID 10103; state: ENABLED
+2026-09-08 17:52:34.994 17007-17007 CameraOrientationUtil   com.dawn.libfilter                   D  getRelativeImageRotation: destRotationDegrees=0, sourceRotationDegrees=0, isOppositeFacing=false, result=0
+2026-09-08 17:52:34.997 17007-17007 CameraOrientationUtil   com.dawn.libfilter                   D  getRelativeImageRotation: destRotationDegrees=0, sourceRotationDegrees=0, isOppositeFacing=false, result=0
+2026-09-08 17:52:35.005 17007-17007 DeferrableSurface       com.dawn.libfilter                   D  Surface created[total_surfaces=1, used_surfaces=0](androidx.camera.core.impl.ImmediateSurface@94f1f97}
+2026-09-08 17:52:35.019 17007-17007 CameraFilterHelper      com.dawn.libfilter                   I  CameraX bound, actualLensFacing=2, selector=androidx.camera.core.CameraSelector@e952769
+2026-09-08 17:52:35.019 17007-17065 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} Use case androidx.camera.core.ImageAnalysis-61624ae3-8431-4a45-a022-fe0bcf04608221144812 ACTIVE
+2026-09-08 17:52:35.025 17007-17065 UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [] for camera: 11
+2026-09-08 17:52:35.040 17007-17065 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} Use cases [androidx.camera.core.ImageAnalysis-61624ae3-8431-4a45-a022-fe0bcf04608221144812] now ATTACHED
+2026-09-08 17:52:35.043 17007-17065 UseCaseAttachState      com.dawn.libfilter                   D  All use case: [androidx.camera.core.ImageAnalysis-61624ae3-8431-4a45-a022-fe0bcf04608221144812] for camera: 11
+2026-09-08 17:52:35.049 17007-17065 UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [androidx.camera.core.ImageAnalysis-61624ae3-8431-4a45-a022-fe0bcf04608221144812] for camera: 11
+2026-09-08 17:52:35.076 17007-17065 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} Resetting Capture Session
+2026-09-08 17:52:35.078 17007-17065 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} Releasing session in state INITIALIZED
+2026-09-08 17:52:35.081 17007-17065 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} Attempting to force open the camera.
+2026-09-08 17:52:35.084 17007-17065 CameraStateRegistry     com.dawn.libfilter                   D  tryOpenCamera(Camera@d4843d5[id=11]) [Available Cameras: 1, Already Open: false (Previous state: null)] --> SUCCESS
+2026-09-08 17:52:35.089 17007-17065 CameraStateRegistry     com.dawn.libfilter                   D  Recalculating open cameras:
                                                                                                     Camera                                       State                 
                                                                                                     -------------------------------------------------------------------
-                                                                                                    Camera@1286e1d[id=0]                         UNKNOWN               
-                                                                                                    Camera@b2bf08c[id=11]                        OPENING               
+                                                                                                    Camera@731e892[id=0]                         UNKNOWN               
+                                                                                                    Camera@d4843d5[id=11]                        OPENING               
                                                                                                     -------------------------------------------------------------------
                                                                                                     Open count: 1 (Max allowed: 1)
-2026-09-08 14:38:19.223 13023-13075 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@b2bf08c[id=11]} Opening camera.
-2026-09-08 14:38:19.224 13023-13075 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@b2bf08c[id=11]} Transitioning camera internal state: INITIALIZED --> OPENING
-2026-09-08 14:38:19.225 13023-13075 CameraStateMachine      com.dawn.libfilter                   D  New public camera state CameraState{type=OPENING, error=null} from OPENING and null
-2026-09-08 14:38:19.225 13023-13075 CameraStateMachine      com.dawn.libfilter                   D  Publishing new public camera state CameraState{type=OPENING, error=null}
-2026-09-08 14:38:19.227 13023-13075 UseCaseAttachState      com.dawn.libfilter                   D  All use case: [androidx.camera.core.ImageAnalysis-6decd3c2-e855-4799-9def-8a4511fdcd56263412639] for camera: 11
-2026-09-08 14:38:19.341 13023-13075 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@b2bf08c[id=11]} Use case androidx.camera.core.ImageAnalysis-6decd3c2-e855-4799-9def-8a4511fdcd56263412639 ACTIVE
-2026-09-08 14:38:19.344 13023-13075 UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [androidx.camera.core.ImageAnalysis-6decd3c2-e855-4799-9def-8a4511fdcd56263412639] for camera: 11
-2026-09-08 14:38:19.358 13023-13075 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@b2bf08c[id=11]} CameraDevice.onOpened()
-2026-09-08 14:38:19.360 13023-13075 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@b2bf08c[id=11]} Transitioning camera internal state: OPENING --> OPENED
-2026-09-08 14:38:19.364 13023-13075 CameraStateRegistry     com.dawn.libfilter                   D  Recalculating open cameras:
+2026-09-08 17:52:35.091 17007-17065 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} Opening camera.
+2026-09-08 17:52:35.094 17007-17065 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} Transitioning camera internal state: INITIALIZED --> OPENING
+2026-09-08 17:52:35.095 17007-17065 CameraStateMachine      com.dawn.libfilter                   D  New public camera state CameraState{type=OPENING, error=null} from OPENING and null
+2026-09-08 17:52:35.095 17007-17065 CameraStateMachine      com.dawn.libfilter                   D  Publishing new public camera state CameraState{type=OPENING, error=null}
+2026-09-08 17:52:35.098 17007-17065 UseCaseAttachState      com.dawn.libfilter                   D  All use case: [androidx.camera.core.ImageAnalysis-61624ae3-8431-4a45-a022-fe0bcf04608221144812] for camera: 11
+2026-09-08 17:52:35.210 17007-17065 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} Use case androidx.camera.core.ImageAnalysis-61624ae3-8431-4a45-a022-fe0bcf04608221144812 ACTIVE
+2026-09-08 17:52:35.213 17007-17065 UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [androidx.camera.core.ImageAnalysis-61624ae3-8431-4a45-a022-fe0bcf04608221144812] for camera: 11
+2026-09-08 17:52:35.225 17007-17065 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} CameraDevice.onOpened()
+2026-09-08 17:52:35.227 17007-17065 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} Transitioning camera internal state: OPENING --> OPENED
+2026-09-08 17:52:35.232 17007-17065 CameraStateRegistry     com.dawn.libfilter                   D  Recalculating open cameras:
                                                                                                     Camera                                       State                 
                                                                                                     -------------------------------------------------------------------
-                                                                                                    Camera@1286e1d[id=0]                         UNKNOWN               
-                                                                                                    Camera@b2bf08c[id=11]                        OPEN                  
+                                                                                                    Camera@731e892[id=0]                         UNKNOWN               
+                                                                                                    Camera@d4843d5[id=11]                        OPEN                  
                                                                                                     -------------------------------------------------------------------
                                                                                                     Open count: 1 (Max allowed: 1)
-2026-09-08 14:38:19.365 13023-13075 CameraStateMachine      com.dawn.libfilter                   D  New public camera state CameraState{type=OPEN, error=null} from OPEN and null
-2026-09-08 14:38:19.365 13023-13075 CameraStateMachine      com.dawn.libfilter                   D  Publishing new public camera state CameraState{type=OPEN, error=null}
-2026-09-08 14:38:19.367 13023-13075 UseCaseAttachState      com.dawn.libfilter                   D  All use case: [androidx.camera.core.ImageAnalysis-6decd3c2-e855-4799-9def-8a4511fdcd56263412639] for camera: 11
-2026-09-08 14:38:19.375 13023-13075 UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [androidx.camera.core.ImageAnalysis-6decd3c2-e855-4799-9def-8a4511fdcd56263412639] for camera: 11
-2026-09-08 14:38:19.389 13023-13075 SyncCaptureSessionBase  com.dawn.libfilter                   D  [androidx.camera.camera2.internal.SynchronizedCaptureSessionBaseImpl@7b477b4] getSurface...done
-2026-09-08 14:38:19.390 13023-13075 CaptureSession          com.dawn.libfilter                   D  Opening capture session.
-2026-09-08 14:38:19.404 13023-13075 DeferrableSurface       com.dawn.libfilter                   D  New surface in use[total_surfaces=1, used_surfaces=1](androidx.camera.core.impl.ImmediateSurface@cdba16}
-2026-09-08 14:38:19.404 13023-13075 DeferrableSurface       com.dawn.libfilter                   D  use count+1, useCount=1 androidx.camera.core.impl.ImmediateSurface@cdba16
-2026-09-08 14:38:19.969 13023-13075 CaptureSession          com.dawn.libfilter                   D  Attempting to send capture request onConfigured
-2026-09-08 14:38:19.969 13023-13075 CaptureSession          com.dawn.libfilter                   D  Issuing request for session.
-2026-09-08 14:38:19.975 13023-13075 Camera2Cap...estBuilder com.dawn.libfilter                   D  createCaptureRequest
-2026-09-08 14:38:19.989 13023-13075 CaptureSession          com.dawn.libfilter                   D  CameraCaptureSession.onConfigured() mState=OPENED
-2026-09-08 14:38:19.991 13023-13075 CaptureSession          com.dawn.libfilter                   D  CameraCaptureSession.onReady() OPENED
+2026-09-08 17:52:35.232 17007-17065 CameraStateMachine      com.dawn.libfilter                   D  New public camera state CameraState{type=OPEN, error=null} from OPEN and null
+2026-09-08 17:52:35.232 17007-17065 CameraStateMachine      com.dawn.libfilter                   D  Publishing new public camera state CameraState{type=OPEN, error=null}
+2026-09-08 17:52:35.235 17007-17065 UseCaseAttachState      com.dawn.libfilter                   D  All use case: [androidx.camera.core.ImageAnalysis-61624ae3-8431-4a45-a022-fe0bcf04608221144812] for camera: 11
+2026-09-08 17:52:35.242 17007-17065 UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [androidx.camera.core.ImageAnalysis-61624ae3-8431-4a45-a022-fe0bcf04608221144812] for camera: 11
+2026-09-08 17:52:35.253 17007-17065 SyncCaptureSessionBase  com.dawn.libfilter                   D  [androidx.camera.camera2.internal.SynchronizedCaptureSessionBaseImpl@6fb5b20] getSurface...done
+2026-09-08 17:52:35.254 17007-17065 CaptureSession          com.dawn.libfilter                   D  Opening capture session.
+2026-09-08 17:52:35.261 17007-17065 DeferrableSurface       com.dawn.libfilter                   D  New surface in use[total_surfaces=1, used_surfaces=1](androidx.camera.core.impl.ImmediateSurface@94f1f97}
+2026-09-08 17:52:35.262 17007-17065 DeferrableSurface       com.dawn.libfilter                   D  use count+1, useCount=1 androidx.camera.core.impl.ImmediateSurface@94f1f97
+2026-09-08 17:52:35.738 17007-17065 CaptureSession          com.dawn.libfilter                   D  Attempting to send capture request onConfigured
+2026-09-08 17:52:35.738 17007-17065 CaptureSession          com.dawn.libfilter                   D  Issuing request for session.
+2026-09-08 17:52:35.742 17007-17065 Camera2Cap...estBuilder com.dawn.libfilter                   D  createCaptureRequest
+2026-09-08 17:52:35.758 17007-17065 CaptureSession          com.dawn.libfilter                   D  CameraCaptureSession.onConfigured() mState=OPENED
+2026-09-08 17:52:35.760 17007-17065 CaptureSession          com.dawn.libfilter                   D  CameraCaptureSession.onReady() OPENED
+2026-09-08 17:52:39.070 17007-17007 DeferrableSurface       com.dawn.libfilter                   D  surface closed,  useCount=1 closed=true androidx.camera.core.impl.ImmediateSurface@94f1f97
+2026-09-08 17:52:39.075 17007-17007 libEGL                  com.dawn.libfilter                   E  call to OpenGL ES API with no current context (logged once per thread)
+2026-09-08 17:52:39.077 17007-17067 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} Use cases [androidx.camera.core.ImageAnalysis-61624ae3-8431-4a45-a022-fe0bcf04608221144812] now DETACHED for camera
+2026-09-08 17:52:39.077 17007-17067 UseCaseAttachState      com.dawn.libfilter                   D  All use case: [] for camera: 11
+2026-09-08 17:52:39.082 17007-17067 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} Resetting Capture Session
+2026-09-08 17:52:39.126 17007-17067 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} Releasing session in state OPENED
+2026-09-08 17:52:39.127 17007-17067 UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [] for camera: 11
+2026-09-08 17:52:39.136 17007-17067 UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [] for camera: 11
+2026-09-08 17:52:39.151 17007-17067 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} Closing camera.
+2026-09-08 17:52:39.153 17007-17067 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} Transitioning camera internal state: OPENED --> CLOSING
+2026-09-08 17:52:39.167 17007-17067 CameraStateRegistry     com.dawn.libfilter                   D  Recalculating open cameras:
+                                                                                                    Camera                                       State                 
+                                                                                                    -------------------------------------------------------------------
+                                                                                                    Camera@731e892[id=0]                         UNKNOWN               
+                                                                                                    Camera@d4843d5[id=11]                        CLOSING               
+                                                                                                    -------------------------------------------------------------------
+                                                                                                    Open count: 1 (Max allowed: 1)
+2026-09-08 17:52:39.168 17007-17067 CameraStateMachine      com.dawn.libfilter                   D  New public camera state CameraState{type=CLOSING, error=null} from CLOSING and null
+2026-09-08 17:52:39.168 17007-17067 CameraStateMachine      com.dawn.libfilter                   D  Publishing new public camera state CameraState{type=CLOSING, error=null}
+2026-09-08 17:52:39.170 17007-17067 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} Resetting Capture Session
+2026-09-08 17:52:39.174 17007-17067 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} Releasing session in state CLOSING
+2026-09-08 17:52:39.179 17007-17067 CaptureSession          com.dawn.libfilter                   D  onSessionFinished()
+2026-09-08 17:52:39.380 17007-17067 UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [] for camera: 11
+2026-09-08 17:52:39.397 17007-17067 DeferrableSurface       com.dawn.libfilter                   D  use count-1,  useCount=0 closed=true androidx.camera.core.impl.ImmediateSurface@94f1f97
+2026-09-08 17:52:39.397 17007-17067 DeferrableSurface       com.dawn.libfilter                   D  Surface no longer in use[total_surfaces=1, used_surfaces=0](androidx.camera.core.impl.ImmediateSurface@94f1f97}
+2026-09-08 17:52:39.398 17007-17067 DeferrableSurface       com.dawn.libfilter                   D  Surface terminated[total_surfaces=0, used_surfaces=0](androidx.camera.core.impl.ImmediateSurface@94f1f97}
+2026-09-08 17:52:39.401 17007-17067 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} CameraDevice.onClosed()
+2026-09-08 17:52:39.405 17007-17067 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} Transitioning camera internal state: CLOSING --> INITIALIZED
+2026-09-08 17:52:39.416 17007-17067 CameraStateRegistry     com.dawn.libfilter                   D  Recalculating open cameras:
+                                                                                                    Camera                                       State                 
+                                                                                                    -------------------------------------------------------------------
+                                                                                                    Camera@731e892[id=0]                         UNKNOWN               
+                                                                                                    Camera@d4843d5[id=11]                        CLOSED                
+                                                                                                    -------------------------------------------------------------------
+                                                                                                    Open count: 0 (Max allowed: 1)
+2026-09-08 17:52:39.417 17007-17067 CameraStateMachine      com.dawn.libfilter                   D  New public camera state CameraState{type=CLOSED, error=null} from CLOSED and null
+2026-09-08 17:52:39.418 17007-17067 CameraStateMachine      com.dawn.libfilter                   D  Publishing new public camera state CameraState{type=CLOSED, error=null}
+2026-09-08 17:52:39.681 17007-17007 WindowOnBackDispatcher  com.dawn.libfilter                   W  sendCancelIfRunning: isInProgress=falsecallback=android.view.ViewRootImpl$$ExternalSyntheticLambda17@3a50b12
+2026-09-08 17:52:41.402 17007-17007 CameraFilterHelper      com.dawn.libfilter                   I  available camera[0]: selector=androidx.camera.core.CameraSelector@8719176 lensFacing=1
+2026-09-08 17:52:41.402 17007-17007 CameraFilterHelper      com.dawn.libfilter                   I  available camera[1]: selector=androidx.camera.core.CameraSelector@cc0a84d lensFacing=2
+2026-09-08 17:52:41.403 17007-17007 CameraFilterHelper      com.dawn.libfilter                   I  select external camera, index=1 selector=androidx.camera.core.CameraSelector@46cb250
+2026-09-08 17:52:41.425 17007-17007 CameraOrientationUtil   com.dawn.libfilter                   D  getRelativeImageRotation: destRotationDegrees=0, sourceRotationDegrees=0, isOppositeFacing=false, result=0
+2026-09-08 17:52:41.426 17007-17007 CameraOrientationUtil   com.dawn.libfilter                   D  getRelativeImageRotation: destRotationDegrees=0, sourceRotationDegrees=0, isOppositeFacing=false, result=0
+2026-09-08 17:52:41.436 17007-17007 CameraOrientationUtil   com.dawn.libfilter                   D  getRelativeImageRotation: destRotationDegrees=0, sourceRotationDegrees=0, isOppositeFacing=false, result=0
+2026-09-08 17:52:41.437 17007-17007 CameraOrientationUtil   com.dawn.libfilter                   D  getRelativeImageRotation: destRotationDegrees=0, sourceRotationDegrees=0, isOppositeFacing=false, result=0
+2026-09-08 17:52:41.454 17007-17007 CameraOrientationUtil   com.dawn.libfilter                   D  getRelativeImageRotation: destRotationDegrees=0, sourceRotationDegrees=0, isOppositeFacing=false, result=0
+2026-09-08 17:52:41.457 17007-17007 CameraOrientationUtil   com.dawn.libfilter                   D  getRelativeImageRotation: destRotationDegrees=0, sourceRotationDegrees=0, isOppositeFacing=false, result=0
+2026-09-08 17:52:41.461 17007-17007 DeferrableSurface       com.dawn.libfilter                   D  Surface created[total_surfaces=1, used_surfaces=0](androidx.camera.core.impl.ImmediateSurface@d847b68}
+2026-09-08 17:52:41.472 17007-17007 CameraFilterHelper      com.dawn.libfilter                   I  CameraX bound, actualLensFacing=2, selector=androidx.camera.core.CameraSelector@34b7cb2
+2026-09-08 17:52:41.472 17007-17065 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} Use case androidx.camera.core.ImageAnalysis-8031ed88-ab29-4d7f-b452-d29c5fef540b221363290 ACTIVE
+2026-09-08 17:52:41.473 17007-17065 UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [] for camera: 11
+2026-09-08 17:52:41.483 17007-17065 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} Use cases [androidx.camera.core.ImageAnalysis-8031ed88-ab29-4d7f-b452-d29c5fef540b221363290] now ATTACHED
+2026-09-08 17:52:41.487 17007-17065 UseCaseAttachState      com.dawn.libfilter                   D  All use case: [androidx.camera.core.ImageAnalysis-8031ed88-ab29-4d7f-b452-d29c5fef540b221363290] for camera: 11
+2026-09-08 17:52:41.492 17007-17065 UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [androidx.camera.core.ImageAnalysis-8031ed88-ab29-4d7f-b452-d29c5fef540b221363290] for camera: 11
+2026-09-08 17:52:41.513 17007-17065 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} Resetting Capture Session
+2026-09-08 17:52:41.515 17007-17065 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} Releasing session in state INITIALIZED
+2026-09-08 17:52:41.518 17007-17065 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} Attempting to force open the camera.
+2026-09-08 17:52:41.520 17007-17065 CameraStateRegistry     com.dawn.libfilter                   D  tryOpenCamera(Camera@d4843d5[id=11]) [Available Cameras: 1, Already Open: false (Previous state: CLOSED)] --> SUCCESS
+2026-09-08 17:52:41.525 17007-17065 CameraStateRegistry     com.dawn.libfilter                   D  Recalculating open cameras:
+                                                                                                    Camera                                       State                 
+                                                                                                    -------------------------------------------------------------------
+                                                                                                    Camera@731e892[id=0]                         UNKNOWN               
+                                                                                                    Camera@d4843d5[id=11]                        OPENING               
+                                                                                                    -------------------------------------------------------------------
+                                                                                                    Open count: 1 (Max allowed: 1)
+2026-09-08 17:52:41.527 17007-17065 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} Opening camera.
+2026-09-08 17:52:41.528 17007-17065 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} Transitioning camera internal state: INITIALIZED --> OPENING
+2026-09-08 17:52:41.529 17007-17065 CameraStateMachine      com.dawn.libfilter                   D  New public camera state CameraState{type=OPENING, error=null} from OPENING and null
+2026-09-08 17:52:41.529 17007-17065 CameraStateMachine      com.dawn.libfilter                   D  Publishing new public camera state CameraState{type=OPENING, error=null}
+2026-09-08 17:52:41.531 17007-17065 UseCaseAttachState      com.dawn.libfilter                   D  All use case: [androidx.camera.core.ImageAnalysis-8031ed88-ab29-4d7f-b452-d29c5fef540b221363290] for camera: 11
+2026-09-08 17:52:41.560 17007-17065 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} Use case androidx.camera.core.ImageAnalysis-8031ed88-ab29-4d7f-b452-d29c5fef540b221363290 ACTIVE
+2026-09-08 17:52:41.564 17007-17065 UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [androidx.camera.core.ImageAnalysis-8031ed88-ab29-4d7f-b452-d29c5fef540b221363290] for camera: 11
+2026-09-08 17:52:41.580 17007-17065 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} CameraDevice.onOpened()
+2026-09-08 17:52:41.582 17007-17065 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} Transitioning camera internal state: OPENING --> OPENED
+2026-09-08 17:52:41.588 17007-17065 CameraStateRegistry     com.dawn.libfilter                   D  Recalculating open cameras:
+                                                                                                    Camera                                       State                 
+                                                                                                    -------------------------------------------------------------------
+                                                                                                    Camera@731e892[id=0]                         UNKNOWN               
+                                                                                                    Camera@d4843d5[id=11]                        OPEN                  
+                                                                                                    -------------------------------------------------------------------
+                                                                                                    Open count: 1 (Max allowed: 1)
+2026-09-08 17:52:41.588 17007-17065 CameraStateMachine      com.dawn.libfilter                   D  New public camera state CameraState{type=OPEN, error=null} from OPEN and null
+2026-09-08 17:52:41.590 17007-17065 CameraStateMachine      com.dawn.libfilter                   D  Publishing new public camera state CameraState{type=OPEN, error=null}
+2026-09-08 17:52:41.592 17007-17065 UseCaseAttachState      com.dawn.libfilter                   D  All use case: [androidx.camera.core.ImageAnalysis-8031ed88-ab29-4d7f-b452-d29c5fef540b221363290] for camera: 11
+2026-09-08 17:52:41.597 17007-17065 UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [androidx.camera.core.ImageAnalysis-8031ed88-ab29-4d7f-b452-d29c5fef540b221363290] for camera: 11
+2026-09-08 17:52:41.613 17007-17065 SyncCaptureSessionBase  com.dawn.libfilter                   D  [androidx.camera.camera2.internal.SynchronizedCaptureSessionBaseImpl@e873f3] getSurface...done
+2026-09-08 17:52:41.614 17007-17065 CaptureSession          com.dawn.libfilter                   D  Opening capture session.
+2026-09-08 17:52:41.617 17007-17065 DeferrableSurface       com.dawn.libfilter                   D  New surface in use[total_surfaces=1, used_surfaces=1](androidx.camera.core.impl.ImmediateSurface@d847b68}
+2026-09-08 17:52:41.618 17007-17065 DeferrableSurface       com.dawn.libfilter                   D  use count+1, useCount=1 androidx.camera.core.impl.ImmediateSurface@d847b68
+2026-09-08 17:52:42.149 17007-17065 CaptureSession          com.dawn.libfilter                   D  Attempting to send capture request onConfigured
+2026-09-08 17:52:42.149 17007-17065 CaptureSession          com.dawn.libfilter                   D  Issuing request for session.
+2026-09-08 17:52:42.152 17007-17065 Camera2Cap...estBuilder com.dawn.libfilter                   D  createCaptureRequest
+2026-09-08 17:52:42.162 17007-17065 CaptureSession          com.dawn.libfilter                   D  CameraCaptureSession.onConfigured() mState=OPENED
+2026-09-08 17:52:42.163 17007-17065 CaptureSession          com.dawn.libfilter                   D  CameraCaptureSession.onReady() OPENED
+2026-09-08 17:52:42.311 17007-17017 .dawn.libfilter         com.dawn.libfilter                   W  Cleared Reference was only reachable from finalizer (only reported once)
+2026-09-08 17:52:43.696 17007-17007 DeferrableSurface       com.dawn.libfilter                   D  surface closed,  useCount=1 closed=true androidx.camera.core.impl.ImmediateSurface@d847b68
+2026-09-08 17:52:43.705 17007-17065 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} Use cases [androidx.camera.core.ImageAnalysis-8031ed88-ab29-4d7f-b452-d29c5fef540b221363290] now DETACHED for camera
+2026-09-08 17:52:43.706 17007-17065 UseCaseAttachState      com.dawn.libfilter                   D  All use case: [] for camera: 11
+2026-09-08 17:52:43.711 17007-17065 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} Resetting Capture Session
+2026-09-08 17:52:43.726 17007-17065 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} Releasing session in state OPENED
+2026-09-08 17:52:43.727 17007-17065 UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [] for camera: 11
+2026-09-08 17:52:43.739 17007-17065 UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [] for camera: 11
+2026-09-08 17:52:43.749 17007-17065 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} Closing camera.
+2026-09-08 17:52:43.751 17007-17065 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} Transitioning camera internal state: OPENED --> CLOSING
+2026-09-08 17:52:43.758 17007-17065 CameraStateRegistry     com.dawn.libfilter                   D  Recalculating open cameras:
+                                                                                                    Camera                                       State                 
+                                                                                                    -------------------------------------------------------------------
+                                                                                                    Camera@731e892[id=0]                         UNKNOWN               
+                                                                                                    Camera@d4843d5[id=11]                        CLOSING               
+                                                                                                    -------------------------------------------------------------------
+                                                                                                    Open count: 1 (Max allowed: 1)
+2026-09-08 17:52:43.759 17007-17065 CameraStateMachine      com.dawn.libfilter                   D  New public camera state CameraState{type=CLOSING, error=null} from CLOSING and null
+2026-09-08 17:52:43.759 17007-17065 CameraStateMachine      com.dawn.libfilter                   D  Publishing new public camera state CameraState{type=CLOSING, error=null}
+2026-09-08 17:52:43.761 17007-17065 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} Resetting Capture Session
+2026-09-08 17:52:43.764 17007-17065 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} Releasing session in state CLOSING
+2026-09-08 17:52:43.764 17007-17065 CaptureSession          com.dawn.libfilter                   D  onSessionFinished()
+2026-09-08 17:52:43.995 17007-17068 .dawn.libfilter         com.dawn.libfilter                   W  Long monitor contention with owner CameraX-core_camera_0 (17065) at void android.hardware.camera2.impl.CameraDeviceImpl.close()(CameraDeviceImpl.java:1454) waiters=0 in void android.hardware.camera2.impl.CameraDeviceImpl.onDeviceIdle() for 223ms
+2026-09-08 17:52:44.000 17007-17065 UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [] for camera: 11
+2026-09-08 17:52:44.008 17007-17065 DeferrableSurface       com.dawn.libfilter                   D  use count-1,  useCount=0 closed=true androidx.camera.core.impl.ImmediateSurface@d847b68
+2026-09-08 17:52:44.008 17007-17065 DeferrableSurface       com.dawn.libfilter                   D  Surface no longer in use[total_surfaces=1, used_surfaces=0](androidx.camera.core.impl.ImmediateSurface@d847b68}
+2026-09-08 17:52:44.009 17007-17065 DeferrableSurface       com.dawn.libfilter                   D  Surface terminated[total_surfaces=0, used_surfaces=0](androidx.camera.core.impl.ImmediateSurface@d847b68}
+2026-09-08 17:52:44.012 17007-17065 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} CameraDevice.onClosed()
+2026-09-08 17:52:44.014 17007-17065 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} Transitioning camera internal state: CLOSING --> INITIALIZED
+2026-09-08 17:52:44.021 17007-17065 CameraStateRegistry     com.dawn.libfilter                   D  Recalculating open cameras:
+                                                                                                    Camera                                       State                 
+                                                                                                    -------------------------------------------------------------------
+                                                                                                    Camera@731e892[id=0]                         UNKNOWN               
+                                                                                                    Camera@d4843d5[id=11]                        CLOSED                
+                                                                                                    -------------------------------------------------------------------
+                                                                                                    Open count: 0 (Max allowed: 1)
+2026-09-08 17:52:44.022 17007-17065 CameraStateMachine      com.dawn.libfilter                   D  New public camera state CameraState{type=CLOSED, error=null} from CLOSED and null
+2026-09-08 17:52:44.023 17007-17065 CameraStateMachine      com.dawn.libfilter                   D  Publishing new public camera state CameraState{type=CLOSED, error=null}
+2026-09-08 17:52:44.328 17007-17007 WindowOnBackDispatcher  com.dawn.libfilter                   W  sendCancelIfRunning: isInProgress=falsecallback=android.view.ViewRootImpl$$ExternalSyntheticLambda17@261dc33
+2026-09-08 17:52:46.469 17007-17007 CameraFilterHelper      com.dawn.libfilter                   I  available camera[0]: selector=androidx.camera.core.CameraSelector@65ac2f4 lensFacing=1
+2026-09-08 17:52:46.470 17007-17007 CameraFilterHelper      com.dawn.libfilter                   I  available camera[1]: selector=androidx.camera.core.CameraSelector@d7f2e63 lensFacing=2
+2026-09-08 17:52:46.471 17007-17007 CameraFilterHelper      com.dawn.libfilter                   I  select external camera, index=1 selector=androidx.camera.core.CameraSelector@e57a7de
+2026-09-08 17:52:46.491 17007-17007 CameraOrientationUtil   com.dawn.libfilter                   D  getRelativeImageRotation: destRotationDegrees=0, sourceRotationDegrees=0, isOppositeFacing=false, result=0
+2026-09-08 17:52:46.493 17007-17007 CameraOrientationUtil   com.dawn.libfilter                   D  getRelativeImageRotation: destRotationDegrees=0, sourceRotationDegrees=0, isOppositeFacing=false, result=0
+2026-09-08 17:52:46.502 17007-17007 CameraOrientationUtil   com.dawn.libfilter                   D  getRelativeImageRotation: destRotationDegrees=0, sourceRotationDegrees=0, isOppositeFacing=false, result=0
+2026-09-08 17:52:46.504 17007-17007 CameraOrientationUtil   com.dawn.libfilter                   D  getRelativeImageRotation: destRotationDegrees=0, sourceRotationDegrees=0, isOppositeFacing=false, result=0
+2026-09-08 17:52:46.521 17007-17007 CameraOrientationUtil   com.dawn.libfilter                   D  getRelativeImageRotation: destRotationDegrees=0, sourceRotationDegrees=0, isOppositeFacing=false, result=0
+2026-09-08 17:52:46.524 17007-17007 CameraOrientationUtil   com.dawn.libfilter                   D  getRelativeImageRotation: destRotationDegrees=0, sourceRotationDegrees=0, isOppositeFacing=false, result=0
+2026-09-08 17:52:46.528 17007-17007 DeferrableSurface       com.dawn.libfilter                   D  Surface created[total_surfaces=1, used_surfaces=0](androidx.camera.core.impl.ImmediateSurface@e4ad4b6}
+2026-09-08 17:52:46.540 17007-17007 CameraFilterHelper      com.dawn.libfilter                   I  CameraX bound, actualLensFacing=2, selector=androidx.camera.core.CameraSelector@599db90
+2026-09-08 17:52:46.541 17007-17065 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} Use case androidx.camera.core.ImageAnalysis-5dd57f8a-71c5-4e69-ab97-b6e6725f9e1c204854648 ACTIVE
+2026-09-08 17:52:46.542 17007-17065 UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [] for camera: 11
+2026-09-08 17:52:46.552 17007-17065 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} Use cases [androidx.camera.core.ImageAnalysis-5dd57f8a-71c5-4e69-ab97-b6e6725f9e1c204854648] now ATTACHED
+2026-09-08 17:52:46.555 17007-17065 UseCaseAttachState      com.dawn.libfilter                   D  All use case: [androidx.camera.core.ImageAnalysis-5dd57f8a-71c5-4e69-ab97-b6e6725f9e1c204854648] for camera: 11
+2026-09-08 17:52:46.559 17007-17065 UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [androidx.camera.core.ImageAnalysis-5dd57f8a-71c5-4e69-ab97-b6e6725f9e1c204854648] for camera: 11
+2026-09-08 17:52:46.581 17007-17065 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} Resetting Capture Session
+2026-09-08 17:52:46.583 17007-17065 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} Releasing session in state INITIALIZED
+2026-09-08 17:52:46.585 17007-17065 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} Attempting to force open the camera.
+2026-09-08 17:52:46.589 17007-17065 CameraStateRegistry     com.dawn.libfilter                   D  tryOpenCamera(Camera@d4843d5[id=11]) [Available Cameras: 1, Already Open: false (Previous state: CLOSED)] --> SUCCESS
+2026-09-08 17:52:46.593 17007-17065 CameraStateRegistry     com.dawn.libfilter                   D  Recalculating open cameras:
+                                                                                                    Camera                                       State                 
+                                                                                                    -------------------------------------------------------------------
+                                                                                                    Camera@731e892[id=0]                         UNKNOWN               
+                                                                                                    Camera@d4843d5[id=11]                        OPENING               
+                                                                                                    -------------------------------------------------------------------
+                                                                                                    Open count: 1 (Max allowed: 1)
+2026-09-08 17:52:46.595 17007-17065 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} Opening camera.
+2026-09-08 17:52:46.596 17007-17065 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} Transitioning camera internal state: INITIALIZED --> OPENING
+2026-09-08 17:52:46.596 17007-17065 CameraStateMachine      com.dawn.libfilter                   D  New public camera state CameraState{type=OPENING, error=null} from OPENING and null
+2026-09-08 17:52:46.597 17007-17065 CameraStateMachine      com.dawn.libfilter                   D  Publishing new public camera state CameraState{type=OPENING, error=null}
+2026-09-08 17:52:46.599 17007-17065 UseCaseAttachState      com.dawn.libfilter                   D  All use case: [androidx.camera.core.ImageAnalysis-5dd57f8a-71c5-4e69-ab97-b6e6725f9e1c204854648] for camera: 11
+2026-09-08 17:52:46.699 17007-17065 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} Use case androidx.camera.core.ImageAnalysis-5dd57f8a-71c5-4e69-ab97-b6e6725f9e1c204854648 ACTIVE
+2026-09-08 17:52:46.701 17007-17065 UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [androidx.camera.core.ImageAnalysis-5dd57f8a-71c5-4e69-ab97-b6e6725f9e1c204854648] for camera: 11
+2026-09-08 17:52:46.716 17007-17065 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} CameraDevice.onOpened()
+2026-09-08 17:52:46.719 17007-17065 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} Transitioning camera internal state: OPENING --> OPENED
+2026-09-08 17:52:46.724 17007-17065 CameraStateRegistry     com.dawn.libfilter                   D  Recalculating open cameras:
+                                                                                                    Camera                                       State                 
+                                                                                                    -------------------------------------------------------------------
+                                                                                                    Camera@731e892[id=0]                         UNKNOWN               
+                                                                                                    Camera@d4843d5[id=11]                        OPEN                  
+                                                                                                    -------------------------------------------------------------------
+                                                                                                    Open count: 1 (Max allowed: 1)
+2026-09-08 17:52:46.725 17007-17065 CameraStateMachine      com.dawn.libfilter                   D  New public camera state CameraState{type=OPEN, error=null} from OPEN and null
+2026-09-08 17:52:46.725 17007-17065 CameraStateMachine      com.dawn.libfilter                   D  Publishing new public camera state CameraState{type=OPEN, error=null}
+2026-09-08 17:52:46.727 17007-17065 UseCaseAttachState      com.dawn.libfilter                   D  All use case: [androidx.camera.core.ImageAnalysis-5dd57f8a-71c5-4e69-ab97-b6e6725f9e1c204854648] for camera: 11
+2026-09-08 17:52:46.731 17007-17065 UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [androidx.camera.core.ImageAnalysis-5dd57f8a-71c5-4e69-ab97-b6e6725f9e1c204854648] for camera: 11
+2026-09-08 17:52:46.745 17007-17065 SyncCaptureSessionBase  com.dawn.libfilter                   D  [androidx.camera.camera2.internal.SynchronizedCaptureSessionBaseImpl@e740ebb] getSurface...done
+2026-09-08 17:52:46.745 17007-17065 CaptureSession          com.dawn.libfilter                   D  Opening capture session.
+2026-09-08 17:52:46.749 17007-17065 DeferrableSurface       com.dawn.libfilter                   D  New surface in use[total_surfaces=1, used_surfaces=1](androidx.camera.core.impl.ImmediateSurface@e4ad4b6}
+2026-09-08 17:52:46.749 17007-17065 DeferrableSurface       com.dawn.libfilter                   D  use count+1, useCount=1 androidx.camera.core.impl.ImmediateSurface@e4ad4b6
+2026-09-08 17:52:47.222 17007-17065 CaptureSession          com.dawn.libfilter                   D  Attempting to send capture request onConfigured
+2026-09-08 17:52:47.222 17007-17065 CaptureSession          com.dawn.libfilter                   D  Issuing request for session.
+2026-09-08 17:52:47.226 17007-17065 Camera2Cap...estBuilder com.dawn.libfilter                   D  createCaptureRequest
+2026-09-08 17:52:47.236 17007-17065 CaptureSession          com.dawn.libfilter                   D  CameraCaptureSession.onConfigured() mState=OPENED
+2026-09-08 17:52:47.238 17007-17065 CaptureSession          com.dawn.libfilter                   D  CameraCaptureSession.onReady() OPENED
+2026-09-08 17:52:49.089 17007-17007 AutofillManager         com.dawn.libfilter                   D  Fill dialog is enabled:false, hints=[]
+2026-09-08 17:52:50.566 17007-17007 CameraFilterHelper      com.dawn.libfilter                   I  startRecording: filterStyle=ORIGINAL intensity=0.8 beautyParams=com.dawn.filter.BeautyParams@a6713bd
+2026-09-08 17:52:50.573 17007-17007 MediaCodecList          com.dawn.libfilter                   D  codecHandlesFormat: no format, so no extra checks
+2026-09-08 17:52:50.573 17007-17007 MediaCodecList          com.dawn.libfilter                   D  codecHandlesFormat: no format, so no extra checks
+2026-09-08 17:52:50.578 17007-17133 CCodec                  com.dawn.libfilter                   D  allocate(c2.rk.avc.encoder)
+2026-09-08 17:52:50.584 17007-17133 Codec2Client            com.dawn.libfilter                   I  Available Codec2 services: "default" "software"
+2026-09-08 17:52:50.589 17007-17133 CCodec                  com.dawn.libfilter                   I  setting up 'default' as default (vendor) store
+2026-09-08 17:52:50.601 17007-17133 CCodec                  com.dawn.libfilter                   I  Created component [c2.rk.avc.encoder]
+2026-09-08 17:52:50.602 17007-17133 CCodecConfig            com.dawn.libfilter                   D  read media type: video/avc
+2026-09-08 17:52:50.605 17007-17133 ReflectedParamUpdater   com.dawn.libfilter                   D  extent() != 1 for single value type: algo.buffers.max-count.values
+2026-09-08 17:52:50.606 17007-17133 ReflectedParamUpdater   com.dawn.libfilter                   D  extent() != 1 for single value type: output.subscribed-indices.values
+2026-09-08 17:52:50.606 17007-17133 ReflectedParamUpdater   com.dawn.libfilter                   D  extent() != 1 for single value type: input.buffers.allocator-ids.values
+2026-09-08 17:52:50.606 17007-17133 ReflectedParamUpdater   com.dawn.libfilter                   D  extent() != 1 for single value type: output.buffers.allocator-ids.values
+2026-09-08 17:52:50.606 17007-17133 ReflectedParamUpdater   com.dawn.libfilter                   D  extent() != 1 for single value type: algo.buffers.allocator-ids.values
+2026-09-08 17:52:50.607 17007-17133 ReflectedParamUpdater   com.dawn.libfilter                   D  extent() != 1 for single value type: output.buffers.pool-ids.values
+2026-09-08 17:52:50.607 17007-17133 ReflectedParamUpdater   com.dawn.libfilter                   D  extent() != 1 for single value type: algo.buffers.pool-ids.values
+2026-09-08 17:52:50.610 17007-17133 ReflectedParamUpdater   com.dawn.libfilter                   D  ignored struct field coding.gop.values
+2026-09-08 17:52:50.611 17007-17133 ReflectedParamUpdater   com.dawn.libfilter                   D  ignored struct field coding.qp.values
+2026-09-08 17:52:50.615 17007-17133 CCodecConfig            com.dawn.libfilter                   D  ignoring local param raw.color (0xc2001809) as it is already supported
+2026-09-08 17:52:50.616 17007-17133 CCodecConfig            com.dawn.libfilter                   I  query failed after returning 16 values (BAD_INDEX)
+2026-09-08 17:52:50.616 17007-17133 CCodecConfig            com.dawn.libfilter                   D  c2 config diff is Dict {
+                                                                                                      c2::u32 algo.bitrate-mode.value = 3
+                                                                                                      c2::i32 coded.average-qp.value = 0
+                                                                                                      c2::u32 coded.bitrate.value = 64000
+                                                                                                      c2::float coded.frame-rate.value = 1
+                                                                                                      c2::u32 coded.picture-type.value = 0
+                                                                                                      c2::u32 coded.pl.level = 20489
+                                                                                                      c2::u32 coded.pl.profile = 20480
+                                                                                                      c2::u32 coded.vui.color.matrix = 0
+                                                                                                      c2::u32 coded.vui.color.primaries = 0
+                                                                                                      c2::u32 coded.vui.color.range = 0
+                                                                                                      c2::u32 coded.vui.color.transfer = 0
+                                                                                                      c2::u32 coding.intra-refresh.mode = 0
+                                                                                                      c2::float coding.intra-refresh.period = 0
+                                                                                                      c2::u32 coding.request-sync-frame.value = 0
+                                                                                                      c2::i64 coding.sync-frame-interval.value = 1000000
+                                                                                                      Buffer coding.temporal-layering = {
+                                                                                                        00000000:  10 00 00 00 07 20 01 52  00 00 00 00 00 00 00 00  ..... .R........
+                                                                                                      }
+                                                                                                      c2::u32 input.delay.value = 0
+                                                                                                      string input.media-type.value = "video/raw"
+                                                                                                      c2::u32 output.buffers.prepend-header.value = 0
+                                                                                                      string output.media-type.value = "video/avc"
+                                                                                                      c2::u32 raw.color.matrix = 0
+                                                                                                      c2::u32 raw.color.primaries = 0
+                                                                                                      c2::u32 raw.color.range = 0
+                                                                                                      c2::u32 
+2026-09-08 17:52:50.617 17007-17133 ColorUtils              com.dawn.libfilter                   W  expected specified color aspects (0:0:0:0)
+2026-09-08 17:52:50.623 17007-17007 CodecSeeding            com.dawn.libfilter                   D  Seed: codec c2.rk.avc.encoder, mediatype video/avc, overrideable 1
+2026-09-08 17:52:50.623 17007-17007 CodecProperties         com.dawn.libfilter                   D  setTuningValue(vq-target-bpp,0)
+2026-09-08 17:52:50.623 17007-17007 CodecProperties         com.dawn.libfilter                   D  setTuningValue(vq-target-bpp-1080p,1.90)
+2026-09-08 17:52:50.623 17007-17007 CodecProperties         com.dawn.libfilter                   D  setTuningValue(vq-target-bpp-720p,2.25)
+2026-09-08 17:52:50.623 17007-17007 CodecProperties         com.dawn.libfilter                   D  setTuningValue(vq-target-bpp-540p,2.65)
+2026-09-08 17:52:50.623 17007-17007 CodecProperties         com.dawn.libfilter                   D  setTuningValue(vq-target-bpp-480p,3.00)
+2026-09-08 17:52:50.623 17007-17007 CodecProperties         com.dawn.libfilter                   D  setTuningValue(vq-target-bpp-320x240,0)
+2026-09-08 17:52:50.623 17007-17007 CodecProperties         com.dawn.libfilter                   D  setTuningValue(vq-target-qpmax,-1)
+2026-09-08 17:52:50.623 17007-17007 CodecProperties         com.dawn.libfilter                   D  setTuningValue(vq-target-qpmax-1080p,45)
+2026-09-08 17:52:50.623 17007-17007 CodecProperties         com.dawn.libfilter                   D  setTuningValue(vq-target-qpmax-720p,43)
+2026-09-08 17:52:50.623 17007-17007 CodecProperties         com.dawn.libfilter                   D  setTuningValue(vq-target-qpmax-540p,42)
+2026-09-08 17:52:50.623 17007-17007 CodecProperties         com.dawn.libfilter                   D  setTuningValue(vq-target-qpmax-480p,38)
+2026-09-08 17:52:50.623 17007-17007 CodecProperties         com.dawn.libfilter                   D  setTuningValue(vq-bitrate-phaseout,1.75)
+2026-09-08 17:52:50.623 17007-17007 CodecProperties         com.dawn.libfilter                   D  setTuningValue(vq-boost-missing-qp,0.20)
+2026-09-08 17:52:50.623 17007-17007 CodecProperties         com.dawn.libfilter                   D  setFeatureValue(can-swap-width-height,0)
+2026-09-08 17:52:50.624 17007-17007 CodecProperties         com.dawn.libfilter                   D  setFeatureValue(_vq_eligible.device,1)
+2026-09-08 17:52:50.624 17007-17007 CodecProperties         com.dawn.libfilter                   D  setFeatureValue(_quality.target,1)
+2026-09-08 17:52:50.624 17007-17007 CodecSeeding            com.dawn.libfilter                   D  Seed: codec c2.rk.avc.encoder, mediatype video/avc, overrideable 0
+2026-09-08 17:52:50.624 17007-17007 MediaCodec              com.dawn.libfilter                   D  shapeMediaFormat: deltas(1): AMessage(what = 0x00000000) = {
+                                                                                                        int32_t android._encoding-quality-level = 0
+                                                                                                      }
+2026-09-08 17:52:50.624 17007-17132 MediaCodec              com.dawn.libfilter                   D  flushMediametrics
+2026-09-08 17:52:50.624 17007-17133 CCodec                  com.dawn.libfilter                   D  [c2.rk.avc.encoder] buffers are bound to CCodec for this session
+2026-09-08 17:52:50.624 17007-17133 CCodecConfig            com.dawn.libfilter                   D  no c2 equivalents for color-format
+2026-09-08 17:52:50.625 17007-17133 CCodecConfig            com.dawn.libfilter                   D  no c2 equivalents for flags
+2026-09-08 17:52:50.625 17007-17133 CCodecConfig            com.dawn.libfilter                   D  no c2 equivalents for encoder
+2026-09-08 17:52:50.626 17007-17133 CCodecConfig            com.dawn.libfilter                   D  c2 config diff is   c2::u32 coded.bitrate.value = 4000000
+                                                                                                      c2::float coded.frame-rate.value = 30
+                                                                                                      c2::u32 raw.size.height = 720
+                                                                                                      c2::u32 raw.size.width = 1280
+2026-09-08 17:52:50.627 17007-17133 ColorUtils              com.dawn.libfilter                   W  expected specified color aspects (0:0:0:0)
+2026-09-08 17:52:50.628 17007-17133 Codec2Client            com.dawn.libfilter                   W  query -- param skipped: index = 3254781982.
+2026-09-08 17:52:50.628 17007-17133 CCodec                  com.dawn.libfilter                   D  encoding statistics level = 0
+2026-09-08 17:52:50.628 17007-17133 CCodec                  com.dawn.libfilter                   D  setup formats input: AMessage(what = 0x00000000) = {
+                                                                                                      Rect crop(0, 0, 1279, 719)
+                                                                                                      int32_t color-standard = 0
+                                                                                                      int32_t color-range = 0
+                                                                                                      int32_t color-transfer = 0
+                                                                                                      int32_t frame-rate = 30
+                                                                                                      int32_t height = 720
+                                                                                                      int32_t intra-refresh-period = 0
+                                                                                                      string mime = "video/raw"
+                                                                                                      int32_t prepend-sps-pps-to-idr-frames = 0
+                                                                                                      int32_t rotation-degrees = 0
+                                                                                                      int32_t video-qp-average = 0
+                                                                                                      int32_t width = 1280
+                                                                                                      int32_t android._dataspace = 0
+                                                                                                      int64_t android._C2MemoryUsage = 65536
+                                                                                                      int32_t color-format = 2130708361
+                                                                                                      int32_t android._color-format = 2130708361
+                                                                                                    }
+2026-09-08 17:52:50.628 17007-17133 CCodec                  com.dawn.libfilter                   D  setup formats output: AMessage(what = 0x00000000) = {
+                                                                                                      int32_t bitrate = 4000000
+                                                                                                      int32_t bitrate-mode = 1
+                                                                                                      Rect crop(0, 0, 1279, 719)
+                                                                                                      int32_t width = 1280
+                                                                                                      int32_t color-standard = 0
+                                                                                                      int32_t color-range = 0
+                                                                                                      int32_t color-transfer = 0
+                                                                                                      int32_t frame-rate = 30
+                                                                                                      int32_t height = 720
+                                                                                                      int32_t intra-refresh-period = 0
+                                                                                                      int32_t level = 512
+                                                                                                      int32_t max-bitrate = 4000000
+                                                                                                      string mime = "video/avc"
+                                                                                                      int32_t prepend-sps-pps-to-idr-frames = 0
+                                                                                                      int32_t profile = 1
+                                                                                                      int32_t video-qp-average = 0
+                                                                                                    }
+2026-09-08 17:52:50.628 17007-17133 CCodecConfig            com.dawn.libfilter                   I  query failed after returning 17 values (BAD_INDEX)
+2026-09-08 17:52:50.630 17007-17133 CCodec                  com.dawn.libfilter                   D  input format changed to AMessage(what = 0x00000000) = {
+                                                                                                      Rect crop(0, 0, 1279, 719)
+                                                                                                      int32_t color-standard = 1
+                                                                                                      int32_t color-range = 2
+                                                                                                      int32_t color-transfer = 3
+                                                                                                      int32_t frame-rate = 30
+                                                                                                      int32_t height = 720
+                                                                                                      int32_t intra-refresh-period = 0
+                                                                                                      string mime = "video/raw"
+                                                                                                      int32_t prepend-sps-pps-to-idr-frames = 0
+                                                                                                      int32_t rotation-degrees = 0
+                                                                                                      int32_t video-qp-average = 0
+                                                                                                      int32_t width = 1280
+                                                                                                      int32_t android._dataspace = 260
+                                                                                                      int64_t android._C2MemoryUsage = 65536
+                                                                                                      int32_t color-format = 2130708361
+                                                                                                      int32_t android._color-format = 2130708361
+                                                                                                    }
+2026-09-08 17:52:50.630 17007-17133 GraphicBufferSource     com.dawn.libfilter                   D  setting dataspace: 0x104, acquired=0
+2026-09-08 17:52:50.631 17007-17133 CCodec                  com.dawn.libfilter                   D  ISConfig not changed
+2026-09-08 17:52:50.633 17007-17133 Codec2Client            com.dawn.libfilter                   W  query -- param skipped: index = 1342179345.
+2026-09-08 17:52:50.633 17007-17133 Codec2Client            com.dawn.libfilter                   W  query -- param skipped: index = 2415921170.
+2026-09-08 17:52:50.633 17007-17133 Codec2Client            com.dawn.libfilter                   W  query -- param skipped: index = 2684356609.
+2026-09-08 17:52:50.633 17007-17133 CCodecBufferChannel     com.dawn.libfilter                   D  [c2.rk.avc.encoder#149] Using basic input block pool with poolID 1 => got 1 - OK (0)
+2026-09-08 17:52:50.634 17007-17133 C2Store                 com.dawn.libfilter                   D  Using DMABUF Heaps
+2026-09-08 17:52:50.635 17007-17133 CCodecBufferChannel     com.dawn.libfilter                   I  [c2.rk.avc.encoder#149] Created output block pool with allocatorID 16 => poolID 22 - OK
+2026-09-08 17:52:50.636 17007-17133 CCodecBufferChannel     com.dawn.libfilter                   D  [c2.rk.avc.encoder#149] Configured output block pool ids 22 => OK
+2026-09-08 17:52:50.639 17007-17007 MediaCodecList          com.dawn.libfilter                   D  codecHandlesFormat: no format, so no extra checks
+2026-09-08 17:52:50.643 17007-17140 CCodec                  com.dawn.libfilter                   D  allocate(c2.android.aac.encoder)
+2026-09-08 17:52:50.646 17007-17140 CCodec                  com.dawn.libfilter                   I  setting up 'default' as default (vendor) store
+2026-09-08 17:52:50.650 17007-17140 CCodec                  com.dawn.libfilter                   I  Created component [c2.android.aac.encoder]
+2026-09-08 17:52:50.651 17007-17140 CCodecConfig            com.dawn.libfilter                   D  read media type: audio/mp4a-latm
+2026-09-08 17:52:50.653 17007-17140 ReflectedParamUpdater   com.dawn.libfilter                   D  extent() != 1 for single value type: algo.buffers.max-count.values
+2026-09-08 17:52:50.653 17007-17140 ReflectedParamUpdater   com.dawn.libfilter                   D  extent() != 1 for single value type: output.subscribed-indices.values
+2026-09-08 17:52:50.654 17007-17140 ReflectedParamUpdater   com.dawn.libfilter                   D  extent() != 1 for single value type: input.buffers.allocator-ids.values
+2026-09-08 17:52:50.654 17007-17140 ReflectedParamUpdater   com.dawn.libfilter                   D  extent() != 1 for single value type: output.buffers.allocator-ids.values
+2026-09-08 17:52:50.654 17007-17140 ReflectedParamUpdater   com.dawn.libfilter                   D  extent() != 1 for single value type: algo.buffers.allocator-ids.values
+2026-09-08 17:52:50.654 17007-17140 ReflectedParamUpdater   com.dawn.libfilter                   D  extent() != 1 for single value type: output.buffers.pool-ids.values
+2026-09-08 17:52:50.655 17007-17140 ReflectedParamUpdater   com.dawn.libfilter                   D  extent() != 1 for single value type: algo.buffers.pool-ids.values
+2026-09-08 17:52:50.656 17007-17140 CCodecConfig            com.dawn.libfilter                   I  query failed after returning 9 values (BAD_INDEX)
+2026-09-08 17:52:50.657 17007-17140 CCodecConfig            com.dawn.libfilter                   D  c2 config diff is Dict {
+                                                                                                      c2::u32 coded.bitrate.value = 64000
+                                                                                                      c2::u32 coded.pl.level = 0
+                                                                                                      c2::u32 coded.pl.profile = 8192
+                                                                                                      c2::u32 coding.aac-sbr-mode.value = 3
+                                                                                                      c2::u32 input.buffers.max-size.value = 2048
+                                                                                                      c2::u32 input.delay.value = 0
+                                                                                                      string input.media-type.value = "audio/raw"
+                                                                                                      string output.media-type.value = "audio/mp4a-latm"
+                                                                                                      c2::u32 raw.channel-count.value = 1
+                                                                                                      c2::u32 raw.sample-rate.value = 44100
+                                                                                                    }
+2026-09-08 17:52:50.659 17007-17007 CodecSeeding            com.dawn.libfilter                   D  Seed: codec c2.android.aac.encoder, mediatype audio/mp4a-latm, overrideable 1
+2026-09-08 17:52:50.659 17007-17007 CodecProperties         com.dawn.libfilter                   D  setFeatureValue(_vq_eligible.device,1)
+2026-09-08 17:52:50.659 17007-17007 CodecProperties         com.dawn.libfilter                   D  setFeatureValue(_quality.target,1)
+2026-09-08 17:52:50.659 17007-17007 CodecSeeding            com.dawn.libfilter                   D  Seed: codec c2.android.aac.encoder, mediatype audio/mp4a-latm, overrideable 0
+2026-09-08 17:52:50.659 17007-17007 MediaCodec              com.dawn.libfilter                   D  shapeMediaFormat: deltas(0): AMessage(what = 0x00000000) = {
+                                                                                                      }
+2026-09-08 17:52:50.659 17007-17140 MediaCodec              com.dawn.libfilter                   D  flushMediametrics
+2026-09-08 17:52:50.659 17007-17140 CCodec                  com.dawn.libfilter                   D  [c2.android.aac.encoder] buffers are bound to CCodec for this session
+2026-09-08 17:52:50.659 17007-17140 CCodecConfig            com.dawn.libfilter                   D  no c2 equivalents for flags
+2026-09-08 17:52:50.659 17007-17140 CCodecConfig            com.dawn.libfilter                   D  no c2 equivalents for encoder
+2026-09-08 17:52:50.660 17007-17140 CCodecConfig            com.dawn.libfilter                   D  c2 config diff is   c2::u32 coded.bitrate.value = 128000
+2026-09-08 17:52:50.661 17007-17140 Codec2Client            com.dawn.libfilter                   W  query -- param skipped: index = 1107298332.
+2026-09-08 17:52:50.661 17007-17140 CCodec                  com.dawn.libfilter                   D  encoding statistics level = 0
+2026-09-08 17:52:50.661 17007-17140 CCodec                  com.dawn.libfilter                   D  setup formats input: AMessage(what = 0x00000000) = {
+                                                                                                      int32_t sample-rate = 44100
+                                                                                                      int32_t channel-count = 1
+                                                                                                      int32_t max-input-size = 2048
+                                                                                                      string mime = "audio/raw"
+                                                                                                      int32_t android._config-pcm-encoding = 2
+                                                                                                    }
+2026-09-08 17:52:50.661 17007-17140 CCodec                  com.dawn.libfilter                   D  setup formats output: AMessage(what = 0x00000000) = {
+                                                                                                      int32_t sample-rate = 44100
+                                                                                                      int32_t bitrate = 128000
+                                                                                                      int32_t channel-count = 1
+                                                                                                      int32_t level = 0
+                                                                                                      int32_t max-bitrate = 128000
+                                                                                                      string mime = "audio/mp4a-latm"
+                                                                                                      int32_t profile = 2
+                                                                                                    }
+2026-09-08 17:52:50.661 17007-17140 CCodecConfig            com.dawn.libfilter                   I  query failed after returning 9 values (BAD_INDEX)
+2026-09-08 17:52:50.662 17007-17140 Codec2Client            com.dawn.libfilter                   W  query -- param skipped: index = 1342179345.
+2026-09-08 17:52:50.663 17007-17140 Codec2Client            com.dawn.libfilter                   W  query -- param skipped: index = 2415921170.
+2026-09-08 17:52:50.663 17007-17140 Codec2Client            com.dawn.libfilter                   W  query -- param skipped: index = 3254792206.
+2026-09-08 17:52:50.663 17007-17140 Codec2Client            com.dawn.libfilter                   W  query -- param skipped: index = 3254792194.
+2026-09-08 17:52:50.664 17007-17140 CCodecBufferChannel     com.dawn.libfilter                   D  [c2.android.aac.encoder#220] Created input block pool with allocatorID 16 => poolID 17 - OK (0)
+2026-09-08 17:52:50.665 17007-17140 CCodecBufferChannel     com.dawn.libfilter                   I  [c2.android.aac.encoder#220] Created output block pool with allocatorID 16 => poolID 84 - OK
+2026-09-08 17:52:50.666 17007-17140 CCodecBufferChannel     com.dawn.libfilter                   D  [c2.android.aac.encoder#220] Configured output block pool ids 84 => OK
+2026-09-08 17:52:50.667 17007-17140 DMABUFHEAPS             com.dawn.libfilter                   I  Using DMA-BUF heap named: system
+2026-09-08 17:52:50.688 17007-17007 MPEG4Writer             com.dawn.libfilter                   D  PreAllocation enabled
+2026-09-08 17:52:50.698 17007-17007 CameraFilterHelper      com.dawn.libfilter                   I  录制开始（含滤镜）: /storage/emulated/0/Android/data/com.dawn.libfilter/files/Movies/VID_1788861170565.mp4
+2026-09-08 17:52:50.703 17007-17146 GlFilterRecorder        com.dawn.libfilter                   I  rebuildFilters: filterStyle=ORIGINAL intensity=0.8 frameW=0 frameH=0
+2026-09-08 17:52:51.861 17007-17146 GlFilterRecorder        com.dawn.libfilter                   I  rebuildFilters: filterStyle=ORIGINAL intensity=0.8 frameW=0 frameH=0
+2026-09-08 17:52:51.874 17007-17146 GraphicBufferSource     com.dawn.libfilter                   D  got buffer with new dataSpace #104
+2026-09-08 17:52:51.874 17007-17146 C2OMXNode               com.dawn.libfilter                   D  dataspace changed to 0x104 pixel format: 0x1
+2026-09-08 17:52:51.890 17007-17133 CCodecConfig            com.dawn.libfilter                   D  c2 config diff is   Buffer coded.init-data.value = {
+                                                                                                        00000000:  00 00 00 01 67 42 c0 1f  8d 8d 50 28 02 d9 35 01  ....gB....P(..5.
+                                                                                                        00000010:  01 01 40 00 00 03 00 40  00 00 0f 23 c2 21 1a 80  ..@....@...#.!..
+                                                                                                        00000020:  00 00 00 01 68 ce 3c 80                           ....h.<.
+2026-09-08 17:52:52.056 17007-17146 MPEG4Writer             com.dawn.libfilter                   D  fpathconf _PC_FILESIZEBITS:64
+2026-09-08 17:52:52.056 17007-17146 MPEG4Writer             com.dawn.libfilter                   D  File size limit set to 4503599627370495 bytes implicitly
+2026-09-08 17:52:52.057 17007-17146 MPEG4Writer             com.dawn.libfilter                   D  MP4WtrCtrlHlpLooper Started
+2026-09-08 17:52:52.057 17007-17146 MPEG4Writer             com.dawn.libfilter                   I  limits: 4503599627370495/0 bytes/us, bit rate: -1 bps and the estimated moov size 3192 bytes
+2026-09-08 17:52:52.061 17007-17153 MPEG4Writer             com.dawn.libfilter                   I  setStartTimestampUs: 29587237526
+2026-09-08 17:52:52.061 17007-17153 MPEG4Writer             com.dawn.libfilter                   I  Earliest track starting time: 29587237526
+2026-09-08 17:52:52.069 17007-17152 MPEG4Writer             com.dawn.libfilter                   I  setStartTimestampUs: 1325098
+2026-09-08 17:52:52.070 17007-17152 MPEG4Writer             com.dawn.libfilter                   I  Earliest track starting time: 1325098
+2026-09-08 17:52:53.395 17007-17017 .dawn.libfilter         com.dawn.libfilter                   I  Background concurrent mark compact GC freed 6155(484KB) AllocSpace objects, 5(6760KB) LOS objects, 49% free, 7172KB/14MB, paused 250us,6.206ms total 34.121ms
+2026-09-08 17:52:55.876 17007-17140 BufferPoolAccessor2.0   com.dawn.libfilter                   D  bufferpool2 0xb400006df6de18d8 : 5(10240 size) total buffers - 4(8192 size) used buffers - 251/256 (recycle/alloc) - 6/503 (fetch/transfer)
+2026-09-08 17:52:56.335 17007-17146 GraphicBufferSource     com.dawn.libfilter                   W  released unpopulated slots: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63]
+2026-09-08 17:52:56.368 17007-17154 MPEG4Writer             com.dawn.libfilter                   D  reset()
+2026-09-08 17:52:56.368 17007-17154 MPEG4Writer             com.dawn.libfilter                   D  Audio track stopping. Stop source
+2026-09-08 17:52:56.368 17007-17154 MPEG4Writer             com.dawn.libfilter                   D  Audio track source stopping
+2026-09-08 17:52:56.368 17007-17154 MPEG4Writer             com.dawn.libfilter                   D  Audio track source stopped
+2026-09-08 17:52:56.368 17007-17153 MediaWriter             com.dawn.libfilter                   V  Track event err/info msg:101, trackId:2, type:1000,val:-1011
+2026-09-08 17:52:56.368 17007-17152 MediaWriter             com.dawn.libfilter                   V  Track event err/info msg:101, trackId:1, type:1000,val:-1011
+2026-09-08 17:52:56.368 17007-17152 MPEG4Writer             com.dawn.libfilter                   I  Received total/0-length (185/0) buffers and encoded 185 frames. - Audio
+2026-09-08 17:52:56.368 17007-17152 MPEG4Writer             com.dawn.libfilter                   I  Audio track drift time: 0 us
+2026-09-08 17:52:56.368 17007-17153 MPEG4Writer             com.dawn.libfilter                   I  Received total/0-length (25/0) buffers and encoded 25 frames. - Video
+2026-09-08 17:52:56.368 17007-17154 MPEG4Writer             com.dawn.libfilter                   D  Audio track stopped. Status:0. Stop source
+2026-09-08 17:52:56.368 17007-17154 MPEG4Writer             com.dawn.libfilter                   D  Video track stopping. Stop source
+2026-09-08 17:52:56.368 17007-17154 MPEG4Writer             com.dawn.libfilter                   D  Video track source stopping
+2026-09-08 17:52:56.368 17007-17154 MPEG4Writer             com.dawn.libfilter                   D  Video track source stopped
+2026-09-08 17:52:56.369 17007-17154 MPEG4Writer             com.dawn.libfilter                   D  Video track stopped. Status:0. Stop source
+2026-09-08 17:52:56.369 17007-17154 MPEG4Writer             com.dawn.libfilter                   D  Duration from tracks range is [4305028, 29590512861] us
+2026-09-08 17:52:56.369 17007-17150 MPEG4Writer             com.dawn.libfilter                   D  0 chunks are written in the last batch
+2026-09-08 17:52:56.369 17007-17154 MPEG4Writer             com.dawn.libfilter                   D  WriterThread stopped. Status:0
+2026-09-08 17:52:56.369 17007-17154 MPEG4Writer             com.dawn.libfilter                   I  Adjust the moov start time from 1325098 us -> 1325098 us
+2026-09-08 17:52:56.369 17007-17154 MPEG4Writer             com.dawn.libfilter                   I  MOOV atom was written to the file
+2026-09-08 17:52:56.369 17007-17154 MPEG4Writer             com.dawn.libfilter                   D  release()
+2026-09-08 17:52:56.369 17007-17154 MPEG4Writer             com.dawn.libfilter                   D  ftruncate mPreAllocateFileEndOffset:312941 mOffset:2481 mMdatEndOffset:309529 diff:3412
+2026-09-08 17:52:56.374 17007-17154 MPEG4Writer             com.dawn.libfilter                   D  final fsync() takes 4 ms, file size 309529
+2026-09-08 17:52:56.374 17007-17154 MPEG4Writer             com.dawn.libfilter                   D  MP4WtrCtrlHlpLooper stopped
+2026-09-08 17:52:56.374 17007-17154 MPEG4Writer             com.dawn.libfilter                   D  Top 5 write durations(microseconds): #1:43 #2:46 #3:50 #4:66 #5:101
+2026-09-08 17:52:56.374 17007-17154 MPEG4Writer             com.dawn.libfilter                   D  reset()
+2026-09-08 17:52:56.374 17007-17154 MPEG4Writer             com.dawn.libfilter                   D  Audio track stopping. Stop source
+2026-09-08 17:52:56.374 17007-17154 MPEG4Writer             com.dawn.libfilter                   E  Stop() called but track is not started or stopped
+2026-09-08 17:52:56.374 17007-17154 MPEG4Writer             com.dawn.libfilter                   D  Video track stopping. Stop source
+2026-09-08 17:52:56.374 17007-17154 MPEG4Writer             com.dawn.libfilter                   E  Stop() called but track is not started or stopped
+2026-09-08 17:52:56.378 17007-17133 hw-BpHwBinder           com.dawn.libfilter                   I  onLastStrongRef automatically unlinking death recipients
+2026-09-08 17:52:56.378 17007-17140 CCodecBufferChannel     com.dawn.libfilter                   D  [c2.android.aac.encoder#220] MediaCodec discarded an unknown buffer
+2026-09-08 17:52:56.378 17007-17140 CCodecBufferChannel     com.dawn.libfilter                   D  [c2.android.aac.encoder#220] MediaCodec discarded an unknown buffer
+2026-09-08 17:52:56.378 17007-17140 CCodecBufferChannel     com.dawn.libfilter                   D  [c2.android.aac.encoder#220] MediaCodec discarded an unknown buffer
+2026-09-08 17:52:56.379 17007-17132 MediaCodec              com.dawn.libfilter                   D  flushMediametrics
+2026-09-08 17:52:56.380 17007-17132 MediaCodec              com.dawn.libfilter                   D  flushMediametrics
+2026-09-08 17:52:56.380 17007-17132 MediaCodec              com.dawn.libfilter                   W  no metrics handle found
+2026-09-08 17:52:56.382 17007-17140 hw-BpHwBinder           com.dawn.libfilter                   I  onLastStrongRef automatically unlinking death recipients
+2026-09-08 17:52:56.383 17007-17140 MediaCodec              com.dawn.libfilter                   D  flushMediametrics
+2026-09-08 17:52:56.384 17007-17140 MediaCodec              com.dawn.libfilter                   D  flushMediametrics
+2026-09-08 17:52:56.385 17007-17140 MediaCodec              com.dawn.libfilter                   W  no metrics handle found
+2026-09-08 17:52:56.387 17007-17007 Compatibil...geReporter com.dawn.libfilter                   D  Compat change id reported: 147798919; UID 10103; state: ENABLED
+2026-09-08 17:52:56.416 17007-17007 DeferrableSurface       com.dawn.libfilter                   D  surface closed,  useCount=1 closed=true androidx.camera.core.impl.ImmediateSurface@e4ad4b6
+2026-09-08 17:52:56.422 17007-17065 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} Use cases [androidx.camera.core.ImageAnalysis-5dd57f8a-71c5-4e69-ab97-b6e6725f9e1c204854648] now DETACHED for camera
+2026-09-08 17:52:56.423 17007-17065 UseCaseAttachState      com.dawn.libfilter                   D  All use case: [] for camera: 11
+2026-09-08 17:52:56.427 17007-17065 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} Resetting Capture Session
+2026-09-08 17:52:56.456 17007-17065 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} Releasing session in state OPENED
+2026-09-08 17:52:56.457 17007-17065 UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [] for camera: 11
+2026-09-08 17:52:56.465 17007-17065 UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [] for camera: 11
+2026-09-08 17:52:56.473 17007-17065 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} Closing camera.
+2026-09-08 17:52:56.476 17007-17065 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} Transitioning camera internal state: OPENED --> CLOSING
+2026-09-08 17:52:56.483 17007-17065 CameraStateRegistry     com.dawn.libfilter                   D  Recalculating open cameras:
+                                                                                                    Camera                                       State                 
+                                                                                                    -------------------------------------------------------------------
+                                                                                                    Camera@731e892[id=0]                         UNKNOWN               
+                                                                                                    Camera@d4843d5[id=11]                        CLOSING               
+                                                                                                    -------------------------------------------------------------------
+                                                                                                    Open count: 1 (Max allowed: 1)
+2026-09-08 17:52:56.484 17007-17065 CameraStateMachine      com.dawn.libfilter                   D  New public camera state CameraState{type=CLOSING, error=null} from CLOSING and null
+2026-09-08 17:52:56.484 17007-17065 CameraStateMachine      com.dawn.libfilter                   D  Publishing new public camera state CameraState{type=CLOSING, error=null}
+2026-09-08 17:52:56.487 17007-17065 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} Resetting Capture Session
+2026-09-08 17:52:56.489 17007-17065 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} Releasing session in state CLOSING
+2026-09-08 17:52:56.490 17007-17065 CaptureSession          com.dawn.libfilter                   D  onSessionFinished()
+2026-09-08 17:52:56.676 17007-17065 UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [] for camera: 11
+2026-09-08 17:52:56.684 17007-17065 DeferrableSurface       com.dawn.libfilter                   D  use count-1,  useCount=0 closed=true androidx.camera.core.impl.ImmediateSurface@e4ad4b6
+2026-09-08 17:52:56.685 17007-17065 DeferrableSurface       com.dawn.libfilter                   D  Surface no longer in use[total_surfaces=1, used_surfaces=0](androidx.camera.core.impl.ImmediateSurface@e4ad4b6}
+2026-09-08 17:52:56.685 17007-17065 DeferrableSurface       com.dawn.libfilter                   D  Surface terminated[total_surfaces=0, used_surfaces=0](androidx.camera.core.impl.ImmediateSurface@e4ad4b6}
+2026-09-08 17:52:56.689 17007-17065 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} CameraDevice.onClosed()
+2026-09-08 17:52:56.691 17007-17065 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} Transitioning camera internal state: CLOSING --> INITIALIZED
+2026-09-08 17:52:56.698 17007-17065 CameraStateRegistry     com.dawn.libfilter                   D  Recalculating open cameras:
+                                                                                                    Camera                                       State                 
+                                                                                                    -------------------------------------------------------------------
+                                                                                                    Camera@731e892[id=0]                         UNKNOWN               
+                                                                                                    Camera@d4843d5[id=11]                        CLOSED                
+                                                                                                    -------------------------------------------------------------------
+                                                                                                    Open count: 0 (Max allowed: 1)
+2026-09-08 17:52:56.699 17007-17065 CameraStateMachine      com.dawn.libfilter                   D  New public camera state CameraState{type=CLOSED, error=null} from CLOSED and null
+2026-09-08 17:52:56.700 17007-17065 CameraStateMachine      com.dawn.libfilter                   D  Publishing new public camera state CameraState{type=CLOSED, error=null}
+2026-09-08 17:52:56.958 17007-17007 MediaPlayerNative       com.dawn.libfilter                   D  getMetadata
+2026-09-08 17:52:57.065 17007-17047 MediaPlayerNative       com.dawn.libfilter                   W  info/warning (3, 0)
+2026-09-08 17:52:58.873 17007-17007 AutofillManager         com.dawn.libfilter                   D  Fill dialog is enabled:false, hints=[]
+2026-09-08 17:52:59.159 17007-17007 CameraFilterHelper      com.dawn.libfilter                   I  available camera[0]: selector=androidx.camera.core.CameraSelector@e866c7b lensFacing=1
+2026-09-08 17:52:59.159 17007-17007 CameraFilterHelper      com.dawn.libfilter                   I  available camera[1]: selector=androidx.camera.core.CameraSelector@bc82ed6 lensFacing=2
+2026-09-08 17:52:59.160 17007-17007 CameraFilterHelper      com.dawn.libfilter                   I  select external camera, index=1 selector=androidx.camera.core.CameraSelector@c706d2d
+2026-09-08 17:52:59.179 17007-17007 CameraOrientationUtil   com.dawn.libfilter                   D  getRelativeImageRotation: destRotationDegrees=0, sourceRotationDegrees=0, isOppositeFacing=false, result=0
+2026-09-08 17:52:59.181 17007-17007 CameraOrientationUtil   com.dawn.libfilter                   D  getRelativeImageRotation: destRotationDegrees=0, sourceRotationDegrees=0, isOppositeFacing=false, result=0
+2026-09-08 17:52:59.191 17007-17007 CameraOrientationUtil   com.dawn.libfilter                   D  getRelativeImageRotation: destRotationDegrees=0, sourceRotationDegrees=0, isOppositeFacing=false, result=0
+2026-09-08 17:52:59.192 17007-17007 CameraOrientationUtil   com.dawn.libfilter                   D  getRelativeImageRotation: destRotationDegrees=0, sourceRotationDegrees=0, isOppositeFacing=false, result=0
+2026-09-08 17:52:59.208 17007-17007 CameraOrientationUtil   com.dawn.libfilter                   D  getRelativeImageRotation: destRotationDegrees=0, sourceRotationDegrees=0, isOppositeFacing=false, result=0
+2026-09-08 17:52:59.210 17007-17007 CameraOrientationUtil   com.dawn.libfilter                   D  getRelativeImageRotation: destRotationDegrees=0, sourceRotationDegrees=0, isOppositeFacing=false, result=0
+2026-09-08 17:52:59.214 17007-17007 DeferrableSurface       com.dawn.libfilter                   D  Surface created[total_surfaces=1, used_surfaces=0](androidx.camera.core.impl.ImmediateSurface@b7642ae}
+2026-09-08 17:52:59.224 17007-17007 CameraFilterHelper      com.dawn.libfilter                   I  CameraX bound, actualLensFacing=2, selector=androidx.camera.core.CameraSelector@5719c8
+2026-09-08 17:52:59.225 17007-17065 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} Use case androidx.camera.core.ImageAnalysis-64847a20-03d7-4aec-be0b-08f487fab24227747504 ACTIVE
+2026-09-08 17:52:59.225 17007-17065 UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [] for camera: 11
+2026-09-08 17:52:59.235 17007-17065 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} Use cases [androidx.camera.core.ImageAnalysis-64847a20-03d7-4aec-be0b-08f487fab24227747504] now ATTACHED
+2026-09-08 17:52:59.239 17007-17065 UseCaseAttachState      com.dawn.libfilter                   D  All use case: [androidx.camera.core.ImageAnalysis-64847a20-03d7-4aec-be0b-08f487fab24227747504] for camera: 11
+2026-09-08 17:52:59.244 17007-17065 UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [androidx.camera.core.ImageAnalysis-64847a20-03d7-4aec-be0b-08f487fab24227747504] for camera: 11
+2026-09-08 17:52:59.267 17007-17065 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} Resetting Capture Session
+2026-09-08 17:52:59.269 17007-17065 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} Releasing session in state INITIALIZED
+2026-09-08 17:52:59.272 17007-17065 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} Attempting to force open the camera.
+2026-09-08 17:52:59.276 17007-17065 CameraStateRegistry     com.dawn.libfilter                   D  tryOpenCamera(Camera@d4843d5[id=11]) [Available Cameras: 1, Already Open: false (Previous state: CLOSED)] --> SUCCESS
+2026-09-08 17:52:59.282 17007-17065 CameraStateRegistry     com.dawn.libfilter                   D  Recalculating open cameras:
+                                                                                                    Camera                                       State                 
+                                                                                                    -------------------------------------------------------------------
+                                                                                                    Camera@731e892[id=0]                         UNKNOWN               
+                                                                                                    Camera@d4843d5[id=11]                        OPENING               
+                                                                                                    -------------------------------------------------------------------
+                                                                                                    Open count: 1 (Max allowed: 1)
+2026-09-08 17:52:59.283 17007-17065 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} Opening camera.
+2026-09-08 17:52:59.286 17007-17065 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} Transitioning camera internal state: INITIALIZED --> OPENING
+2026-09-08 17:52:59.286 17007-17065 CameraStateMachine      com.dawn.libfilter                   D  New public camera state CameraState{type=OPENING, error=null} from OPENING and null
+2026-09-08 17:52:59.286 17007-17065 CameraStateMachine      com.dawn.libfilter                   D  Publishing new public camera state CameraState{type=OPENING, error=null}
+2026-09-08 17:52:59.288 17007-17065 UseCaseAttachState      com.dawn.libfilter                   D  All use case: [androidx.camera.core.ImageAnalysis-64847a20-03d7-4aec-be0b-08f487fab24227747504] for camera: 11
+2026-09-08 17:52:59.404 17007-17065 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} Use case androidx.camera.core.ImageAnalysis-64847a20-03d7-4aec-be0b-08f487fab24227747504 ACTIVE
+2026-09-08 17:52:59.408 17007-17065 UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [androidx.camera.core.ImageAnalysis-64847a20-03d7-4aec-be0b-08f487fab24227747504] for camera: 11
+2026-09-08 17:52:59.422 17007-17065 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} CameraDevice.onOpened()
+2026-09-08 17:52:59.424 17007-17065 Camera2CameraImpl       com.dawn.libfilter                   D  {Camera@d4843d5[id=11]} Transitioning camera internal state: OPENING --> OPENED
+2026-09-08 17:52:59.430 17007-17065 CameraStateRegistry     com.dawn.libfilter                   D  Recalculating open cameras:
+                                                                                                    Camera                                       State                 
+                                                                                                    -------------------------------------------------------------------
+                                                                                                    Camera@731e892[id=0]                         UNKNOWN               
+                                                                                                    Camera@d4843d5[id=11]                        OPEN                  
+                                                                                                    -------------------------------------------------------------------
+                                                                                                    Open count: 1 (Max allowed: 1)
+2026-09-08 17:52:59.431 17007-17065 CameraStateMachine      com.dawn.libfilter                   D  New public camera state CameraState{type=OPEN, error=null} from OPEN and null
+2026-09-08 17:52:59.431 17007-17065 CameraStateMachine      com.dawn.libfilter                   D  Publishing new public camera state CameraState{type=OPEN, error=null}
+2026-09-08 17:52:59.433 17007-17065 UseCaseAttachState      com.dawn.libfilter                   D  All use case: [androidx.camera.core.ImageAnalysis-64847a20-03d7-4aec-be0b-08f487fab24227747504] for camera: 11
+2026-09-08 17:52:59.438 17007-17065 UseCaseAttachState      com.dawn.libfilter                   D  Active and attached use case: [androidx.camera.core.ImageAnalysis-64847a20-03d7-4aec-be0b-08f487fab24227747504] for camera: 11
+2026-09-08 17:52:59.451 17007-17065 SyncCaptureSessionBase  com.dawn.libfilter                   D  [androidx.camera.camera2.internal.SynchronizedCaptureSessionBaseImpl@298b9c2] getSurface...done
+2026-09-08 17:52:59.451 17007-17065 CaptureSession          com.dawn.libfilter                   D  Opening capture session.
+2026-09-08 17:52:59.455 17007-17065 DeferrableSurface       com.dawn.libfilter                   D  New surface in use[total_surfaces=1, used_surfaces=1](androidx.camera.core.impl.ImmediateSurface@b7642ae}
+2026-09-08 17:52:59.455 17007-17065 DeferrableSurface       com.dawn.libfilter                   D  use count+1, useCount=1 androidx.camera.core.impl.ImmediateSurface@b7642ae
+2026-09-08 17:52:59.641 17007-17007 MediaPlayer             com.dawn.libfilter                   V  resetDrmState:  mDrmInfo=null mDrmProvisioningThread=null mPrepareDrmInProgress=false mActiveDrmScheme=false
+2026-09-08 17:52:59.641 17007-17007 MediaPlayer             com.dawn.libfilter                   V  cleanDrmObj: mDrmObj=null mDrmSessionId=null
+2026-09-08 17:52:59.642 17007-17007 MediaPlayer             com.dawn.libfilter                   V  resetDrmState:  mDrmInfo=null mDrmProvisioningThread=null mPrepareDrmInProgress=false mActiveDrmScheme=false
+2026-09-08 17:52:59.642 17007-17007 MediaPlayer             com.dawn.libfilter                   V  cleanDrmObj: mDrmObj=null mDrmSessionId=null
+2026-09-08 17:52:59.779 17007-17007 WindowOnBackDispatcher  com.dawn.libfilter                   W  sendCancelIfRunning: isInProgress=falsecallback=android.view.ViewRootImpl$$ExternalSyntheticLambda17@b173b25
+2026-09-08 17:52:59.932 17007-17065 CaptureSession          com.dawn.libfilter                   D  Attempting to send capture request onConfigured
+2026-09-08 17:52:59.932 17007-17065 CaptureSession          com.dawn.libfilter                   D  Issuing request for session.
+2026-09-08 17:52:59.936 17007-17065 Camera2Cap...estBuilder com.dawn.libfilter                   D  createCaptureRequest
+2026-09-08 17:52:59.950 17007-17065 CaptureSession          com.dawn.libfilter                   D  CameraCaptureSession.onConfigured() mState=OPENED
+2026-09-08 17:52:59.953 17007-17065 CaptureSession          com.dawn.libfilter                   D  CameraCaptureSession.onReady() OPENED
+2026-09-08 17:53:00.019 17007-17115 mali_so                 com.dawn.libfilter                   E  encounter the first gles_error : 0x0003; gles_state_error_info : texture image does not exist (gles_texture_tex_sub_image_2d at hardware/arm/mali_so/driver/product/gles/src/texture/mali_gles_texture_api.c:953)
+2026-09-08 17:53:01.665 17007-17136 BufferPoolAccessor2.0   com.dawn.libfilter                   D  bufferpool2 0xb400006df6de18d8 : 0(0 size) total buffers - 0(0 size) used buffers - 275/280 (recycle/alloc) - 6/550 (fetch/transfer)
+2026-09-08 17:53:01.665 17007-17136 BufferPoolAccessor2.0   com.dawn.libfilter                   D  evictor expired: 1, evicted: 1
+2026-09-08 17:53:21.113 17007-17017 .dawn.libfilter         com.dawn.libfilter                   I  NativeAlloc concurrent mark compact GC freed 158861(5611KB) AllocSpace objects, 3(2708KB) LOS objects, 49% free, 5798KB/11MB, paused 623us,5.048ms total 61.950ms
+2026-09-08 17:53:21.167 17007-17197 MediaScannerConnection  com.dawn.libfilter                   D  Scanned /storage/emulated/0/Pictures/LibFilter/1788861201051.jpg to content://media/external_primary/images/media/1000009409

@@ -404,9 +404,9 @@ public class CameraFilterActivity extends AppCompatActivity {
         panelSetting.setVisibility(tab == 2 ? View.VISIBLE : View.GONE);
 
         // Tab 文字颜色
-        tabFilter.setTextColor(tab == 0 ? 0xFFFFFFFF : 0x88FFFFFF);
-        tabBeauty.setTextColor(tab == 1 ? 0xFFFFFFFF : 0x88FFFFFF);
-        tabSetting.setTextColor(tab == 2 ? 0xFFFFFFFF : 0x88FFFFFF);
+        tabFilter.setTextColor(tab == 0 ? 0xFFFFFFFF : 0xB3FFFFFF);
+        tabBeauty.setTextColor(tab == 1 ? 0xFFFFFFFF : 0xB3FFFFFF);
+        tabSetting.setTextColor(tab == 2 ? 0xFFFFFFFF : 0xB3FFFFFF);
 
         // 指示器动画
         int tabW = layoutTabs.getWidth() / 3;
@@ -441,7 +441,7 @@ public class CameraFilterActivity extends AppCompatActivity {
             FilterStyle style = items.get(position);
             boolean selected = position == selectedPos;
             holder.tvName.setText(style.getDisplayNameCn());
-            holder.tvName.setTextColor(selected ? 0xFFFFFFFF : 0x88FFFFFF);
+            holder.tvName.setTextColor(selected ? 0xFFFFFFFF : 0xB3FFFFFF);
             holder.itemView.setSelected(selected);
             holder.itemView.setOnClickListener(v -> {
                 int old = selectedPos;

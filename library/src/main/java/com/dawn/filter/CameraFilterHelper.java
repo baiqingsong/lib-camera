@@ -702,6 +702,10 @@ public class CameraFilterHelper {
     }
 
     public void onHostPause() {
+        // 先销毁滤镜（isInitialized=false），再销毁 GL 上下文。返回页面时
+        // onSurfaceCreated 的 ifNeedInit() 会在新上下文中重新编译 program，
+        // 避免 GL 上下文重建后旧 program 失效导致预览黑屏。
+        filterView.destroyActiveFilter();
         try { filterView.getGPUImageView().onPause(); } catch (Throwable ignored) {}
     }
 

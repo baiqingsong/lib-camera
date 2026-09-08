@@ -309,7 +309,7 @@ public class ImageFilterActivity extends AppCompatActivity {
             FilterStyle style = items.get(position);
             boolean selected = position == selectedPos;
             holder.tvName.setText(style.getDisplayNameCn());
-            holder.tvName.setTextColor(selected ? 0xFFFFFFFF : 0x88FFFFFF);
+            holder.tvName.setTextColor(selected ? 0xFFFFFFFF : 0xB3FFFFFF);
             holder.itemView.setSelected(selected);
             holder.itemView.setOnClickListener(v -> {
                 int old = selectedPos;
@@ -372,9 +372,9 @@ public class ImageFilterActivity extends AppCompatActivity {
         panelBeauty.setVisibility(tab == 1 ? View.VISIBLE : View.GONE);
         panelSetting.setVisibility(tab == 2 ? View.VISIBLE : View.GONE);
 
-        tabFilter.setTextColor(tab == 0 ? 0xFFFFFFFF : 0x88FFFFFF);
-        tabBeauty.setTextColor(tab == 1 ? 0xFFFFFFFF : 0x88FFFFFF);
-        tabSetting.setTextColor(tab == 2 ? 0xFFFFFFFF : 0x88FFFFFF);
+        tabFilter.setTextColor(tab == 0 ? 0xFFFFFFFF : 0xB3FFFFFF);
+        tabBeauty.setTextColor(tab == 1 ? 0xFFFFFFFF : 0xB3FFFFFF);
+        tabSetting.setTextColor(tab == 2 ? 0xFFFFFFFF : 0xB3FFFFFF);
 
         int tabW = layoutTabs.getWidth() / 3;
         float targetX = tab * tabW;

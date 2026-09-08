@@ -20,7 +20,7 @@
         android:maxLines="2"
         android:paddingHorizontal="6dp"
         android:text="滤镜"
-        android:textColor="#88FFFFFF"
+        android:textColor="#B3FFFFFF"
         android:textSize="14sp" />
 
 </FrameLayout>

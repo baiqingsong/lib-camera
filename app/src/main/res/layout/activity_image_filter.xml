@@ -54,7 +54,7 @@
         android:layout_width="match_parent"
         android:layout_height="44dp"
         android:orientation="horizontal"
-        android:background="#1A000000">
+        android:background="#F2000000">
 
         <TextView
             android:id="@+id/tab_filter"
@@ -64,7 +64,8 @@
             android:gravity="center"
             android:text="滤镜"
             android:textColor="#FFFFFF"
-            android:textSize="15sp"
+            android:textSize="16sp"
+            android:textStyle="bold"
             android:background="?attr/selectableItemBackground" />
 
         <TextView
@@ -74,8 +75,9 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="美颜"
-            android:textColor="#88FFFFFF"
-            android:textSize="15sp"
+            android:textColor="#B3FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
             android:background="?attr/selectableItemBackground" />
 
         <TextView
@@ -85,8 +87,9 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="设置"
-            android:textColor="#88FFFFFF"
-            android:textSize="15sp"
+            android:textColor="#B3FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
             android:background="?attr/selectableItemBackground" />
     </LinearLayout>
 
@@ -95,7 +98,7 @@
         android:id="@+id/tab_indicator"
         android:layout_width="0dp"
         android:layout_height="3dp"
-        android:background="#FFFFFF" />
+        android:background="#03DAC5" />
 
     <!-- ========== Tab 面板容器 ========== -->
     <FrameLayout
