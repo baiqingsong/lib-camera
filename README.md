@@ -150,6 +150,75 @@ Bitmap r3 = fm.applyModules(original, BeautyParams.defaultCamera(), FilterStyle.
 fm.release(); // 必须释放
 ```
 
+### 4. 一体化控件（零样板代码）
+
+`CameraFilterView` 支持自动管理模式：自动申请权限、自动跟随宿主生命周期启停相机，
+外部只需一个控件 + 一行权限转发，无需再写 `onResume/onPause/start/stop`。
+
+**布局（XML 开启自动管理）：**
+```xml
+<com.dawn.filter.CameraFilterView
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cameraView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:autoManageLifecycle="true" />
+```
+
+**Activity（仅需一行权限转发）：**
+```java
+CameraFilterView cameraView = findViewById(R.id.cameraView);
+
+// 设置美颜 + 滤镜
+cameraView.setBeautyAndFilter(BeautyParams.defaultCamera(), FilterStyle.FRESH, 0.8f);
+
+// 拍照
+cameraView.takePicture(bitmap -> saveToGallery(bitmap));
+
+// 录像
+cameraView.startRecording(null, new CameraFilterHelper.OnVideoRecordListener() {
+    @Override public void onVideoSaved(File file) { /* 保存成功 */ }
+    @Override public void onError(String message) { /* 失败 */ }
+});
+cameraView.stopRecording();
+
+@Override
+public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    cameraView.onRequestPermissionsResult(requestCode, grantResults); // 唯一需要转发的权限回调
+}
+```
+
+### 5. 视频流输入（外部帧源）
+
+当外部已有自己的帧源（其他相机 SDK、解码器、外接采集卡等），把每帧 Bitmap 喂给控件即可，
+美颜 + 滤镜实时生效，支持截图和录像。
+
+```java
+// 每来一帧（线程安全，内部自动上屏）
+cameraView.feedFrame(bitmap);
+
+// 截图（含美颜+滤镜）
+cameraView.takeSnapshot(result -> saveToGallery(result));
+
+// 录像（含美颜+滤镜）
+cameraView.startStreamRecording(null, new VideoStreamRecorder.OnVideoRecordListener() {
+    @Override public void onVideoSaved(File file) { /* 保存成功 */ }
+    @Override public void onError(String message) { /* 失败 */ }
+});
+// 停止录像
+cameraView.stopStreamRecording();
+```
+
+也可以脱离控件，独立使用 `VideoStreamRecorder` 把帧直接编码成 MP4：
+
+```java
+VideoStreamRecorder rec = new VideoStreamRecorder(new File(dir, "out.mp4"));
+rec.prepare(BeautyParams.defaultCamera(), FilterStyle.ICE_BLUE, 0.7f, 720, 1280, listener);
+rec.feedFrame(bitmap);   // 每帧调用
+rec.stop();              // 结束，结果通过 listener 回调
+```
+
 ## 核心类说明
 
 | 类名 | 说明 |
@@ -157,8 +226,9 @@ fm.release(); // 必须释放
 | `CameraKit` | **统一入口**，单例门面，封装初始化、Bitmap 处理、相机会话创建 |
 | `CameraKit.CameraSession` | 相机实时预览的生命周期封装，管理美颜滤镜切换和拍照 |
 | `FilterManager` | 图片处理核心，支持 Bitmap 美颜、滤镜、滤镜链 |
-| `CameraFilterView` | FrameLayout 封装 GPUImageView，提供实时美颜+滤镜预览 |
+| `CameraFilterView` | FrameLayout 封装 GPUImageView，提供实时美颜+滤镜预览；支持一体化自动管理（权限/生命周期）与视频流输入（feedFrame） |
 | `CameraFilterHelper` | Camera1 生命周期管理（前后摄切换、拍照回调） |
+| `VideoStreamRecorder` | 视频流录像器，外部逐帧喂入 Bitmap 编码为含美颜+滤镜的 MP4 |
 | `BeautyParams` | 美颜参数 POJO（磨皮/美白/红润/亮度/对比度/伽马/饱和度） |
 | `FilterStyle` | 9 种业务滤镜风格枚举 |
 | `FilterPreset` | 30+ LUT 滤镜预设，支持缓存管理 |

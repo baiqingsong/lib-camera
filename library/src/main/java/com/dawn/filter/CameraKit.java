@@ -228,6 +228,22 @@ public final class CameraKit {
     }
 
     /**
+     * 创建视频流录像器：把外部逐帧喂入的 Bitmap（叠加美颜 + 滤镜）编码为 MP4。
+     * 适用于「外部通过视频流方式输入」且无需控件预览的场景。
+     * <p>
+     * 使用示例：
+     * <pre>
+     *   VideoStreamRecorder rec = CameraKit.get().newStreamRecorder(new File(dir, "out.mp4"));
+     *   rec.prepare(BeautyParams.defaultCamera(), FilterStyle.FRESH, 0.8f, 720, 1280, listener);
+     *   rec.feedFrame(bitmap);  // 每帧调用
+     *   rec.stop();             // 结果通过 listener 回调
+     * </pre>
+     */
+    public VideoStreamRecorder newStreamRecorder(File outputFile) {
+        return new VideoStreamRecorder(outputFile);
+    }
+
+    /**
      * 清除所有滤镜预设缓存的 LUT 位图，释放内存。
      * <p>
      * 注意：仅在确认无滤镜正在使用时调用（如相机已 onPause、FilterManager 已 release），

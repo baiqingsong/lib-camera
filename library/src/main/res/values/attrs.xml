@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- CameraFilterView 自定义属性 -->
+    <declare-styleable name="CameraFilterView">
+        <!-- 是否开启一体化自动管理：自动申请权限、跟随宿主生命周期启停相机 -->
+        <attr name="autoManageLifecycle" format="boolean" />
+    </declare-styleable>
+</resources>
