@@ -45,12 +45,20 @@ public class GPUImageClarityFilter extends GPUImageFilter {
             "\n" +
             "void main() {\n" +
             "    vec4 color = texture2D(inputImageTexture, textureCoordinate);\n" +
-            // 双尺度反锐化掩模：小半径锐化边缘，大半径恢复中频细节/局部对比
+            // 双尺度反锐化掩模：小半径取细节，大半径取低频
             "    vec3 blurSmall = blur9(singleStepOffset);\n" +
             "    vec3 blurLarge = blur9(largeStepOffset);\n" +
             "    vec3 detail = color.rgb - blurSmall;\n" +
             "    vec3 local  = blurSmall - blurLarge;\n" +
-            "    vec3 outColor = color.rgb + detail * (intensity * 2.0) + local * (intensity * 2.2);\n" +
+            "\n" +
+            // edge 强: 锁化边缘、中频质感; edge 弱: 平坦区去除 JPG 块状噪点
+            "    float edgeStrength = smoothstep(0.012, 0.07, length(detail));\n" +
+            // 平坦区轻度向 blurSmall 靠拢（去除小块噪），边缘区保持原图
+            "    vec3 base = mix(blurSmall, color.rgb, 0.25 + 0.75 * edgeStrength);\n" +
+            // 锐化 + Lightroom 风格 clarity(中频局部对比)
+            "    vec3 outColor = base\n" +
+            "        + local  * (intensity * 1.8) * (0.4 + 0.6 * edgeStrength)\n" +
+            "        + detail * (intensity * 2.2) * edgeStrength;\n" +
             "    gl_FragColor = vec4(clamp(outColor, 0.0, 1.0), color.a);\n" +
             "}\n";
 
@@ -58,8 +66,11 @@ public class GPUImageClarityFilter extends GPUImageFilter {
     private int largeStepOffsetLocation = -1;
     private int intensityLocation = -1;
     private float intensity = 0.5f;
-    private float smallRadius = 1.0f;   // 细节锐化半径（像素）
-    private float largeRadius = 8.0f;   // 局部对比半径（像素）
+    private float smallRadius = 2.5f;
+    private float largeRadius = 12.0f;
+    /** >0 means use explicit image dimensions instead of view dimensions */
+    private int imageWidth = 0;
+    private int imageHeight = 0;
 
     public GPUImageClarityFilter() {
         this(0.5f);
@@ -83,11 +94,18 @@ public class GPUImageClarityFilter extends GPUImageFilter {
     public void onOutputSizeChanged(int width, int height) {
         super.onOutputSizeChanged(width, height);
         updateStepOffsets();
-        if (width > 0 && height > 0) {
-            Log.i(TAG, "onOutputSizeChanged " + width + "x" + height
-                    + " smallOffset=" + (smallRadius / (float) width)
-                    + " largeOffset=" + (largeRadius / (float) width));
-        }
+        int effW = imageWidth > 0 ? imageWidth : width;
+        int effH = imageHeight > 0 ? imageHeight : height;
+        Log.i(TAG, "onOutputSizeChanged view=" + width + "x" + height
+                + " eff=" + effW + "x" + effH
+                + " smallOff=" + (smallRadius / (float) effW));
+    }
+
+    /** Call after loading a static image so blur radii are measured in image pixels, not view pixels. */
+    public void setImageSize(int width, int height) {
+        imageWidth = width;
+        imageHeight = height;
+        updateStepOffsets();
     }
 
     /** 设置锐化强度 0~1。0 = 原图（pass-through），越大越锐利，推荐 0.3~0.7。 */
@@ -117,14 +135,10 @@ public class GPUImageClarityFilter extends GPUImageFilter {
 
     private void updateStepOffsets() {
         if (singleStepOffsetLocation < 0) return;
-        if (getOutputWidth() <= 0 || getOutputHeight() <= 0) return;
-        setFloatVec2(singleStepOffsetLocation, new float[]{
-                smallRadius / getOutputWidth(),
-                smallRadius / getOutputHeight()
-        });
-        setFloatVec2(largeStepOffsetLocation, new float[]{
-                largeRadius / getOutputWidth(),
-                largeRadius / getOutputHeight()
-        });
+        int w = imageWidth > 0 ? imageWidth : getOutputWidth();
+        int h = imageHeight > 0 ? imageHeight : getOutputHeight();
+        if (w <= 0 || h <= 0) return;
+        setFloatVec2(singleStepOffsetLocation, new float[]{smallRadius / w, smallRadius / h});
+        setFloatVec2(largeStepOffsetLocation,  new float[]{largeRadius  / w, largeRadius  / h});
     }
 }

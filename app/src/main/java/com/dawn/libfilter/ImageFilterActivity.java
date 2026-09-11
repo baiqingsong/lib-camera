@@ -25,6 +25,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dawn.filter.BeautyParams;
+import com.dawn.filter.CameraKit;
 import com.dawn.filter.FilterStyle;
 import com.dawn.filter.ImageFilterView;
 import com.dawn.filter.FilterManager;
@@ -108,6 +109,8 @@ public class ImageFilterActivity extends AppCompatActivity {
         // 保存按钮（顶部 + 设置面板底部）
         findViewById(R.id.btn_save).setOnClickListener(v -> saveImage());
         findViewById(R.id.btn_save_bottom).setOnClickListener(v -> saveImage());
+        // AI 超分辨率
+        findViewById(R.id.btn_ai_enhance).setOnClickListener(v -> aiEnhance());
     }
 
     private void loadImage(Uri uri) {
@@ -267,6 +270,29 @@ public class ImageFilterActivity extends AppCompatActivity {
         imageFilterView.saveToPictures("LibFilter", System.currentTimeMillis() + ".jpg",
                 uri -> runOnUiThread(() ->
                         Toast.makeText(this, "已保存", Toast.LENGTH_SHORT).show()));
+    }
+
+    private void aiEnhance() {
+        if (originalBitmap == null) {
+            Toast.makeText(this, "请先选择一张图片", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        Toast.makeText(this, "AI 增强中，请稍候…", Toast.LENGTH_SHORT).show();
+        CameraKit.get().superResolve(originalBitmap, new CameraKit.SuperResolveCallback() {
+            @Override
+            public void onResult(Bitmap bitmap) {
+                originalBitmap = bitmap;
+                imageFilterView.setImage(bitmap);
+                applyModules(true);
+                Toast.makeText(ImageFilterActivity.this, "AI 增强完成", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onError(String message) {
+                Toast.makeText(ImageFilterActivity.this,
+                        "AI 增强失败: " + message, Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     @Override

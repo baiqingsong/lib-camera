@@ -53,4 +53,7 @@ dependencies {
 
     // GPUImage - 核心滤镜引擎（内置 Camera API 支持）
     api 'jp.co.cyberagent.android:gpuimage:2.1.0'
+
+    // TensorFlow Lite - AI 超分辨率推理
+    implementation 'org.tensorflow:tensorflow-lite:2.14.0'
 }

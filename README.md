@@ -257,6 +257,25 @@ view.saveToPictures("MyApp", "out.jpg", uri -> { /* 已存相册 */ });
 > （经典算法，无需模型）。若需要真正意义上的「AI 超分辨率重建」，需接入端侧推理引擎
 > （TensorFlow Lite / ONNX Runtime）+ 模型文件，可在此基础上扩展。
 
+### 7. AI 超分辨率（去模糊 / 补细节）
+
+内置 TensorFlow Lite 超分引擎，可把图片放大并重建被 JPEG 压缩/模糊抹掉的细节。
+
+```java
+// 使用默认模型路径 superres/esrgan_x2.tflite
+CameraKit.get().superResolve(bitmap, new CameraKit.SuperResolveCallback() {
+    @Override public void onResult(Bitmap hd) { /* 放大且更清晰的图 */ }
+    @Override public void onError(String message) { /* 失败 */ }
+});
+
+// 指定模型路径
+CameraKit.get().superResolve(bitmap, "superres/esrgan_x2.tflite", callback);
+```
+
+> **模型要求**：NHWC float32、`[1,H,W,3]` 输入、像素 [0,1] 归一化的超分模型
+> （Real-ESRGAN / EDSR 的 tflite 版）。模型文件请自行放入 `app/src/main/assets/superres/`，
+> 并遵守模型权重许可。库本体不含模型。
+
 ## 核心类说明
 
 | 类名 | 说明 |

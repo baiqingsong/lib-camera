@@ -3,18 +3,26 @@ package com.dawn.filter;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.PixelFormat;
 import android.hardware.camera2.CameraCharacteristics;
+import android.media.MediaScannerConnection;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.util.Size;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
@@ -672,54 +680,72 @@ public class CameraFilterHelper {
         if (!isPreviewing || isCapturing || isSwitchingCamera) return;
         isCapturing = true;
 
-        // 在调用时立即复制当前帧（主线程），防止 analysisExecutor 在回调触发前将其 recycle。
-        // getBitmapWithFilterApplied() 无参版本依赖 GPUImage 内部 bitmap 引用，
-        // 但我们通过 getRenderer().setImageBitmap() 绕过了正常的 setImage() 路径，
-        // 导致该内部引用始终为 null → NPE。正确做法：传入当前帧作为源 bitmap。
         final Bitmap frameCopy = safelyMakeFrameCopy();
-
-        try {
-            gpuImageView.saveToPictures("LibFilter", System.currentTimeMillis() + ".jpg",
-                    uri -> {
-                        // saveToPictures 已将含美颜+滤镜的画面写入相册（由 GL 线程渲染）。
-                        // 此处通过 getBitmapWithFilterApplied(bitmap) 再次应用滤镜，
-                        // 将结果 Bitmap 返回给调用方（用于缩略图预览等场景）。
-                        Bitmap result = null;
-                        if (frameCopy != null) {
-                            try {
-                                result = gpuImageView.getGPUImage()
-                                        .getBitmapWithFilterApplied(frameCopy);
-                            } catch (Throwable t) {
-                                Log.e(TAG, "getBitmapWithFilterApplied failed, "
-                                        + "returning unfiltered frame", t);
-                                // 退而求其次：返回旋转正确但无 GPU 滤镜的帧
-                                result = frameCopy;
-                            } finally {
-                                // 只有 getBitmapWithFilterApplied 成功生成了新 Bitmap，
-                                // 临时副本才能释放；否则 result == frameCopy，不能 recycle。
-                                if (result != frameCopy) {
-                                    frameCopy.recycle();
-                                }
-                            }
-                        }
-                        Bitmap finalResult = result;
-                        Runnable notify = () -> {
-                            try {
-                                listener.onPictureTaken(finalResult);
-                            } finally {
-                                isCapturing = false;
-                            }
-                        };
-                        if (context instanceof Activity) {
-                            ((Activity) context).runOnUiThread(notify);
-                        } else {
-                            notify.run();
-                        }
-                    });
-        } catch (Throwable t) {
-            Log.e(TAG, "saveToPictures failed", t);
-            if (frameCopy != null) frameCopy.recycle();
+        if (frameCopy == null) {
             isCapturing = false;
+            mainHandler.post(() -> listener.onPictureTaken(null));
+            return;
+        }
+
+        new Thread(() -> {
+            Bitmap filtered = null;
+            try {
+                filtered = gpuImageView.getGPUImage().getBitmapWithFilterApplied(frameCopy);
+            } catch (Throwable t) {
+                Log.e(TAG, "getBitmapWithFilterApplied failed, returning raw frame", t);
+                filtered = frameCopy;
+            } finally {
+                if (filtered != frameCopy) frameCopy.recycle();
+            }
+            saveToGallery(filtered, "LibFilter_" + System.currentTimeMillis() + ".jpg");
+            final Bitmap result = filtered;
+            mainHandler.post(() -> {
+                try {
+                    listener.onPictureTaken(result);
+                } finally {
+                    isCapturing = false;
+                }
+            });
+        }, "TakePictureThread").start();
+    }
+
+    /** Save bitmap to public Pictures/LibFilter on all Android versions. */
+    private void saveToGallery(Bitmap bitmap, String fileName) {
+        if (bitmap == null || bitmap.isRecycled()) return;
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                ContentValues cv = new ContentValues();
+                cv.put(MediaStore.Images.Media.DISPLAY_NAME, fileName);
+                cv.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg");
+                cv.put(MediaStore.Images.Media.RELATIVE_PATH,
+                        Environment.DIRECTORY_PICTURES + "/LibFilter");
+                cv.put(MediaStore.Images.Media.IS_PENDING, 1);
+                ContentResolver cr = context.getContentResolver();
+                Uri uri = cr.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, cv);
+                if (uri != null) {
+                    try (OutputStream os = cr.openOutputStream(uri)) {
+                        bitmap.compress(Bitmap.CompressFormat.JPEG, 90, os);
+                    }
+                    cv.clear();
+                    cv.put(MediaStore.Images.Media.IS_PENDING, 0);
+                    cr.update(uri, cv, null, null);
+                    Log.i(TAG, "photo saved via MediaStore: " + uri);
+                }
+            } else {
+                File dir = new File(
+                        Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
+                        "LibFilter");
+                dir.mkdirs();
+                File file = new File(dir, fileName);
+                try (FileOutputStream fos = new FileOutputStream(file)) {
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 90, fos);
+                }
+                MediaScannerConnection.scanFile(context,
+                        new String[]{file.getAbsolutePath()}, null, null);
+                Log.i(TAG, "photo saved to: " + file.getAbsolutePath());
+            }
+        } catch (Exception e) {
+            Log.e(TAG, "saveToGallery failed", e);
         }
     }
 

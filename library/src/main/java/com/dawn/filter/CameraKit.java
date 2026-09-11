@@ -3,6 +3,9 @@ package com.dawn.filter;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.os.Handler;
+import android.os.Looper;
+import android.util.Log;
 import java.io.File;
 
 /**
@@ -197,6 +200,60 @@ public final class CameraKit {
         } finally {
             fm.release();
         }
+    }
+
+    // =========================================================
+    //  AI 超分辨率
+    // =========================================================
+
+    /** AI 超分辨率结果回调（主线程）。 */
+    public interface SuperResolveCallback {
+        void onResult(Bitmap bitmap);
+        void onError(String message);
+    }
+
+    /** 默认模型在 assets 下的路径。 */
+    public static final String DEFAULT_SR_MODEL_ASSET = "superres/esrgan_x2.tflite";
+
+    /**
+     * AI 超分辨率：用内置 TFLite 模型把图片放大并补细节（去 JPEG 伪影、提清晰度）。
+     * <p>
+     * 需先在 {@code app/src/main/assets/} 下放入超分模型（默认路径
+     * {@link #DEFAULT_SR_MODEL_ASSET}）。模型为 NHWC RGB、[0,1] 归一化输入输出。
+     * 处理在后台线程执行，结果回调在主线程。
+     */
+    public void superResolve(Bitmap input, SuperResolveCallback callback) {
+        superResolve(input, DEFAULT_SR_MODEL_ASSET, callback);
+    }
+
+    /**
+     * @param assetPath 模型在 assets 下的路径，例如 {@code "superres/esrgan_x2.tflite"}
+     */
+    public void superResolve(Bitmap input, String assetPath, SuperResolveCallback callback) {
+        if (input == null || input.isRecycled()) {
+            if (callback != null) callback.onError("输入图片无效");
+            return;
+        }
+        if (callback == null) return;
+        final Handler main = new Handler(Looper.getMainLooper());
+        new Thread(() -> {
+            try {
+                SuperResolution sr = SuperResolution.load(appContext, assetPath);
+                try {
+                    Bitmap out = sr.upscale(input);
+                    if (out != null && !out.isRecycled()) {
+                        main.post(() -> callback.onResult(out));
+                    } else {
+                        main.post(() -> callback.onError("超分处理失败"));
+                    }
+                } finally {
+                    sr.close();
+                }
+            } catch (Throwable t) {
+                Log.e("CameraKit", "superResolve failed", t);
+                main.post(() -> callback.onError("模型加载失败：" + t.getMessage()));
+            }
+        }, "CameraKitSuperResolve").start();
     }
 
     // =========================================================
@@ -537,6 +594,35 @@ public final class CameraKit {
          */
         public void takePicture(CameraFilterHelper.OnPictureTakenListener listener) {
             helper.takePicture(listener);
+        }
+
+        /**
+         * 拍照 + AI 超分增强：拍完自动调用超分模型放大并补细节（去 JPEG 伪影、提清晰度）。
+         * 需先放入超分模型（见 {@link CameraKit#DEFAULT_SR_MODEL_ASSET}）。
+         * 超分失败时回退为普通拍照结果。回调在主线程。
+         *
+         * @param listener 结果回调，bitmap 为 null 表示失败
+         * @return this（支持链式调用）
+         */
+        public CameraSession takePictureEnhanced(CameraFilterHelper.OnPictureTakenListener listener) {
+            helper.takePicture(bitmap -> {
+                if (bitmap == null) {
+                    if (listener != null) listener.onPictureTaken(null);
+                    return;
+                }
+                CameraKit.get().superResolve(bitmap, new SuperResolveCallback() {
+                    @Override
+                    public void onResult(Bitmap hd) {
+                        if (listener != null) listener.onPictureTaken(hd);
+                    }
+
+                    @Override
+                    public void onError(String message) {
+                        if (listener != null) listener.onPictureTaken(bitmap);
+                    }
+                });
+            });
+            return this;
         }
 
         /** 是否正在预览 */

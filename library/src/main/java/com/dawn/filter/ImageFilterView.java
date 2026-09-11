@@ -83,6 +83,7 @@ public class ImageFilterView extends FrameLayout {
     public void setImage(Bitmap bitmap) {
         sourceBitmap = bitmap;
         if (bitmap != null && !bitmap.isRecycled()) {
+            clarityFilter.setImageSize(bitmap.getWidth(), bitmap.getHeight());
             gpuImageView.setImage(bitmap);
             applyPipeline(true);
         }

@@ -3,6 +3,7 @@ package com.dawn.libfilter;
 import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.LayoutInflater;
@@ -24,6 +25,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.dawn.filter.BeautyParams;
 import com.dawn.filter.CameraFilterHelper;
 import com.dawn.filter.CameraFilterView;
+import com.dawn.filter.CameraKit;
 import com.dawn.filter.FilterStyle;
 import com.dawn.filter.FilterManager;
 
@@ -59,6 +61,8 @@ public class CameraFilterActivity extends AppCompatActivity {
     private Button btnFlipH;
     private Button btnFlipV;
     private Button btnRotate90;
+    private Button btnAiEnhance;
+    private boolean aiEnhanceEnabled = false;
 
     private FilterStyle currentFilterStyle = FilterStyle.ORIGINAL;
     private float currentFilterIntensity = 0.8f;
@@ -115,13 +119,30 @@ public class CameraFilterActivity extends AppCompatActivity {
             }
         });
 
-        // 拍照
+        // 拍照（AI 增强开启时拍完自动超分）
         findViewById(R.id.btn_take_picture).setOnClickListener(v ->
                 cameraHelper.takePicture(bitmap -> {
-                    if (bitmap != null) {
-                        Toast.makeText(this, "拍照成功", Toast.LENGTH_SHORT).show();
-                    } else {
+                    if (bitmap == null) {
                         Toast.makeText(this, "拍照失败，请稍后重试", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (aiEnhanceEnabled) {
+                        Toast.makeText(this, "AI 增强中…", Toast.LENGTH_SHORT).show();
+                        CameraKit.get().superResolve(bitmap, new CameraKit.SuperResolveCallback() {
+                            @Override
+                            public void onResult(Bitmap hd) {
+                                Toast.makeText(CameraFilterActivity.this,
+                                        "拍照成功（AI 增强）", Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void onError(String message) {
+                                Toast.makeText(CameraFilterActivity.this,
+                                        "AI 增强失败，已保存原图", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    } else {
+                        Toast.makeText(this, "拍照成功", Toast.LENGTH_SHORT).show();
                     }
                 }));
 
@@ -162,6 +183,15 @@ public class CameraFilterActivity extends AppCompatActivity {
             btnRotate90.setAlpha(next ? 1f : 0.5f);
         });
         btnRotate90.setAlpha(0.5f);
+
+        // AI 增强拍照开关
+        btnAiEnhance = findViewById(R.id.btn_ai_enhance);
+        btnAiEnhance.setAlpha(0.5f);
+        btnAiEnhance.setOnClickListener(v -> {
+            aiEnhanceEnabled = !aiEnhanceEnabled;
+            btnAiEnhance.setText(aiEnhanceEnabled ? "AI增强拍照：开" : "AI增强拍照：关");
+            btnAiEnhance.setAlpha(aiEnhanceEnabled ? 1f : 0.5f);
+        });
 
         // 视频列表
         findViewById(R.id.btn_video_list).setOnClickListener(v ->
