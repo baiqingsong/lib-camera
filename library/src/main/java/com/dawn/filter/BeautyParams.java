@@ -43,6 +43,14 @@ public class BeautyParams implements Serializable {
         return new BeautyParams(0.40f, 0.18f, 0.16f, 0.10f, 0.16f, 0.5f, 0.5f);
     }
 
+    /**
+     * 静态图片美颜推荐值：比 {@link #defaultCamera()} 更强、更明显。
+     * 静态图没有动态连贯性问题，可接受更强的磨皮 / 美白 / 对比度。
+     */
+    public static BeautyParams defaultImage() {
+        return new BeautyParams(0.62f, 0.45f, 0.30f, 0.22f, 0.34f, 0.55f, 0.55f);
+    }
+
     public static BeautyParams fromIntensity(float intensity) {
         float level = clamp(intensity);
         return new BeautyParams(

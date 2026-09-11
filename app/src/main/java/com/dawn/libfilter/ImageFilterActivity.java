@@ -24,19 +24,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.dawn.filter.BeautyFilterPipeline;
 import com.dawn.filter.BeautyParams;
 import com.dawn.filter.FilterStyle;
+import com.dawn.filter.ImageFilterView;
 import com.dawn.filter.FilterManager;
 
 import java.io.InputStream;
 import java.util.List;
 
-import jp.co.cyberagent.android.gpuimage.GPUImageView;
-
 public class ImageFilterActivity extends AppCompatActivity {
 
-    private GPUImageView gpuImageView;
+    private ImageFilterView imageFilterView;
     private SeekBar seekBarIntensity;
     private SeekBar seekBarSmoothness;
     private SeekBar seekBarWhiten;
@@ -45,6 +43,7 @@ public class ImageFilterActivity extends AppCompatActivity {
     private SeekBar seekBarBeautyContrast;
     private SeekBar seekBarBeautyGamma;
     private SeekBar seekBarBeautySaturation;
+    private SeekBar seekBarClarity;
     private TextView tvFilterName;
     private RecyclerView rvFilters;
 
@@ -57,8 +56,7 @@ public class ImageFilterActivity extends AppCompatActivity {
 
     private FilterManager filterManager;
     private Bitmap originalBitmap;
-    private BeautyFilterPipeline activePipeline;
-    private BeautyParams currentBeautyParams = BeautyParams.defaultCamera();
+    private BeautyParams currentBeautyParams = BeautyParams.defaultImage();
     private FilterStyle currentFilterStyle = FilterStyle.ORIGINAL;
     private float currentFilterIntensity = 0.8f;
 
@@ -76,7 +74,7 @@ public class ImageFilterActivity extends AppCompatActivity {
 
         filterManager = new FilterManager(this);
 
-        gpuImageView = findViewById(R.id.gpu_image_view);
+        imageFilterView = findViewById(R.id.image_filter_view);
         seekBarIntensity = findViewById(R.id.seekbar_intensity);
         seekBarSmoothness = findViewById(R.id.seekbar_smoothness);
         seekBarWhiten = findViewById(R.id.seekbar_whiten);
@@ -85,6 +83,7 @@ public class ImageFilterActivity extends AppCompatActivity {
         seekBarBeautyContrast = findViewById(R.id.seekbar_beauty_contrast);
         seekBarBeautyGamma = findViewById(R.id.seekbar_beauty_gamma);
         seekBarBeautySaturation = findViewById(R.id.seekbar_beauty_saturation);
+        seekBarClarity = findViewById(R.id.seekbar_clarity);
         tvFilterName = findViewById(R.id.tv_filter_name);
         rvFilters = findViewById(R.id.rv_filters);
 
@@ -131,7 +130,7 @@ public class ImageFilterActivity extends AppCompatActivity {
                 originalBitmap = BitmapFactory.decodeStream(is, null, opts);
             }
             if (originalBitmap != null) {
-                gpuImageView.setImage(originalBitmap);
+                imageFilterView.setImage(originalBitmap);
                 applyModules(true);
             } else {
                 Toast.makeText(this, "无法解码图片", Toast.LENGTH_SHORT).show();
@@ -145,16 +144,9 @@ public class ImageFilterActivity extends AppCompatActivity {
         if (originalBitmap == null) {
             return;
         }
-        if (rebuildPipeline || activePipeline == null
-                || activePipeline.getFilterStyle() != currentFilterStyle) {
-            activePipeline = new BeautyFilterPipeline(currentBeautyParams, currentFilterStyle,
-                    currentFilterIntensity);
-            gpuImageView.setFilter(activePipeline);
-        } else {
-            activePipeline.updateBeautyParams(currentBeautyParams);
-            activePipeline.updateFilterIntensity(currentFilterIntensity);
-        }
-        gpuImageView.requestRender();
+        // 封装后的 ImageFilterView 内部自行判断是否需要重建滤镜链
+        imageFilterView.setBeautyAndFilter(currentBeautyParams, currentFilterStyle,
+                currentFilterIntensity);
         tvFilterName.setText(currentFilterStyle.getDisplayNameCn());
     }
 
@@ -208,6 +200,9 @@ public class ImageFilterActivity extends AppCompatActivity {
         setupBeautySeekBar(seekBarBeautySaturation, currentBeautyParams.getSaturation(), value -> {
             currentBeautyParams.setSaturation(value);
             applyModules(false);
+        });
+        setupBeautySeekBar(seekBarClarity, imageFilterView.getClarity(), value -> {
+            imageFilterView.setClarity(value);
         });
     }
 
@@ -269,7 +264,7 @@ public class ImageFilterActivity extends AppCompatActivity {
     }
 
     private void doSaveImage() {
-        gpuImageView.saveToPictures("LibFilter", System.currentTimeMillis() + ".jpg",
+        imageFilterView.saveToPictures("LibFilter", System.currentTimeMillis() + ".jpg",
                 uri -> runOnUiThread(() ->
                         Toast.makeText(this, "已保存", Toast.LENGTH_SHORT).show()));
     }

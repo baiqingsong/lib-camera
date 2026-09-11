@@ -41,6 +41,7 @@ public class CameraFilterActivity extends AppCompatActivity {
     private SeekBar seekBarBeautyContrast;
     private SeekBar seekBarBeautyGamma;
     private SeekBar seekBarBeautySaturation;
+    private SeekBar seekBarClarity;
     private TextView tvFilterName;
     private RecyclerView rvFilters;
 
@@ -77,6 +78,7 @@ public class CameraFilterActivity extends AppCompatActivity {
         seekBarBeautyContrast = findViewById(R.id.seekbar_beauty_contrast);
         seekBarBeautyGamma = findViewById(R.id.seekbar_beauty_gamma);
         seekBarBeautySaturation = findViewById(R.id.seekbar_beauty_saturation);
+        seekBarClarity = findViewById(R.id.seekbar_clarity);
         tvFilterName = findViewById(R.id.tv_filter_name);
         rvFilters = findViewById(R.id.rv_filters);
 
@@ -341,6 +343,9 @@ public class CameraFilterActivity extends AppCompatActivity {
         setupBeautySeekBar(seekBarBeautySaturation, currentBeautyParams.getSaturation(), value -> {
             currentBeautyParams.setSaturation(value);
             cameraHelper.notifyFilterChanged(currentBeautyParams, currentFilterStyle, currentFilterIntensity);
+        });
+        setupBeautySeekBar(seekBarClarity, cameraHelper.getClarity(), value -> {
+            cameraHelper.setClarity(value);
         });
     }
 

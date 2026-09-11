@@ -219,6 +219,44 @@ rec.feedFrame(bitmap);   // 每帧调用
 rec.stop();              // 结束，结果通过 listener 回调
 ```
 
+### 6. 图片处理控件（静态图片）
+
+`ImageFilterView` 把「源图 + 美颜 + 滤镜 + 结果导出」封装为一个可直接放进布局的 View，
+用法与 `CameraFilterView` 一致，外部无需接触 GPUImageView / 滤镜链细节。
+
+**布局：**
+```xml
+<com.dawn.filter.ImageFilterView
+    android:id="@+id/imageFilterView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" />
+```
+
+**代码：**
+```java
+ImageFilterView view = findViewById(R.id.imageFilterView);
+
+view.setImage(bitmap);   // 设置源图
+// 静态图推荐用 defaultImage()，磨皮/美白/对比度更强、效果更明显
+view.setBeautyAndFilter(BeautyParams.defaultImage(), FilterStyle.FRESH, 0.8f);
+
+// 清晰度（锐化）：改善模糊图片，0~1，推荐 0.3~0.7
+view.setClarity(0.5f);
+
+// 滑块调整（实时生效，不重建滤镜）
+view.updateBeautyParams(params);
+view.updateFilterIntensity(0.6f);
+view.updateFilterStyle(FilterStyle.PEACH, 0.7f);
+
+// 导出结果
+view.getFilteredBitmap(bmp -> saveToGallery(bmp));        // 拿到处理后 Bitmap
+view.saveToPictures("MyApp", "out.jpg", uri -> { /* 已存相册 */ });
+```
+
+> **关于清晰度**：`setClarity` / `CameraKit.applyClarity` 是基于 Unsharp Mask 的边缘锐化
+> （经典算法，无需模型）。若需要真正意义上的「AI 超分辨率重建」，需接入端侧推理引擎
+> （TensorFlow Lite / ONNX Runtime）+ 模型文件，可在此基础上扩展。
+
 ## 核心类说明
 
 | 类名 | 说明 |
@@ -227,6 +265,7 @@ rec.stop();              // 结束，结果通过 listener 回调
 | `CameraKit.CameraSession` | 相机实时预览的生命周期封装，管理美颜滤镜切换和拍照 |
 | `FilterManager` | 图片处理核心，支持 Bitmap 美颜、滤镜、滤镜链 |
 | `CameraFilterView` | FrameLayout 封装 GPUImageView，提供实时美颜+滤镜预览；支持一体化自动管理（权限/生命周期）与视频流输入（feedFrame） |
+| `ImageFilterView` | 图片滤镜处理控件（静态图片实时预览），封装「源图 + 美颜 + 滤镜 + 结果导出」 |
 | `CameraFilterHelper` | Camera1 生命周期管理（前后摄切换、拍照回调） |
 | `VideoStreamRecorder` | 视频流录像器，外部逐帧喂入 Bitmap 编码为含美颜+滤镜的 MP4 |
 | `BeautyParams` | 美颜参数 POJO（磨皮/美白/红润/亮度/对比度/伽马/饱和度） |
@@ -253,6 +292,7 @@ rec.stop();              // 结束，结果通过 listener 回调
 
 快捷构造方法：
 - `BeautyParams.defaultCamera()` — 适合相机预览的默认值
+- `BeautyParams.defaultImage()` — 适合静态图片的默认值（磨皮/美白/对比度更强，效果更明显）
 - `BeautyParams.fromIntensity(float)` — 用单一数值 0~1 控制整体美颜程度
 
 ## 滤镜风格

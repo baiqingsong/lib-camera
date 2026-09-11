@@ -105,6 +105,9 @@ class FilterFactory {
                 sharpen.setSharpness(intensity * 4f - 1f); // -1.0 ~ 3.0
                 return sharpen;
 
+            case CLARITY:
+                return new GPUImageClarityFilter(intensity);
+
             // ===== 模糊类 =====
             case GAUSSIAN_BLUR:
                 GPUImageGaussianBlurFilter gaussianBlur = new GPUImageGaussianBlurFilter();
@@ -284,6 +287,9 @@ class FilterFactory {
                 break;
             case SHARPEN:
                 ((GPUImageSharpenFilter) filter).setSharpness(intensity * 4f - 1f);
+                break;
+            case CLARITY:
+                ((GPUImageClarityFilter) filter).setIntensity(intensity);
                 break;
             case GAUSSIAN_BLUR:
                 ((GPUImageGaussianBlurFilter) filter).setBlurSize(intensity * 2f);

@@ -26,6 +26,7 @@ public enum FilterType {
     EXPOSURE("曝光", "Exposure", true),
     HIGHLIGHT_SHADOW("高光阴影", "Highlight Shadow", true),
     SHARPEN("锐化", "Sharpen", true),
+    CLARITY("清晰度", "Clarity", true),
 
     // ===== 模糊类 =====
     GAUSSIAN_BLUR("高斯模糊", "Gaussian Blur", true),

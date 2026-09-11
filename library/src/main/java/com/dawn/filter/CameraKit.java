@@ -182,6 +182,23 @@ public final class CameraKit {
         }
     }
 
+    /**
+     * 对 Bitmap 应用清晰度（锐化）处理，改善模糊图片。
+     * <p>
+     * 基于 Unsharp Mask 边缘增强：0.0 = 原图，1.0 = 最强锐化，推荐 0.3~0.7。
+     * 注意：这是经典图像锐化算法；若需真正意义的「AI 超分辨率重建」，
+     * 需要接入端侧推理引擎（TensorFlow Lite / ONNX Runtime）+ 模型文件，不在本方法范围内。
+     */
+    public Bitmap applyClarity(Bitmap input, float intensity) {
+        if (input == null) return null;
+        FilterManager fm = new FilterManager(appContext);
+        try {
+            return fm.applyFilter(input, FilterType.CLARITY, intensity);
+        } finally {
+            fm.release();
+        }
+    }
+
     // =========================================================
     //  相机实时预览 API
     // =========================================================
@@ -343,6 +360,18 @@ public final class CameraKit {
             helper.notifyFilterChanged(filterView.getCurrentBeautyParams(),
                     filterView.getCurrentFilterStyle(), intensity);
             return this;
+        }
+
+        /**
+         * 设置清晰度（锐化）强度 0~1，改善模糊画面（当前仅影响预览）。
+         */
+        public CameraSession setClarity(float clarity) {
+            helper.setClarity(clarity);
+            return this;
+        }
+
+        public float getClarity() {
+            return helper.getClarity();
         }
 
         // ── 预览控制（镜像 / 旋转 / 宽高比 / 首帧回调） ──────────────

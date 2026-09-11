@@ -19,10 +19,12 @@ import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
 
 import java.io.File;
+import java.util.Arrays;
 
 import jp.co.cyberagent.android.gpuimage.GPUImage;
 import jp.co.cyberagent.android.gpuimage.GPUImageView;
 import jp.co.cyberagent.android.gpuimage.filter.GPUImageFilter;
+import jp.co.cyberagent.android.gpuimage.filter.GPUImageFilterGroup;
 
 /**
  * 相机滤镜预览视图。
@@ -44,11 +46,14 @@ public class CameraFilterView extends FrameLayout implements DefaultLifecycleObs
     private View         loadingOverlay;  // 启动时的 loading 遮罩
     private GPUImageFilter activeFilter;
     private BeautyFilterPipeline activePipeline;
+    private GPUImageClarityFilter clarityFilter;   // 清晰度（锐化）
+    private GPUImageFilterGroup effectiveGroup;    // 当前生效的组合滤镜
     private FilterType currentFilterType = FilterType.NONE;
     private float currentIntensity = 0.5f;
     private BeautyParams currentBeautyParams = BeautyParams.defaultCamera();
     private FilterStyle currentFilterStyle = FilterStyle.ORIGINAL;
     private float currentFilterIntensity = 1.0f;
+    private float currentClarity = 0f;
 
     // ── 一体化自动管理（相机模式） ──────────────────────────────
     private boolean autoManageLifecycle = false;  // 是否自动管理权限/生命周期/相机启停
@@ -95,7 +100,8 @@ public class CameraFilterView extends FrameLayout implements DefaultLifecycleObs
         gpuImageView.setScaleType(GPUImage.ScaleType.CENTER_CROP);
         gpuImageView.setRatio(DEFAULT_PREVIEW_RATIO);
         activeFilter = new GPUImageFilter();
-        gpuImageView.setFilter(activeFilter);
+        clarityFilter = new GPUImageClarityFilter(0f);
+        applyEffectiveFilter();
         addView(gpuImageView);
 
         // Loading 遮罩：覆盖在 GPUImageView 上方，首帧到达后隐藏
@@ -167,15 +173,15 @@ public class CameraFilterView extends FrameLayout implements DefaultLifecycleObs
         gpuImageView.setScaleType(GPUImage.ScaleType.CENTER_CROP);
         gpuImageView.setRatio(DEFAULT_PREVIEW_RATIO);
 
-        // 重新应用当前滤镜/美颜
+        // 重新应用当前滤镜/美颜（GL 上下文已重建，清晰度滤镜也需新建）
+        clarityFilter = new GPUImageClarityFilter(currentClarity);
         if (activePipeline != null) {
             activePipeline = new BeautyFilterPipeline(currentBeautyParams, currentFilterStyle, currentFilterIntensity);
             activeFilter = activePipeline;
-            gpuImageView.setFilter(activePipeline);
         } else {
             activeFilter = FilterFactory.createFilter(currentFilterType, currentIntensity);
-            gpuImageView.setFilter(activeFilter);
         }
+        applyEffectiveFilter();
 
         addView(gpuImageView);
         // 把 loading 遮罩移到最顶层（addView 后 gpuImageView 在下，遮罩在上）
@@ -192,6 +198,32 @@ public class CameraFilterView extends FrameLayout implements DefaultLifecycleObs
     }
 
     /**
+     * 设置清晰度（锐化）强度 0~1，改善模糊画面。0 = 关闭（原图）。
+     * 基于 Unsharp Mask 边缘增强，推荐 0.3~0.7。
+     */
+    public void setClarity(float clarity) {
+        currentClarity = Math.max(0f, Math.min(1f, clarity));
+        if (clarityFilter != null) {
+            clarityFilter.setIntensity(currentClarity);
+            gpuImageView.requestRender();
+        }
+    }
+
+    public float getClarity() {
+        return currentClarity;
+    }
+
+    /** 用「内容滤镜 + 清晰度滤镜」组合构建当前生效滤镜并应用到 GPUImageView。 */
+    private void applyEffectiveFilter() {
+        GPUImageFilter content = (activePipeline != null) ? activePipeline : activeFilter;
+        if (clarityFilter == null) {
+            clarityFilter = new GPUImageClarityFilter(currentClarity);
+        }
+        effectiveGroup = new GPUImageFilterGroup(Arrays.asList(content, clarityFilter));
+        gpuImageView.setFilter(effectiveGroup);
+    }
+
+    /**
      * 设置滤镜类型和强度。
      */
     public void setFilter(FilterType type, float intensity) {
@@ -202,7 +234,7 @@ public class CameraFilterView extends FrameLayout implements DefaultLifecycleObs
         this.currentFilterType = type;
         this.currentIntensity = intensity;
         activeFilter = FilterFactory.createFilter(type, intensity);
-        gpuImageView.setFilter(activeFilter);
+        applyEffectiveFilter();
         gpuImageView.requestRender();
     }
 
@@ -242,7 +274,7 @@ public class CameraFilterView extends FrameLayout implements DefaultLifecycleObs
         currentFilterStyle = filterStyle == null ? FilterStyle.ORIGINAL : filterStyle;
         activePipeline = new BeautyFilterPipeline(currentBeautyParams, currentFilterStyle, currentFilterIntensity);
         activeFilter = activePipeline;
-        gpuImageView.setFilter(activePipeline);
+        applyEffectiveFilter();
         gpuImageView.requestRender();
         syncStreamRecorderFilter();
     }
@@ -286,7 +318,9 @@ public class CameraFilterView extends FrameLayout implements DefaultLifecycleObs
         } else {
             activeFilter = FilterFactory.createFilter(currentFilterType, currentIntensity);
         }
-        gpuImageView.setFilter(activeFilter);
+        // GL 上下文已重建，清晰度滤镜需新建实例
+        clarityFilter = new GPUImageClarityFilter(currentClarity);
+        applyEffectiveFilter();
         // GL 上下文重建后，GPUImageRenderer 的 glTextureId 仍是旧上下文的纹理 ID，
         // 已经失效。deleteImage() 将其重置为 NO_IMAGE(-1)，使下一帧 setImageBitmap
         // 通过 glGenTextures 重新创建纹理，避免 glTexSubImage2D 报
@@ -302,9 +336,9 @@ public class CameraFilterView extends FrameLayout implements DefaultLifecycleObs
      * 避免旧 program 失效导致黑屏（Mali: "program is not a value generated by OpenGL"）。
      */
     public void destroyActiveFilter() {
-        if (activeFilter != null) {
+        if (effectiveGroup != null) {
             try {
-                activeFilter.destroy();
+                effectiveGroup.destroy();
             } catch (Throwable ignored) {
             }
         }

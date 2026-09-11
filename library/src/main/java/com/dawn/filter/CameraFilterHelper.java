@@ -778,6 +778,15 @@ public class CameraFilterHelper {
         }
     }
 
+    /** 设置清晰度（锐化）强度 0~1，当前仅影响预览画面。 */
+    public void setClarity(float clarity) {
+        filterView.setClarity(clarity);
+    }
+
+    public float getClarity() {
+        return filterView.getClarity();
+    }
+
     // ==========================================================
     // 录制
     // ==========================================================
