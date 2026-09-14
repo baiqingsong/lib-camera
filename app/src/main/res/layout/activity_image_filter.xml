@@ -256,6 +256,14 @@
                 android:text="AI 增强（超分辨率）"
                 android:textSize="13sp" />
 
+            <Button
+                android:id="@+id/btn_portrait_cutout"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="8dp"
+                android:text="抠像透明（人物保留）"
+                android:textSize="13sp" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="48dp"

@@ -111,6 +111,8 @@ public class ImageFilterActivity extends AppCompatActivity {
         findViewById(R.id.btn_save_bottom).setOnClickListener(v -> saveImage());
         // AI 超分辨率
         findViewById(R.id.btn_ai_enhance).setOnClickListener(v -> aiEnhance());
+        // 人像抠图（背景透明）
+        findViewById(R.id.btn_portrait_cutout).setOnClickListener(v -> cutoutPortrait());
     }
 
     private void loadImage(Uri uri) {
@@ -291,6 +293,33 @@ public class ImageFilterActivity extends AppCompatActivity {
             public void onError(String message) {
                 Toast.makeText(ImageFilterActivity.this,
                         "AI 增强失败: " + message, Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    private void cutoutPortrait() {
+        if (originalBitmap == null) {
+            Toast.makeText(this, "请先选择一张图片", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        Toast.makeText(this, "正在抠像，请稍候…", Toast.LENGTH_SHORT).show();
+        CameraKit.get().cutoutPortrait(originalBitmap, 0.45f, new CameraKit.CutoutCallback() {
+            @Override
+            public void onResult(Bitmap bitmap) {
+                if (bitmap == null) {
+                    Toast.makeText(ImageFilterActivity.this, "抠图失败，建议换一张清晰的正面照", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                originalBitmap = bitmap;
+                imageFilterView.setImage(bitmap);
+                applyModules(true);
+                Toast.makeText(ImageFilterActivity.this, "抠像成功，背景已设为透明", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onError(String message) {
+                Toast.makeText(ImageFilterActivity.this,
+                        "抠图失败: " + message, Toast.LENGTH_LONG).show();
             }
         });
     }

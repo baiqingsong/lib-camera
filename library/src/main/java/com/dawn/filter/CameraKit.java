@@ -257,6 +257,53 @@ public final class CameraKit {
     }
 
     // =========================================================
+    //  人像抠图（背景透明）
+    // =========================================================
+
+    /**
+     * 抠出人物前景，背景设为透明。
+     *
+     * @param input 输入图片
+     * @param threshold 前景阈值，0.05~0.95，推荐 0.45
+     * @return 背景透明的人像图；失败返回 null
+     */
+    public Bitmap cutoutPortrait(Bitmap input, float threshold) {
+        return PortraitCutout.cutoutPerson(appContext, input, threshold);
+    }
+
+    /**
+     * 异步抠图，背景透明。
+     */
+    public void cutoutPortrait(Bitmap input, float threshold, final CutoutCallback callback) {
+        if (input == null || input.isRecycled()) {
+            if (callback != null) callback.onError("输入图片无效");
+            return;
+        }
+        if (callback == null) return;
+
+        final Handler main = new Handler(Looper.getMainLooper());
+        new Thread(() -> {
+            try {
+                Bitmap out = PortraitCutout.cutoutPerson(appContext, input, threshold);
+                if (out != null && !out.isRecycled()) {
+                    main.post(() -> callback.onResult(out));
+                } else {
+                    main.post(() -> callback.onError("抠图失败"));
+                }
+            } catch (Throwable t) {
+                Log.e("CameraKit", "cutoutPortrait failed", t);
+                main.post(() -> callback.onError("抠图失败：" + t.getMessage()));
+            }
+        }, "CameraKitCutout").start();
+    }
+
+    /** 人像抠图回调。 */
+    public interface CutoutCallback {
+        void onResult(Bitmap bitmap);
+        void onError(String message);
+    }
+
+    // =========================================================
     //  相机实时预览 API
     // =========================================================
 
