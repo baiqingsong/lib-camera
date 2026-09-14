@@ -82,6 +82,12 @@ public class ImageFilterView extends FrameLayout {
     /** 设置待处理的源图，并立即应用当前美颜 + 滤镜。 */
     public void setImage(Bitmap bitmap) {
         sourceBitmap = bitmap;
+        try {
+            if (gpuImageView != null && gpuImageView.getGPUImage() != null) {
+                gpuImageView.getGPUImage().deleteImage();
+            }
+        } catch (Throwable ignored) {
+        }
         if (bitmap != null && !bitmap.isRecycled()) {
             clarityFilter.setImageSize(bitmap.getWidth(), bitmap.getHeight());
             gpuImageView.setImage(bitmap);
