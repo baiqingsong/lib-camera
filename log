@@ -1,77 +1,54 @@
-当前效果评估
-对比上一版，外侧零散碎噪点已经解决了，主体保留完整。现在残留的核心问题集中在轮廓边缘：
-轮廓一圈淡淡的白边（溢色）：人物外轮廓有一圈浅灰色 / 白色光晕，叠加黑色背景很明显；根源是半透明像素的 RGB 还保留原图背景的亮度，没有做溢色剥离。
-边缘过渡生硬，轻微阶梯锯齿：整体轮廓不是平滑过渡，尤其是肩膀、后脑勺、椅子靠背的交界，没有自然的 alpha 渐变。
-精细区域问题：眼镜框边缘、耳机、发丝位置，硬切割，缺少极窄半透明过渡；
-椅子靠背残留：ML Kit 把椅子靠背识别成前景，这是模型本身的识别偏差，需要做主体区域约束。
-现状：连通域过滤（阶段 1）已经生效，现在进入阶段 2 局部边缘羽化 + 阶段 3 溢色去除，再单独处理「误识别物体（椅子）」的问题。
-优先级排序（按改动成本 & 收益）
-① 解决溢色（当前最显眼问题，优先做）
-现象：半透明边缘像素，RGB 通道还带着原图背景亮度，当 alpha<255 时，就会透出一圈白边。
-原理：透明合成公式
-plaintext
-finalRGB = srcRGB * alpha + bgRGB * (1-alpha)
-当前：srcRGB 是原图带背景的像素，在 alpha 半透明区域，混合黑色背景就会出现白边。
-修正算法（只在 0 < alpha < 255 的边缘带执行）：
-plaintext
-// 反推去除背景色，bg是原图背景颜色
-outRGB = (srcRGB - bg * (255 - alpha)) / alpha
-注意：
-只作用在轮廓边缘窄带（1~2 像素），不要修改完全不透明主体像素；
-你这个场景预览背景是黑色，bg=(0,0,0)；
-要做像素值裁剪，防止计算后出现负数或者超过 255。
-② 局部边缘带平滑（不糊眼镜、耳机等硬细节）
-禁止全局高斯模糊。
-实现思路：
-从原始 alpha 蒙版，用膨胀减腐蚀提取轮廓边缘带（宽度 1~2px）；
-只有落在边缘带内的像素，才做 3×3 小核高斯模糊；
-边缘带内部（人物主体）的 alpha 值完全保留原始 ML Kit 概率，不改动。
-效果目标：
-肩膀、后脑勺：边缘渐变柔和，消除锯齿；
-眼镜框、耳机：属于高梯度硬边界，在边缘带内降低模糊权重，保持锐利不糊。
-梯度判断逻辑：计算原图在该像素的梯度，梯度大 = 硬边缘（眼镜、耳机），模糊强度调低；梯度小 = 软边缘（皮肤、头发），模糊强度正常。
-③ 模型误识别：椅子靠背被纳入前景
-ML Kit Selfie Segmenter 是人像分割，当人和椅子紧贴时，容易把座椅识别为人体一部分。
-两种方案，可选其一：
-方案 A（轻量，推荐）：人脸框约束
-使用 ML Kit 人脸检测拿到人脸 bounding box；
-向外适度扩张这个人脸框，作为允许的前景区域；
-在人脸框以外的区域，如果 alpha > 阈值，直接强制置透明，切掉椅子这类附属物体。
-优点：改动小，性能开销低；缺点：人离镜头太远、人脸检测失败会失效。
-方案 B：连通域加权
-保留最大连通域的同时，结合人脸中心点，给连通域增加距离权重，远离人脸中心的连通区域降低 alpha 置信度。
-④ 可选：发丝专项分支（等上面 3 点稳定后再加）
-当前案例头发很短，收益有限；但可以预留开关，留给长头发图片场景。
-逻辑：在头发 ROI 区域降低过滤阈值，保留细的 alpha 渐变，其余区域维持原有过滤规则。
-代码改造思路（PortraitCutout.java）
-java
-运行
-// 现有流程
-Bitmap rawAlpha = mlKit.getSegmentAlpha();
-Bitmap maskRemovedBlob = removeSmallBlobs(rawAlpha); // ✅已经完成，去掉碎片
-
-// 新增步骤
-Bitmap edgeBand = getEdgeBand(maskRemovedBlob, 2); // 提取1~2px边缘带
-Bitmap maskLocalSmooth = localEdgeBlur(maskRemovedBlob, edgeBand); // 仅边缘带模糊
-Bitmap finalBitmap = removeColorFringe(originalBitmap, maskLocalSmooth); // 溢色去除
-
-// 新增：人脸框约束，剔除椅子靠背
-Bitmap maskWithFaceConstraint = applyFaceRegionConstraint(maskLocalSmooth, faceBoundingBox);
-调参建议（Android 端，兼顾性能）
-边缘带宽度：优先 1~2 像素，不要超过 3px，越宽越容易糊；
-溢色：只在 alpha ∈ [20,235] 区间运行，完全透明 / 完全不透明像素跳过；
-高斯核：固定 3×3，不要 5×5；
-人脸框扩张：人脸宽高向外扩张 0.4 倍，避免切掉肩膀，但足够把椅子大部分区域排除在外。
-测试验证清单（优化后检查这几项）
-✅ 人物外轮廓不再有一圈白边，贴黑色背景干净
-✅ 肩膀、后脑勺轮廓平滑，无阶梯锯齿
-✅ 眼镜框、耳机保持锐利，不会被模糊糊掉
-✅ 椅子靠背这类误识别物体被剔除，不再跟着人物抠出来
-✅ alpha 半透明过渡自然，没有硬切割线
-✅ 整套后处理耗时没有明显上涨
-下一步行动顺序
-先实现溢色去除，解决视觉上最扎眼的白边；
-再做边缘带局部平滑，消除轮廓锯齿；
-增加人脸区域约束，切掉椅子这类误识别前景；
-全部稳定后，再考虑发丝增强开关。
-如果你需要，我可以直接写这套 removeColorFringe、getEdgeBand、localEdgeBlur、applyFaceRegionConstraint 的 Android Java 像素处理代码，适配 Bitmap。
+---------------------------- PROCESS ENDED (6046) for package com.dawn.libfilter ----------------------------
+---------------------------- PROCESS STARTED (7690) for package com.dawn.libfilter ----------------------------
+2026-09-15 16:27:45.486  7690-7690  Compatibil...geReporter com.dawn.libfilter                   D  Compat change id reported: 242716250; UID 10103; state: ENABLED
+2026-09-15 16:27:45.506  7690-7690  ziparchive              com.dawn.libfilter                   W  Unable to open '/data/app/~~dZmy4tmGgs5d0Awd9Kcjtg==/com.dawn.libfilter-4tpnQZW9eF8-7oTLJo-NZQ==/base.dm': No such file or directory
+2026-09-15 16:27:45.506  7690-7690  ziparchive              com.dawn.libfilter                   W  Unable to open '/data/app/~~dZmy4tmGgs5d0Awd9Kcjtg==/com.dawn.libfilter-4tpnQZW9eF8-7oTLJo-NZQ==/base.dm': No such file or directory
+2026-09-15 16:27:45.661  7690-7690  nativeloader            com.dawn.libfilter                   D  Configuring clns-6 for other apk /data/app/~~dZmy4tmGgs5d0Awd9Kcjtg==/com.dawn.libfilter-4tpnQZW9eF8-7oTLJo-NZQ==/base.apk. target_sdk_version=34, uses_libraries=, library_path=/data/app/~~dZmy4tmGgs5d0Awd9Kcjtg==/com.dawn.libfilter-4tpnQZW9eF8-7oTLJo-NZQ==/lib/arm64:/data/app/~~dZmy4tmGgs5d0Awd9Kcjtg==/com.dawn.libfilter-4tpnQZW9eF8-7oTLJo-NZQ==/base.apk!/lib/arm64-v8a, permitted_path=/data:/mnt/expand:/data/user/0/com.dawn.libfilter
+2026-09-15 16:27:45.676  7690-7690  GraphicsEnvironment     com.dawn.libfilter                   V  Currently set values for:
+2026-09-15 16:27:45.676  7690-7690  GraphicsEnvironment     com.dawn.libfilter                   V    angle_gl_driver_selection_pkgs=[]
+2026-09-15 16:27:45.676  7690-7690  GraphicsEnvironment     com.dawn.libfilter                   V    angle_gl_driver_selection_values=[]
+2026-09-15 16:27:45.677  7690-7690  GraphicsEnvironment     com.dawn.libfilter                   V  ANGLE GameManagerService for com.dawn.libfilter: false
+2026-09-15 16:27:45.677  7690-7690  GraphicsEnvironment     com.dawn.libfilter                   V  com.dawn.libfilter is not listed in per-application setting
+2026-09-15 16:27:45.678  7690-7690  GraphicsEnvironment     com.dawn.libfilter                   V  Neither updatable production driver nor prerelease driver is supported.
+2026-09-15 16:27:45.746  7690-7713  vulkan                  com.dawn.libfilter                   D  searching for layers in '/data/app/~~dZmy4tmGgs5d0Awd9Kcjtg==/com.dawn.libfilter-4tpnQZW9eF8-7oTLJo-NZQ==/lib/arm64'
+2026-09-15 16:27:45.746  7690-7713  vulkan                  com.dawn.libfilter                   D  searching for layers in '/data/app/~~dZmy4tmGgs5d0Awd9Kcjtg==/com.dawn.libfilter-4tpnQZW9eF8-7oTLJo-NZQ==/base.apk!/lib/arm64-v8a'
+2026-09-15 16:27:45.748  7690-7713  mali_so                 com.dawn.libfilter                   I  [File] : hardware/arm/mali_so/driver/product/base/src/mali_base_kbase.c; [Line] : 1403; [Func] : base_context_deal_with_version_affairs_rk_ext;
+                                                                                                    arm_release_ver of this mali_so is 'g15p0-01eac0', rk_so_ver is '4'.
+2026-09-15 16:27:45.748  7690-7713  mali_so                 com.dawn.libfilter                   I  [File] : hardware/arm/mali_so/driver/product/base/src/mali_base_kbase.c; [Line] : 1419; [Func] : base_context_deal_with_version_affairs_rk_ext;
+                                                                                                    arm_release_vers are match. to set the full mali_ver 'g15p0-01eac0-x-4' as value of 'sys.gmali.version'.
+2026-09-15 16:27:45.752  7690-7713  mali_so                 com.dawn.libfilter                   I  [File] : hardware/arm/mali_so/driver/product/base/src/mali_base_kbase.c; [Line] : 1403; [Func] : base_context_deal_with_version_affairs_rk_ext;
+                                                                                                    arm_release_ver of this mali_so is 'g15p0-01eac0', rk_so_ver is '4'.
+2026-09-15 16:27:45.752  7690-7713  mali_so                 com.dawn.libfilter                   I  [File] : hardware/arm/mali_so/driver/product/base/src/mali_base_kbase.c; [Line] : 1419; [Func] : base_context_deal_with_version_affairs_rk_ext;
+                                                                                                    arm_release_vers are match. to set the full mali_ver 'g15p0-01eac0-x-4' as value of 'sys.gmali.version'.
+2026-09-15 16:27:45.800  7690-7690  AppCompatDelegate       com.dawn.libfilter                   D  Checking for metadata for AppLocalesMetadataHolderService : Service not found
+2026-09-15 16:27:45.906  7690-7690  .dawn.libfilter         com.dawn.libfilter                   W  Accessing hidden method Landroid/view/View;->computeFitSystemWindows(Landroid/graphics/Rect;Landroid/graphics/Rect;)Z (unsupported, reflection, allowed)
+2026-09-15 16:27:45.906  7690-7690  .dawn.libfilter         com.dawn.libfilter                   W  Accessing hidden method Landroid/view/ViewGroup;->makeOptionalFitsSystemWindows()V (unsupported, reflection, allowed)
+2026-09-15 16:27:45.912  7690-7690  Compatibil...geReporter com.dawn.libfilter                   D  Compat change id reported: 210923482; UID 10103; state: ENABLED
+2026-09-15 16:27:46.028  7690-7690  Compatibil...geReporter com.dawn.libfilter                   D  Compat change id reported: 237531167; UID 10103; state: DISABLED
+2026-09-15 16:27:46.032  7690-7690  OpenGLRenderer          com.dawn.libfilter                   W  Unknown dataspace 0
+2026-09-15 16:27:50.172  7690-7690  ClarityFilter           com.dawn.libfilter                   I  setIntensity=0.0 location=-1
+2026-09-15 16:27:50.581  7690-7739  libEGL                  com.dawn.libfilter                   D  loaded /vendor/lib64/egl/libGLES_mali.so
+2026-09-15 16:27:50.621  7690-7739  mali_so                 com.dawn.libfilter                   I  [File] : hardware/arm/mali_so/driver/product/base/src/mali_base_kbase.c; [Line] : 1403; [Func] : base_context_deal_with_version_affairs_rk_ext;
+                                                                                                    arm_release_ver of this mali_so is 'g15p0-01eac0', rk_so_ver is '4'.
+2026-09-15 16:27:50.621  7690-7739  mali_so                 com.dawn.libfilter                   I  [File] : hardware/arm/mali_so/driver/product/base/src/mali_base_kbase.c; [Line] : 1419; [Func] : base_context_deal_with_version_affairs_rk_ext;
+                                                                                                    arm_release_vers are match. to set the full mali_ver 'g15p0-01eac0-x-4' as value of 'sys.gmali.version'.
+2026-09-15 16:27:50.637  7690-7739  ClarityFilter           com.dawn.libfilter                   I  onOutputSizeChanged view=1280x515 eff=1280x515 smallOff=0.001953125
+2026-09-15 16:27:51.161  7690-7753  ProfileInstaller        com.dawn.libfilter                   D  Installing profile for com.dawn.libfilter
+2026-09-15 16:27:51.983  7690-7690  AutofillManager         com.dawn.libfilter                   D  Fill dialog is enabled:false, hints=[]
+2026-09-15 16:27:53.824  7690-7690  Compatibil...geReporter com.dawn.libfilter                   D  Compat change id reported: 78294732; UID 10103; state: ENABLED
+2026-09-15 16:27:53.920  7690-7739  ClarityFilter           com.dawn.libfilter                   I  onOutputSizeChanged view=1280x515 eff=905x509 smallOff=0.002762431
+2026-09-15 16:27:55.369  7690-7739  ClarityFilter           com.dawn.libfilter                   I  onOutputSizeChanged view=1280x485 eff=905x509 smallOff=0.002762431
+2026-09-15 16:27:56.635  7690-7690  Compatibil...geReporter com.dawn.libfilter                   D  Compat change id reported: 147798919; UID 10103; state: ENABLED
+2026-09-15 16:27:57.060  7690-7768  PortraitMatting         com.dawn.libfilter                   I  RVM model loaded, inputs=6 outputs=6
+2026-09-15 16:28:08.893  7690-7768  onnxruntime             com.dawn.libfilter                   E   [E:onnxruntime:, sequential_executor.cc:516 ExecuteKernel] Non-zero status code returned while running Expand node. Name:'Expand_174' Status Message: invalid expand shape
+2026-09-15 16:28:08.896  7690-7768  PortraitMatting         com.dawn.libfilter                   E  RVM tile inference failed (Ask Gemini)
+                                                                                                    ai.onnxruntime.OrtException: Error code - ORT_INVALID_ARGUMENT - message: Non-zero status code returned while running Expand node. Name:'Expand_174' Status Message: invalid expand shape
+                                                                                                    	at ai.onnxruntime.OrtSession.run(Native Method)
+                                                                                                    	at ai.onnxruntime.OrtSession.run(OrtSession.java:395)
+                                                                                                    	at ai.onnxruntime.OrtSession.run(OrtSession.java:242)
+                                                                                                    	at ai.onnxruntime.OrtSession.run(OrtSession.java:210)
+                                                                                                    	at com.dawn.filter.PortraitMatting.runTile(PortraitMatting.java:155)
+                                                                                                    	at com.dawn.filter.PortraitMatting.matte(PortraitMatting.java:93)
+                                                                                                    	at com.dawn.filter.CameraKit.lambda$cutoutPortraitAI$11$com-dawn-filter-CameraKit(CameraKit.java:364)
+                                                                                                    	at com.dawn.filter.CameraKit$$ExternalSyntheticLambda7.run(Unknown Source:10)
+                                                                                                    	at java.lang.Thread.run(Thread.java:1012)

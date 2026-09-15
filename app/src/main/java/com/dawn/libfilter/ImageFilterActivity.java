@@ -303,7 +303,8 @@ public class ImageFilterActivity extends AppCompatActivity {
             return;
         }
         Toast.makeText(this, "正在抠像，请稍候…", Toast.LENGTH_SHORT).show();
-        CameraKit.get().cutoutPortrait(originalBitmap, 0.45f, new CameraKit.CutoutCallback() {
+        // 优先使用 RVM AI 抠图模型（源分辨率 alpha，发丝级边缘）；未放模型则回退 ML Kit
+        CameraKit.CutoutCallback callback = new CameraKit.CutoutCallback() {
             @Override
             public void onResult(Bitmap bitmap) {
                 if (bitmap == null) {
@@ -321,7 +322,12 @@ public class ImageFilterActivity extends AppCompatActivity {
                 Toast.makeText(ImageFilterActivity.this,
                         "抠图失败: " + message, Toast.LENGTH_LONG).show();
             }
-        });
+        };
+        if (CameraKit.get().hasMattingModel()) {
+            CameraKit.get().cutoutPortraitAI(originalBitmap, callback);
+        } else {
+            CameraKit.get().cutoutPortrait(originalBitmap, 0.45f, callback);
+        }
     }
 
     @Override

@@ -59,4 +59,10 @@ dependencies {
 
     // ML Kit - 人像分割，支持背景透明抠图
     implementation 'com.google.mlkit:segmentation-selfie:16.0.0-beta6'
+
+    // ML Kit - 人脸检测，用于抠图时约束主体区域（剔除椅子等误识别前景）
+    implementation 'com.google.mlkit:face-detection:16.1.7'
+
+    // ONNX Runtime - 运行 RVM 人像抠图模型（源分辨率 alpha matte，发丝级边缘）
+    implementation 'com.microsoft.onnxruntime:onnxruntime-android:1.18.0'
 }

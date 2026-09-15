@@ -7,6 +7,8 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * LibCamera 库的统一对外入口（门面类）。
@@ -301,6 +303,86 @@ public final class CameraKit {
     public interface CutoutCallback {
         void onResult(Bitmap bitmap);
         void onError(String message);
+    }
+
+    /** 默认 RVM 抠图模型在 assets 下的路径。 */
+    public static final String DEFAULT_MATTING_MODEL_ASSET = "matting/rvm_mobilenetv3_fp32.onnx";
+
+    /** 是否已放入 RVM 抠图模型（存在则优先走 AI 抠图，否则回退 ML Kit）。 */
+    public boolean hasMattingModel() {
+        return hasAsset(DEFAULT_MATTING_MODEL_ASSET);
+    }
+
+    /**
+     * AI 抠图（RVM 模型，源分辨率 alpha matte，发丝级边缘）。同步方法，需在后台线程调用。
+     *
+     * @return 背景透明的人像图；失败返回 null
+     */
+    public Bitmap cutoutPortraitAI(Bitmap input) {
+        return cutoutPortraitAI(input, DEFAULT_MATTING_MODEL_ASSET);
+    }
+
+    /**
+     * @param assetPath RVM 模型在 assets 下的路径
+     */
+    public Bitmap cutoutPortraitAI(Bitmap input, String assetPath) {
+        if (input == null || input.isRecycled()) return null;
+        try {
+            PortraitMatting matting = PortraitMatting.load(appContext, assetPath);
+            try {
+                return matting.matte(input);
+            } finally {
+                matting.close();
+            }
+        } catch (Throwable t) {
+            Log.e("CameraKit", "cutoutPortraitAI failed", t);
+            return null;
+        }
+    }
+
+    /**
+     * AI 抠图（RVM 模型）。异步执行，回调在主线程。
+     */
+    public void cutoutPortraitAI(Bitmap input, final CutoutCallback callback) {
+        cutoutPortraitAI(input, DEFAULT_MATTING_MODEL_ASSET, callback);
+    }
+
+    /**
+     * @param assetPath RVM 模型在 assets 下的路径
+     */
+    public void cutoutPortraitAI(Bitmap input, String assetPath, final CutoutCallback callback) {
+        if (input == null || input.isRecycled()) {
+            if (callback != null) callback.onError("输入图片无效");
+            return;
+        }
+        if (callback == null) return;
+        final Handler main = new Handler(Looper.getMainLooper());
+        new Thread(() -> {
+            try {
+                PortraitMatting matting = PortraitMatting.load(appContext, assetPath);
+                try {
+                    Bitmap out = matting.matte(input);
+                    if (out != null && !out.isRecycled()) {
+                        main.post(() -> callback.onResult(out));
+                    } else {
+                        main.post(() -> callback.onError("AI 抠图失败"));
+                    }
+                } finally {
+                    matting.close();
+                }
+            } catch (Throwable t) {
+                Log.e("CameraKit", "cutoutPortraitAI failed", t);
+                main.post(() -> callback.onError("模型加载失败：" + t.getMessage()));
+            }
+        }, "CameraKitMatting").start();
+    }
+
+    private boolean hasAsset(String path) {
+        try (InputStream is = appContext.getAssets().open(path)) {
+            return true;
+        } catch (IOException e) {
+            return false;
+        }
     }
 
     // =========================================================
